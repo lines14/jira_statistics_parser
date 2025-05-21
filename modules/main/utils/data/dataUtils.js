@@ -1,5 +1,4 @@
 import fs from 'fs';
-import JSONLoader from './JSONLoader.js';
 
 class DataUtils {
   static saveToJSON(obj) {
@@ -9,12 +8,23 @@ class DataUtils {
     fs.writeFileSync(`./artifacts/${name}.json`, JSON.stringify(data, replacer, 4));
   }
 
-  static filterCommentsWithStatuses(comments) {
-    return comments
-      .flatMap((comment) => comment.body.content
-        .flatMap((content) => content.content
-          ?.filter((nestedContent) => nestedContent.type === 'status'
-    && JSONLoader.config.statuses.includes(nestedContent.attrs.text)) || []));
+  static filterCommentsWithStatuses(data) {
+    let results = [];
+  
+    if (Array.isArray(data)) {
+      for (const item of data) {
+        results.push(...this.filterCommentsWithStatuses(item));
+      }
+    } else if (data !== null && typeof data === 'object') {
+      if (data.type === 'status') {
+        results.push(data);
+      }
+      for (const key in data) {
+        results.push(...this.filterCommentsWithStatuses(data[key]));
+      }
+    }
+  
+    return results;
   }
 }
 
