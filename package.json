@@ -1,0 +1,21 @@
+{
+    "type": "module",
+    "dependencies": {
+        "@babel/eslint-parser": "^7.24.1",
+        "axios": "^1.4.0",
+        "dotenv": "^16.3.1",
+        "eslint": "^8.56.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "filesize": "^10.1.0",
+        "moment": "^2.29.4"
+    },
+    "scripts": {
+        "eslint": "eslint --ext .js .",
+        "eslint:fix": "eslint --fix --ext .js .",
+        "lint": "npm run config && npm run eslint",
+        "lint:fix": "npm run config && npm run eslint:fix",
+        "config": "node ./modules/main/utils/data/filesParser.js",
+        "parse:run": "node ./jiraParser.js",
+        "parse": "npm run config && npm run parse:run"
+    }
+}

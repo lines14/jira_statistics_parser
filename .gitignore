@@ -1,0 +1,5 @@
+.env
+artifacts/log.txt
+node_modules/
+package-lock.json
+modules/main/utils/data/JSONLoader.js
