@@ -2,6 +2,7 @@
 /* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
 import jiraAPI from './modules/API/jiraAPI.js';
 import dataUtils from './modules/main/utils/data/dataUtils.js';
+// import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 
 const parseIssues = async () => {
   const issuesArr = await jiraAPI.searchAll();
@@ -17,6 +18,13 @@ const parseIssues = async () => {
   }
 
   dataUtils.saveToJSON({ issuesWithCommentsArr });
+
+  // const issuesWithCommentsArr = JSONLoader.issuesWithCommentsArr;
+
+  const filteredIssuesWithCommentsArr = issuesWithCommentsArr.map((issueWithComment) => ({
+    key: issueWithComment.key,
+    bugsCount: dataUtils.filterCommentsWithStatuses(issueWithComment.comments).length,
+  })).filter((issueWithComment) => issueWithComment.bugsCount > 0);
 };
 
 parseIssues();
