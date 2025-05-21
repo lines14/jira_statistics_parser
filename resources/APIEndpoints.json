@@ -1,5 +1,6 @@
 {
     "jira": {
-        "search": "rest/api/3/search"
+        "search": "rest/api/3/search",
+        "issue": "rest/api/3/issue"
     }
 }
