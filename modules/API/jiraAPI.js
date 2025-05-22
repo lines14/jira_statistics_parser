@@ -28,6 +28,7 @@ class JiraAPI extends BaseAPI {
       const params = {
         startAt,
         maxResults,
+        expand: 'changelog',
         jql: `created >= ${JSONLoader.config.startDateYMD} AND created <= ${todayYMD} ORDER BY created ASC`,
       };
 
