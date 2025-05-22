@@ -33,7 +33,7 @@ class DataUtils {
   }
 
   static intervalsOverlapping([startFirstInterval, endFirstInterval], [startSecondInterval, endSecondInterval]) {
-    return { transitionFrom: endSecondInterval.transitionFrom, overlap: startFirstInterval.created < endSecondInterval.created && startSecondInterval.created < endFirstInterval.created };
+    return { transitionFrom: endSecondInterval.transitionFrom, overlap: startFirstInterval.created < endSecondInterval.created && startSecondInterval.created < endFirstInterval.created, created: endSecondInterval.created };
   }
 
   static checkIntervalsOverlap(firstIntervals, secondIntervals) {
@@ -97,8 +97,19 @@ class DataUtils {
           assigneeChanges.unshift(initialTimestamp);
           const devStatusEndTimeIntervals = this.getTimeIntervals(this.convertTimestampsToDateObjects(devStatusEnds));
           const assigneeChangeTimeIntervals = this.getTimeIntervals(this.convertTimestampsToDateObjects(assigneeChanges));
-          const result = this.checkIntervalsOverlap(devStatusEndTimeIntervals, assigneeChangeTimeIntervals);
-          console.log(result);
+          // console.log(assigneeChangeTimeIntervals)
+          const result = this.checkIntervalsOverlap(devStatusEndTimeIntervals, assigneeChangeTimeIntervals)
+          .map((devStatusEndTimeInterval) => devStatusEndTimeInterval
+          );
+          // .filter((assigneeChangeTimeInterval) => assigneeChangeTimeInterval.overlap));
+          const flat = result.flat();
+          if (flat.every(item => !item.overlap)) {
+            console.log(result);
+            throw new Error('kek');
+          }
+
+
+
           return linkedCommentWithBug;
         }
       });
@@ -107,51 +118,3 @@ class DataUtils {
 }
 
 export default DataUtils;
-
-
-
-
-
-
-
-
-
-
-
-  // static getTimeIntervalsOverlapTime(startFirstInterval, endFirstInterval, startSecondInterval, endSecondInterval) {
-  //   const overlapStart = new Date(Math.max(startFirstInterval.getTime(), startSecondInterval.getTime()));
-  //   const overlapEnd = new Date(Math.min(endFirstInterval.getTime(), endSecondInterval.getTime()));
-  //   return Math.max(0, overlapEnd - overlapStart);
-  // }
-
-  // static checkTimeIntervalsOverlapMoreThanHalf(firstIntervals, secondIntervals) {
-  //   return firstIntervals.map(([startFirstInterval, endFirstInterval]) => {
-  //     const firstIntervalDuration = endFirstInterval.created - startFirstInterval.created;
-  //     return secondIntervals.some(([startSecondInterval, endSecondInterval]) => {
-  //       const secondIntervalDuration = endSecondInterval.created - startSecondInterval.created;
-  //       const overlap = this.getTimeIntervalsOverlapTime(startFirstInterval.created, endFirstInterval.created, startSecondInterval.created, endSecondInterval.created);
-  //       return { transitionFrom: endSecondInterval.transitionFrom, longOverlap: overlap > 0.5 * firstIntervalDuration || overlap > 0.5 * secondIntervalDuration };
-  //     });
-  //   });
-  // }
-
-  //   static checkTimeIntervalsOverlapMoreThanHalf(firstIntervals, secondIntervals) {
-  //   return firstIntervals.map(([startFirstInterval, endFirstInterval]) => {
-  //     return secondIntervals.map(([startSecondInterval, endSecondInterval]) => {
-  //       const overlap = this.getTimeIntervalsOverlapTime(startFirstInterval.created, endFirstInterval.created, startSecondInterval.created, endSecondInterval.created);
-  //       // return { transitionFrom: endSecondInterval.transitionFrom, overlap: overlap > 0 };
-  //       return  overlap > 0;
-  //     });
-  //   });
-  // }
-
-  // static checkIntervalsOverlap(firstIntervals, secondIntervals) {
-  //   return firstIntervals.map(([startA, endA]) => {
-  //     return secondIntervals.some(([startB, endB]) => {
-  //       return this.getTimeIntervalsOverlapTime(
-  //         startA.created, endA.created,
-  //         startB.created, endB.created
-  //       ) > 0;
-  //     });
-  //   });
-  // }
