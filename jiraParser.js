@@ -34,12 +34,10 @@ const parseIssues = async () => {
 
   let commentCreated;
   const filteredIssuesWithBugsArr = issuesWithCommentsArr.map((issueWithComments) => {
-    const issueWithBugs = {
-      ...issueWithComments,
-      commentsWithBugs: issueWithComments.comments
-        .flatMap((comment) => dataUtils.filterCommentsWithStatuses(comment, commentCreated)),
-    };
-
+    const issueWithBugs = { ...issueWithComments };
+    issueWithBugs.commentsWithBugs = issueWithComments.comments
+    .flatMap((comment) => dataUtils.filterCommentsWithStatuses(comment, commentCreated));
+    issueWithBugs.linkedCommentsWithBugs = dataUtils.linkDevsWithBugs(issueWithBugs);
     issueWithBugs.bugsCount = issueWithBugs.commentsWithBugs.length;
     delete issueWithBugs.comments;
     return issueWithBugs;

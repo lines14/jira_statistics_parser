@@ -11,6 +11,11 @@ class DataUtils {
     fs.writeFileSync(`./artifacts/${name}.json`, JSON.stringify(data, replacer, 4));
   }
 
+  static sortByTimestamps(changelog) {
+    const normalize = (timestamp) => timestamp.replace(/([+-]\d{2})(\d{2})$/, '$1:$2');
+    return changelog.sort((a, b) => new Date(normalize(a.created)) - new Date(normalize(b.created)));
+  }
+
   static filterCommentsWithStatuses(data, commentCreated) {
     const results = [];
     if (Array.isArray(data)) {
@@ -32,6 +37,40 @@ class DataUtils {
     }
 
     return results;
+  }
+
+  static linkDevsWithBugs(issueWithBugs) {
+    if (issueWithBugs.commentsWithBugs.length > 0) {
+      // issueWithBugs.changelog.forEach((element) => console.log(element.items.length));
+      // const linkedCommentsWithBugs = issueWithBugs.changelog.map((element) => ({ created: element.created, id: element.id,   }))
+      const linkedCommentsWithBugs = issueWithBugs.commentsWithBugs.map((commentWithBug) => {
+        const assigneeChangeTimestamps = [];
+        const workingStatusEndTimestamps = [];
+        const linkedCommentWithBug = { ...commentWithBug };
+        const sortedChangelog = this.sortByTimestamps(issueWithBugs.changelog);
+        const initialTimestamp = sortedChangelog[0].created;
+        for (const element of sortedChangelog) {
+          if (element.items.some((item) => item.field === 'status' 
+          && item.fromString 
+          && JSONLoader.config.issueStatuses.includes(item.fromString.toUpperCase()))) {
+            workingStatusEndTimestamps.push(element.created);
+          }
+        }
+
+        workingStatusEndTimestamps.unshift(initialTimestamp);
+        for (const element of sortedChangelog) {
+          if (element.items.some((item) => item.field === 'assignee' 
+          && item.fromString)) {
+            assigneeChangeTimestamps.push(element.created);
+          }
+        }
+        
+        assigneeChangeTimestamps.unshift(initialTimestamp);
+        console.log(workingStatusEndTimestamps);
+        return linkedCommentWithBug;
+      });
+      // throw new Error('kek');
+    }
   }
 }
 
