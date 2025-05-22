@@ -32,12 +32,12 @@ const parseIssues = async () => {
 
   const { issuesWithCommentsArr } = JSONLoader;
 
-  let commentCreatedAt;
+  let commentCreated;
   const filteredIssuesWithBugsArr = issuesWithCommentsArr.map((issueWithComments) => {
     const issueWithBugs = {
       ...issueWithComments,
       commentsWithBugs: issueWithComments.comments
-        .flatMap((comment) => dataUtils.filterCommentsWithStatuses(comment, commentCreatedAt)),
+        .flatMap((comment) => dataUtils.filterCommentsWithStatuses(comment, commentCreated)),
     };
 
     issueWithBugs.bugsCount = issueWithBugs.commentsWithBugs.length;

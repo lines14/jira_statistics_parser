@@ -11,22 +11,22 @@ class DataUtils {
     fs.writeFileSync(`./artifacts/${name}.json`, JSON.stringify(data, replacer, 4));
   }
 
-  static filterCommentsWithStatuses(data, commentCreatedAt) {
+  static filterCommentsWithStatuses(data, commentCreated) {
     const results = [];
     if (Array.isArray(data)) {
       for (const item of data) {
-        results.push(...this.filterCommentsWithStatuses(item, commentCreatedAt));
+        results.push(...this.filterCommentsWithStatuses(item, commentCreated));
       }
     } else if (data !== null && typeof data === 'object') {
-      if (data.created) commentCreatedAt = data.created;
-      if (data.type === 'status' && JSONLoader.config.statuses.includes(data.attrs.text.toUpperCase())) {
-        if (commentCreatedAt) data.commentCreatedAt = commentCreatedAt;
+      if (data.created) commentCreated = data.created;
+      if (data.type === 'status' && JSONLoader.config.commentStatuses.includes(data.attrs.text.toUpperCase())) {
+        if (commentCreated) data.commentCreated = commentCreated;
         results.push(data);
       }
 
       for (const key in data) {
         if (Object.hasOwn(data, key)) {
-          results.push(...this.filterCommentsWithStatuses(data[key], commentCreatedAt));
+          results.push(...this.filterCommentsWithStatuses(data[key], commentCreated));
         }
       }
     }

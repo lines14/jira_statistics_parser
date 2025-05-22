@@ -4,9 +4,14 @@
     "datesFormatYMD": "YYYY-MM-DD",
     "datesFormatDMY": "DD.MM.YYYY",
     "datesFormatISO": "YYYY-MM-DDTHH:mm:ss",
-    "startDateYMD": "2025-01-01",
-    "statuses": [
+    "startDateYMD": "2024-01-01",
+    "issueStatuses": [
+        "TO DO",
+        "IN PROGRESS" 
+    ],
+    "commentStatuses": [
         "БАГ", 
-        "ИСПРАВЛЕНО"
+        "ИСПРАВЛЕНО",
+        "ИСПРАВЛЕНО В ДРУГОЙ ВЕТКЕ"
     ]
 }
