@@ -6,6 +6,7 @@
     "datesFormatISO": "YYYY-MM-DDTHH:mm:ss",
     "startDateYMD": "2024-01-01",
     "issueStatuses": [
+        "BACKLOG",
         "TO DO",
         "IN PROGRESS" 
     ],
