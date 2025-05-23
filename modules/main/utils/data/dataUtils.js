@@ -140,11 +140,11 @@ class DataUtils {
               overlappedAssignees[0],
             );
           linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee.transitionFrom;
-          return linkedAssigneeWithBug;
         }
+        
+        return linkedAssigneeWithBug;
       });
     }
-    console.log(issueWithBugs.commentsWithBugs);
   }
 }
 
