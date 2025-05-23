@@ -39,6 +39,7 @@ const parseIssues = async () => {
     .flatMap((comment) => dataUtils.filterCommentsWithStatuses(comment, commentCreated));
     issueWithBugs.linkedCommentsWithBugs = dataUtils.linkDevsWithBugs(issueWithBugs);
     issueWithBugs.bugsCount = issueWithBugs.commentsWithBugs.length;
+    delete issueWithBugs.commentsWithBugs;
     delete issueWithBugs.comments;
     return issueWithBugs;
   }).filter((issueWithComments) => issueWithComments.bugsCount > 0);

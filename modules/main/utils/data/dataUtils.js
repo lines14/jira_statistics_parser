@@ -19,6 +19,12 @@ class DataUtils {
     return changelog.sort((a, b) => new Date(this.normalizeTimestamp(a.created)) - new Date(this.normalizeTimestamp(b.created)));
   }
 
+  static firstTimestampIsAfterSecondTimestamp(firstTimestamp, secondTimestamp) {
+    const firstDate = new Date(this.normalize(firstTimestamp));
+    const secondDate = new Date(this.normalize(secondTimestamp));
+    return firstDate > secondDate;
+  };
+
   static convertTimestampsToDateObjects(changelogItems) { 
     return changelogItems.map((changelogItem) => ({ transitionFrom: changelogItem.transitionFrom, created: this.normalizeTimestamp(changelogItem.created) })).map((changelogItem) => ({ transitionFrom: changelogItem.transitionFrom, created: new Date(changelogItem.created) }));
   }
@@ -33,7 +39,7 @@ class DataUtils {
   }
 
   static intervalsOverlapping([startFirstInterval, endFirstInterval], [startSecondInterval, endSecondInterval]) {
-    return { transitionFrom: endSecondInterval.transitionFrom, overlap: startFirstInterval.created < endSecondInterval.created && startSecondInterval.created < endFirstInterval.created, created: endSecondInterval.created };
+    return { transitionFrom: endSecondInterval.transitionFrom, overlap: startFirstInterval.created < endSecondInterval.created && startSecondInterval.created < endFirstInterval.created, created: endFirstInterval.created };
   }
 
   static checkIntervalsOverlap(firstIntervals, secondIntervals) {
@@ -68,7 +74,8 @@ class DataUtils {
       return issueWithBugs.commentsWithBugs.map((commentWithBug) => {
         const devStatusEnds = [];
         const assigneeChanges = [];
-        const linkedCommentWithBug = { ...commentWithBug };
+        const linkedAssigneeWithBug = { ...commentWithBug };
+        const commentCreatedDateObj = new Date(this.normalizeTimestamp(commentWithBug.commentCreated));
         const sortedChangelog = this.sortByTimestamps(issueWithBugs.changelog);
         const initialTimestamp = { 
           transitionFrom: 'INIT TASK', 
@@ -97,20 +104,14 @@ class DataUtils {
           assigneeChanges.unshift(initialTimestamp);
           const devStatusEndTimeIntervals = this.getTimeIntervals(this.convertTimestampsToDateObjects(devStatusEnds));
           const assigneeChangeTimeIntervals = this.getTimeIntervals(this.convertTimestampsToDateObjects(assigneeChanges));
-          // console.log(assigneeChangeTimeIntervals)
-          const result = this.checkIntervalsOverlap(devStatusEndTimeIntervals, assigneeChangeTimeIntervals)
-          .map((devStatusEndTimeInterval) => devStatusEndTimeInterval
-          );
-          // .filter((assigneeChangeTimeInterval) => assigneeChangeTimeInterval.overlap));
-          const flat = result.flat();
-          if (flat.every(item => !item.overlap)) {
-            console.log(result);
-            throw new Error('kek');
-          }
-
-
-
-          return linkedCommentWithBug;
+          const changedAssignees = this.checkIntervalsOverlap(devStatusEndTimeIntervals, assigneeChangeTimeIntervals)
+          .map((devStatusEndTimeInterval) => devStatusEndTimeInterval);
+          const overlappedAssignees = changedAssignees.flat().filter((changedAssignee) => changedAssignee.overlap);
+          const lastPreviousDevAssignee = overlappedAssignees
+          .filter((overlappedAssignee) => overlappedAssignee.created <= commentCreatedDateObj)
+          .reduce((prev, curr) => (curr.created > prev.created ? curr : prev), overlappedAssignees[0]);
+          linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee.transitionFrom;
+          return linkedAssigneeWithBug;
         }
       });
     }
