@@ -5,32 +5,33 @@ import dataUtils from './modules/main/utils/data/dataUtils.js';
 import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 
 const parseIssues = async () => {
-  // let issuesArr = await jiraAPI.searchAll(JSONLoader.config.issuesCreatedFromDateYMD);
-  // const issuesWithCommentsArr = [];
-  // for (const issue of issuesArr) {
-  //   const response = await jiraAPI.getIssueComments(issue.id);
-  //   const parsedIssue = {
-  //     key: issue.key,
-  //     summary: issue.fields.summary,
-  //     created: issue.fields.created,
-  //     updated: issue.fields.updated,
-  //     priority: issue.fields.priority.name,
-  //     projectKey: issue.fields.project.key,
-  //     projectName: issue.fields.project.name,
-  //     devType: issue.fields.customfield_10085?.value,
-  //     labels: issue.fields.labels,
-  //     issuetype: issue.fields.issuetype.name,
-  //     status: issue.fields.status.name,
-  //     comments: response.data.comments,
-  //     changelog: issue.changelog.histories,
-  //   };
+  let issuesArr = await jiraAPI.searchAll(JSONLoader.config.issuesCreatedFromDateYMD);
+  const issuesWithCommentsArr = [];
+  for (const issue of issuesArr) {
+    const response = await jiraAPI.getIssueComments(issue.id);
+    const parsedIssue = {
+      key: issue.key,
+      summary: issue.fields.summary,
+      created: issue.fields.created,
+      updated: issue.fields.updated,
+      priority: issue.fields.priority.name,
+      projectKey: issue.fields.project.key,
+      projectName: issue.fields.project.name,
+      devType: issue.fields.customfield_10085?.value,
+      labels: issue.fields.labels,
+      issuetype: issue.fields.issuetype.name,
+      status: issue.fields.status.name,
+      comments: response.data.comments,
+      changelog: issue.changelog.histories,
+    };
 
-  //   issuesWithCommentsArr.push(parsedIssue);
-  // }
+    issuesWithCommentsArr.push(parsedIssue);
+  }
 
-  // dataUtils.saveToJSON({ issuesWithCommentsArr });
+  dataUtils.saveToJSON({ issuesWithCommentsArr });
 
-  const { issuesWithCommentsArr } = JSONLoader;
+  // const { issuesWithCommentsArr } = JSONLoader;
+  // console.log(issuesWithCommentsArr.length)
 
   let commentCreated;
   const filteredIssuesWithBugsArr = issuesWithCommentsArr.map((issueWithComments) => {
@@ -55,7 +56,7 @@ const parseIssues = async () => {
   filteredIssuesWithBugs.overallIssuesWithBugsCount = filteredIssuesWithBugsArr.length;
   filteredIssuesWithBugs.overallBugsCount = overallBugsCount;
 
-  let issuesArr = await jiraAPI.searchAll(JSONLoader.config.commentsWithBugsCreatedFromDateYMD);
+  issuesArr = await jiraAPI.searchAll(JSONLoader.config.commentsWithBugsCreatedFromDateYMD);
   filteredIssuesWithBugs.overallIssuesCount = issuesArr.length;
   
   dataUtils.saveToJSON({ filteredIssuesWithBugs });
