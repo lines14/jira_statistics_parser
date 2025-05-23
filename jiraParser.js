@@ -30,35 +30,26 @@ const parseIssues = async () => {
 
   // dataUtils.saveToJSON({ issuesWithCommentsArr });
 
-  // const { issuesWithCommentsArr } = JSONLoader;
+  const { issuesWithCommentsArr } = JSONLoader;
 
-  // let commentCreated;
-  // const filteredIssuesWithBugsArr = issuesWithCommentsArr.map((issueWithComments) => {
-  //   const issueWithBugs = { ...issueWithComments };
-  //   issueWithBugs.commentsWithBugs = issueWithComments.comments
-  //   .flatMap((comment) => dataUtils.filterCommentsWithStatuses(comment, commentCreated));
-  //   issueWithBugs.linkedCommentsWithBugs = dataUtils.linkDevsWithBugs(issueWithBugs);
-  //   issueWithBugs.bugsCount = issueWithBugs.commentsWithBugs.length;
-  //   delete issueWithBugs.commentsWithBugs;
-  //   delete issueWithBugs.comments;
-  //   return issueWithBugs;
-  // }).filter((issueWithComments) => issueWithComments.bugsCount > 0);
+  let commentCreated;
+  const filteredIssuesWithBugsArr = issuesWithCommentsArr.map((issueWithComments) => {
+    const issueWithBugs = { ...issueWithComments };
+    issueWithBugs.commentsWithBugs = issueWithComments.comments
+      .flatMap((comment) => dataUtils.filterCommentsWithStatuses(comment, commentCreated));
+    issueWithBugs.linkedCommentsWithBugs = dataUtils.linkDevsWithBugs(issueWithBugs);
+    issueWithBugs.bugsCount = issueWithBugs.commentsWithBugs.length;
+    delete issueWithBugs.commentsWithBugs;
+    delete issueWithBugs.comments;
+    return issueWithBugs;
+  }).filter((issueWithComments) => issueWithComments.bugsCount > 0);
 
-  // dataUtils.saveToJSON({ filteredIssuesWithBugsArr });
+  dataUtils.saveToJSON({ filteredIssuesWithBugsArr });
 
-  // let overallBugsCount = 0;
-  // filteredIssuesWithBugsArr.forEach((issueWithBug) => {
-  //   overallBugsCount += issueWithBug.bugsCount;
-  // });
-
-  // const users = (await jiraAPI.searchAllUsers());
-  // dataUtils.saveToJSON(users);
-
-  // const { users } = JSONLoader;
-  // console.log(users.length);
-
-  // const allUsers = (await jiraAPI.groupMember('Amanat')).data;
-  // dataUtils.saveToJSON({ allUsers });
+  let overallBugsCount = 0;
+  filteredIssuesWithBugsArr.forEach((issueWithBug) => {
+    overallBugsCount += issueWithBug.bugsCount;
+  });
 };
 
 parseIssues();

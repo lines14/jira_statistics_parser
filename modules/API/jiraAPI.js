@@ -48,8 +48,8 @@ class JiraAPI extends BaseAPI {
 
   async groupMember(groupname) {
     const params = {
-      groupname
-    }
+      groupname,
+    };
 
     return this.get(JSONLoader.APIEndpoints.jira.groupMember, params);
   }
