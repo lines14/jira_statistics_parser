@@ -40,7 +40,9 @@ const parseIssues = async () => {
     delete issueWithBugs.comments;
     issueWithBugs.linkedCommentsWithBugs = dataUtils.linkDevsWithBugs(issueWithBugs);
     delete issueWithBugs.commentsWithBugs;
+    delete issueWithBugs.changelog;
     issueWithBugs.bugsCount = issueWithBugs.linkedCommentsWithBugs.length;
+
     return issueWithBugs;
   }).filter((issueWithComments) => issueWithComments.bugsCount > 0);
 
