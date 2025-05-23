@@ -37,10 +37,10 @@ const parseIssues = async () => {
     const issueWithBugs = { ...issueWithComments };
     issueWithBugs.commentsWithBugs = issueWithComments.comments
       .flatMap((comment) => dataUtils.filterCommentsWithStatuses(comment, commentCreated));
-    issueWithBugs.linkedCommentsWithBugs = dataUtils.linkDevsWithBugs(issueWithBugs);
-    issueWithBugs.bugsCount = issueWithBugs.commentsWithBugs.length;
-    delete issueWithBugs.commentsWithBugs;
     delete issueWithBugs.comments;
+    issueWithBugs.linkedCommentsWithBugs = dataUtils.linkDevsWithBugs(issueWithBugs);
+    delete issueWithBugs.commentsWithBugs;
+    issueWithBugs.bugsCount = issueWithBugs.linkedCommentsWithBugs.length;
     return issueWithBugs;
   }).filter((issueWithComments) => issueWithComments.bugsCount > 0);
 
@@ -50,6 +50,7 @@ const parseIssues = async () => {
   filteredIssuesWithBugsArr.forEach((issueWithBug) => {
     overallBugsCount += issueWithBug.bugsCount;
   });
+  console.log(overallBugsCount)
 };
 
 parseIssues();
