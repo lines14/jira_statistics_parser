@@ -29,7 +29,7 @@ class JiraAPI extends BaseAPI {
         startAt,
         maxResults,
         expand: 'changelog',
-        jql: `created >= ${JSONLoader.config.startDateYMD} AND created <= ${todayYMD} ORDER BY created ASC`,
+        jql: `created >= ${JSONLoader.config.issuesCreatedFromDateYMD} AND created <= ${todayYMD} ORDER BY created ASC`,
       };
 
       // eslint-disable-next-line no-await-in-loop
@@ -53,27 +53,6 @@ class JiraAPI extends BaseAPI {
 
     return this.get(JSONLoader.APIEndpoints.jira.groupMember, params);
   }
-
-  // async searchAllUsers() {
-  //   let startAt = 0;
-  //   const maxResults = 100;
-  //   const users = [];
-
-  //   while (true) {
-  //     const params = {
-  //       startAt,
-  //       maxResults,
-  //     };
-
-  //     // eslint-disable-next-line no-await-in-loop
-  //     const response = await this.get(JSONLoader.APIEndpoints.jira.usersSearch, params);
-  //     if (response.data.length === 0) break
-  //     users.push(...response.data);
-  //     startAt += maxResults;
-  //   }
-
-  //   return { users };
-  // }
 }
 
 export default new JiraAPI();

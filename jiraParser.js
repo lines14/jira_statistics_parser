@@ -46,12 +46,14 @@ const parseIssues = async () => {
     return issueWithBugs;
   }).filter((issueWithComments) => issueWithComments.bugsCount > 0);
 
-  dataUtils.saveToJSON({ filteredIssuesWithBugsArr });
-
   let overallBugsCount = 0;
   filteredIssuesWithBugsArr.forEach((issueWithBug) => {
     overallBugsCount += issueWithBug.bugsCount;
   });
+
+  const filteredIssuesWithBugs = { filteredIssuesWithBugsArr };
+  filteredIssuesWithBugs.overallBugsCount = overallBugsCount;
+  dataUtils.saveToJSON({ filteredIssuesWithBugs });
 };
 
 parseIssues();
