@@ -1,5 +1,7 @@
 {
     "jira": {
+        "groupMember": "rest/api/3/group/member",
+        "usersSearch": "rest/api/3/users/search",
         "search": "rest/api/3/search",
         "issue": "rest/api/3/issue"
     }

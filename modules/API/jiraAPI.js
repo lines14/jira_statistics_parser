@@ -45,6 +45,35 @@ class JiraAPI extends BaseAPI {
   async getIssueComments(id) {
     return this.get(`${JSONLoader.APIEndpoints.jira.issue}/${id}/comment`);
   }
+
+  async groupMember(groupname) {
+    const params = {
+      groupname
+    }
+
+    return this.get(JSONLoader.APIEndpoints.jira.groupMember, params);
+  }
+
+  // async searchAllUsers() {
+  //   let startAt = 0;
+  //   const maxResults = 100;
+  //   const users = [];
+
+  //   while (true) {
+  //     const params = {
+  //       startAt,
+  //       maxResults,
+  //     };
+
+  //     // eslint-disable-next-line no-await-in-loop
+  //     const response = await this.get(JSONLoader.APIEndpoints.jira.usersSearch, params);
+  //     if (response.data.length === 0) break
+  //     users.push(...response.data);
+  //     startAt += maxResults;
+  //   }
+
+  //   return { users };
+  // }
 }
 
 export default new JiraAPI();
