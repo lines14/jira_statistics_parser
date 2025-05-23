@@ -1,6 +1,1820 @@
 {
     "filteredIssuesWithBugsArr": [
         {
+            "key": "ADP-1665",
+            "summary": "Выбор периода страхования",
+            "created": "2024-01-08T17:23:22.623+0500",
+            "updated": "2024-07-24T17:17:18.042+0500",
+            "priority": "Medium",
+            "projectKey": "ADP",
+            "projectName": "ADP",
+            "devType": "WEB",
+            "labels": [
+                "adp",
+                "ogpo"
+            ],
+            "issuetype": "Story",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "6fae69d3-d831-4989-8e3f-3b96ac0f06a0",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-01-10T08:45:48.128+0500",
+                    "lastPreviousDevAssignee": "Есен Оразбайұлы"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "IE-23",
+            "summary": "Поиск полиса по старому гос.номеру авто.",
+            "created": "2024-03-11T17:34:59.508+0500",
+            "updated": "2025-05-12T10:36:06.360+0500",
+            "priority": "Minor",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "1C",
+            "labels": [
+                "1C",
+                "1с"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "ИСПРАВЛЕНО",
+                        "color": "green",
+                        "localId": "0763aa09-79eb-4943-af88-d72f29e34a72",
+                        "style": ""
+                    },
+                    "commentCreated": "2025-05-05T17:08:37.715+0500",
+                    "lastPreviousDevAssignee": "Adilkhan"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "IE-312",
+            "summary": "Учитывать сторно документа сторно в договоре при просадке заявления и выплаты",
+            "created": "2024-03-29T14:54:30.041+0500",
+            "updated": "2025-04-15T15:18:00.536+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "1C",
+            "labels": [
+                "1с"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "1bb53a8a-1980-4543-961d-414541ec39f7",
+                        "style": ""
+                    },
+                    "commentCreated": "2025-04-04T17:39:26.356+0500",
+                    "lastPreviousDevAssignee": "Adilkhan"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "ADP-1943",
+            "summary": "Доработки по интерфейсу выплатников",
+            "created": "2024-04-05T12:39:35.619+0500",
+            "updated": "2024-07-24T17:17:32.326+0500",
+            "priority": "Medium",
+            "projectKey": "ADP",
+            "projectName": "ADP",
+            "devType": "WEB",
+            "labels": [
+                "ADP_NUXT"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "b24214ea-df8a-4fac-a991-58ada83f77c6",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-04-10T16:11:46.048+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "ADP-2020",
+            "summary": "М-АДП финальные исправления перед MVP",
+            "created": "2024-04-17T17:06:10.822+0500",
+            "updated": "2024-07-24T17:17:36.266+0500",
+            "priority": "Critical",
+            "projectKey": "ADP",
+            "projectName": "ADP",
+            "devType": "WEB",
+            "labels": [
+                "adp"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "122d0ba3-c985-4552-8e2d-ebfd64dd2d5b",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-04-22T11:00:24.926+0500"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "0e90ea13-4b01-4c82-92ae-98851224415e",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-04-22T11:00:24.926+0500"
+                }
+            ],
+            "bugsCount": 2
+        },
+        {
+            "key": "ADP-2025",
+            "summary": "Доработки ПФ Estate",
+            "created": "2024-04-18T12:48:04.616+0500",
+            "updated": "2024-04-23T10:27:26.776+0500",
+            "priority": "Medium",
+            "projectKey": "ADP",
+            "projectName": "ADP",
+            "devType": "WEB",
+            "labels": [
+                "estate"
+            ],
+            "issuetype": "Story",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "8ecc7298-2345-407b-9037-60019f430ace",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-04-19T15:28:36.390+0500",
+                    "lastPreviousDevAssignee": "Sawa Laptev"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "ADP-2026",
+            "summary": "Сверстать ПФ Приложение к договору. ESTATE ADP",
+            "created": "2024-04-18T13:13:24.987+0500",
+            "updated": "2024-04-23T15:14:11.450+0500",
+            "priority": "Medium",
+            "projectKey": "ADP",
+            "projectName": "ADP",
+            "devType": "WEB",
+            "labels": [
+                "dictionary_api",
+                "estate"
+            ],
+            "issuetype": "Story",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "09a2d4f9-14ef-4d35-8db8-0a307eb40f81",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-04-23T10:26:57.827+0500",
+                    "lastPreviousDevAssignee": "Sawa Laptev"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "ADP-2034",
+            "summary": "Выводить застрахованные объекты по полису при оформлении заявления о СС ",
+            "created": "2024-04-22T12:26:05.416+0500",
+            "updated": "2024-07-24T17:17:37.166+0500",
+            "priority": "Medium",
+            "projectKey": "ADP",
+            "projectName": "ADP",
+            "devType": "WEB",
+            "labels": [
+                "adp"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "481149ec-b99d-4611-85a7-36c76ca87565",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-05-20T15:18:31.345+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "20b65324-05f9-47ac-9d84-681d2eeeff1d",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-05-20T15:18:31.345+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                }
+            ],
+            "bugsCount": 2
+        },
+        {
+            "key": "A24-927",
+            "summary": "Редактирование шапки профиля на сайте",
+            "created": "2024-04-24T10:08:28.699+0500",
+            "updated": "2024-06-03T10:29:26.508+0500",
+            "priority": "Medium",
+            "projectKey": "A24",
+            "projectName": "Amanat24",
+            "devType": "WEB",
+            "labels": [
+                "amanat24"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "92ecdaa6-fa59-4ce4-beb5-dc10225c8e6c",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-05-22T16:19:07.440+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "ae6416f1-9146-42f0-a2d1-ae08bce1818d",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-05-22T16:19:07.440+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "c87b8efb-9c02-44da-83dc-ba229e3dcf29",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-05-22T16:19:07.440+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "20aa4def-4ab0-4172-8ca5-aa26d45a1755",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-05-28T11:34:41.749+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                }
+            ],
+            "bugsCount": 4
+        },
+        {
+            "key": "MADP-48",
+            "summary": "М-АДП. Исправление фильтра в списке полисов",
+            "created": "2024-05-14T10:24:00.203+0500",
+            "updated": "2025-04-09T15:00:05.804+0500",
+            "priority": "Medium",
+            "projectKey": "MADP",
+            "projectName": "MADP",
+            "devType": "WEB",
+            "labels": [
+                "adp"
+            ],
+            "issuetype": "Task",
+            "status": "BACKLOG",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "a81aa4f9-a1cf-4e39-9378-ce620ec12b5c",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-08-22T11:35:51.526+0500"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "ADP-2150",
+            "summary": "Изменить отображение территории СС по заявке",
+            "created": "2024-05-16T12:36:36.433+0500",
+            "updated": "2024-07-24T17:17:42.943+0500",
+            "priority": "Critical",
+            "projectKey": "ADP",
+            "projectName": "ADP",
+            "devType": "WEB",
+            "labels": [
+                "ADP_NUXT"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "11cd7389-07af-4396-8885-d402bfd4c296",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-05-21T18:00:02.978+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "ADP-2222",
+            "summary": "М-АДП. Улучшение взаимодействия при выписке.",
+            "created": "2024-06-04T11:01:57.415+0500",
+            "updated": "2024-07-24T17:17:46.035+0500",
+            "priority": "Medium",
+            "projectKey": "ADP",
+            "projectName": "ADP",
+            "devType": "WEB",
+            "labels": [
+                "mst"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "1687d78e-4f86-47d5-912f-f0c475a19bab",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-06-11T17:32:42.004+0500"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "03bb2622-f2e4-4bff-ac13-2d511efd2223",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-06-11T17:32:42.004+0500"
+                }
+            ],
+            "bugsCount": 2
+        },
+        {
+            "key": "MADP-111",
+            "summary": "М-АДП. Календарь \"Туда-Обратно\"",
+            "created": "2024-06-05T10:56:35.661+0500",
+            "updated": "2024-08-06T12:04:38.671+0500",
+            "priority": "Medium",
+            "projectKey": "MADP",
+            "projectName": "MADP",
+            "devType": "WEB",
+            "labels": [
+                "madp"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "aa29babb-d14f-4f40-812f-8c750fb338e0",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-07-31T19:31:34.103+0500"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "0f2f70c8-e982-4ba9-90a9-3e6ae143b7f9",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-07-31T19:31:34.103+0500"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "d361544b-6e46-42a1-97c0-059beefcdb50",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-07-31T19:31:34.103+0500"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "d0e5b784-63c9-4140-9110-70f338ef9082",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-07-31T19:31:34.103+0500"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "93270f23-3562-45db-aa13-e8ad4e9846ee",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-07-31T19:31:34.103+0500"
+                }
+            ],
+            "bugsCount": 5
+        },
+        {
+            "key": "MADP-164",
+            "summary": "App/m-adp. Пред-релизная исправление. Версия 1.01",
+            "created": "2024-06-07T18:22:44.905+0500",
+            "updated": "2024-07-26T15:59:05.595+0500",
+            "priority": "Medium",
+            "projectKey": "MADP",
+            "projectName": "MADP",
+            "devType": "WEB",
+            "labels": [
+                "adp"
+            ],
+            "issuetype": "Bug",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "da03df98-ef06-48f1-b506-d71e5827a38e",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-06-12T17:11:31.859+0500"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "f8ff3249-6ca0-4159-b022-4080e7c4b0cd",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-06-12T17:11:31.859+0500"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "5fbb1759-46ad-4c09-bcb5-3e3deaa2d99d",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-06-12T17:11:31.859+0500"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "0da6cfe6-0a1d-468b-9f4a-637684966f2f",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-06-12T17:11:31.859+0500"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "f841a981-7394-4c93-923d-0b08333d7408",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-06-12T17:11:31.859+0500"
+                }
+            ],
+            "bugsCount": 5
+        },
+        {
+            "key": "ADP-2279",
+            "summary": "Электронный полис ОС ГПО ВТС",
+            "created": "2024-06-18T15:33:53.168+0500",
+            "updated": "2024-08-19T15:11:13.042+0500",
+            "priority": "Medium",
+            "projectKey": "ADP",
+            "projectName": "ADP",
+            "devType": "WEB",
+            "labels": [
+                "огпо"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "f5f506d0-bf10-4155-b23b-04a01a2cc2c3",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-07-23T18:42:31.457+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "yellow",
+                        "localId": "fc85fac8-0217-482a-8223-e9a785352def",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-07-23T18:42:31.457+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "02a2d979-3506-486a-8e0a-f7abf35009ce",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-07-23T18:42:31.457+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "6c9ca4c1-f59d-4482-a3a0-54bb4b0b4c05",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-07-23T18:42:31.457+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "yellow",
+                        "localId": "dca51f8f-5414-40ae-a3b8-6d42833168a4",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-07-23T18:42:31.457+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "5a1f79c7-f207-47c0-823b-23926e1db361",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-07-23T18:42:31.457+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                }
+            ],
+            "bugsCount": 6
+        },
+        {
+            "key": "ADP-2297",
+            "summary": "After MST front UX/UI audit. ADP. Part 2",
+            "created": "2024-06-21T17:14:46.668+0500",
+            "updated": "2024-08-15T13:06:50.484+0500",
+            "priority": "Medium",
+            "projectKey": "ADP",
+            "projectName": "ADP",
+            "devType": "WEB",
+            "labels": [
+                "mst"
+            ],
+            "issuetype": "Story",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "f0d8c7ec-cbf7-470c-99cf-8cc55b8b2cc3",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-08-07T19:36:09.238+0500",
+                    "lastPreviousDevAssignee": "Есен Оразбайұлы"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "47422868-5488-489c-a608-d56478cd6f8f",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-08-07T19:36:09.238+0500",
+                    "lastPreviousDevAssignee": "Есен Оразбайұлы"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "833bb923-fd81-4afe-9658-cba4c6630ffe",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-08-07T19:36:09.238+0500",
+                    "lastPreviousDevAssignee": "Есен Оразбайұлы"
+                }
+            ],
+            "bugsCount": 3
+        },
+        {
+            "key": "ADP-2345",
+            "summary": "Добавить в euro сервис, статические анализаторы PHPStan, CSFixer",
+            "created": "2024-07-12T11:30:58.172+0500",
+            "updated": "2025-02-10T10:34:26.617+0500",
+            "priority": "Medium",
+            "projectKey": "ADP",
+            "projectName": "ADP",
+            "devType": "WEB",
+            "labels": [
+                "euro_api"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Баг",
+                        "color": "red",
+                        "localId": "b289b75f-b72c-494c-a914-d63944ff0961",
+                        "style": ""
+                    },
+                    "commentCreated": "2025-02-03T18:16:39.955+0500",
+                    "lastPreviousDevAssignee": "Aibolat Batyrov"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "589cde00-bbff-4507-9fda-0fa576f10d34",
+                        "style": ""
+                    },
+                    "commentCreated": "2025-02-03T18:16:39.955+0500",
+                    "lastPreviousDevAssignee": "Aibolat Batyrov"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Баг",
+                        "color": "red",
+                        "localId": "f759ce7a-686c-4e74-8043-d86e5061e7b8",
+                        "style": ""
+                    },
+                    "commentCreated": "2025-02-05T12:09:43.142+0500",
+                    "lastPreviousDevAssignee": "Aibolat Batyrov"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "69d4fb62-ad2a-4549-b0e4-664b709cc98d",
+                        "style": ""
+                    },
+                    "commentCreated": "2025-02-05T12:09:43.142+0500",
+                    "lastPreviousDevAssignee": "Aibolat Batyrov"
+                }
+            ],
+            "bugsCount": 4
+        },
+        {
+            "key": "IE-346",
+            "summary": "Реализовать форму ввода сведений по пострадавшему объекту (человек, ТС) , если не найден в ЕСБД/1С",
+            "created": "2024-07-29T11:57:59.009+0500",
+            "updated": "2024-08-16T12:02:38.903+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "ADP",
+                "IE"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "206c473d-89cd-43dd-8722-ecdbb7173103",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-08-12T17:41:28.097+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "b1fddc3b-11c2-4675-b3f1-ec04ec4e9d26",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-08-12T18:15:46.622+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "4b716dbb-b8cf-4192-81af-b7553a3012f8",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-08-12T18:15:46.622+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "baa6983f-03ef-47ad-9b90-8282c4ba4588",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-08-12T18:15:46.622+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                }
+            ],
+            "bugsCount": 4
+        },
+        {
+            "key": "IE-351",
+            "summary": "Весомые доработки по фронту АДП",
+            "created": "2024-07-29T17:49:36.047+0500",
+            "updated": "2024-08-19T16:26:11.363+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE"
+            ],
+            "issuetype": "Bug",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "ef100956-9cc3-4706-89f4-9643c00730e1",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-08-14T12:58:07.662+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "fda591c7-21f9-4ea4-a180-14b6af777ffd",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-08-14T12:58:07.662+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "4bba5191-f725-4757-8272-c66de39a1026",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-08-14T12:58:07.662+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "f8e682cd-46e5-45fd-a808-62e913f2ab61",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-08-14T12:58:07.662+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                }
+            ],
+            "bugsCount": 4
+        },
+        {
+            "key": "MADP-235",
+            "summary": "Заменить текст АВ, добавить размер АВ в пойнт ползунка, запоминать выбранный размер АВ ползунка, переместить опции и поля скидки (WEB)",
+            "created": "2024-08-14T17:51:19.487+0500",
+            "updated": "2024-09-24T12:42:27.059+0500",
+            "priority": "Medium",
+            "projectKey": "MADP",
+            "projectName": "MADP",
+            "devType": "WEB",
+            "labels": [
+                "madp"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "ИСправлено",
+                        "color": "green",
+                        "localId": "b4118542-027a-4588-a6c1-66fd9d02d2fc",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-09-19T11:06:08.435+0500"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "IE-429",
+            "summary": "На форме ПО дать возможность выбрать пострадавшего объекта из договора в А24",
+            "created": "2024-09-23T11:28:37.388+0500",
+            "updated": "2024-10-14T14:22:30.224+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE",
+                "amanat24"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "197cb7a0-c8e7-4a42-91c4-de0b703052c9",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-10-07T18:32:12.452+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "8614965f-862c-4cbe-a4a0-06745bf0a848",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-10-07T19:41:26.040+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                }
+            ],
+            "bugsCount": 2
+        },
+        {
+            "key": "IE-458",
+            "summary": "Убрать обязательность поля phones при записи данных виновника",
+            "created": "2024-10-03T10:28:56.316+0500",
+            "updated": "2024-10-07T14:58:16.215+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "0d7254d2-9d37-44d1-891c-a6f84fbb95df",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-10-04T15:43:21.933+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "MADP-290",
+            "summary": "Корректировка кнопок по застрахованным в m-adp",
+            "created": "2024-10-03T16:29:34.510+0500",
+            "updated": "2024-10-23T11:00:57.331+0500",
+            "priority": "Medium",
+            "projectKey": "MADP",
+            "projectName": "MADP",
+            "devType": "Design",
+            "labels": [
+                "madp"
+            ],
+            "issuetype": "Story",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "1f2f0da2-e853-426b-bf55-92a77cf54e18",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-10-21T17:09:51.718+0500"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "IE-482",
+            "summary": "Доработки по АДП №5",
+            "created": "2024-10-14T17:56:38.840+0500",
+            "updated": "2024-11-28T11:28:54.701+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "5ba96d99-8c95-4a58-9f1b-f7f947aa2574",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-22T18:37:42.983+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "b5562cb2-6299-47bd-a2e1-90d3f12416b7",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-22T18:41:14.620+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "6456fcc7-3a09-42b2-8242-88b5fcf7f974",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-22T19:10:19.425+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "9d7ef8ba-d097-478d-a4cd-e9f2536a73a9",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-22T19:40:29.140+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "6d4ce317-ea5f-461d-be62-e1d96b183bbb",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-22T19:52:10.701+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                }
+            ],
+            "bugsCount": 5
+        },
+        {
+            "key": "IE-496",
+            "summary": "Загрузка материалов страхового события (файлы Media)",
+            "created": "2024-10-21T18:44:48.340+0500",
+            "updated": "2024-11-07T16:29:59.821+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "claims"
+            ],
+            "issuetype": "Story",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "611b83f2-b58b-4ee1-92c6-a345820d00cf",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-05T11:15:54.283+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "78906072-cb95-40f3-a477-d72e249d3151",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-05T11:15:54.283+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "dddb933a-60bb-44d9-b7ae-40584d164148",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-05T11:15:54.283+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "8a4c90e7-67eb-4cd3-b635-2e4a6baa0162",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-05T11:15:54.283+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "ef4551b3-910d-4868-9cf1-55c2cec1ef60",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-05T11:15:54.283+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                }
+            ],
+            "bugsCount": 5
+        },
+        {
+            "key": "IE-510",
+            "summary": "A24. Использовать ar_territories для страхования автотранспорта и ДГПО",
+            "created": "2024-10-28T09:53:15.404+0500",
+            "updated": "2024-11-06T14:37:33.780+0500",
+            "priority": "Critical",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "3b766113-31ae-4140-ab12-0d5578ec83db",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-05T17:52:11.241+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "IE-516",
+            "summary": "При оформлении СС из АДП сделать поля Водителя и Владельца не обязательными",
+            "created": "2024-10-30T12:40:37.363+0500",
+            "updated": "2024-11-07T16:29:54.145+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "ed86fe7f-168c-4bb7-8951-c7030a4936ee",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-05T14:40:46.179+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "21e4d121-fc4c-47a2-b614-6bdf319d3942",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-06T11:17:19.564+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "1d08c891-fea0-453e-8b0a-d8ac2df9692b",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-06T14:45:00.151+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                }
+            ],
+            "bugsCount": 3
+        },
+        {
+            "key": "IE-535",
+            "summary": "Исполнителем автоматически назначить автора заявления.",
+            "created": "2024-11-02T20:47:49.915+0500",
+            "updated": "2024-11-07T16:30:04.559+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "3c9bad66-0d97-4a3c-b99d-0131c2873662",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-05T17:24:38.596+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "IE-547",
+            "summary": "Европротокол+ПУ передавать в 1С только с полными данными",
+            "created": "2024-11-04T12:14:39.761+0500",
+            "updated": "2024-11-11T15:30:33.005+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE",
+                "euro_api",
+                "web"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "0945854f-9c6d-4e56-9f49-3f37fdffe258",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-08T10:43:00.432+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "IE-548",
+            "summary": "Сделать форму поиска договора для Европротокол+ПУ",
+            "created": "2024-11-04T12:14:57.912+0500",
+            "updated": "2024-11-11T15:30:36.502+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE",
+                "euro_api",
+                "web"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "e29eab8f-1bc0-4039-a61d-c3743d7ea615",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-05T18:47:50.635+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "IE-572",
+            "summary": "Сделать асинхронные запросы при создании заявления",
+            "created": "2024-11-13T10:46:38.493+0500",
+            "updated": "2024-12-11T19:06:46.883+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "bb5ba87f-08d8-4481-bbb4-0fbe0ea6b146",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-02T11:54:12.696+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "IE-577",
+            "summary": "Отрефакторить тело запроса set-insurance-event из АДП",
+            "created": "2024-11-15T16:51:35.634+0500",
+            "updated": "2024-12-05T14:56:06.637+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "8f050e59-16c3-4d2d-ab40-cd075f439a7a",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-02T12:49:42.047+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "fca5f0d2-00f1-4903-9c02-19fb87d3d557",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-03T10:41:16.504+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "e2d6fb90-63db-42d1-866c-1dbf401dab9d",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-03T10:41:16.504+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                }
+            ],
+            "bugsCount": 3
+        },
+        {
+            "key": "IE-584",
+            "summary": "Выявлены скрытые дефекты - добавить признак в экспертизу",
+            "created": "2024-11-19T11:54:54.790+0500",
+            "updated": "2025-01-05T17:50:38.184+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE"
+            ],
+            "issuetype": "Sub-task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "91378ba4-dc80-4a2c-b267-e74b981ebf19",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-25T11:07:39.104+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "8189979c-e184-4be6-bdcd-69727ee36030",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-25T11:15:56.345+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "7831d3c0-6883-43db-aec2-4f8131072959",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-25T11:59:26.798+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "096ea640-7bfa-4a5e-956e-30307d07ed14",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-25T13:08:39.845+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "cf690a51-87a4-4f59-b442-2a33fe554b94",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-11-25T13:12:15.508+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                }
+            ],
+            "bugsCount": 5
+        },
+        {
+            "key": "IE-592",
+            "summary": "Убрать проверку на 8 МБ при загрузке файлов и всегда использовать presignedUrl",
+            "created": "2024-11-22T14:32:44.947+0500",
+            "updated": "2024-12-19T10:21:13.412+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "dfd87fa9-3037-460d-a2d5-84c2121fb283",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-13T15:36:05.334+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "IE-600",
+            "summary": "Переработать логику принятия/отказа заявления на экспертизу",
+            "created": "2024-11-26T11:53:36.492+0500",
+            "updated": "2024-12-18T15:15:55.377+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE",
+                "adp",
+                "claim_api"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "5afdec61-242d-40fe-bb47-4b9bf99fd503",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-12T17:55:53.891+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "bb0fcdbe-1b8a-4dda-b0e7-057a1e32b85c",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-12T18:38:34.751+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                }
+            ],
+            "bugsCount": 2
+        },
+        {
+            "key": "ADP-2560",
+            "summary": "A24 front (ОГПО, МСТ, ЛК, выплаты). Изменение document_type_id паспортов",
+            "created": "2024-12-03T14:29:24.208+0500",
+            "updated": "2025-01-14T12:32:33.183+0500",
+            "priority": "Critical",
+            "projectKey": "ADP",
+            "projectName": "ADP",
+            "devType": null,
+            "labels": [
+                "a24"
+            ],
+            "issuetype": "Sub-task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "e7987405-29d5-4f85-9d99-d5db1eb0382c",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-05T18:47:55.967+0500",
+                    "lastPreviousDevAssignee": "Есен Оразбайұлы"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "IE-617",
+            "summary": "Прикрутить метод, записывающий удержание в 1С",
+            "created": "2024-12-11T17:52:24.374+0500",
+            "updated": "2025-02-13T16:42:52.063+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "1с",
+                "IE"
+            ],
+            "issuetype": "Sub-task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "d99aa723-5e3e-4cb6-aef9-a6060069a25a",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-27T15:35:57.381+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "2d5798e1-a4c0-4028-8e55-48c3fba761c5",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-27T16:11:35.810+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                }
+            ],
+            "bugsCount": 2
+        },
+        {
+            "key": "IE-621",
+            "summary": "В SetIEConclusion передавать состав комиссии ",
+            "created": "2024-12-12T12:00:03.482+0500",
+            "updated": "2024-12-19T11:15:59.287+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE",
+                "claim_api"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "1a0f45a8-7af1-40bf-88bd-eafbd788c627",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-18T17:08:53.723+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "IE-624",
+            "summary": "Soft-delete при ошибке создания заявления не работает когда несколько пострадавших объектов",
+            "created": "2024-12-12T17:33:14.231+0500",
+            "updated": "2024-12-18T11:58:42.271+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE"
+            ],
+            "issuetype": "Bug",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "829b0591-c866-406b-a61c-eb67c2799555",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-13T12:49:25.257+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "IE-631",
+            "summary": "На форме заявления дать возможность добавить вид удержания",
+            "created": "2024-12-13T17:15:00.785+0500",
+            "updated": "2025-02-13T16:28:45.198+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "ADP_NUXT",
+                "IE",
+                "claim_api"
+            ],
+            "issuetype": "Sub-task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "1b13a44e-400e-430a-b34b-f799b58b8aed",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-24T15:15:18.412+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "822090b7-e652-4e62-8736-bb01c2350089",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-25T09:27:13.901+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "c22d334f-8241-4492-8af8-6663ca52eb02",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-25T17:41:16.362+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "46d5ce6d-8bd8-4eb0-aab1-dca8d958d071",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-25T18:04:12.462+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "c1145333-9cbd-4e76-8b16-8471fbcb4442",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-26T09:47:42.259+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "0428ff46-0ca9-4fe7-ac52-8a65e52f53df",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-26T10:01:33.813+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "77ef8813-f52a-4810-a927-d6d9b235a31c",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-27T14:59:19.710+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "1982d5ab-f6b7-42c2-82b3-4eb2297d501b",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-27T14:59:19.710+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "394b6767-6bd8-4709-8f06-ff3cc3489596",
+                        "style": ""
+                    },
+                    "commentCreated": "2025-01-10T11:17:05.119+0500",
+                    "lastPreviousDevAssignee": "Асхат Балтабек"
+                }
+            ],
+            "bugsCount": 9
+        },
+        {
+            "key": "IE-646",
+            "summary": "Написать крон для сохранения client_id в базе A24 users",
+            "created": "2024-12-25T10:45:36.273+0500",
+            "updated": "2025-01-08T11:14:28.187+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "amanat24"
+            ],
+            "issuetype": "Task",
+            "status": "Done",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "252b03fc-0097-498d-bdd3-061a5891e745",
+                        "style": ""
+                    },
+                    "commentCreated": "2024-12-26T12:17:54.160+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
             "key": "IE-669",
             "summary": "Доработки по АДП №7.",
             "created": "2025-01-15T19:34:02.332+0500",
@@ -1184,7 +2998,7 @@
             "key": "PAR-878",
             "summary": "Метод set-lead для создания заявки на КАСКО от my car для Bitrix24",
             "created": "2025-03-18T18:54:41.298+0500",
-            "updated": "2025-05-19T10:06:35.255+0500",
+            "updated": "2025-05-23T11:47:44.462+0500",
             "priority": "Medium",
             "projectKey": "PAR",
             "projectName": "Partners",
@@ -1194,7 +3008,7 @@
                 "kasko_api"
             ],
             "issuetype": "Story",
-            "status": "TO MERGE TO DEV",
+            "status": "Done",
             "linkedCommentsWithBugs": [
                 {
                     "type": "status",
@@ -1214,7 +3028,7 @@
             "key": "MADP-380",
             "summary": "Дублировать ФИО на латинице для нерезидента (Front)",
             "created": "2025-03-19T18:00:45.145+0500",
-            "updated": "2025-05-21T15:37:11.338+0500",
+            "updated": "2025-05-23T17:45:51.481+0500",
             "priority": "Medium",
             "projectKey": "MADP",
             "projectName": "MADP",
@@ -1223,7 +3037,7 @@
                 "madp"
             ],
             "issuetype": "Task",
-            "status": "TO MERGE TO DEV",
+            "status": "TO MERGE TO STAGE",
             "linkedCommentsWithBugs": [
                 {
                     "type": "status",
@@ -1293,6 +3107,35 @@
                     },
                     "commentCreated": "2025-04-08T18:34:57.787+0500",
                     "lastPreviousDevAssignee": "Adilkhan"
+                }
+            ],
+            "bugsCount": 1
+        },
+        {
+            "key": "IE-754",
+            "summary": "Подписание распоряжения посредством ЭЦП",
+            "created": "2025-03-31T12:35:01.753+0500",
+            "updated": "2025-05-23T14:50:59.431+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE"
+            ],
+            "issuetype": "Task",
+            "status": "REOPEN",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "dcd03238-2cea-40af-acfe-44ed5af13f19",
+                        "style": ""
+                    },
+                    "commentCreated": "2025-05-22T17:05:32.976+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
                 }
             ],
             "bugsCount": 1
@@ -1537,7 +3380,7 @@
             "key": "QT-175",
             "summary": "Рассчитать дату оплаты премии/даты траншей по договору",
             "created": "2025-04-01T18:33:57.056+0500",
-            "updated": "2025-05-22T11:12:43.913+0500",
+            "updated": "2025-05-22T19:23:00.687+0500",
             "priority": "Medium",
             "projectKey": "QT",
             "projectName": "Котировки",
@@ -1546,7 +3389,7 @@
                 "quotes"
             ],
             "issuetype": "Task",
-            "status": "TO DEPLOY",
+            "status": "DEPLOYED",
             "linkedCommentsWithBugs": [
                 {
                     "type": "status",
@@ -1883,6 +3726,90 @@
                 }
             ],
             "bugsCount": 1
+        },
+        {
+            "key": "QT-188",
+            "summary": "Дать возможность указать подписанта страховщика перед выпуском договора, собрать печатную форму договора",
+            "created": "2025-04-03T22:37:23.846+0500",
+            "updated": "2025-05-23T18:11:59.093+0500",
+            "priority": "Medium",
+            "projectKey": "QT",
+            "projectName": "Котировки",
+            "devType": "WEB",
+            "labels": [
+                "quotes"
+            ],
+            "issuetype": "Task",
+            "status": "IN TEST (LOCAL)",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "c62a99c9-7c1a-46e4-8839-6f2c2fd3860c",
+                        "style": ""
+                    },
+                    "commentCreated": "2025-05-23T12:15:55.654+0500",
+                    "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "ИСПРАВЛЕНО",
+                        "color": "green",
+                        "localId": "fb2648fb-e7e1-457d-b765-308af7d9892a",
+                        "style": ""
+                    },
+                    "commentCreated": "2025-05-23T14:48:25.267+0500",
+                    "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "3099e037-333a-41b1-b279-621862a69ce0",
+                        "style": ""
+                    },
+                    "commentCreated": "2025-05-23T14:55:06.937+0500",
+                    "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "17cdfa92-752b-46b8-97c3-0201d7205929",
+                        "style": ""
+                    },
+                    "commentCreated": "2025-05-23T14:56:11.993+0500",
+                    "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "Исправлено",
+                        "color": "green",
+                        "localId": "73debbd6-93d5-417a-a780-9aef6f021783",
+                        "style": ""
+                    },
+                    "commentCreated": "2025-05-23T18:11:59.093+0500",
+                    "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                },
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "баг",
+                        "color": "red",
+                        "localId": "766ff9e0-d4fd-4f32-bf67-9630532088bf",
+                        "style": ""
+                    },
+                    "commentCreated": "2025-05-23T18:57:46.487+0500",
+                    "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                }
+            ],
+            "bugsCount": 6
         },
         {
             "key": "QT-191",
@@ -3302,7 +5229,7 @@
             "key": "IE-789",
             "summary": "По методу GetIEByClaimNumber обновить id_esbd заявлений",
             "created": "2025-04-18T12:04:15.376+0500",
-            "updated": "2025-05-22T10:11:49.509+0500",
+            "updated": "2025-05-22T14:44:07.656+0500",
             "priority": "Critical",
             "projectKey": "IE",
             "projectName": "IE",
@@ -3312,7 +5239,7 @@
                 "IE"
             ],
             "issuetype": "Task",
-            "status": "DEPLOYED",
+            "status": "Done",
             "linkedCommentsWithBugs": [
                 {
                     "type": "status",
@@ -3587,7 +5514,7 @@
             "key": "BPM-3516",
             "summary": "Протестировать кейсы по антиминусу",
             "created": "2025-05-08T11:51:05.961+0500",
-            "updated": "2025-05-20T09:37:38.173+0500",
+            "updated": "2025-05-23T16:37:35.081+0500",
             "priority": "Medium",
             "projectKey": "BPM",
             "projectName": "Операционная эффективность",
@@ -3606,7 +5533,8 @@
                         "localId": "33c093ff-b8bb-451c-946b-972490032e4a",
                         "style": ""
                     },
-                    "commentCreated": "2025-05-12T15:12:57.213+0500"
+                    "commentCreated": "2025-05-12T15:12:57.213+0500",
+                    "lastPreviousDevAssignee": "Глеб Баженов"
                 },
                 {
                     "type": "status",
@@ -3616,10 +5544,41 @@
                         "localId": "19a1433f-c0bd-4021-a333-06d4e7f62aa3",
                         "style": ""
                     },
-                    "commentCreated": "2025-05-13T14:24:47.650+0500"
+                    "commentCreated": "2025-05-13T14:24:47.650+0500",
+                    "lastPreviousDevAssignee": "Глеб Баженов"
                 }
             ],
             "bugsCount": 2
+        },
+        {
+            "key": "IE-810",
+            "summary": "Передавать VIN в 1С в методах где присутствует ТС",
+            "created": "2025-05-13T14:43:26.034+0500",
+            "updated": "2025-05-23T16:10:39.487+0500",
+            "priority": "Medium",
+            "projectKey": "IE",
+            "projectName": "IE",
+            "devType": "WEB",
+            "labels": [
+                "IE",
+                "claim_api"
+            ],
+            "issuetype": "Task",
+            "status": "TO MERGE TO DEV",
+            "linkedCommentsWithBugs": [
+                {
+                    "type": "status",
+                    "attrs": {
+                        "text": "исправлено",
+                        "color": "green",
+                        "localId": "3d340bfa-195b-45eb-ab64-8bacc652dd0e",
+                        "style": ""
+                    },
+                    "commentCreated": "2025-05-22T17:24:55.386+0500",
+                    "lastPreviousDevAssignee": "Сакен Сатенов"
+                }
+            ],
+            "bugsCount": 1
         },
         {
             "key": "ADP-2748",
@@ -3652,7 +5611,7 @@
             "bugsCount": 1
         }
     ],
-    "overallIssuesWithBugsCount": 62,
-    "overallBugsCount": 228,
+    "overallIssuesWithBugsCount": 106,
+    "overallBugsCount": 334,
     "overallIssuesCount": 927
 }
