@@ -16,7 +16,7 @@ class JiraAPI extends BaseAPI {
     super(options);
   }
 
-  async searchAll() {
+  async searchAll(fromDate) {
     let total;
     let startAt = 0;
     const maxResults = 100;
@@ -29,7 +29,7 @@ class JiraAPI extends BaseAPI {
         startAt,
         maxResults,
         expand: 'changelog',
-        jql: `created >= ${JSONLoader.config.issuesCreatedFromDateYMD} AND created <= ${todayYMD} ORDER BY created ASC`,
+        jql: `created >= ${fromDate} AND created <= ${todayYMD} ORDER BY created ASC`,
       };
 
       // eslint-disable-next-line no-await-in-loop

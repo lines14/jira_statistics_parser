@@ -3652,5 +3652,7 @@
             "bugsCount": 1
         }
     ],
-    "overallBugsCount": 228
+    "overallIssuesWithBugsCount": 62,
+    "overallBugsCount": 228,
+    "overallIssuesCount": 927
 }

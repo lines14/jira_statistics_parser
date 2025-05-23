@@ -5,7 +5,7 @@ import dataUtils from './modules/main/utils/data/dataUtils.js';
 import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 
 const parseIssues = async () => {
-  // const issuesArr = await jiraAPI.searchAll();
+  // let issuesArr = await jiraAPI.searchAll(JSONLoader.config.issuesCreatedFromDateYMD);
   // const issuesWithCommentsArr = [];
   // for (const issue of issuesArr) {
   //   const response = await jiraAPI.getIssueComments(issue.id);
@@ -52,7 +52,12 @@ const parseIssues = async () => {
   });
 
   const filteredIssuesWithBugs = { filteredIssuesWithBugsArr };
+  filteredIssuesWithBugs.overallIssuesWithBugsCount = filteredIssuesWithBugsArr.length;
   filteredIssuesWithBugs.overallBugsCount = overallBugsCount;
+
+  let issuesArr = await jiraAPI.searchAll(JSONLoader.config.commentsWithBugsCreatedFromDateYMD);
+  filteredIssuesWithBugs.overallIssuesCount = issuesArr.length;
+  
   dataUtils.saveToJSON({ filteredIssuesWithBugs });
 };
 
