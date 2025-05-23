@@ -5,10 +5,12 @@
     "datesFormatDMY": "DD.MM.YYYY",
     "datesFormatISO": "YYYY-MM-DDTHH:mm:ss",
     "startDateYMD": "2024-01-01",
+    "initIssueStatus": "INIT TASK",
     "issueStatuses": [
         "BACKLOG",
         "TO DO",
-        "IN PROGRESS" 
+        "IN PROGRESS",
+        "REOPEN"
     ],
     "commentStatuses": [
         "БАГ", 

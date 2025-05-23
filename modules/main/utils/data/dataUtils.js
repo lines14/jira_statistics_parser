@@ -97,7 +97,7 @@ class DataUtils {
           .normalizeTimestamp(commentWithBug.commentCreated));
         const sortedChangelog = this.sortByTimestamps(issueWithBugs.changelog);
         const initialTimestamp = {
-          transitionFrom: 'INIT TASK',
+          transitionFrom: JSONLoader.config.initIssueStatus,
           created: sortedChangelog[0].created,
         };
 
@@ -113,7 +113,9 @@ class DataUtils {
 
         for (const element of sortedChangelog) {
           element.items.forEach((item) => {
-            if (item.field === 'assignee' && item.fromString) {
+            if (item.field === 'assignee'
+              && item.fromString
+              && JSONLoader.config.developers.includes(item.fromString)) {
               assigneeChanges.push({ transitionFrom: item.fromString, created: element.created });
             }
           });

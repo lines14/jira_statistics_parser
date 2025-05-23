@@ -50,7 +50,6 @@ const parseIssues = async () => {
   filteredIssuesWithBugsArr.forEach((issueWithBug) => {
     overallBugsCount += issueWithBug.bugsCount;
   });
-  console.log(overallBugsCount)
 };
 
 parseIssues();
