@@ -2,6 +2,7 @@
 /* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
 import jiraAPI from './modules/API/jiraAPI.js';
 import dataUtils from './modules/main/utils/data/dataUtils.js';
+import timeUtils from './modules/main/utils/time/timeUtils.js';
 import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 
 const parseIssues = async () => {
@@ -57,15 +58,114 @@ const parseIssues = async () => {
   dataUtils.saveToJSON({ filteredIssuesWithBugsArr });
 
   let overallBugsCount = 0;
-  filteredIssuesWithBugsArr.forEach((issueWithBug) => {
-    overallBugsCount += issueWithBug.bugsCount;
+  filteredIssuesWithBugsArr.forEach((issueWithBugs) => {
+    overallBugsCount += issueWithBugs.bugsCount;
+  });
+
+  const trimmedIssuesWithBugsArr = filteredIssuesWithBugsArr.map((filteredIssueWithBugs) => ({ 
+    priority: filteredIssueWithBugs.priority, 
+    projectName: filteredIssueWithBugs.projectName, 
+    devType: filteredIssueWithBugs.devType, 
+    issuetype: filteredIssueWithBugs.issuetype, 
+    bugsCount: filteredIssueWithBugs.bugsCount, 
+    linkedCommentsWithBugs: filteredIssueWithBugs.linkedCommentsWithBugs
+    .map((linkedCommentWithBugs) => ({ 
+      commentAuthor: linkedCommentWithBugs.commentAuthor, 
+      lastPreviousDevAssignee: linkedCommentWithBugs.lastPreviousDevAssignee 
+    })) 
+  }));
+
+  dataUtils.saveToJSON({ trimmedIssuesWithBugsArr });
+
+  const projectNames = [...new Set(trimmedIssuesWithBugsArr
+    .map((trimmedIssueWithBugs) => trimmedIssueWithBugs.projectName))];
+  
+  const bugsInProjects = {};
+  projectNames.forEach((projectName) => {
+      let bugsCount = 0;
+      trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
+        if (trimmedIssueWithBugs.projectName === projectName) {
+          bugsCount += trimmedIssueWithBugs.bugsCount;
+        }
+      });
+
+      bugsInProjects[projectName] = bugsCount;
+  });
+
+  const priorities = [...new Set(trimmedIssuesWithBugsArr
+    .map((trimmedIssueWithBugs) => trimmedIssueWithBugs.priority))];
+
+  const bugsPerPriorities = {};
+  priorities.forEach((priority) => {
+      let bugsCount = 0;
+      trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
+        if (trimmedIssueWithBugs.priority === priority) {
+          bugsCount += trimmedIssueWithBugs.bugsCount;
+        }
+      });
+
+      bugsPerPriorities[priority] = bugsCount;
+  });
+
+  const devTypes = [...new Set(trimmedIssuesWithBugsArr
+    .map((trimmedIssueWithBugs) => trimmedIssueWithBugs.devType))];
+
+  const bugsPerDevTypes = {};
+  devTypes.forEach((devType) => {
+      let bugsCount = 0;
+      trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
+        if (trimmedIssueWithBugs.devType === devType) {
+          bugsCount += trimmedIssueWithBugs.bugsCount;
+        }
+      });
+
+      bugsPerDevTypes[devType] = bugsCount;
+  });
+
+  const issueTypes = [...new Set(trimmedIssuesWithBugsArr
+    .map((trimmedIssueWithBugs) => trimmedIssueWithBugs.issuetype))];
+
+  const bugsPerIssueTypes = {};
+  issueTypes.forEach((issueType) => {
+      let bugsCount = 0;
+      trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
+        if (trimmedIssueWithBugs.issuetype === issueType) {
+          bugsCount += trimmedIssueWithBugs.bugsCount;
+        }
+      });
+
+      bugsPerIssueTypes[issueType] = bugsCount;
+  });
+
+  const reporters = [...new Set(trimmedIssuesWithBugsArr
+    .flatMap((trimmedIssueWithBugs) => trimmedIssueWithBugs.linkedCommentsWithBugs
+    .map((linkedCommentWithBugs) => linkedCommentWithBugs.commentAuthor)))];
+
+  const bugsPerReporter = {};
+  reporters.forEach((reporter) => {
+      let bugsCount = 0;
+      trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
+        trimmedIssueWithBugs.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
+          if (linkedCommentWithBugs.commentAuthor === reporter) {
+            bugsCount += 1;
+          }
+      })});
+
+      bugsPerReporter[reporter] = bugsCount;
   });
 
   const summary = {
+    issuesCreatedFrom: timeUtils.reformatDateFromYMDToDMY(JSONLoader.config.commentsWithBugsCreatedFromDateYMD),
+    issuesCreatedTo: timeUtils.reformatDateFromISOToDMY(timeUtils.today()),
     overallIssuesCount: issuesWithCommentsArr.length,
     overallTestedIssuesCount: testedIssuesWithCommentsArr.length,
     overallTestedIssuesWithBugsCount: filteredIssuesWithBugsArr.length,
-    overallBugsCount
+    overallBugsCount,
+    bugsInProjects,
+    bugsPerPriorities,
+    bugsPerDevTypes,
+    bugsPerIssueTypes,
+    bugsPerReporter
   };
 
   dataUtils.saveToJSON({ summary });
