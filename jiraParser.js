@@ -39,11 +39,12 @@ const parseIssues = async () => {
   
   dataUtils.saveToJSON({ testedIssuesWithCommentsArr });
 
+  let commentAuthor;
   let commentCreated;
-  const filteredIssuesWithBugsArr = testedIssuesWithCommentsArr.map((issueWithComments) => {
-    const issueWithBugs = { ...issueWithComments };
-    issueWithBugs.commentsWithBugs = issueWithComments.comments
-      .flatMap((comment) => dataUtils.filterCommentsWithStatuses(comment, commentCreated));
+  const filteredIssuesWithBugsArr = testedIssuesWithCommentsArr.map((testedIssueWithComments) => {
+    const issueWithBugs = { ...testedIssueWithComments };
+    issueWithBugs.commentsWithBugs = testedIssueWithComments.comments
+      .flatMap((comment) => dataUtils.filterCommentsWithStatuses(comment, commentCreated, commentAuthor));
     delete issueWithBugs.comments;
     issueWithBugs.linkedCommentsWithBugs = dataUtils.linkDevsWithBugs(issueWithBugs);
     delete issueWithBugs.commentsWithBugs;
@@ -51,7 +52,7 @@ const parseIssues = async () => {
     issueWithBugs.bugsCount = issueWithBugs.linkedCommentsWithBugs.length;
 
     return issueWithBugs;
-  }).filter((issueWithComments) => issueWithComments.bugsCount > 0);
+  }).filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
 
   dataUtils.saveToJSON({ filteredIssuesWithBugsArr });
 

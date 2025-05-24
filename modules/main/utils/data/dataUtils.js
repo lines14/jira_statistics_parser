@@ -64,26 +64,29 @@ class DataUtils {
         .map((secondInterval) => this.intervalsOverlapping(firstInterval, secondInterval)));
   }
 
-  static filterCommentsWithStatuses(data, commentCreated) {
+  static filterCommentsWithStatuses(data, commentCreated, commentAuthor) {
     const results = [];
     if (Array.isArray(data)) {
       for (const item of data) {
-        results.push(...this.filterCommentsWithStatuses(item, commentCreated));
+        results.push(...this.filterCommentsWithStatuses(item, commentCreated, commentAuthor));
       }
     } else if (data !== null && typeof data === 'object') {
       if (data.created) commentCreated = data.created;
+      if (data.author) commentAuthor = data.author.displayName;
       if (data.type === 'status' && JSONLoader.config.commentStatuses.includes(data.attrs.text.toUpperCase())) {
         if (commentCreated) data.commentCreated = commentCreated;
+        if (commentAuthor) data.commentAuthor = commentAuthor;
         results.push(data);
       }
 
       for (const key in data) {
         if (Object.hasOwn(data, key)) {
-          results.push(...this.filterCommentsWithStatuses(data[key], commentCreated));
+          results.push(...this.filterCommentsWithStatuses(data[key], commentCreated, commentAuthor));
         }
       }
     }
 
+    // console.log(results)
     return results;
   }
 
