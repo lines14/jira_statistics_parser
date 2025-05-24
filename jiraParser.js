@@ -57,9 +57,9 @@ const parseIssues = async () => {
 
   dataUtils.saveToJSON({ filteredIssuesWithBugsArr });
 
-  let overallBugsCount = 0;
+  let bugs = 0;
   filteredIssuesWithBugsArr.forEach((issueWithBugs) => {
-    overallBugsCount += issueWithBugs.bugsCount;
+    bugs += issueWithBugs.bugsCount;
   });
 
   const trimmedIssuesWithBugsArr = filteredIssuesWithBugsArr.map((filteredIssueWithBugs) => ({ 
@@ -157,10 +157,12 @@ const parseIssues = async () => {
   const summary = {
     issuesCreatedFrom: timeUtils.reformatDateFromYMDToDMY(JSONLoader.config.commentsWithBugsCreatedFromDateYMD),
     issuesCreatedTo: timeUtils.reformatDateFromISOToDMY(timeUtils.today()),
-    overallIssuesCount: issuesWithCommentsArr.length,
-    overallTestedIssuesCount: testedIssuesWithCommentsArr.length,
-    overallTestedIssuesWithBugsCount: filteredIssuesWithBugsArr.length,
-    overallBugsCount,
+    issues: issuesWithCommentsArr.length,
+    testedIssues: testedIssuesWithCommentsArr.length,
+    testedIssuesWithBugs: filteredIssuesWithBugsArr.length,
+    bugs,
+    bugsPerTestedIssue: Number((bugs / testedIssuesWithCommentsArr.length).toFixed(2)),
+    bugsPerTestedIssueWithBugs: Number((bugs / filteredIssuesWithBugsArr.length).toFixed(2)),
     bugsInProjects,
     bugsPerPriorities,
     bugsPerDevTypes,
