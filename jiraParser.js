@@ -143,15 +143,64 @@ const parseIssues = async () => {
 
   const bugsPerReporter = {};
   reporters.forEach((reporter) => {
+    let overallCount = 0;
+    const projectBugCounts = {};
+    projectNames.forEach((projectName) => {
       let bugsCount = 0;
       trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
         trimmedIssueWithBugs.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
-          if (linkedCommentWithBugs.commentAuthor === reporter) {
+          if (
+            trimmedIssueWithBugs.projectName === projectName 
+            && linkedCommentWithBugs.commentAuthor === reporter
+          ) {
             bugsCount += 1;
           }
-      })});
+        });
+      });
+      if (bugsCount > 0) {
+        projectBugCounts[projectName] = bugsCount;
+        overallCount += bugsCount;
+      }
+    });
+    if (overallCount > 0) {
+      bugsPerReporter[reporter] = {
+        projects: projectBugCounts,
+        overall: overallCount
+      };
+    }
+  });
 
-      bugsPerReporter[reporter] = bugsCount;
+  const developers = [...new Set(trimmedIssuesWithBugsArr
+    .flatMap((trimmedIssueWithBugs) => trimmedIssueWithBugs.linkedCommentsWithBugs
+    .map((linkedCommentWithBugs) => linkedCommentWithBugs.lastPreviousDevAssignee)))];
+
+  const bugsPerDeveloper = {};
+  developers.forEach((developer) => {
+    let overallCount = 0;
+    const projectBugCounts = {};
+    projectNames.forEach((projectName) => {
+      let bugsCount = 0;
+      trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
+        trimmedIssueWithBugs.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
+          if (
+            trimmedIssueWithBugs.projectName === projectName 
+            && linkedCommentWithBugs.lastPreviousDevAssignee === developer
+          ) {
+            bugsCount += 1;
+          }
+        });
+      });
+      if (bugsCount > 0) {
+        projectBugCounts[projectName] = bugsCount;
+        overallCount += bugsCount;
+      }
+    });
+    if (overallCount > 0) {
+      bugsPerDeveloper[developer] = {
+        projects: projectBugCounts,
+        overall: overallCount
+      };
+    }
   });
 
   const summary = {
@@ -167,7 +216,8 @@ const parseIssues = async () => {
     bugsPerPriorities,
     bugsPerDevTypes,
     bugsPerIssueTypes,
-    bugsPerReporter
+    bugsPerReporter,
+    bugsPerDeveloper
   };
 
   dataUtils.saveToJSON({ summary });
