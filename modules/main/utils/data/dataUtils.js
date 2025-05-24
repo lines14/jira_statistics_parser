@@ -105,7 +105,7 @@ class DataUtils {
           element.items.forEach((item) => { // includes only BACKLOG, TO DO and IN PROGRESS statuses
             if (item.field === 'status'
               && item.fromString
-              && JSONLoader.config.issueStatuses.includes(item.fromString.toUpperCase())) {
+              && JSONLoader.config.devIssueStatuses.includes(item.fromString.toUpperCase())) {
               devStatusEnds.push({ transitionFrom: item.fromString, created: element.created });
             }
           });

@@ -4,14 +4,19 @@
     "datesFormatYMD": "YYYY-MM-DD",
     "datesFormatDMY": "DD.MM.YYYY",
     "datesFormatISO": "YYYY-MM-DDTHH:mm:ss",
-    "issuesCreatedFromDateYMD": "2024-01-01",
-    "commentsWithBugsCreatedFromDateYMD": "2025-01-01",
+    "commentsWithBugsCreatedFromDateYMD": "2025-03-26",
     "initIssueStatus": "INIT TASK",
-    "issueStatuses": [
+    "devIssueStatuses": [
         "BACKLOG",
         "TO DO",
         "IN PROGRESS",
         "REOPEN"
+    ],
+    "testIssueStatuses": [
+        "IN TEST",
+        "IN TEST (LOCAL)",
+        "IN TEST (DEV)",
+        "IN TEST (STAGE)"
     ],
     "commentStatuses": [
         "БАГ", 
