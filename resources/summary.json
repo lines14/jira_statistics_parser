@@ -1,0 +1,171 @@
+{
+    "issuesCreatedFrom": "26.03.2025",
+    "issuesCreatedTo": "24.05.2025",
+    "issues": 406,
+    "testedIssues": 159,
+    "testedIssuesWithBugs": 38,
+    "bugs": 162,
+    "bugsPerTestedIssue": 1.02,
+    "bugsPerTestedIssueWithBugs": 4.26,
+    "bugsInProjects": {
+        "MADP": 1,
+        "IE": 57,
+        "Котировки": 49,
+        "ADP": 41,
+        "Architecture": 6,
+        "Операционная эффективность": 2,
+        "Medpool": 2,
+        "Amanat24": 4
+    },
+    "bugsPerPriorities": {
+        "Medium": 64,
+        "Critical": 98
+    },
+    "bugsPerDevTypes": {
+        "WEB": 154,
+        "1C": 8
+    },
+    "bugsPerIssueTypes": {
+        "Bug": 15,
+        "Task": 143,
+        "Story": 1,
+        "Sub-task": 3
+    },
+    "bugsPerReporter": {
+        "Искаков Асхат": {
+            "projects": {
+                "MADP": 1,
+                "Architecture": 2
+            },
+            "overall": 3
+        },
+        "Молдағалиева Еңлік": {
+            "projects": {
+                "IE": 8,
+                "Операционная эффективность": 1
+            },
+            "overall": 9
+        },
+        "Ivan Voronov": {
+            "projects": {
+                "Котировки": 22,
+                "ADP": 5
+            },
+            "overall": 27
+        },
+        "Turarbek Kairosh": {
+            "projects": {
+                "Котировки": 6,
+                "ADP": 10,
+                "Amanat24": 4
+            },
+            "overall": 20
+        },
+        "Әлішер Хамит": {
+            "projects": {
+                "Котировки": 21,
+                "Операционная эффективность": 1
+            },
+            "overall": 22
+        },
+        "Анисимов Анатолий": {
+            "projects": {
+                "IE": 49,
+                "ADP": 1,
+                "Architecture": 4
+            },
+            "overall": 54
+        },
+        "Антон Липатов": {
+            "projects": {
+                "ADP": 22
+            },
+            "overall": 22
+        },
+        "Ким Виолетта": {
+            "projects": {
+                "ADP": 3,
+                "Medpool": 2
+            },
+            "overall": 5
+        }
+    },
+    "bugsPerDeveloper": {
+        "Адиль Аманкулов": {
+            "projects": {
+                "MADP": 1
+            },
+            "overall": 1
+        },
+        "Сакен Сатенов": {
+            "projects": {
+                "IE": 53
+            },
+            "overall": 53
+        },
+        "Глеб Баженов": {
+            "projects": {
+                "Котировки": 5,
+                "Medpool": 2
+            },
+            "overall": 7
+        },
+        "Абылайхан Султанбек": {
+            "projects": {
+                "Котировки": 37,
+                "ADP": 11
+            },
+            "overall": 48
+        },
+        "Есен Оразбайұлы": {
+            "projects": {
+                "Котировки": 6,
+                "ADP": 2,
+                "Amanat24": 1
+            },
+            "overall": 9
+        },
+        "Нурлан Кенжегулов": {
+            "projects": {
+                "Котировки": 1,
+                "ADP": 5
+            },
+            "overall": 6
+        },
+        "Илья Балтер": {
+            "projects": {
+                "IE": 1,
+                "Операционная эффективность": 1
+            },
+            "overall": 2
+        },
+        "Sawa Laptev": {
+            "projects": {
+                "ADP": 1
+            },
+            "overall": 1
+        },
+        "Aibolat Batyrov": {
+            "projects": {
+                "IE": 1,
+                "ADP": 21,
+                "Architecture": 6,
+                "Amanat24": 3
+            },
+            "overall": 31
+        },
+        "Adilkhan": {
+            "projects": {
+                "IE": 2,
+                "Операционная эффективность": 1
+            },
+            "overall": 3
+        },
+        "Юрий Егорин": {
+            "projects": {
+                "ADP": 1
+            },
+            "overall": 1
+        }
+    }
+}

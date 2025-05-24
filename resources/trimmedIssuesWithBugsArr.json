@@ -1,0 +1,992 @@
+[
+    {
+        "priority": "Medium",
+        "projectName": "MADP",
+        "devType": "WEB",
+        "issuetype": "Bug",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Искаков Асхат",
+                "lastPreviousDevAssignee": "Адиль Аманкулов"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "IE",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Молдағалиева Еңлік",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "Котировки",
+        "devType": "WEB",
+        "issuetype": "Bug",
+        "bugsCount": 5,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Глеб Баженов"
+            },
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Глеб Баженов"
+            },
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Глеб Баженов"
+            },
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Глеб Баженов"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Глеб Баженов"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "Котировки",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 13,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "Котировки",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 9,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "Котировки",
+        "devType": "WEB",
+        "issuetype": "Bug",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Нурлан Кенжегулов"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "Котировки",
+        "devType": "WEB",
+        "issuetype": "Bug",
+        "bugsCount": 2,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "Котировки",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 8,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "Котировки",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "IE",
+        "devType": "1C",
+        "issuetype": "Bug",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Молдағалиева Еңлік",
+                "lastPreviousDevAssignee": "Илья Балтер"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "Котировки",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 6,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "Котировки",
+        "devType": "WEB",
+        "issuetype": "Bug",
+        "bugsCount": 4,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "ADP",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Sawa Laptev"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "Architecture",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 6,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Искаков Асхат",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Искаков Асхат",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "IE",
+        "devType": "1C",
+        "issuetype": "Task",
+        "bugsCount": 2,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Adilkhan"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Adilkhan"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "IE",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 43,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Молдағалиева Еңлік",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Молдағалиева Еңлік",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Молдағалиева Еңлік",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Молдағалиева Еңлік",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Молдағалиева Еңлік",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "ADP",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 4,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "ADP",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 10,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "ADP",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 6,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "ADP",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 3,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Ким Виолетта",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Ким Виолетта",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Ким Виолетта",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "ADP",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 5,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+            },
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "ADP",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 3,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "ADP",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 4,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Нурлан Кенжегулов"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Нурлан Кенжегулов"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Нурлан Кенжегулов"
+            },
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Нурлан Кенжегулов"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "ADP",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Нурлан Кенжегулов"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "ADP",
+        "devType": "1C",
+        "issuetype": "Task",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Юрий Егорин"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "IE",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 2,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "Операционная эффективность",
+        "devType": "1C",
+        "issuetype": "Task",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": "Илья Балтер"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "ADP",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "Операционная эффективность",
+        "devType": "1C",
+        "issuetype": "Task",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Молдағалиева Еңлік",
+                "lastPreviousDevAssignee": "Adilkhan"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "IE",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 4,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Молдағалиева Еңлік",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "IE",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "ADP",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "IE",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 2,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            },
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "Medpool",
+        "devType": "1C",
+        "issuetype": "Task",
+        "bugsCount": 2,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Ким Виолетта",
+                "lastPreviousDevAssignee": "Глеб Баженов"
+            },
+            {
+                "commentAuthor": "Ким Виолетта",
+                "lastPreviousDevAssignee": "Глеб Баженов"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "Amanat24",
+        "devType": "WEB",
+        "issuetype": "Story",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+            }
+        ]
+    },
+    {
+        "priority": "Critical",
+        "projectName": "Amanat24",
+        "devType": "WEB",
+        "issuetype": "Sub-task",
+        "bugsCount": 3,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            },
+            {
+                "commentAuthor": "Turarbek Kairosh",
+                "lastPreviousDevAssignee": "Aibolat Batyrov"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "IE",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": "Сакен Сатенов"
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "ADP",
+        "devType": "WEB",
+        "issuetype": "Bug",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+            }
+        ]
+    }
+]
