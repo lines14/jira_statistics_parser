@@ -56,45 +56,17 @@ class DataUtils {
     return timeIntervals;
   }
 
-  // static intervalsOverlapping(
-  //   [startFirstInterval, endFirstInterval],
-  //   [startSecondInterval, endSecondInterval],
-  // ) {
-  //   return {
-  //     transitionFrom: endSecondInterval.transitionFrom,
-  //     overlap: startFirstInterval.created <= endSecondInterval.created
-  //     && startSecondInterval.created <= endFirstInterval.created,
-  //     created: endFirstInterval.created,
-  //   };
-  // }
-
-    static intervalsOverlapping(
+  static intervalsOverlapping(
     [startFirstInterval, endFirstInterval],
     [startSecondInterval, endSecondInterval],
   ) {
     const overlapStart = new Date(Math.max(startFirstInterval.created, startSecondInterval.created));
     const overlapEnd = new Date(Math.min(endFirstInterval.created, endSecondInterval.created));
     const overlapDuration = overlapEnd - overlapStart;
-    const overlapDurationMoreThanMinute = overlapDuration > 60000;
     const diffBetweenStatusAndAssigneeChanged = Math.abs(endFirstInterval.created - endSecondInterval.created);
     const diffBetweenStatusAndAssigneeChangedMoreThanMinute = diffBetweenStatusAndAssigneeChanged > 60000;
-    const overlap = startFirstInterval.transitionFrom === 'INIT TASK' 
-    ? startFirstInterval.created <= endSecondInterval.created 
-    && startSecondInterval.created <= endFirstInterval.created  
-    : startFirstInterval.created <= endSecondInterval.created 
-    && startSecondInterval.created <= endFirstInterval.created
-    // && diffBetweenStatusAndAssigneeChangedMoreThanMinute;
-    // && overlapDurationMoreThanMinute;
-
-    // const overlap = startFirstInterval.created <= endSecondInterval.created 
-    // && startSecondInterval.created <= endFirstInterval.created;
-
-    // return {
-    //   transitionFrom: endSecondInterval.transitionFrom,
-    //   overlap,
-    //   overlapDuration,
-    //   created: endFirstInterval.created,
-    // };
+    const overlap = startFirstInterval.created <= endSecondInterval.created 
+    && startSecondInterval.created <= endFirstInterval.created;
 
     return {
       transitionFromStatus: endFirstInterval.transitionFrom,
@@ -110,21 +82,6 @@ class DataUtils {
       createdTransitionFromAssignee: endSecondInterval.created,
     };
   }
-
-  // static intervalsOverlapping(
-  //   [startFirstInterval, endFirstInterval],
-  //   [startSecondInterval, endSecondInterval],
-  // ) {
-  //   const overlapStart = new Date(Math.max(startFirstInterval.created, startSecondInterval.created));
-  //   const overlapEnd = new Date(Math.min(endFirstInterval.created, endSecondInterval.created));
-  //   const overlapDuration = overlapEnd - overlapStart;
-
-  //   return {
-  //     transitionFrom: endSecondInterval.transitionFrom,
-  //     overlap: overlapDuration,
-  //     created: endFirstInterval.created,
-  //   };
-  // }
 
   static checkIntervalsOverlap(firstIntervals, secondIntervals) {
     return firstIntervals
@@ -184,16 +141,6 @@ class DataUtils {
           });
         }
 
-        // for (const element of sortedChangelog) {
-        //   element.items.forEach((item) => {
-        //     if (item.field === 'assignee'
-        //       && item.fromString
-        //       && JSONLoader.config.developers.includes(item.fromString)) {
-        //       assigneeChanges.push({ transitionFrom: item.fromString, transitionTo: item.toString, created: element.created });
-        //     }
-        //   });
-        // }
-
         for (const element of sortedChangelog) {
           element.items.forEach((item) => {
             if (item.field === 'assignee'
@@ -236,8 +183,7 @@ class DataUtils {
             }, null)
           );
 
-
-
+          console.log(overlappedAssignees);
           const lastPreviousDevAssignee = overlappedAssignees
             .flat()
             .filter((a) => a.createdTransitionFromAssignee <= commentCreatedDateObj)
@@ -245,21 +191,8 @@ class DataUtils {
               if (!prev) return curr;
               return curr.createdTransitionFromStatus > prev.createdTransitionFromStatus ? curr : prev;
             }, null);
-
-            // .flat()
-            // .filter((overlappedAssignee) => overlappedAssignee.createdTransitionFromAssignee <= commentCreatedDateObj)
-            // .reduce(
-            //   (prev, curr) => (curr.createdTransitionFromStatus > prev.createdTransitionFromStatus ? curr : prev),
-            //   overlappedAssignees[0],
-            // );
       
-
           linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee.transitionFromAssignee;
-
-
-          console.log(commentCreatedDateObj);
-          console.log(lastPreviousDevAssignee);
-
         }
 
         return linkedAssigneeWithBug;
