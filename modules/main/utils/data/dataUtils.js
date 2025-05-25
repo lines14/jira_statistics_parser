@@ -43,7 +43,9 @@ class DataUtils {
       const prev = arr[index - 1];
       const diff = assigneeChange.created - prev.created;
       return diff >= 60000;
-    }).filter((assigneeChange) => JSONLoader.config.developers.includes(assigneeChange.transitionFrom)
+    })
+      .filter((assigneeChange) => JSONLoader.config.developers
+        .includes(assigneeChange.transitionFrom)
     || assigneeChange.transitionFrom === 'INIT TASK');
   }
 
@@ -60,8 +62,14 @@ class DataUtils {
     [startFirstInterval, endFirstInterval],
     [startSecondInterval, endSecondInterval],
   ) {
-    const overlapStart = new Date(Math.max(startFirstInterval.created, startSecondInterval.created));
-    const overlapEnd = new Date(Math.min(endFirstInterval.created, endSecondInterval.created));
+    const overlapStart = new Date(Math.max(
+      startFirstInterval.created,
+      startSecondInterval.created,
+    ));
+    const overlapEnd = new Date(Math.min(
+      endFirstInterval.created,
+      endSecondInterval.created,
+    ));
     const overlapDuration = overlapEnd - overlapStart;
     const overlap = startFirstInterval.created <= endSecondInterval.created
     && startSecondInterval.created <= endFirstInterval.created;
@@ -99,7 +107,11 @@ class DataUtils {
 
       for (const key in data) {
         if (Object.hasOwn(data, key)) {
-          results.push(...this.filterCommentsWithStatuses(data[key], commentCreated, commentAuthor));
+          results.push(...this.filterCommentsWithStatuses(
+            data[key],
+            commentCreated,
+            commentAuthor,
+          ));
         }
       }
     }
@@ -135,8 +147,7 @@ class DataUtils {
 
         for (const element of sortedChangelog) {
           element.items.forEach((item) => {
-            if (item.field === 'assignee'
-              && item.fromString) {
+            if (item.field === 'assignee' && item.fromString) {
               assigneeChanges.push({
                 transitionFrom: item.fromString,
                 transitionTo: item.toString,
@@ -154,7 +165,8 @@ class DataUtils {
           const devStatusEndTimeIntervals = this
             .getTimeIntervals(this.convertTimestampsToDateObjects(devStatusEnds));
 
-          const filteredAssigneeChanges = this.filterDevsAndMissclicks(this.convertTimestampsToDateObjects(assigneeChanges));
+          const filteredAssigneeChanges = this.filterDevsAndMissclicks(this
+            .convertTimestampsToDateObjects(assigneeChanges));
 
           const assigneeChangeTimeIntervals = this.getTimeIntervals(filteredAssigneeChanges);
 
@@ -165,25 +177,30 @@ class DataUtils {
 
           const overlappedAssignees = changedAssignees
             .map((changedAssignee) => changedAssignee
-              .filter((changedAssignee) => changedAssignee.overlap)
               .reduce((overlappedAssignee, currentElement) => {
-                if (!overlappedAssignee || (currentElement.overlapDuration ?? 0) > (overlappedAssignee.overlapDuration ?? 0)) {
+                if (!overlappedAssignee
+                  || (currentElement.overlapDuration
+                    ?? 0) > (overlappedAssignee.overlapDuration ?? 0)) {
                   return currentElement;
                 }
 
                 return overlappedAssignee;
-              }, null));
+              }, null))
+            .filter((changedAssignee) => changedAssignee.overlap);
 
-            console.log(changedAssignees)
           const lastPreviousDevAssignee = overlappedAssignees
             .flat()
-            .filter((overlappedAssignee) => overlappedAssignee.createdTransitionFromAssignee <= commentCreatedDateObj)
+            .filter((overlappedAssignee) => overlappedAssignee
+              .createdTransitionFromAssignee <= commentCreatedDateObj)
             .reduce((prev, curr) => {
               if (!prev) return curr;
-              return curr.createdTransitionFromStatus > prev.createdTransitionFromStatus ? curr : prev;
+              return curr.createdTransitionFromStatus > prev.createdTransitionFromStatus
+                ? curr
+                : prev;
             }, null);
 
-          linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee.transitionFromAssignee;
+          linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee
+            .transitionFromAssignee;
         }
 
         return linkedAssigneeWithBug;

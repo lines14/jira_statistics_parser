@@ -36,26 +36,21 @@ const parseIssues = async () => {
   const testedIssuesWithCommentsArr = issuesWithCommentsArr
     .filter((issueWithComments) => issueWithComments.changelog
       .some((changelogItem) => changelogItem.items
-        .some((item) => JSONLoader.config.testIssueStatuses.includes(item.fromString?.toUpperCase()) 
+        .some((item) => JSONLoader.config.testIssueStatuses.includes(item.fromString?.toUpperCase())
         || JSONLoader.config.testIssueStatuses.includes(item.toString?.toUpperCase()))));
 
   dataUtils.saveToJSON({ testedIssuesWithCommentsArr });
-
- 
-  // for (const issue of issuesWithCommentsArr) {
-  //   if (issue.key === 'ADP-2676') {
-  //     for (const item of issue.changelog) {
-  //       console.log(item.items)
-  //     }
-  //   }
-  // }
 
   let commentAuthor;
   let commentCreated;
   const filteredIssuesWithBugsArr = testedIssuesWithCommentsArr.map((testedIssueWithComments) => {
     const issueWithBugs = { ...testedIssueWithComments };
     issueWithBugs.commentsWithBugs = testedIssueWithComments.comments
-      .flatMap((comment) => dataUtils.filterCommentsWithStatuses(comment, commentCreated, commentAuthor));
+      .flatMap((comment) => dataUtils.filterCommentsWithStatuses(
+        comment,
+        commentCreated,
+        commentAuthor,
+      ));
     delete issueWithBugs.comments;
     issueWithBugs.linkedCommentsWithBugs = dataUtils.linkDevsWithBugs(issueWithBugs);
     delete issueWithBugs.commentsWithBugs;
@@ -65,8 +60,8 @@ const parseIssues = async () => {
     return issueWithBugs;
   }).filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
 
-  const kek = filteredIssuesWithBugsArr.filter((issue) => issue.key === 'ADP-2676');
-  console.log(kek.pop().linkedCommentsWithBugs);
+  // const kek = filteredIssuesWithBugsArr.filter((issue) => issue.key === 'ADP-2676');
+  // console.log(kek.pop().linkedCommentsWithBugs);
 
   dataUtils.saveToJSON({ filteredIssuesWithBugsArr });
 
@@ -217,7 +212,8 @@ const parseIssues = async () => {
   });
 
   const summary = {
-    issuesCreatedFrom: timeUtils.reformatDateFromYMDToDMY(JSONLoader.config.commentsWithBugsCreatedFromDateYMD),
+    issuesCreatedFrom: timeUtils
+      .reformatDateFromYMDToDMY(JSONLoader.config.commentsWithBugsCreatedFromDateYMD),
     issuesCreatedTo: timeUtils.reformatDateFromISOToDMY(timeUtils.today()),
     issues: issuesWithCommentsArr.length,
     testedIssues: testedIssuesWithCommentsArr.length,
