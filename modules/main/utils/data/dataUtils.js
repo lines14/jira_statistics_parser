@@ -29,12 +29,22 @@ class DataUtils {
   static convertTimestampsToDateObjects(changelogItems) {
     return changelogItems
       .map((changelogItem) => ({
-        transitionFrom: changelogItem.transitionFrom,
+        ...changelogItem,
         created: this.normalizeTimestamp(changelogItem.created),
       })).map((changelogItem) => ({
-        transitionFrom: changelogItem.transitionFrom,
+        ...changelogItem,
         created: new Date(changelogItem.created),
       }));
+  }
+
+  static filterDevsAndMissclicks(assigneeChanges) {
+    return assigneeChanges.filter((assigneeChange, index, arr) => {
+      if (index === 0) return true;
+      const prev = arr[index - 1];
+      const diff = assigneeChange.created - prev.created;
+      return diff >= 60000;
+    }).filter((assigneeChange) => JSONLoader.config.developers.includes(assigneeChange.transitionFrom) 
+    || assigneeChange.transitionFrom === 'INIT TASK')
   }
 
   static getTimeIntervals(changelogItems) {
@@ -46,17 +56,75 @@ class DataUtils {
     return timeIntervals;
   }
 
-  static intervalsOverlapping(
+  // static intervalsOverlapping(
+  //   [startFirstInterval, endFirstInterval],
+  //   [startSecondInterval, endSecondInterval],
+  // ) {
+  //   return {
+  //     transitionFrom: endSecondInterval.transitionFrom,
+  //     overlap: startFirstInterval.created <= endSecondInterval.created
+  //     && startSecondInterval.created <= endFirstInterval.created,
+  //     created: endFirstInterval.created,
+  //   };
+  // }
+
+    static intervalsOverlapping(
     [startFirstInterval, endFirstInterval],
     [startSecondInterval, endSecondInterval],
   ) {
+    const overlapStart = new Date(Math.max(startFirstInterval.created, startSecondInterval.created));
+    const overlapEnd = new Date(Math.min(endFirstInterval.created, endSecondInterval.created));
+    const overlapDuration = overlapEnd - overlapStart;
+    const overlapDurationMoreThanMinute = overlapDuration > 60000;
+    const diffBetweenStatusAndAssigneeChanged = Math.abs(endFirstInterval.created - endSecondInterval.created);
+    const diffBetweenStatusAndAssigneeChangedMoreThanMinute = diffBetweenStatusAndAssigneeChanged > 60000;
+    const overlap = startFirstInterval.transitionFrom === 'INIT TASK' 
+    ? startFirstInterval.created <= endSecondInterval.created 
+    && startSecondInterval.created <= endFirstInterval.created  
+    : startFirstInterval.created <= endSecondInterval.created 
+    && startSecondInterval.created <= endFirstInterval.created
+    // && diffBetweenStatusAndAssigneeChangedMoreThanMinute;
+    // && overlapDurationMoreThanMinute;
+
+    // const overlap = startFirstInterval.created <= endSecondInterval.created 
+    // && startSecondInterval.created <= endFirstInterval.created;
+
+    // return {
+    //   transitionFrom: endSecondInterval.transitionFrom,
+    //   overlap,
+    //   overlapDuration,
+    //   created: endFirstInterval.created,
+    // };
+
     return {
-      transitionFrom: endSecondInterval.transitionFrom,
-      overlap: startFirstInterval.created < endSecondInterval.created
-      && startSecondInterval.created < endFirstInterval.created,
-      created: endFirstInterval.created,
+      transitionFromStatus: endFirstInterval.transitionFrom,
+      transitionFromAssignee: endSecondInterval.transitionFrom,
+      transitionToAssignee: endSecondInterval.transitionTo,
+      overlap,
+      overlapDuration,
+      previousCreatedTransitionFromStatus: startFirstInterval.created,
+      previousCreatedTransitionFromAssignee: startSecondInterval.created,
+      diffBetweenStatusAndAssigneeChanged,
+      diffBetweenStatusAndAssigneeChangedMoreThanMinute,
+      createdTransitionFromStatus: endFirstInterval.created,
+      createdTransitionFromAssignee: endSecondInterval.created,
     };
   }
+
+  // static intervalsOverlapping(
+  //   [startFirstInterval, endFirstInterval],
+  //   [startSecondInterval, endSecondInterval],
+  // ) {
+  //   const overlapStart = new Date(Math.max(startFirstInterval.created, startSecondInterval.created));
+  //   const overlapEnd = new Date(Math.min(endFirstInterval.created, endSecondInterval.created));
+  //   const overlapDuration = overlapEnd - overlapStart;
+
+  //   return {
+  //     transitionFrom: endSecondInterval.transitionFrom,
+  //     overlap: overlapDuration,
+  //     created: endFirstInterval.created,
+  //   };
+  // }
 
   static checkIntervalsOverlap(firstIntervals, secondIntervals) {
     return firstIntervals
@@ -86,7 +154,7 @@ class DataUtils {
       }
     }
 
-    // console.log(results)
+
     return results;
   }
 
@@ -96,9 +164,11 @@ class DataUtils {
         const devStatusEnds = [];
         const assigneeChanges = [];
         const linkedAssigneeWithBug = { ...commentWithBug };
+
         const commentCreatedDateObj = new Date(this
           .normalizeTimestamp(commentWithBug.commentCreated));
         const sortedChangelog = this.sortByTimestamps(issueWithBugs.changelog);
+
         const initialTimestamp = {
           transitionFrom: JSONLoader.config.initIssueStatus,
           created: sortedChangelog[0].created,
@@ -114,12 +184,25 @@ class DataUtils {
           });
         }
 
+        // for (const element of sortedChangelog) {
+        //   element.items.forEach((item) => {
+        //     if (item.field === 'assignee'
+        //       && item.fromString
+        //       && JSONLoader.config.developers.includes(item.fromString)) {
+        //       assigneeChanges.push({ transitionFrom: item.fromString, transitionTo: item.toString, created: element.created });
+        //     }
+        //   });
+        // }
+
         for (const element of sortedChangelog) {
           element.items.forEach((item) => {
             if (item.field === 'assignee'
-              && item.fromString
-              && JSONLoader.config.developers.includes(item.fromString)) {
-              assigneeChanges.push({ transitionFrom: item.fromString, created: element.created });
+              && item.fromString) {
+              assigneeChanges.push({ 
+                transitionFrom: item.fromString, 
+                transitionTo: item.toString, 
+                created: element.created 
+              });
             }
           });
         }
@@ -128,23 +211,55 @@ class DataUtils {
         if (assigneeChanges.length > 0 && devStatusEnds.length > 0) {
           devStatusEnds.unshift(initialTimestamp);
           assigneeChanges.unshift(initialTimestamp);
+
           const devStatusEndTimeIntervals = this
             .getTimeIntervals(this.convertTimestampsToDateObjects(devStatusEnds));
-          const assigneeChangeTimeIntervals = this
-            .getTimeIntervals(this.convertTimestampsToDateObjects(assigneeChanges));
+
+          const filteredAssigneeChanges = this.filterDevsAndMissclicks(this.convertTimestampsToDateObjects(assigneeChanges));
+
+          const assigneeChangeTimeIntervals = this.getTimeIntervals(filteredAssigneeChanges);
+
           const changedAssignees = this.checkIntervalsOverlap(
             devStatusEndTimeIntervals,
             assigneeChangeTimeIntervals,
-          ).map((devStatusEndTimeInterval) => devStatusEndTimeInterval);
-          const overlappedAssignees = changedAssignees.flat()
-            .filter((changedAssignee) => changedAssignee.overlap);
+          );
+
+          const overlappedAssignees = changedAssignees
+            .map((changedAssignee) => changedAssignee
+            .filter((changedAssignee) => changedAssignee.overlap)
+            .reduce((overlappedAssignee, currentElement) => {
+              if (!overlappedAssignee || (currentElement.overlapDuration ?? 0) > (overlappedAssignee.overlapDuration ?? 0)) {
+                return currentElement;
+              }
+
+              return overlappedAssignee;
+            }, null)
+          );
+
+
+
           const lastPreviousDevAssignee = overlappedAssignees
-            .filter((overlappedAssignee) => overlappedAssignee.created <= commentCreatedDateObj)
-            .reduce(
-              (prev, curr) => (curr.created > prev.created ? curr : prev),
-              overlappedAssignees[0],
-            );
-          linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee.transitionFrom;
+            .flat()
+            .filter((a) => a.createdTransitionFromAssignee <= commentCreatedDateObj)
+            .reduce((prev, curr) => {
+              if (!prev) return curr;
+              return curr.createdTransitionFromStatus > prev.createdTransitionFromStatus ? curr : prev;
+            }, null);
+
+            // .flat()
+            // .filter((overlappedAssignee) => overlappedAssignee.createdTransitionFromAssignee <= commentCreatedDateObj)
+            // .reduce(
+            //   (prev, curr) => (curr.createdTransitionFromStatus > prev.createdTransitionFromStatus ? curr : prev),
+            //   overlappedAssignees[0],
+            // );
+      
+
+          linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee.transitionFromAssignee;
+
+
+          console.log(commentCreatedDateObj);
+          console.log(lastPreviousDevAssignee);
+
         }
 
         return linkedAssigneeWithBug;

@@ -4,7 +4,7 @@
     "datesFormatYMD": "YYYY-MM-DD",
     "datesFormatDMY": "DD.MM.YYYY",
     "datesFormatISO": "YYYY-MM-DDTHH:mm:ss",
-    "commentsWithBugsCreatedFromDateYMD": "2025-03-26",
+    "commentsWithBugsCreatedFromDateYMD": "2025-03-03",
     "initIssueStatus": "INIT TASK",
     "devIssueStatuses": [
         "BACKLOG",

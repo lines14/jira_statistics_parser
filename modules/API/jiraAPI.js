@@ -29,7 +29,7 @@ class JiraAPI extends BaseAPI {
         startAt,
         maxResults,
         expand: 'changelog',
-        jql: `created >= ${fromDate} AND created <= ${todayYMD} ORDER BY created ASC`,
+        jql: `created >= ${fromDate} AND created <= 2025-03-04 ORDER BY created ASC`,
       };
 
       // eslint-disable-next-line no-await-in-loop
