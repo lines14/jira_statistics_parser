@@ -43,8 +43,8 @@ class DataUtils {
       const prev = arr[index - 1];
       const diff = assigneeChange.created - prev.created;
       return diff >= 60000;
-    }).filter((assigneeChange) => JSONLoader.config.developers.includes(assigneeChange.transitionFrom) 
-    || assigneeChange.transitionFrom === 'INIT TASK')
+    }).filter((assigneeChange) => JSONLoader.config.developers.includes(assigneeChange.transitionFrom)
+    || assigneeChange.transitionFrom === 'INIT TASK');
   }
 
   static getTimeIntervals(changelogItems) {
@@ -63,21 +63,14 @@ class DataUtils {
     const overlapStart = new Date(Math.max(startFirstInterval.created, startSecondInterval.created));
     const overlapEnd = new Date(Math.min(endFirstInterval.created, endSecondInterval.created));
     const overlapDuration = overlapEnd - overlapStart;
-    const diffBetweenStatusAndAssigneeChanged = Math.abs(endFirstInterval.created - endSecondInterval.created);
-    const diffBetweenStatusAndAssigneeChangedMoreThanMinute = diffBetweenStatusAndAssigneeChanged > 60000;
-    const overlap = startFirstInterval.created <= endSecondInterval.created 
+    const overlap = startFirstInterval.created <= endSecondInterval.created
     && startSecondInterval.created <= endFirstInterval.created;
 
     return {
       transitionFromStatus: endFirstInterval.transitionFrom,
       transitionFromAssignee: endSecondInterval.transitionFrom,
-      transitionToAssignee: endSecondInterval.transitionTo,
       overlap,
       overlapDuration,
-      previousCreatedTransitionFromStatus: startFirstInterval.created,
-      previousCreatedTransitionFromAssignee: startSecondInterval.created,
-      diffBetweenStatusAndAssigneeChanged,
-      diffBetweenStatusAndAssigneeChangedMoreThanMinute,
       createdTransitionFromStatus: endFirstInterval.created,
       createdTransitionFromAssignee: endSecondInterval.created,
     };
@@ -110,7 +103,6 @@ class DataUtils {
         }
       }
     }
-
 
     return results;
   }
@@ -145,10 +137,10 @@ class DataUtils {
           element.items.forEach((item) => {
             if (item.field === 'assignee'
               && item.fromString) {
-              assigneeChanges.push({ 
-                transitionFrom: item.fromString, 
-                transitionTo: item.toString, 
-                created: element.created 
+              assigneeChanges.push({
+                transitionFrom: item.fromString,
+                transitionTo: item.toString,
+                created: element.created,
               });
             }
           });
@@ -173,25 +165,24 @@ class DataUtils {
 
           const overlappedAssignees = changedAssignees
             .map((changedAssignee) => changedAssignee
-            .filter((changedAssignee) => changedAssignee.overlap)
-            .reduce((overlappedAssignee, currentElement) => {
-              if (!overlappedAssignee || (currentElement.overlapDuration ?? 0) > (overlappedAssignee.overlapDuration ?? 0)) {
-                return currentElement;
-              }
+              .filter((changedAssignee) => changedAssignee.overlap)
+              .reduce((overlappedAssignee, currentElement) => {
+                if (!overlappedAssignee || (currentElement.overlapDuration ?? 0) > (overlappedAssignee.overlapDuration ?? 0)) {
+                  return currentElement;
+                }
 
-              return overlappedAssignee;
-            }, null)
-          );
+                return overlappedAssignee;
+              }, null));
 
-          console.log(overlappedAssignees);
+            console.log(changedAssignees)
           const lastPreviousDevAssignee = overlappedAssignees
             .flat()
-            .filter((a) => a.createdTransitionFromAssignee <= commentCreatedDateObj)
+            .filter((overlappedAssignee) => overlappedAssignee.createdTransitionFromAssignee <= commentCreatedDateObj)
             .reduce((prev, curr) => {
               if (!prev) return curr;
               return curr.createdTransitionFromStatus > prev.createdTransitionFromStatus ? curr : prev;
             }, null);
-      
+
           linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee.transitionFromAssignee;
         }
 

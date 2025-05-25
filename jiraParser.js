@@ -33,12 +33,22 @@ const parseIssues = async () => {
 
   // const { issuesWithCommentsArr } = JSONLoader;
 
-  const testedIssuesWithCommentsArr =  issuesWithCommentsArr
-  .filter((issueWithComments) => issueWithComments.changelog
-  .some((changelogItem) => changelogItem.items
-  .some((item) => JSONLoader.config.testIssueStatuses.includes(item.fromString?.toUpperCase()))));
-  
+  const testedIssuesWithCommentsArr = issuesWithCommentsArr
+    .filter((issueWithComments) => issueWithComments.changelog
+      .some((changelogItem) => changelogItem.items
+        .some((item) => JSONLoader.config.testIssueStatuses.includes(item.fromString?.toUpperCase()) 
+        || JSONLoader.config.testIssueStatuses.includes(item.toString?.toUpperCase()))));
+
   dataUtils.saveToJSON({ testedIssuesWithCommentsArr });
+
+ 
+  // for (const issue of issuesWithCommentsArr) {
+  //   if (issue.key === 'ADP-2676') {
+  //     for (const item of issue.changelog) {
+  //       console.log(item.items)
+  //     }
+  //   }
+  // }
 
   let commentAuthor;
   let commentCreated;
@@ -55,8 +65,8 @@ const parseIssues = async () => {
     return issueWithBugs;
   }).filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
 
-  // const kek = filteredIssuesWithBugsArr.filter((issue) => issue.key === 'ADP-2652');
-  // console.log(kek.pop().linkedCommentsWithBugs);
+  const kek = filteredIssuesWithBugsArr.filter((issue) => issue.key === 'ADP-2676');
+  console.log(kek.pop().linkedCommentsWithBugs);
 
   dataUtils.saveToJSON({ filteredIssuesWithBugsArr });
 
@@ -65,34 +75,34 @@ const parseIssues = async () => {
     bugs += issueWithBugs.bugsCount;
   });
 
-  const trimmedIssuesWithBugsArr = filteredIssuesWithBugsArr.map((filteredIssueWithBugs) => ({ 
-    priority: filteredIssueWithBugs.priority, 
-    projectName: filteredIssueWithBugs.projectName, 
-    devType: filteredIssueWithBugs.devType, 
-    issuetype: filteredIssueWithBugs.issuetype, 
-    bugsCount: filteredIssueWithBugs.bugsCount, 
+  const trimmedIssuesWithBugsArr = filteredIssuesWithBugsArr.map((filteredIssueWithBugs) => ({
+    priority: filteredIssueWithBugs.priority,
+    projectName: filteredIssueWithBugs.projectName,
+    devType: filteredIssueWithBugs.devType,
+    issuetype: filteredIssueWithBugs.issuetype,
+    bugsCount: filteredIssueWithBugs.bugsCount,
     linkedCommentsWithBugs: filteredIssueWithBugs.linkedCommentsWithBugs
-    .map((linkedCommentWithBugs) => ({ 
-      commentAuthor: linkedCommentWithBugs.commentAuthor, 
-      lastPreviousDevAssignee: linkedCommentWithBugs.lastPreviousDevAssignee 
-    })) 
+      .map((linkedCommentWithBugs) => ({
+        commentAuthor: linkedCommentWithBugs.commentAuthor,
+        lastPreviousDevAssignee: linkedCommentWithBugs.lastPreviousDevAssignee,
+      })),
   }));
 
   dataUtils.saveToJSON({ trimmedIssuesWithBugsArr });
 
   const projectNames = [...new Set(trimmedIssuesWithBugsArr
     .map((trimmedIssueWithBugs) => trimmedIssueWithBugs.projectName))];
-  
+
   const bugsInProjects = {};
   projectNames.forEach((projectName) => {
-      let bugsCount = 0;
-      trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
-        if (trimmedIssueWithBugs.projectName === projectName) {
-          bugsCount += trimmedIssueWithBugs.bugsCount;
-        }
-      });
+    let bugsCount = 0;
+    trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
+      if (trimmedIssueWithBugs.projectName === projectName) {
+        bugsCount += trimmedIssueWithBugs.bugsCount;
+      }
+    });
 
-      bugsInProjects[projectName] = bugsCount;
+    bugsInProjects[projectName] = bugsCount;
   });
 
   const priorities = [...new Set(trimmedIssuesWithBugsArr
@@ -100,14 +110,14 @@ const parseIssues = async () => {
 
   const bugsPerPriorities = {};
   priorities.forEach((priority) => {
-      let bugsCount = 0;
-      trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
-        if (trimmedIssueWithBugs.priority === priority) {
-          bugsCount += trimmedIssueWithBugs.bugsCount;
-        }
-      });
+    let bugsCount = 0;
+    trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
+      if (trimmedIssueWithBugs.priority === priority) {
+        bugsCount += trimmedIssueWithBugs.bugsCount;
+      }
+    });
 
-      bugsPerPriorities[priority] = bugsCount;
+    bugsPerPriorities[priority] = bugsCount;
   });
 
   const devTypes = [...new Set(trimmedIssuesWithBugsArr
@@ -115,14 +125,14 @@ const parseIssues = async () => {
 
   const bugsPerDevTypes = {};
   devTypes.forEach((devType) => {
-      let bugsCount = 0;
-      trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
-        if (trimmedIssueWithBugs.devType === devType) {
-          bugsCount += trimmedIssueWithBugs.bugsCount;
-        }
-      });
+    let bugsCount = 0;
+    trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
+      if (trimmedIssueWithBugs.devType === devType) {
+        bugsCount += trimmedIssueWithBugs.bugsCount;
+      }
+    });
 
-      bugsPerDevTypes[devType] = bugsCount;
+    bugsPerDevTypes[devType] = bugsCount;
   });
 
   const issueTypes = [...new Set(trimmedIssuesWithBugsArr
@@ -130,19 +140,19 @@ const parseIssues = async () => {
 
   const bugsPerIssueTypes = {};
   issueTypes.forEach((issueType) => {
-      let bugsCount = 0;
-      trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
-        if (trimmedIssueWithBugs.issuetype === issueType) {
-          bugsCount += trimmedIssueWithBugs.bugsCount;
-        }
-      });
+    let bugsCount = 0;
+    trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
+      if (trimmedIssueWithBugs.issuetype === issueType) {
+        bugsCount += trimmedIssueWithBugs.bugsCount;
+      }
+    });
 
-      bugsPerIssueTypes[issueType] = bugsCount;
+    bugsPerIssueTypes[issueType] = bugsCount;
   });
 
   const reporters = [...new Set(trimmedIssuesWithBugsArr
     .flatMap((trimmedIssueWithBugs) => trimmedIssueWithBugs.linkedCommentsWithBugs
-    .map((linkedCommentWithBugs) => linkedCommentWithBugs.commentAuthor)))];
+      .map((linkedCommentWithBugs) => linkedCommentWithBugs.commentAuthor)))];
 
   const bugsPerReporter = {};
   reporters.forEach((reporter) => {
@@ -153,7 +163,7 @@ const parseIssues = async () => {
       trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
         trimmedIssueWithBugs.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
           if (
-            trimmedIssueWithBugs.projectName === projectName 
+            trimmedIssueWithBugs.projectName === projectName
             && linkedCommentWithBugs.commentAuthor === reporter
           ) {
             bugsCount += 1;
@@ -168,14 +178,14 @@ const parseIssues = async () => {
     if (overallCount > 0) {
       bugsPerReporter[reporter] = {
         projects: projectBugCounts,
-        overall: overallCount
+        overall: overallCount,
       };
     }
   });
 
   const developers = [...new Set(trimmedIssuesWithBugsArr
     .flatMap((trimmedIssueWithBugs) => trimmedIssueWithBugs.linkedCommentsWithBugs
-    .map((linkedCommentWithBugs) => linkedCommentWithBugs.lastPreviousDevAssignee)))];
+      .map((linkedCommentWithBugs) => linkedCommentWithBugs.lastPreviousDevAssignee)))];
 
   const bugsPerDeveloper = {};
   developers.forEach((developer) => {
@@ -186,7 +196,7 @@ const parseIssues = async () => {
       trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
         trimmedIssueWithBugs.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
           if (
-            trimmedIssueWithBugs.projectName === projectName 
+            trimmedIssueWithBugs.projectName === projectName
             && linkedCommentWithBugs.lastPreviousDevAssignee === developer
           ) {
             bugsCount += 1;
@@ -201,7 +211,7 @@ const parseIssues = async () => {
     if (overallCount > 0) {
       bugsPerDeveloper[developer] = {
         projects: projectBugCounts,
-        overall: overallCount
+        overall: overallCount,
       };
     }
   });
@@ -220,7 +230,7 @@ const parseIssues = async () => {
     bugsPerDevTypes,
     bugsPerIssueTypes,
     bugsPerReporter,
-    bugsPerDeveloper
+    bugsPerDeveloper,
   };
 
   dataUtils.saveToJSON({ summary });
