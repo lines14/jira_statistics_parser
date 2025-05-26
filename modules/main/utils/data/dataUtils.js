@@ -2,6 +2,7 @@
 /* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
 import fs from 'fs';
 import JSONLoader from './JSONLoader.js';
+import Randomizer from '../random/randomizer.js';
 
 class DataUtils {
   static saveToJSON(obj) {
@@ -81,6 +82,8 @@ class DataUtils {
       overlapDuration,
       createdTransitionFromStatus: endFirstInterval.created,
       createdTransitionFromAssignee: endSecondInterval.created,
+      transitionFromStatusHash: endFirstInterval.hash,
+      transitionFromAssigneeHash: endSecondInterval.hash
     };
   }
 
@@ -140,7 +143,11 @@ class DataUtils {
             if (item.field === 'status'
               && item.fromString
               && JSONLoader.config.devIssueStatuses.includes(item.fromString.toUpperCase())) {
-              devStatusEnds.push({ transitionFrom: item.fromString, created: element.created });
+              devStatusEnds.push({ 
+                transitionFrom: item.fromString, 
+                created: element.created,
+                hash: Randomizer.getRandomString(false, false, true, false, false, 20, 20)
+              });
             }
           });
         }
@@ -152,6 +159,7 @@ class DataUtils {
                 transitionFrom: item.fromString,
                 transitionTo: item.toString,
                 created: element.created,
+                hash: Randomizer.getRandomString(false, false, true, false, false, 20, 20)
               });
             }
           });
@@ -190,8 +198,12 @@ class DataUtils {
 
           const lastPreviousDevAssignee = overlappedAssignees
             .flat()
-            .filter((overlappedAssignee) => overlappedAssignee
-              .createdTransitionFromAssignee <= commentCreatedDateObj)
+            .filter((overlappedAssignee) => 
+              overlappedAssignee
+              .createdTransitionFromAssignee <= commentCreatedDateObj
+              && overlappedAssignee
+              .createdTransitionFromStatus <= commentCreatedDateObj
+            )
             .reduce((prev, curr) => {
               if (!prev) return curr;
               return curr.createdTransitionFromStatus > prev.createdTransitionFromStatus
@@ -199,8 +211,10 @@ class DataUtils {
                 : prev;
             }, null);
 
+          linkedAssigneeWithBug.changedAssignees = changedAssignees;
+          linkedAssigneeWithBug.overlappedAssignees = overlappedAssignees
           linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee
-            .transitionFromAssignee;
+          linkedAssigneeWithBug.comment = commentCreatedDateObj;
         }
 
         return linkedAssigneeWithBug;

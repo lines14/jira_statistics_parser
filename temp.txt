@@ -1,0 +1,571 @@
+[
+  [
+    {
+      transitionFromStatus: 'BACKLOG',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: true,
+      overlapDuration: 0,
+      createdTransitionFromStatus: 2025-04-01T12:03:47.838Z,
+      createdTransitionFromAssignee: 2025-05-25T18:47:10.099Z,
+      transitionFromStatusHash: '59221773176490821406',
+      transitionFromAssigneeHash: '52483050930496543493'
+    },
+    {
+      transitionFromStatus: 'BACKLOG',
+      transitionFromAssignee: 'Aibolat Batyrov',
+      overlap: false,
+      overlapDuration: -4689802261,
+      createdTransitionFromStatus: 2025-04-01T12:03:47.838Z,
+      createdTransitionFromAssignee: 2025-05-26T05:07:29.514Z,
+      transitionFromStatusHash: '59221773176490821406',
+      transitionFromAssigneeHash: '11290700194732529301'
+    },
+    {
+      transitionFromStatus: 'BACKLOG',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: false,
+      overlapDuration: -4727021676,
+      createdTransitionFromStatus: 2025-04-01T12:03:47.838Z,
+      createdTransitionFromAssignee: 2025-05-26T06:11:43.505Z,
+      transitionFromStatusHash: '59221773176490821406',
+      transitionFromAssigneeHash: '95004413719644207286'
+    },
+    {
+      transitionFromStatus: 'BACKLOG',
+      transitionFromAssignee: 'Абылайхан Султанбек',
+      overlap: false,
+      overlapDuration: -4730875667,
+      createdTransitionFromStatus: 2025-04-01T12:03:47.838Z,
+      createdTransitionFromAssignee: 2025-05-26T06:35:22.766Z,
+      transitionFromStatusHash: '59221773176490821406',
+      transitionFromAssigneeHash: '45474471161200532105'
+    },
+    {
+      transitionFromStatus: 'BACKLOG',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -4732294928,
+      createdTransitionFromStatus: 2025-04-01T12:03:47.838Z,
+      createdTransitionFromAssignee: 2025-05-26T06:40:10.569Z,
+      transitionFromStatusHash: '59221773176490821406',
+      transitionFromAssigneeHash: '11496554266968032701'
+    },
+    {
+      transitionFromStatus: 'BACKLOG',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -4732582731,
+      createdTransitionFromStatus: 2025-04-01T12:03:47.838Z,
+      createdTransitionFromAssignee: 2025-05-26T07:23:51.786Z,
+      transitionFromStatusHash: '59221773176490821406',
+      transitionFromAssigneeHash: '61273711566198887823'
+    }
+  ],
+  [
+    {
+      transitionFromStatus: 'TO DO',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: true,
+      overlapDuration: 1480143,
+      createdTransitionFromStatus: 2025-04-01T12:28:27.981Z,
+      createdTransitionFromAssignee: 2025-05-25T18:47:10.099Z,
+      transitionFromStatusHash: '16076770492710370945',
+      transitionFromAssigneeHash: '52483050930496543493'
+    },
+    {
+      transitionFromStatus: 'TO DO',
+      transitionFromAssignee: 'Aibolat Batyrov',
+      overlap: false,
+      overlapDuration: -4688322118,
+      createdTransitionFromStatus: 2025-04-01T12:28:27.981Z,
+      createdTransitionFromAssignee: 2025-05-26T05:07:29.514Z,
+      transitionFromStatusHash: '16076770492710370945',
+      transitionFromAssigneeHash: '11290700194732529301'
+    },
+    {
+      transitionFromStatus: 'TO DO',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: false,
+      overlapDuration: -4725541533,
+      createdTransitionFromStatus: 2025-04-01T12:28:27.981Z,
+      createdTransitionFromAssignee: 2025-05-26T06:11:43.505Z,
+      transitionFromStatusHash: '16076770492710370945',
+      transitionFromAssigneeHash: '95004413719644207286'
+    },
+    {
+      transitionFromStatus: 'TO DO',
+      transitionFromAssignee: 'Абылайхан Султанбек',
+      overlap: false,
+      overlapDuration: -4729395524,
+      createdTransitionFromStatus: 2025-04-01T12:28:27.981Z,
+      createdTransitionFromAssignee: 2025-05-26T06:35:22.766Z,
+      transitionFromStatusHash: '16076770492710370945',
+      transitionFromAssigneeHash: '45474471161200532105'
+    },
+    {
+      transitionFromStatus: 'TO DO',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -4730814785,
+      createdTransitionFromStatus: 2025-04-01T12:28:27.981Z,
+      createdTransitionFromAssignee: 2025-05-26T06:40:10.569Z,
+      transitionFromStatusHash: '16076770492710370945',
+      transitionFromAssigneeHash: '11496554266968032701'
+    },
+    {
+      transitionFromStatus: 'TO DO',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -4731102588,
+      createdTransitionFromStatus: 2025-04-01T12:28:27.981Z,
+      createdTransitionFromAssignee: 2025-05-26T07:23:51.786Z,
+      transitionFromStatusHash: '16076770492710370945',
+      transitionFromAssigneeHash: '61273711566198887823'
+    }
+  ],
+  [
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: true,
+      overlapDuration: 4688322118,
+      createdTransitionFromStatus: 2025-05-25T18:47:14.377Z,
+      createdTransitionFromAssignee: 2025-05-25T18:47:10.099Z,
+      transitionFromStatusHash: '98067773175474593809',
+      transitionFromAssigneeHash: '52483050930496543493'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Aibolat Batyrov',
+      overlap: true,
+      overlapDuration: 4278,
+      createdTransitionFromStatus: 2025-05-25T18:47:14.377Z,
+      createdTransitionFromAssignee: 2025-05-26T05:07:29.514Z,
+      transitionFromStatusHash: '98067773175474593809',
+      transitionFromAssigneeHash: '11290700194732529301'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: false,
+      overlapDuration: -37215137,
+      createdTransitionFromStatus: 2025-05-25T18:47:14.377Z,
+      createdTransitionFromAssignee: 2025-05-26T06:11:43.505Z,
+      transitionFromStatusHash: '98067773175474593809',
+      transitionFromAssigneeHash: '95004413719644207286'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Абылайхан Султанбек',
+      overlap: false,
+      overlapDuration: -41069128,
+      createdTransitionFromStatus: 2025-05-25T18:47:14.377Z,
+      createdTransitionFromAssignee: 2025-05-26T06:35:22.766Z,
+      transitionFromStatusHash: '98067773175474593809',
+      transitionFromAssigneeHash: '45474471161200532105'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -42488389,
+      createdTransitionFromStatus: 2025-05-25T18:47:14.377Z,
+      createdTransitionFromAssignee: 2025-05-26T06:40:10.569Z,
+      transitionFromStatusHash: '98067773175474593809',
+      transitionFromAssigneeHash: '11496554266968032701'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -42776192,
+      createdTransitionFromStatus: 2025-05-25T18:47:14.377Z,
+      createdTransitionFromAssignee: 2025-05-26T07:23:51.786Z,
+      transitionFromStatusHash: '98067773175474593809',
+      transitionFromAssigneeHash: '61273711566198887823'
+    }
+  ],
+  [
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: false,
+      overlapDuration: -4278,
+      createdTransitionFromStatus: 2025-05-25T19:12:21.807Z,
+      createdTransitionFromAssignee: 2025-05-25T18:47:10.099Z,
+      transitionFromStatusHash: '57534544770244523766',
+      transitionFromAssigneeHash: '52483050930496543493'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Aibolat Batyrov',
+      overlap: true,
+      overlapDuration: 1507430,
+      createdTransitionFromStatus: 2025-05-25T19:12:21.807Z,
+      createdTransitionFromAssignee: 2025-05-26T05:07:29.514Z,
+      transitionFromStatusHash: '57534544770244523766',
+      transitionFromAssigneeHash: '11290700194732529301'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: false,
+      overlapDuration: -35707707,
+      createdTransitionFromStatus: 2025-05-25T19:12:21.807Z,
+      createdTransitionFromAssignee: 2025-05-26T06:11:43.505Z,
+      transitionFromStatusHash: '57534544770244523766',
+      transitionFromAssigneeHash: '95004413719644207286'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Абылайхан Султанбек',
+      overlap: false,
+      overlapDuration: -39561698,
+      createdTransitionFromStatus: 2025-05-25T19:12:21.807Z,
+      createdTransitionFromAssignee: 2025-05-26T06:35:22.766Z,
+      transitionFromStatusHash: '57534544770244523766',
+      transitionFromAssigneeHash: '45474471161200532105'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -40980959,
+      createdTransitionFromStatus: 2025-05-25T19:12:21.807Z,
+      createdTransitionFromAssignee: 2025-05-26T06:40:10.569Z,
+      transitionFromStatusHash: '57534544770244523766',
+      transitionFromAssigneeHash: '11496554266968032701'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -41268762,
+      createdTransitionFromStatus: 2025-05-25T19:12:21.807Z,
+      createdTransitionFromAssignee: 2025-05-26T07:23:51.786Z,
+      transitionFromStatusHash: '57534544770244523766',
+      transitionFromAssigneeHash: '61273711566198887823'
+    }
+  ],
+  [
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: false,
+      overlapDuration: -1511708,
+      createdTransitionFromStatus: 2025-05-26T04:57:26.266Z,
+      createdTransitionFromAssignee: 2025-05-25T18:47:10.099Z,
+      transitionFromStatusHash: '95556073787838940166',
+      transitionFromAssigneeHash: '52483050930496543493'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Aibolat Batyrov',
+      overlap: true,
+      overlapDuration: 35104459,
+      createdTransitionFromStatus: 2025-05-26T04:57:26.266Z,
+      createdTransitionFromAssignee: 2025-05-26T05:07:29.514Z,
+      transitionFromStatusHash: '95556073787838940166',
+      transitionFromAssigneeHash: '11290700194732529301'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: false,
+      overlapDuration: -603248,
+      createdTransitionFromStatus: 2025-05-26T04:57:26.266Z,
+      createdTransitionFromAssignee: 2025-05-26T06:11:43.505Z,
+      transitionFromStatusHash: '95556073787838940166',
+      transitionFromAssigneeHash: '95004413719644207286'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Абылайхан Султанбек',
+      overlap: false,
+      overlapDuration: -4457239,
+      createdTransitionFromStatus: 2025-05-26T04:57:26.266Z,
+      createdTransitionFromAssignee: 2025-05-26T06:35:22.766Z,
+      transitionFromStatusHash: '95556073787838940166',
+      transitionFromAssigneeHash: '45474471161200532105'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -5876500,
+      createdTransitionFromStatus: 2025-05-26T04:57:26.266Z,
+      createdTransitionFromAssignee: 2025-05-26T06:40:10.569Z,
+      transitionFromStatusHash: '95556073787838940166',
+      transitionFromAssigneeHash: '11496554266968032701'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -6164303,
+      createdTransitionFromStatus: 2025-05-26T04:57:26.266Z,
+      createdTransitionFromAssignee: 2025-05-26T07:23:51.786Z,
+      transitionFromStatusHash: '95556073787838940166',
+      transitionFromAssigneeHash: '61273711566198887823'
+    }
+  ],
+  [
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: false,
+      overlapDuration: -36616167,
+      createdTransitionFromStatus: 2025-05-26T06:11:41.382Z,
+      createdTransitionFromAssignee: 2025-05-25T18:47:10.099Z,
+      transitionFromStatusHash: '19038509015023128097',
+      transitionFromAssigneeHash: '52483050930496543493'
+    },
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Aibolat Batyrov',
+      overlap: true,
+      overlapDuration: 603248,
+      createdTransitionFromStatus: 2025-05-26T06:11:41.382Z,
+      createdTransitionFromAssignee: 2025-05-26T05:07:29.514Z,
+      transitionFromStatusHash: '19038509015023128097',
+      transitionFromAssigneeHash: '11290700194732529301'
+    },
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: true,
+      overlapDuration: 3851868,
+      createdTransitionFromStatus: 2025-05-26T06:11:41.382Z,
+      createdTransitionFromAssignee: 2025-05-26T06:11:43.505Z,
+      transitionFromStatusHash: '19038509015023128097',
+      transitionFromAssigneeHash: '95004413719644207286'
+    },
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Абылайхан Султанбек',
+      overlap: false,
+      overlapDuration: -2123,
+      createdTransitionFromStatus: 2025-05-26T06:11:41.382Z,
+      createdTransitionFromAssignee: 2025-05-26T06:35:22.766Z,
+      transitionFromStatusHash: '19038509015023128097',
+      transitionFromAssigneeHash: '45474471161200532105'
+    },
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -1421384,
+      createdTransitionFromStatus: 2025-05-26T06:11:41.382Z,
+      createdTransitionFromAssignee: 2025-05-26T06:40:10.569Z,
+      transitionFromStatusHash: '19038509015023128097',
+      transitionFromAssigneeHash: '11496554266968032701'
+    },
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -1709187,
+      createdTransitionFromStatus: 2025-05-26T06:11:41.382Z,
+      createdTransitionFromAssignee: 2025-05-26T07:23:51.786Z,
+      transitionFromStatusHash: '19038509015023128097',
+      transitionFromAssigneeHash: '61273711566198887823'
+    }
+  ],
+  [
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: false,
+      overlapDuration: -41071283,
+      createdTransitionFromStatus: 2025-05-26T06:32:10.995Z,
+      createdTransitionFromAssignee: 2025-05-25T18:47:10.099Z,
+      transitionFromStatusHash: '93104684009223792810',
+      transitionFromAssigneeHash: '52483050930496543493'
+    },
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Aibolat Batyrov',
+      overlap: false,
+      overlapDuration: -3851868,
+      createdTransitionFromStatus: 2025-05-26T06:32:10.995Z,
+      createdTransitionFromAssignee: 2025-05-26T05:07:29.514Z,
+      transitionFromStatusHash: '93104684009223792810',
+      transitionFromAssigneeHash: '11290700194732529301'
+    },
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: true,
+      overlapDuration: 2123,
+      createdTransitionFromStatus: 2025-05-26T06:32:10.995Z,
+      createdTransitionFromAssignee: 2025-05-26T06:11:43.505Z,
+      transitionFromStatusHash: '93104684009223792810',
+      transitionFromAssigneeHash: '95004413719644207286'
+    },
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Абылайхан Султанбек',
+      overlap: true,
+      overlapDuration: 1227490,
+      createdTransitionFromStatus: 2025-05-26T06:32:10.995Z,
+      createdTransitionFromAssignee: 2025-05-26T06:35:22.766Z,
+      transitionFromStatusHash: '93104684009223792810',
+      transitionFromAssigneeHash: '45474471161200532105'
+    },
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -191771,
+      createdTransitionFromStatus: 2025-05-26T06:32:10.995Z,
+      createdTransitionFromAssignee: 2025-05-26T06:40:10.569Z,
+      transitionFromStatusHash: '93104684009223792810',
+      transitionFromAssigneeHash: '11496554266968032701'
+    },
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -479574,
+      createdTransitionFromStatus: 2025-05-26T06:32:10.995Z,
+      createdTransitionFromAssignee: 2025-05-26T07:23:51.786Z,
+      transitionFromStatusHash: '93104684009223792810',
+      transitionFromAssigneeHash: '61273711566198887823'
+    }
+  ],
+  [
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: false,
+      overlapDuration: -42300896,
+      createdTransitionFromStatus: 2025-05-26T06:35:03.800Z,
+      createdTransitionFromAssignee: 2025-05-25T18:47:10.099Z,
+      transitionFromStatusHash: '84257248739040263220',
+      transitionFromAssigneeHash: '52483050930496543493'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Aibolat Batyrov',
+      overlap: false,
+      overlapDuration: -5081481,
+      createdTransitionFromStatus: 2025-05-26T06:35:03.800Z,
+      createdTransitionFromAssignee: 2025-05-26T05:07:29.514Z,
+      transitionFromStatusHash: '84257248739040263220',
+      transitionFromAssigneeHash: '11290700194732529301'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: false,
+      overlapDuration: -1227490,
+      createdTransitionFromStatus: 2025-05-26T06:35:03.800Z,
+      createdTransitionFromAssignee: 2025-05-26T06:11:43.505Z,
+      transitionFromStatusHash: '84257248739040263220',
+      transitionFromAssigneeHash: '95004413719644207286'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Абылайхан Султанбек',
+      overlap: true,
+      overlapDuration: 172805,
+      createdTransitionFromStatus: 2025-05-26T06:35:03.800Z,
+      createdTransitionFromAssignee: 2025-05-26T06:35:22.766Z,
+      transitionFromStatusHash: '84257248739040263220',
+      transitionFromAssigneeHash: '45474471161200532105'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -18966,
+      createdTransitionFromStatus: 2025-05-26T06:35:03.800Z,
+      createdTransitionFromAssignee: 2025-05-26T06:40:10.569Z,
+      transitionFromStatusHash: '84257248739040263220',
+      transitionFromAssigneeHash: '11496554266968032701'
+    },
+    {
+      transitionFromStatus: 'In Progress',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: false,
+      overlapDuration: -306769,
+      createdTransitionFromStatus: 2025-05-26T06:35:03.800Z,
+      createdTransitionFromAssignee: 2025-05-26T07:23:51.786Z,
+      transitionFromStatusHash: '84257248739040263220',
+      transitionFromAssigneeHash: '61273711566198887823'
+    }
+  ],
+  [
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: false,
+      overlapDuration: -42473701,
+      createdTransitionFromStatus: 2025-05-26T06:50:11.860Z,
+      createdTransitionFromAssignee: 2025-05-25T18:47:10.099Z,
+      transitionFromStatusHash: '81284200909253709997',
+      transitionFromAssigneeHash: '52483050930496543493'
+    },
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Aibolat Batyrov',
+      overlap: false,
+      overlapDuration: -5254286,
+      createdTransitionFromStatus: 2025-05-26T06:50:11.860Z,
+      createdTransitionFromAssignee: 2025-05-26T05:07:29.514Z,
+      transitionFromStatusHash: '81284200909253709997',
+      transitionFromAssigneeHash: '11290700194732529301'
+    },
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Sawa Laptev',
+      overlap: false,
+      overlapDuration: -1400295,
+      createdTransitionFromStatus: 2025-05-26T06:50:11.860Z,
+      createdTransitionFromAssignee: 2025-05-26T06:11:43.505Z,
+      transitionFromStatusHash: '81284200909253709997',
+      transitionFromAssigneeHash: '95004413719644207286'
+    },
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Абылайхан Султанбек',
+      overlap: true,
+      overlapDuration: 18966,
+      createdTransitionFromStatus: 2025-05-26T06:50:11.860Z,
+      createdTransitionFromAssignee: 2025-05-26T06:35:22.766Z,
+      transitionFromStatusHash: '81284200909253709997',
+      transitionFromAssigneeHash: '45474471161200532105'
+    },
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: true,
+      overlapDuration: 287803,
+      createdTransitionFromStatus: 2025-05-26T06:50:11.860Z,
+      createdTransitionFromAssignee: 2025-05-26T06:40:10.569Z,
+      transitionFromStatusHash: '81284200909253709997',
+      transitionFromAssigneeHash: '11496554266968032701'
+    },
+    {
+      transitionFromStatus: 'REOPEN',
+      transitionFromAssignee: 'Глеб Баженов',
+      overlap: true,
+      overlapDuration: 601291,
+      createdTransitionFromStatus: 2025-05-26T06:50:11.860Z,
+      createdTransitionFromAssignee: 2025-05-26T07:23:51.786Z,
+      transitionFromStatusHash: '81284200909253709997',
+      transitionFromAssigneeHash: '61273711566198887823'
+    }
+  ]
+]
+{
+  transitionFromStatus: 'In Progress',
+  transitionFromAssignee: 'Абылайхан Султанбек',
+  overlap: true,
+  overlapDuration: 172805,
+  createdTransitionFromStatus: 2025-05-26T06:35:03.800Z,
+  createdTransitionFromAssignee: 2025-05-26T06:35:22.766Z,
+  transitionFromStatusHash: '84257248739040263220',
+  transitionFromAssigneeHash: '45474471161200532105'
+}
+2025-05-26T07:23:00.765Z

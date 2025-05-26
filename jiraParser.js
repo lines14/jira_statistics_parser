@@ -57,11 +57,21 @@ const parseIssues = async () => {
     delete issueWithBugs.changelog;
     issueWithBugs.bugsCount = issueWithBugs.linkedCommentsWithBugs.length;
 
+    if (testedIssueWithComments.key === 'ADP-2676') {
+      issueWithBugs.linkedCommentsWithBugs.forEach((el) => {
+        // console.log(el.overlappedAssignees);
+        // console.log(el.changedAssignees);
+        // console.log(el.lastPreviousDevAssignee);
+        // console.log(el.comment);    
+      });
+      // throw new Error('f');
+    }
+
     return issueWithBugs;
   }).filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
 
-  // const kek = filteredIssuesWithBugsArr.filter((issue) => issue.key === 'ADP-2676');
-  // console.log(kek.pop().linkedCommentsWithBugs);
+  const kek = filteredIssuesWithBugsArr.filter((issue) => issue.key === 'ADP-2676');
+  console.log(kek.pop().linkedCommentsWithBugs);
 
   dataUtils.saveToJSON({ filteredIssuesWithBugsArr });
 
