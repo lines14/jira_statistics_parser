@@ -12,42 +12,38 @@ class DataUtils {
     fs.writeFileSync(`./artifacts/${name}.json`, JSON.stringify(data, replacer, 4));
   }
 
-  static normalizeTimestamp(timestamp) {
-    return timestamp.replace(/([+-]\d{2})(\d{2})$/, '$1:$2');
+  static convertTimestampToDateObject(timestamp) {
+    return new Date(timestamp.replace(/([+-]\d{2})(\d{2})$/, '$1:$2'));
   }
 
   static sortByTimestamps(changelog) {
-    return changelog.sort((a, b) => new Date(this
-      .normalizeTimestamp(a.created)) - new Date(this.normalizeTimestamp(b.created)));
+    return changelog.sort((a, b) => this.convertTimestampToDateObject(a.created)
+    - this.convertTimestampToDateObject(b.created));
   }
 
   static firstTimestampIsAfterSecondTimestamp(firstTimestamp, secondTimestamp) {
-    const firstDate = new Date(this.normalize(firstTimestamp));
-    const secondDate = new Date(this.normalize(secondTimestamp));
-    return firstDate > secondDate;
+    return this.convertTimestampToDateObject(firstTimestamp)
+    > this.convertTimestampToDateObject(secondTimestamp);
   }
 
   static convertTimestampsToDateObjects(changelogItems) {
     return changelogItems
       .map((changelogItem) => ({
         ...changelogItem,
-        created: this.normalizeTimestamp(changelogItem.created),
-      })).map((changelogItem) => ({
-        ...changelogItem,
-        created: new Date(changelogItem.created),
+        created: this.convertTimestampToDateObject(changelogItem.created),
       }));
   }
 
-  static filterDevsAndMissclicks(assigneeChanges) {
+  // filter if developer assigned more than minute
+  static filterDevelopersAndMissclicks(assigneeChanges) {
     return assigneeChanges.filter((assigneeChange, index, arr) => {
       if (index === 0) return true;
       const prev = arr[index - 1];
       const diff = assigneeChange.created - prev.created;
-      return diff >= 60000;
-    })
-      .filter((assigneeChange) => JSONLoader.config.developers
-        .includes(assigneeChange.transitionFrom)
-    || assigneeChange.transitionFrom === 'INIT TASK');
+      return diff >= JSONLoader.config.oneMinute;
+    }).filter((assigneeChange) => JSONLoader.config.developers
+      .includes(assigneeChange.transitionFrom)
+    || assigneeChange.transitionFrom === JSONLoader.config.initIssueStatus);
   }
 
   static getTimeIntervals(changelogItems) {
@@ -59,7 +55,8 @@ class DataUtils {
     return timeIntervals;
   }
 
-  static intervalsOverlapping(
+  // get developer assignee with dev status overlapping indicator
+  static getAssigneeWithStatus(
     [startFirstInterval, endFirstInterval],
     [startSecondInterval, endSecondInterval],
   ) {
@@ -83,26 +80,29 @@ class DataUtils {
       createdTransitionFromStatus: endFirstInterval.created,
       createdTransitionFromAssignee: endSecondInterval.created,
       transitionFromStatusID: endFirstInterval.ID,
-      transitionFromAssigneeID: endSecondInterval.ID
+      transitionFromAssigneeID: endSecondInterval.ID,
     };
   }
 
-  static checkIntervalsOverlap(firstIntervals, secondIntervals) {
+  // get each developer assignee to each dev status intersections array
+  static getAssigneesWithStatuses(firstIntervals, secondIntervals) {
     return firstIntervals
       .map((firstInterval) => secondIntervals
-        .map((secondInterval) => this.intervalsOverlapping(firstInterval, secondInterval)));
+        .map((secondInterval) => this.getAssigneeWithStatus(firstInterval, secondInterval)));
   }
 
-  static filterCommentsWithStatuses(data, commentCreated, commentAuthor) {
+  // recursively get comments with bugs
+  static filterCommentsWithBugs(data, commentCreated, commentAuthor) {
     const results = [];
     if (Array.isArray(data)) {
       for (const item of data) {
-        results.push(...this.filterCommentsWithStatuses(item, commentCreated, commentAuthor));
+        results.push(...this.filterCommentsWithBugs(item, commentCreated, commentAuthor));
       }
     } else if (data !== null && typeof data === 'object') {
       if (data.created) commentCreated = data.created;
       if (data.author) commentAuthor = data.author.displayName;
-      if (data.type === 'status' && JSONLoader.config.commentStatuses.includes(data.attrs.text.toUpperCase())) {
+      if (data.type === 'status'
+        && JSONLoader.config.commentStatuses.includes(data.attrs.text.toUpperCase())) {
         if (commentCreated) data.commentCreated = commentCreated;
         if (commentAuthor) data.commentAuthor = commentAuthor;
         results.push(data);
@@ -110,7 +110,7 @@ class DataUtils {
 
       for (const key in data) {
         if (Object.hasOwn(data, key)) {
-          results.push(...this.filterCommentsWithStatuses(
+          results.push(...this.filterCommentsWithBugs(
             data[key],
             commentCreated,
             commentAuthor,
@@ -122,6 +122,7 @@ class DataUtils {
     return results;
   }
 
+  // search previous developer assignee before bug found
   static linkDevelopersWithBugs(issueWithBugs) {
     if (issueWithBugs.commentsWithBugs.length > 0) {
       return issueWithBugs.commentsWithBugs.map((commentWithBug) => {
@@ -129,8 +130,8 @@ class DataUtils {
         const assigneeChanges = [];
         const linkedAssigneeWithBug = { ...commentWithBug };
 
-        const commentCreatedDateObj = new Date(this
-          .normalizeTimestamp(commentWithBug.commentCreated));
+        const commentCreatedDateObj = this
+          .convertTimestampToDateObject(commentWithBug.commentCreated);
         const sortedChangelog = this.sortByTimestamps(issueWithBugs.changelog);
 
         const initialTimestamp = {
@@ -138,20 +139,23 @@ class DataUtils {
           created: sortedChangelog[0].created,
         };
 
+        // get all dev statuses ends from issue history, includes
+        // only BACKLOG, TO DO, REOPEN and IN PROGRESS statuses
         for (const element of sortedChangelog) {
-          element.items.forEach((item) => { // includes only BACKLOG, TO DO and IN PROGRESS statuses
+          element.items.forEach((item) => {
             if (item.field === 'status'
               && item.fromString
               && JSONLoader.config.devIssueStatuses.includes(item.fromString.toUpperCase())) {
-              devStatusEnds.push({ 
-                transitionFrom: item.fromString, 
+              devStatusEnds.push({
+                transitionFrom: item.fromString,
                 created: element.created,
-                ID: Randomizer.getRandomString(false, false, true, false, false, 20, 20)
+                ID: Randomizer.getRandomString(false, false, true, false, false, 20, 20),
               });
             }
           });
         }
 
+        // get all developer assignees changes from issue history
         for (const element of sortedChangelog) {
           element.items.forEach((item) => {
             if (item.field === 'assignee' && item.fromString) {
@@ -159,7 +163,7 @@ class DataUtils {
                 transitionFrom: item.fromString,
                 transitionTo: item.toString,
                 created: element.created,
-                ID: Randomizer.getRandomString(false, false, true, false, false, 20, 20)
+                ID: Randomizer.getRandomString(false, false, true, false, false, 20, 20),
               });
             }
           });
@@ -170,31 +174,27 @@ class DataUtils {
           devStatusEnds.unshift(initialTimestamp);
           assigneeChanges.unshift(initialTimestamp);
 
+          // get time intervals between dev statuses and developer assignees changes
           const devStatusEndTimeIntervals = this
             .getTimeIntervals(this.convertTimestampsToDateObjects(devStatusEnds));
 
-          const filteredAssigneeChanges = this.filterDevsAndMissclicks(this
+          const filteredAssigneeChanges = this.filterDevelopersAndMissclicks(this
             .convertTimestampsToDateObjects(assigneeChanges));
-
           const assigneeChangeTimeIntervals = this.getTimeIntervals(filteredAssigneeChanges);
 
-          const changedAssignees = this.checkIntervalsOverlap(
+          // get developer assignees with dev statuses at the same time
+          const overlappedAssignees = this.getAssigneesWithStatuses(
             devStatusEndTimeIntervals,
             assigneeChangeTimeIntervals,
-          );
+          ).map((assigneeWithStatus) => assigneeWithStatus
+            .filter((nestedAssigneeWithStatus) => nestedAssigneeWithStatus.overlap));
 
-          const overlappedAssignees = changedAssignees
-            .map((changedAssignee) => changedAssignee
-            .filter((changedAssignee) => changedAssignee.overlap));
-
-          const lastPreviousDevAssignee = overlappedAssignees
-            .flat()
-            .filter((overlappedAssignee) => 
-              overlappedAssignee
+          // get last previous developer assignee with dev status before bug found
+          const lastPreviousDevAssignee = overlappedAssignees.flat()
+            .filter((overlappedAssignee) => overlappedAssignee
               .createdTransitionFromAssignee <= commentCreatedDateObj
               && overlappedAssignee
-              .createdTransitionFromStatus <= commentCreatedDateObj
-            )
+                .createdTransitionFromStatus <= commentCreatedDateObj)
             .reduce((prev, curr) => {
               if (!prev) return curr;
               return curr.createdTransitionFromStatus > prev.createdTransitionFromStatus
@@ -203,7 +203,7 @@ class DataUtils {
                 : prev;
             }, null);
 
-          linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee
+          linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee;
         }
 
         return linkedAssigneeWithBug;
