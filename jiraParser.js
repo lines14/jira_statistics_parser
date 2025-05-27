@@ -93,7 +93,7 @@ const parseIssues = async () => { // get Jira issues with comments
         .lastPreviousDevAssignee?.transitionFromAssignee
       ?? JSONLoader.config.issueWithoutAssignee)))];
 
-  const bugsInProjects = {};
+  const projects = {};
   projectNames.forEach((projectName) => {
     let bugsCount = 0;
     testedIssuesWithBugsArr.forEach((testedIssueWithBugsArr) => {
@@ -102,7 +102,7 @@ const parseIssues = async () => { // get Jira issues with comments
       }
     });
 
-    bugsInProjects[projectName] = bugsCount;
+    projects[projectName] = bugsCount;
   });
 
   const bugsPerPriorities = {};
@@ -114,7 +114,8 @@ const parseIssues = async () => { // get Jira issues with comments
       }
     });
 
-    bugsPerPriorities[priority] = bugsCount;
+    const ratio = Number((bugsCount / bugs).toFixed(2));
+    bugsPerPriorities[priority] = { bugsCount, ratio };
   });
 
   const bugsPerDevTypes = {};
@@ -126,7 +127,8 @@ const parseIssues = async () => { // get Jira issues with comments
       }
     });
 
-    bugsPerDevTypes[devType] = bugsCount;
+    const ratio = Number((bugsCount / bugs).toFixed(2));
+    bugsPerDevTypes[devType] = { bugsCount, ratio };
   });
 
   const bugsPerIssueTypes = {};
@@ -138,7 +140,8 @@ const parseIssues = async () => { // get Jira issues with comments
       }
     });
 
-    bugsPerIssueTypes[issueType] = bugsCount;
+    const ratio = Number((bugsCount / bugs).toFixed(2));
+    bugsPerIssueTypes[issueType] = { bugsCount, ratio };
   });
 
   const bugsPerReporter = {};
@@ -208,12 +211,12 @@ const parseIssues = async () => { // get Jira issues with comments
     testedIssues: testedIssuesWithCommentsArr.length,
     testedIssuesWithBugs: testedIssuesWithBugsArr.length,
     bugs,
-    bugsPerTestedIssue: Number((bugs / testedIssuesWithCommentsArr.length).toFixed(2)),
-    bugsPerTestedIssueWithBugs: Number((bugs / testedIssuesWithBugsArr.length).toFixed(2)),
-    bugsInProjects,
+    bugsPerTestedIssueRatio: Number((bugs / testedIssuesWithCommentsArr.length).toFixed(2)),
+    bugsPerTestedIssueWithBugsRatio: Number((bugs / testedIssuesWithBugsArr.length).toFixed(2)),
     bugsPerPriorities,
     bugsPerDevTypes,
     bugsPerIssueTypes,
+    projects,
     bugsPerReporter,
     bugsPerDeveloper,
   };
