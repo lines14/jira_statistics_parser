@@ -1,8 +1,9 @@
 /* eslint-disable no-await-in-loop */
 /* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
 import jiraAPI from './modules/API/jiraAPI.js';
-import dataUtils from './modules/main/utils/data/dataUtils.js';
-import timeUtils from './modules/main/utils/time/timeUtils.js';
+import DataUtils from './modules/main/utils/data/dataUtils.js';
+import TimeUtils from './modules/main/utils/time/timeUtils.js';
+import ImageUtils from './modules/main/utils/image/imageUtils.js';
 import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 
 const parseIssues = async () => {
@@ -29,7 +30,7 @@ const parseIssues = async () => {
   //   issuesWithCommentsArr.push(parsedIssue);
   // }
 
-  // dataUtils.saveToJSON({ issuesWithCommentsArr });
+  // DataUtils.saveToJSON({ issuesWithCommentsArr });
 
   const { issuesWithCommentsArr } = JSONLoader;
 
@@ -39,20 +40,20 @@ const parseIssues = async () => {
         .some((item) => JSONLoader.config.testIssueStatuses.includes(item.fromString?.toUpperCase())
         || JSONLoader.config.testIssueStatuses.includes(item.toString?.toUpperCase()))));
 
-  dataUtils.saveToJSON({ testedIssuesWithCommentsArr });
+  DataUtils.saveToJSON({ testedIssuesWithCommentsArr });
 
   let commentAuthor;
   let commentCreated;
   const filteredIssuesWithBugsArr = testedIssuesWithCommentsArr.map((testedIssueWithComments) => {
     const issueWithBugs = { ...testedIssueWithComments };
     issueWithBugs.commentsWithBugs = testedIssueWithComments.comments
-      .flatMap((comment) => dataUtils.filterCommentsWithStatuses(
+      .flatMap((comment) => DataUtils.filterCommentsWithStatuses(
         comment,
         commentCreated,
         commentAuthor,
       ));
     delete issueWithBugs.comments;
-    issueWithBugs.linkedCommentsWithBugs = dataUtils.linkDevsWithBugs(issueWithBugs);
+    issueWithBugs.linkedCommentsWithBugs = DataUtils.linkDevsWithBugs(issueWithBugs);
     delete issueWithBugs.commentsWithBugs;
     delete issueWithBugs.changelog;
     issueWithBugs.bugsCount = issueWithBugs.linkedCommentsWithBugs.length;
@@ -60,7 +61,7 @@ const parseIssues = async () => {
     return issueWithBugs;
   }).filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
 
-  dataUtils.saveToJSON({ filteredIssuesWithBugsArr });
+  DataUtils.saveToJSON({ filteredIssuesWithBugsArr });
 
   let bugs = 0;
   filteredIssuesWithBugsArr.forEach((issueWithBugs) => {
@@ -80,7 +81,7 @@ const parseIssues = async () => {
       })),
   }));
 
-  dataUtils.saveToJSON({ trimmedIssuesWithBugsArr });
+  DataUtils.saveToJSON({ trimmedIssuesWithBugsArr });
 
   const projectNames = [...new Set(trimmedIssuesWithBugsArr
     .map((trimmedIssueWithBugs) => trimmedIssueWithBugs.projectName))];
@@ -209,9 +210,9 @@ const parseIssues = async () => {
   });
 
   const summary = {
-    issuesCreatedFrom: timeUtils
+    issuesCreatedFrom: TimeUtils
       .reformatDateFromYMDToDMY(JSONLoader.config.commentsWithBugsCreatedFromDateYMD),
-    issuesCreatedTo: timeUtils.reformatDateFromISOToDMY(timeUtils.today()),
+    issuesCreatedTo: TimeUtils.reformatDateFromISOToDMY(TimeUtils.today()),
     issues: issuesWithCommentsArr.length,
     testedIssues: testedIssuesWithCommentsArr.length,
     testedIssuesWithBugs: filteredIssuesWithBugsArr.length,
@@ -226,7 +227,9 @@ const parseIssues = async () => {
     bugsPerDeveloper,
   };
 
-  dataUtils.saveToJSON({ summary });
+  DataUtils.saveToJSON({ summary });
+
+  await ImageUtils.generateDiagram(summary.bugsInProjects);
 };
 
 parseIssues();
