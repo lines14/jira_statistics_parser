@@ -212,6 +212,26 @@ class DataUtils {
 
     return [];
   }
+
+  static fillBugsPerEntities(
+    accumulator,
+    testedIssuesWithBugsArr,
+    key,
+    entities,
+    overallBugsCount,
+  ) {
+    entities.forEach((el) => {
+      let bugsCount = 0;
+      testedIssuesWithBugsArr.forEach((testedIssueWithBugsArr) => {
+        if (testedIssueWithBugsArr[key] === el) {
+          bugsCount += testedIssueWithBugsArr.bugsCount;
+        }
+      });
+
+      const ratio = Number((bugsCount / overallBugsCount).toFixed(2));
+      accumulator[el] = { bugsCount, ratio };
+    });
+  }
 }
 
 export default DataUtils;

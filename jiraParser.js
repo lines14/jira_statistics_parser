@@ -93,6 +93,15 @@ const parseIssues = async () => { // get Jira issues with comments
         .lastPreviousDevAssignee?.transitionFromAssignee
       ?? JSONLoader.config.issueWithoutAssignee)))];
 
+  const bugsPerPriorities = {};
+  DataUtils.fillBugsPerEntities(bugsPerPriorities, testedIssuesWithBugsArr, 'priority', priorities, bugs);
+
+  const bugsPerDevTypes = {};
+  DataUtils.fillBugsPerEntities(bugsPerDevTypes, testedIssuesWithBugsArr, 'devType', devTypes, bugs);
+
+  const bugsPerIssueTypes = {};
+  DataUtils.fillBugsPerEntities(bugsPerIssueTypes, testedIssuesWithBugsArr, 'issuetype', issueTypes, bugs);
+
   const projects = {};
   projectNames.forEach((projectName) => {
     let bugsCount = 0;
@@ -103,45 +112,6 @@ const parseIssues = async () => { // get Jira issues with comments
     });
 
     projects[projectName] = bugsCount;
-  });
-
-  const bugsPerPriorities = {};
-  priorities.forEach((priority) => {
-    let bugsCount = 0;
-    testedIssuesWithBugsArr.forEach((testedIssueWithBugsArr) => {
-      if (testedIssueWithBugsArr.priority === priority) {
-        bugsCount += testedIssueWithBugsArr.bugsCount;
-      }
-    });
-
-    const ratio = Number((bugsCount / bugs).toFixed(2));
-    bugsPerPriorities[priority] = { bugsCount, ratio };
-  });
-
-  const bugsPerDevTypes = {};
-  devTypes.forEach((devType) => {
-    let bugsCount = 0;
-    testedIssuesWithBugsArr.forEach((testedIssueWithBugsArr) => {
-      if (testedIssueWithBugsArr.devType === devType) {
-        bugsCount += testedIssueWithBugsArr.bugsCount;
-      }
-    });
-
-    const ratio = Number((bugsCount / bugs).toFixed(2));
-    bugsPerDevTypes[devType] = { bugsCount, ratio };
-  });
-
-  const bugsPerIssueTypes = {};
-  issueTypes.forEach((issueType) => {
-    let bugsCount = 0;
-    testedIssuesWithBugsArr.forEach((testedIssueWithBugsArr) => {
-      if (testedIssueWithBugsArr.issuetype === issueType) {
-        bugsCount += testedIssueWithBugsArr.bugsCount;
-      }
-    });
-
-    const ratio = Number((bugsCount / bugs).toFixed(2));
-    bugsPerIssueTypes[issueType] = { bugsCount, ratio };
   });
 
   const bugsPerReporter = {};
