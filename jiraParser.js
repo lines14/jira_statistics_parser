@@ -70,8 +70,36 @@ const parseIssues = async () => { // get Jira issues with comments
     bugs += testedIssueWithBugs.bugsCount;
   });
 
+  // search unique entities in issues with bugs
   const projectNames = [...new Set(testedIssuesWithBugsArr
     .map((testedIssueWithBugsArr) => testedIssueWithBugsArr.projectName))];
+
+  const priorities = [...new Set(testedIssuesWithBugsArr
+    .map((testedIssueWithBugsArr) => testedIssueWithBugsArr.priority))];
+
+  const devTypes = [...new Set(testedIssuesWithBugsArr
+    .map((testedIssueWithBugsArr) => testedIssueWithBugsArr.devType))];
+
+  const issueTypes = [...new Set(testedIssuesWithBugsArr
+    .map((testedIssueWithBugsArr) => testedIssueWithBugsArr.issuetype))];
+
+  const reporters = [...new Set(testedIssuesWithBugsArr
+    .flatMap((testedIssueWithBugsArr) => testedIssueWithBugsArr.linkedCommentsWithBugs
+      .map((linkedCommentWithBugs) => linkedCommentWithBugs.commentAuthor)))];
+
+  const developers = [...new Set(testedIssuesWithBugsArr
+    .flatMap((testedIssueWithBugsArr) => testedIssueWithBugsArr.linkedCommentsWithBugs
+      .map((linkedCommentWithBugs) => linkedCommentWithBugs.lastPreviousDevAssignee?.transitionFromAssignee 
+      ?? JSONLoader.config.issueWithoutAssignee)))];
+
+
+
+
+
+
+
+
+
 
   const bugsInProjects = {};
   projectNames.forEach((projectName) => {
@@ -85,8 +113,7 @@ const parseIssues = async () => { // get Jira issues with comments
     bugsInProjects[projectName] = bugsCount;
   });
 
-  const priorities = [...new Set(testedIssuesWithBugsArr
-    .map((testedIssueWithBugsArr) => testedIssueWithBugsArr.priority))];
+  
 
   const bugsPerPriorities = {};
   priorities.forEach((priority) => {
@@ -100,8 +127,7 @@ const parseIssues = async () => { // get Jira issues with comments
     bugsPerPriorities[priority] = bugsCount;
   });
 
-  const devTypes = [...new Set(testedIssuesWithBugsArr
-    .map((testedIssueWithBugsArr) => testedIssueWithBugsArr.devType))];
+  
 
   const bugsPerDevTypes = {};
   devTypes.forEach((devType) => {
@@ -115,8 +141,7 @@ const parseIssues = async () => { // get Jira issues with comments
     bugsPerDevTypes[devType] = bugsCount;
   });
 
-  const issueTypes = [...new Set(testedIssuesWithBugsArr
-    .map((testedIssueWithBugsArr) => testedIssueWithBugsArr.issuetype))];
+  
 
   const bugsPerIssueTypes = {};
   issueTypes.forEach((issueType) => {
@@ -130,9 +155,7 @@ const parseIssues = async () => { // get Jira issues with comments
     bugsPerIssueTypes[issueType] = bugsCount;
   });
 
-  const reporters = [...new Set(testedIssuesWithBugsArr
-    .flatMap((testedIssueWithBugsArr) => testedIssueWithBugsArr.linkedCommentsWithBugs
-      .map((linkedCommentWithBugs) => linkedCommentWithBugs.commentAuthor)))];
+  
 
   const bugsPerReporter = {};
   reporters.forEach((reporter) => {
@@ -163,10 +186,7 @@ const parseIssues = async () => { // get Jira issues with comments
     }
   });
 
-  const developers = [...new Set(testedIssuesWithBugsArr
-    .flatMap((testedIssueWithBugsArr) => testedIssueWithBugsArr.linkedCommentsWithBugs
-      .map((linkedCommentWithBugs) => linkedCommentWithBugs.lastPreviousDevAssignee?.transitionFromAssignee 
-      ?? JSONLoader.config.issueWithoutAssignee)))];
+  
 
   const bugsPerDeveloper = {};
   developers.forEach((developer) => {
@@ -198,7 +218,7 @@ const parseIssues = async () => { // get Jira issues with comments
     }
   });
 
-  const summary = {
+  const summary = { // generate statistics summary
     issuesCreatedFrom: TimeUtils
       .reformatDateFromYMDToDMY(JSONLoader.config.commentsWithBugsCreatedFromDateYMD),
     issuesCreatedTo: TimeUtils.reformatDateFromISOToDMY(TimeUtils.today()),
