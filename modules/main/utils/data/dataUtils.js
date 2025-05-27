@@ -185,16 +185,7 @@ class DataUtils {
 
           const overlappedAssignees = changedAssignees
             .map((changedAssignee) => changedAssignee
-              .reduce((overlappedAssignee, currentElement) => {
-                if (!overlappedAssignee
-                  || (currentElement.overlapDuration
-                    ?? 0) > (overlappedAssignee.overlapDuration ?? 0)) {
-                  return currentElement;
-                }
-
-                return overlappedAssignee;
-              }, null))
-            .filter((changedAssignee) => changedAssignee.overlap);
+            .filter((changedAssignee) => changedAssignee.overlap));
 
           const lastPreviousDevAssignee = overlappedAssignees
             .flat()
@@ -207,14 +198,12 @@ class DataUtils {
             .reduce((prev, curr) => {
               if (!prev) return curr;
               return curr.createdTransitionFromStatus > prev.createdTransitionFromStatus
+              && curr.createdTransitionFromAssignee > prev.createdTransitionFromAssignee
                 ? curr
                 : prev;
             }, null);
 
-          linkedAssigneeWithBug.changedAssignees = changedAssignees;
-          linkedAssigneeWithBug.overlappedAssignees = overlappedAssignees
           linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee
-          linkedAssigneeWithBug.comment = commentCreatedDateObj;
         }
 
         return linkedAssigneeWithBug;

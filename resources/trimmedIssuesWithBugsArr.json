@@ -8,7 +8,16 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Искаков Асхат",
-                "lastPreviousDevAssignee": "Адиль Аманкулов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Есен Оразбайұлы",
+                    "overlap": true,
+                    "overlapDuration": 2827435,
+                    "createdTransitionFromStatus": "2025-04-01T04:40:35.167Z",
+                    "createdTransitionFromAssignee": "2025-04-01T07:07:33.087Z",
+                    "transitionFromStatusHash": "29179534445095728017",
+                    "transitionFromAssigneeHash": "49448414620358960199"
+                }
             }
         ]
     },
@@ -21,7 +30,16 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Молдағалиева Еңлік",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 2910283367,
+                    "createdTransitionFromStatus": "2025-05-14T04:47:26.605Z",
+                    "createdTransitionFromAssignee": "2025-05-20T05:06:32.692Z",
+                    "transitionFromStatusHash": "09317958580444771275",
+                    "transitionFromAssigneeHash": "12105988159826848822"
+                }
             }
         ]
     },
@@ -34,23 +52,90 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Глеб Баженов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Глеб Баженов",
+                    "overlap": true,
+                    "overlapDuration": 0,
+                    "createdTransitionFromStatus": "2025-04-01T06:27:39.732Z",
+                    "createdTransitionFromAssignee": "2025-04-07T05:54:56.579Z",
+                    "transitionFromStatusHash": "24157472997807269197",
+                    "transitionFromAssigneeHash": "72855103327023380038"
+                }
             },
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Глеб Баженов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Глеб Баженов",
+                    "overlap": true,
+                    "overlapDuration": 0,
+                    "createdTransitionFromStatus": "2025-04-01T06:27:39.732Z",
+                    "createdTransitionFromAssignee": "2025-04-07T05:54:56.579Z",
+                    "transitionFromStatusHash": "44763129374174503818",
+                    "transitionFromAssigneeHash": "86232463630737838427"
+                }
             },
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Глеб Баженов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Глеб Баженов",
+                    "overlap": true,
+                    "overlapDuration": 0,
+                    "createdTransitionFromStatus": "2025-04-01T06:27:39.732Z",
+                    "createdTransitionFromAssignee": "2025-04-07T05:54:56.579Z",
+                    "transitionFromStatusHash": "54212812069303184933",
+                    "transitionFromAssigneeHash": "75753118869388181999"
+                }
             },
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Глеб Баженов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Глеб Баженов",
+                    "overlap": true,
+                    "overlapDuration": 0,
+                    "createdTransitionFromStatus": "2025-04-01T06:27:39.732Z",
+                    "createdTransitionFromAssignee": "2025-04-07T05:54:56.579Z",
+                    "transitionFromStatusHash": "39054195338514793669",
+                    "transitionFromAssigneeHash": "22284709227036280017"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Глеб Баженов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Глеб Баженов",
+                    "overlap": true,
+                    "overlapDuration": 0,
+                    "createdTransitionFromStatus": "2025-04-01T06:27:39.732Z",
+                    "createdTransitionFromAssignee": "2025-04-07T05:54:56.579Z",
+                    "transitionFromStatusHash": "35455828454905678310",
+                    "transitionFromAssigneeHash": "48822173843155779379"
+                }
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "ADP",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Антон Липатов",
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 1191440,
+                    "createdTransitionFromStatus": "2025-05-27T11:25:28.501Z",
+                    "createdTransitionFromAssignee": "2025-05-27T11:25:16.876Z",
+                    "transitionFromStatusHash": "17353937004624269082",
+                    "transitionFromAssigneeHash": "97388331422440518392"
+                }
             }
         ]
     },
@@ -63,55 +148,172 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 81223007,
+                    "createdTransitionFromStatus": "2025-04-02T11:23:56.249Z",
+                    "createdTransitionFromAssignee": "2025-04-04T11:55:55.733Z",
+                    "transitionFromStatusHash": "30658209890835272161",
+                    "transitionFromAssigneeHash": "02769284613814341516"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 81223007,
+                    "createdTransitionFromStatus": "2025-04-02T11:23:56.249Z",
+                    "createdTransitionFromAssignee": "2025-04-04T11:55:55.733Z",
+                    "transitionFromStatusHash": "87035600367032563584",
+                    "transitionFromAssigneeHash": "81639974670381043517"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 81223007,
+                    "createdTransitionFromStatus": "2025-04-02T11:23:56.249Z",
+                    "createdTransitionFromAssignee": "2025-04-04T11:55:55.733Z",
+                    "transitionFromStatusHash": "32159661399178842567",
+                    "transitionFromAssigneeHash": "77074244006185887422"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 81223007,
+                    "createdTransitionFromStatus": "2025-04-02T11:23:56.249Z",
+                    "createdTransitionFromAssignee": "2025-04-04T11:55:55.733Z",
+                    "transitionFromStatusHash": "94813601860376848791",
+                    "transitionFromAssigneeHash": "38226509176028344389"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 81223007,
+                    "createdTransitionFromStatus": "2025-04-02T11:23:56.249Z",
+                    "createdTransitionFromAssignee": "2025-04-04T11:55:55.733Z",
+                    "transitionFromStatusHash": "38715560893403440976",
+                    "transitionFromAssigneeHash": "08729069519998373639"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 81223007,
+                    "createdTransitionFromStatus": "2025-04-02T11:23:56.249Z",
+                    "createdTransitionFromAssignee": "2025-04-04T11:55:55.733Z",
+                    "transitionFromStatusHash": "42069516035883609907",
+                    "transitionFromAssigneeHash": "28506517591314520996"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 81223007,
+                    "createdTransitionFromStatus": "2025-04-02T11:23:56.249Z",
+                    "createdTransitionFromAssignee": "2025-04-04T11:55:55.733Z",
+                    "transitionFromStatusHash": "22955411274652386138",
+                    "transitionFromAssigneeHash": "28945789883054284087"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 81223007,
+                    "createdTransitionFromStatus": "2025-04-02T11:23:56.249Z",
+                    "createdTransitionFromAssignee": "2025-04-04T11:55:55.733Z",
+                    "transitionFromStatusHash": "12958500328530956872",
+                    "transitionFromAssigneeHash": "09499957866382072668"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 81223007,
+                    "createdTransitionFromStatus": "2025-04-02T11:23:56.249Z",
+                    "createdTransitionFromAssignee": "2025-04-04T11:55:55.733Z",
+                    "transitionFromStatusHash": "37309865271651235976",
+                    "transitionFromAssigneeHash": "54855738184646319306"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 81223007,
+                    "createdTransitionFromStatus": "2025-04-02T11:23:56.249Z",
+                    "createdTransitionFromAssignee": "2025-04-04T11:55:55.733Z",
+                    "transitionFromStatusHash": "43912524016643474989",
+                    "transitionFromAssigneeHash": "56161946323745466469"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 81223007,
+                    "createdTransitionFromStatus": "2025-04-02T11:23:56.249Z",
+                    "createdTransitionFromAssignee": "2025-04-04T11:55:55.733Z",
+                    "transitionFromStatusHash": "39825613823608109757",
+                    "transitionFromAssigneeHash": "89966433391694407189"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 81223007,
+                    "createdTransitionFromStatus": "2025-04-02T11:23:56.249Z",
+                    "createdTransitionFromAssignee": "2025-04-04T11:55:55.733Z",
+                    "transitionFromStatusHash": "58605940211213575000",
+                    "transitionFromAssigneeHash": "30133744803270911801"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 81223007,
+                    "createdTransitionFromStatus": "2025-04-02T11:23:56.249Z",
+                    "createdTransitionFromAssignee": "2025-04-04T11:55:55.733Z",
+                    "transitionFromStatusHash": "08311047486194860895",
+                    "transitionFromAssigneeHash": "35314178195206122849"
+                }
             }
         ]
     },
@@ -124,39 +326,120 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Есен Оразбайұлы",
+                    "overlap": true,
+                    "overlapDuration": 150061892,
+                    "createdTransitionFromStatus": "2025-04-16T05:59:21.122Z",
+                    "createdTransitionFromAssignee": "2025-04-16T05:59:27.270Z",
+                    "transitionFromStatusHash": "97266464215087159150",
+                    "transitionFromAssigneeHash": "44666097700145081892"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Есен Оразбайұлы",
+                    "overlap": true,
+                    "overlapDuration": 150061892,
+                    "createdTransitionFromStatus": "2025-04-16T05:59:21.122Z",
+                    "createdTransitionFromAssignee": "2025-04-16T05:59:27.270Z",
+                    "transitionFromStatusHash": "33980972786227668450",
+                    "transitionFromAssigneeHash": "00781398666180765205"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Есен Оразбайұлы",
+                    "overlap": true,
+                    "overlapDuration": 150061892,
+                    "createdTransitionFromStatus": "2025-04-16T05:59:21.122Z",
+                    "createdTransitionFromAssignee": "2025-04-16T05:59:27.270Z",
+                    "transitionFromStatusHash": "10126195022848520616",
+                    "transitionFromAssigneeHash": "60035010369157228072"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "TO DO",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 1394111542,
+                    "createdTransitionFromStatus": "2025-05-02T09:14:38.812Z",
+                    "createdTransitionFromAssignee": "2025-05-13T12:18:12.542Z",
+                    "transitionFromStatusHash": "31806809732495779132",
+                    "transitionFromAssigneeHash": "52169595332493447377"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "TO DO",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 1394111542,
+                    "createdTransitionFromStatus": "2025-05-02T09:14:38.812Z",
+                    "createdTransitionFromAssignee": "2025-05-13T12:18:12.542Z",
+                    "transitionFromStatusHash": "70328630807328377173",
+                    "transitionFromAssigneeHash": "58615706446118815725"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "TO DO",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 1394111542,
+                    "createdTransitionFromStatus": "2025-05-02T09:14:38.812Z",
+                    "createdTransitionFromAssignee": "2025-05-13T12:18:12.542Z",
+                    "transitionFromStatusHash": "90288819969506419860",
+                    "transitionFromAssigneeHash": "71424612665505559606"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "TO DO",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 1394111542,
+                    "createdTransitionFromStatus": "2025-05-02T09:14:38.812Z",
+                    "createdTransitionFromAssignee": "2025-05-13T12:18:12.542Z",
+                    "transitionFromStatusHash": "94941492564951230690",
+                    "transitionFromAssigneeHash": "88722250788169002253"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "TO DO",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 1394111542,
+                    "createdTransitionFromStatus": "2025-05-02T09:14:38.812Z",
+                    "createdTransitionFromAssignee": "2025-05-13T12:18:12.542Z",
+                    "transitionFromStatusHash": "60306319446369665950",
+                    "transitionFromAssigneeHash": "90603722356024198679"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "TO DO",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 1394111542,
+                    "createdTransitionFromStatus": "2025-05-02T09:14:38.812Z",
+                    "createdTransitionFromAssignee": "2025-05-13T12:18:12.542Z",
+                    "transitionFromStatusHash": "33797143315600255718",
+                    "transitionFromAssigneeHash": "67539835677604403726"
+                }
             }
         ]
     },
@@ -169,7 +452,16 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Нурлан Кенжегулов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 0,
+                    "createdTransitionFromStatus": "2025-04-02T04:58:29.499Z",
+                    "createdTransitionFromAssignee": "2025-04-02T13:05:43.888Z",
+                    "transitionFromStatusHash": "83297690826045253504",
+                    "transitionFromAssigneeHash": "01242175320242545063"
+                }
             }
         ]
     },
@@ -182,11 +474,64 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Есен Оразбайұлы",
+                    "overlap": true,
+                    "overlapDuration": 0,
+                    "createdTransitionFromStatus": "2025-04-02T05:55:50.125Z",
+                    "createdTransitionFromAssignee": "2025-04-03T12:18:19.321Z",
+                    "transitionFromStatusHash": "76368749162344097673",
+                    "transitionFromAssigneeHash": "04244828716461156074"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Есен Оразбайұлы",
+                    "overlap": true,
+                    "overlapDuration": 63758346,
+                    "createdTransitionFromStatus": "2025-04-04T06:00:57.667Z",
+                    "createdTransitionFromAssignee": "2025-04-04T06:01:09.234Z",
+                    "transitionFromStatusHash": "81115349490257354931",
+                    "transitionFromAssigneeHash": "16691146303232348904"
+                }
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "Операционная эффективность",
+        "devType": "1C",
+        "issuetype": "Task",
+        "bugsCount": 2,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Ким Виолетта",
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Глеб Баженов",
+                    "overlap": true,
+                    "overlapDuration": 9373969,
+                    "createdTransitionFromStatus": "2025-04-02T10:07:41.319Z",
+                    "createdTransitionFromAssignee": "2025-05-21T06:22:40.915Z",
+                    "transitionFromStatusHash": "02197012892112806277",
+                    "transitionFromAssigneeHash": "13486882702982793308"
+                }
+            },
+            {
+                "commentAuthor": "Ким Виолетта",
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Глеб Баженов",
+                    "overlap": true,
+                    "overlapDuration": 9373969,
+                    "createdTransitionFromStatus": "2025-04-02T10:07:41.319Z",
+                    "createdTransitionFromAssignee": "2025-05-21T06:22:40.915Z",
+                    "transitionFromStatusHash": "42819032969467731870",
+                    "transitionFromAssigneeHash": "58071252617846708969"
+                }
             }
         ]
     },
@@ -199,35 +544,107 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 49011896,
+                    "createdTransitionFromStatus": "2025-04-03T18:02:55.279Z",
+                    "createdTransitionFromAssignee": "2025-04-08T04:27:34.455Z",
+                    "transitionFromStatusHash": "62617982355392954844",
+                    "transitionFromAssigneeHash": "80049264779733694479"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 49011896,
+                    "createdTransitionFromStatus": "2025-04-03T18:02:55.279Z",
+                    "createdTransitionFromAssignee": "2025-04-08T04:27:34.455Z",
+                    "transitionFromStatusHash": "75878354587657297045",
+                    "transitionFromAssigneeHash": "97012765231563699360"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 49011896,
+                    "createdTransitionFromStatus": "2025-04-03T18:02:55.279Z",
+                    "createdTransitionFromAssignee": "2025-04-08T04:27:34.455Z",
+                    "transitionFromStatusHash": "52978808528248466898",
+                    "transitionFromAssigneeHash": "64509935220156728478"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 49011896,
+                    "createdTransitionFromStatus": "2025-04-03T18:02:55.279Z",
+                    "createdTransitionFromAssignee": "2025-04-08T04:27:34.455Z",
+                    "transitionFromStatusHash": "26986588732235723262",
+                    "transitionFromAssigneeHash": "49546277123837719153"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 49011896,
+                    "createdTransitionFromStatus": "2025-04-03T18:02:55.279Z",
+                    "createdTransitionFromAssignee": "2025-04-08T04:27:34.455Z",
+                    "transitionFromStatusHash": "45547526204571775045",
+                    "transitionFromAssigneeHash": "12981916065170291640"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 49011896,
+                    "createdTransitionFromStatus": "2025-04-03T18:02:55.279Z",
+                    "createdTransitionFromAssignee": "2025-04-08T04:27:34.455Z",
+                    "transitionFromStatusHash": "57531783064324610030",
+                    "transitionFromAssigneeHash": "20977327478160946618"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 49011896,
+                    "createdTransitionFromStatus": "2025-04-03T18:02:55.279Z",
+                    "createdTransitionFromAssignee": "2025-04-08T04:27:34.455Z",
+                    "transitionFromStatusHash": "67531640825049454807",
+                    "transitionFromAssigneeHash": "90976937731088519339"
+                }
             },
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 2016574,
+                    "createdTransitionFromStatus": "2025-04-14T07:44:14.840Z",
+                    "createdTransitionFromAssignee": "2025-04-14T07:44:21.264Z",
+                    "transitionFromStatusHash": "52256089142854141529",
+                    "transitionFromAssigneeHash": "09405076625505101524"
+                }
             }
         ]
     },
@@ -240,7 +657,16 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Есен Оразбайұлы",
+                    "overlap": true,
+                    "overlapDuration": 8001935,
+                    "createdTransitionFromStatus": "2025-04-03T06:58:57.908Z",
+                    "createdTransitionFromAssignee": "2025-04-04T08:54:14.555Z",
+                    "transitionFromStatusHash": "53286469494998296157",
+                    "transitionFromAssigneeHash": "96045460989073133366"
+                }
             }
         ]
     },
@@ -253,7 +679,16 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Молдағалиева Еңлік",
-                "lastPreviousDevAssignee": "Илья Балтер"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Илья Балтер",
+                    "overlap": true,
+                    "overlapDuration": 77073277,
+                    "createdTransitionFromStatus": "2025-04-04T03:55:56.890Z",
+                    "createdTransitionFromAssignee": "2025-04-04T05:09:28.463Z",
+                    "transitionFromStatusHash": "66118662628114948648",
+                    "transitionFromAssigneeHash": "15205184109407653857"
+                }
             }
         ]
     },
@@ -262,31 +697,98 @@
         "projectName": "Котировки",
         "devType": "WEB",
         "issuetype": "Task",
-        "bugsCount": 6,
+        "bugsCount": 7,
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 5594,
+                    "createdTransitionFromStatus": "2025-04-03T17:37:29.488Z",
+                    "createdTransitionFromAssignee": "2025-05-16T12:59:10.473Z",
+                    "transitionFromStatusHash": "35222817305206856235",
+                    "transitionFromAssigneeHash": "79776818640737390304"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 5594,
+                    "createdTransitionFromStatus": "2025-04-03T17:37:29.488Z",
+                    "createdTransitionFromAssignee": "2025-05-16T12:59:10.473Z",
+                    "transitionFromStatusHash": "41630764157917160673",
+                    "transitionFromAssigneeHash": "03737383290814789544"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 5594,
+                    "createdTransitionFromStatus": "2025-04-03T17:37:29.488Z",
+                    "createdTransitionFromAssignee": "2025-05-16T12:59:10.473Z",
+                    "transitionFromStatusHash": "62986907637919349317",
+                    "transitionFromAssigneeHash": "12624573061009883911"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 5594,
+                    "createdTransitionFromStatus": "2025-04-03T17:37:29.488Z",
+                    "createdTransitionFromAssignee": "2025-05-16T12:59:10.473Z",
+                    "transitionFromStatusHash": "48924256003737421643",
+                    "transitionFromAssigneeHash": "60627574013132634786"
+                }
             },
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 342298243,
+                    "createdTransitionFromStatus": "2025-05-23T12:07:21.811Z",
+                    "createdTransitionFromAssignee": "2025-05-20T12:04:08.716Z",
+                    "transitionFromStatusHash": "61904692493255215181",
+                    "transitionFromAssigneeHash": "07303746798012599600"
+                }
             },
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 342298243,
+                    "createdTransitionFromStatus": "2025-05-23T12:07:21.811Z",
+                    "createdTransitionFromAssignee": "2025-05-20T12:04:08.716Z",
+                    "transitionFromStatusHash": "96368373790111484929",
+                    "transitionFromAssigneeHash": "79880693538841276753"
+                }
+            },
+            {
+                "commentAuthor": "Ivan Voronov",
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 342298243,
+                    "createdTransitionFromStatus": "2025-05-23T12:07:21.811Z",
+                    "createdTransitionFromAssignee": "2025-05-20T12:04:08.716Z",
+                    "transitionFromStatusHash": "42949509932904408083",
+                    "transitionFromAssigneeHash": "13110621155932710696"
+                }
             }
         ]
     },
@@ -299,19 +801,55 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 1773,
+                    "createdTransitionFromStatus": "2025-04-09T14:33:09.050Z",
+                    "createdTransitionFromAssignee": "2025-04-10T11:00:24.743Z",
+                    "transitionFromStatusHash": "30864123287102226519",
+                    "transitionFromAssigneeHash": "83606470069205014913"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 1773,
+                    "createdTransitionFromStatus": "2025-04-09T14:33:09.050Z",
+                    "createdTransitionFromAssignee": "2025-04-10T11:00:24.743Z",
+                    "transitionFromStatusHash": "01978554857595003062",
+                    "transitionFromAssigneeHash": "18553048854471968133"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 1773,
+                    "createdTransitionFromStatus": "2025-04-09T14:33:09.050Z",
+                    "createdTransitionFromAssignee": "2025-04-10T11:00:24.743Z",
+                    "transitionFromStatusHash": "70175829313660665578",
+                    "transitionFromAssigneeHash": "73223530472430453575"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 242664294,
+                    "createdTransitionFromStatus": "2025-04-14T06:53:40.358Z",
+                    "createdTransitionFromAssignee": "2025-04-14T06:53:43.561Z",
+                    "transitionFromStatusHash": "04541119784732077318",
+                    "transitionFromAssigneeHash": "91490385094989191658"
+                }
             }
         ]
     },
@@ -324,7 +862,16 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Sawa Laptev"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Sawa Laptev",
+                    "overlap": true,
+                    "overlapDuration": 0,
+                    "createdTransitionFromStatus": "2025-04-14T05:17:23.194Z",
+                    "createdTransitionFromAssignee": "2025-04-14T05:46:27.072Z",
+                    "transitionFromStatusHash": "29995788743654336610",
+                    "transitionFromAssigneeHash": "10202576965505454883"
+                }
             }
         ]
     },
@@ -337,27 +884,81 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Искаков Асхат",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 0,
+                    "createdTransitionFromStatus": "2025-04-14T08:36:27.995Z",
+                    "createdTransitionFromAssignee": "2025-04-16T10:44:25.908Z",
+                    "transitionFromStatusHash": "66859576675059059818",
+                    "transitionFromAssigneeHash": "93772190108467235549"
+                }
             },
             {
                 "commentAuthor": "Искаков Асхат",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 2655,
+                    "createdTransitionFromStatus": "2025-04-18T07:30:18.631Z",
+                    "createdTransitionFromAssignee": "2025-04-18T07:30:29.266Z",
+                    "transitionFromStatusHash": "55853293712461564849",
+                    "transitionFromAssigneeHash": "04229845586495629721"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 2655,
+                    "createdTransitionFromStatus": "2025-04-18T07:30:18.631Z",
+                    "createdTransitionFromAssignee": "2025-04-18T07:30:29.266Z",
+                    "transitionFromStatusHash": "78787928532838282229",
+                    "transitionFromAssigneeHash": "08490394028664715044"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 2655,
+                    "createdTransitionFromStatus": "2025-04-18T07:30:18.631Z",
+                    "createdTransitionFromAssignee": "2025-04-18T07:30:29.266Z",
+                    "transitionFromStatusHash": "03912112638710958283",
+                    "transitionFromAssigneeHash": "16435906971398041617"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 2655,
+                    "createdTransitionFromStatus": "2025-04-18T07:30:18.631Z",
+                    "createdTransitionFromAssignee": "2025-04-18T07:30:29.266Z",
+                    "transitionFromStatusHash": "00572653889974506883",
+                    "transitionFromAssigneeHash": "33873828222220628113"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 938814804,
+                    "createdTransitionFromStatus": "2025-04-29T04:17:24.070Z",
+                    "createdTransitionFromAssignee": "2025-04-29T05:16:48.547Z",
+                    "transitionFromStatusHash": "81659942721974341980",
+                    "transitionFromAssigneeHash": "20033903788321188588"
+                }
             }
         ]
     },
@@ -370,11 +971,29 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Adilkhan"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Adilkhan",
+                    "overlap": true,
+                    "overlapDuration": 666855804,
+                    "createdTransitionFromStatus": "2025-04-25T05:19:44.218Z",
+                    "createdTransitionFromAssignee": "2025-04-25T05:19:45.841Z",
+                    "transitionFromStatusHash": "64715190009928560876",
+                    "transitionFromAssigneeHash": "79311445350157847131"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Adilkhan"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Adilkhan",
+                    "overlap": true,
+                    "overlapDuration": 666855804,
+                    "createdTransitionFromStatus": "2025-04-25T05:19:44.218Z",
+                    "createdTransitionFromAssignee": "2025-04-25T05:19:45.841Z",
+                    "transitionFromStatusHash": "87036440494256738456",
+                    "transitionFromAssigneeHash": "56616904934447241489"
+                }
             }
         ]
     },
@@ -387,175 +1006,562 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "47936551660485389886",
+                    "transitionFromAssigneeHash": "07345945447621942940"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "23005471442687160058",
+                    "transitionFromAssigneeHash": "40867778339687068228"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "04679899728540197196",
+                    "transitionFromAssigneeHash": "07384565215527483257"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "56897364804089330836",
+                    "transitionFromAssigneeHash": "15644397727489107153"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "15065163347725694151",
+                    "transitionFromAssigneeHash": "26709543761958480727"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "09235704923496417998",
+                    "transitionFromAssigneeHash": "66213540179518073047"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "35967827206104380505",
+                    "transitionFromAssigneeHash": "92784677836974455472"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "42013116067609771576",
+                    "transitionFromAssigneeHash": "43659028052031402087"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "52761681476708958226",
+                    "transitionFromAssigneeHash": "06605634228755045260"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "30407428709156335300",
+                    "transitionFromAssigneeHash": "74120787673521614877"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "73081237716869807223",
+                    "transitionFromAssigneeHash": "43091782242592116126"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "82512393585781827383",
+                    "transitionFromAssigneeHash": "86969995162326055329"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "25355708485815096443",
+                    "transitionFromAssigneeHash": "83498336253664836721"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "31650366282335346364",
+                    "transitionFromAssigneeHash": "16146738332246368071"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "99800426161382051397",
+                    "transitionFromAssigneeHash": "93110213147652045679"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "15880479764362629983",
+                    "transitionFromAssigneeHash": "51073115984183877308"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "58958095534907338392",
+                    "transitionFromAssigneeHash": "16331715445053379935"
+                }
             },
             {
                 "commentAuthor": "Молдағалиева Еңлік",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "84164916210854659008",
+                    "transitionFromAssigneeHash": "02706211748277969950"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "31675391112061281351",
+                    "transitionFromAssigneeHash": "17435147461453412869"
+                }
             },
             {
                 "commentAuthor": "Молдағалиева Еңлік",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "37993467066262239909",
+                    "transitionFromAssigneeHash": "32821534408637092064"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "74194662345527304620",
+                    "transitionFromAssigneeHash": "02090321945510337202"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "25179604342550790096",
+                    "transitionFromAssigneeHash": "54569680239930432951"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "00064150981845750135",
+                    "transitionFromAssigneeHash": "09082275312578704895"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "83279324225678696088",
+                    "transitionFromAssigneeHash": "42942035532143592788"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "54084792064803236518",
+                    "transitionFromAssigneeHash": "03865479438349337976"
+                }
             },
             {
                 "commentAuthor": "Молдағалиева Еңлік",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "36487528280853431309",
+                    "transitionFromAssigneeHash": "03213160854152696827"
+                }
             },
             {
                 "commentAuthor": "Молдағалиева Еңлік",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "62718261741713492905",
+                    "transitionFromAssigneeHash": "66686331925311445472"
+                }
             },
             {
                 "commentAuthor": "Молдағалиева Еңлік",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "56501604662488934602",
+                    "transitionFromAssigneeHash": "04884273309966174930"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "86836210254498395365",
+                    "transitionFromAssigneeHash": "81759154998302739661"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "33802367069055516304",
+                    "transitionFromAssigneeHash": "79946497739622332549"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "01481319724668233611",
+                    "transitionFromAssigneeHash": "17813268653354822784"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "24236022359979359033",
+                    "transitionFromAssigneeHash": "42571698831739907336"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "85673365896163435904",
+                    "transitionFromAssigneeHash": "94731769322849785067"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "21402491648622562963",
+                    "transitionFromAssigneeHash": "65985109713836510375"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "55351719186210774195",
+                    "transitionFromAssigneeHash": "31666484230100005747"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "53089869689276457572",
+                    "transitionFromAssigneeHash": "94794095739636690261"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "47446646000324360581",
+                    "transitionFromAssigneeHash": "69847459255689256913"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "51499616231804321828",
+                    "transitionFromAssigneeHash": "37109054566367619584"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "74156292998615772124",
+                    "transitionFromAssigneeHash": "81682033187421488254"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "39259363012144497606",
+                    "transitionFromAssigneeHash": "66671829411106030959"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "26286742136223988305",
+                    "transitionFromAssigneeHash": "42211835649037176995"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "73383945359673497922",
+                    "transitionFromAssigneeHash": "40161767428446816448"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 9783,
+                    "createdTransitionFromStatus": "2025-04-15T09:52:14.639Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:58:58.219Z",
+                    "transitionFromStatusHash": "07370846113346869259",
+                    "transitionFromAssigneeHash": "79598041962030987296"
+                }
             }
         ]
     },
@@ -568,19 +1574,55 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 76884,
+                    "createdTransitionFromStatus": "2025-04-15T10:12:34.751Z",
+                    "createdTransitionFromAssignee": "2025-04-17T10:38:46.523Z",
+                    "transitionFromStatusHash": "62400926353986700639",
+                    "transitionFromAssigneeHash": "92380905468640841476"
+                }
             },
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 76884,
+                    "createdTransitionFromStatus": "2025-04-15T10:12:34.751Z",
+                    "createdTransitionFromAssignee": "2025-04-17T10:38:46.523Z",
+                    "transitionFromStatusHash": "70646459495665544674",
+                    "transitionFromAssigneeHash": "28792313681336441092"
+                }
             },
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 3627,
+                    "createdTransitionFromStatus": "2025-04-29T09:25:18.572Z",
+                    "createdTransitionFromAssignee": "2025-04-29T09:25:24.345Z",
+                    "transitionFromStatusHash": "29772814341654045545",
+                    "transitionFromAssigneeHash": "78138569145183063816"
+                }
             },
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 3627,
+                    "createdTransitionFromStatus": "2025-04-29T09:25:18.572Z",
+                    "createdTransitionFromAssignee": "2025-04-29T09:25:24.345Z",
+                    "transitionFromStatusHash": "26790413003061567244",
+                    "transitionFromAssigneeHash": "48031167682797320685"
+                }
             }
         ]
     },
@@ -593,43 +1635,133 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 10247687,
+                    "createdTransitionFromStatus": "2025-04-22T06:32:22.331Z",
+                    "createdTransitionFromAssignee": "2025-04-21T09:43:26.400Z",
+                    "transitionFromStatusHash": "27876405355975146409",
+                    "transitionFromAssigneeHash": "04760574831055807716"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 10247687,
+                    "createdTransitionFromStatus": "2025-04-22T06:32:22.331Z",
+                    "createdTransitionFromAssignee": "2025-04-21T09:43:26.400Z",
+                    "transitionFromStatusHash": "41692156629128942389",
+                    "transitionFromAssigneeHash": "72181534778716582026"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 10247687,
+                    "createdTransitionFromStatus": "2025-04-22T06:32:22.331Z",
+                    "createdTransitionFromAssignee": "2025-04-21T09:43:26.400Z",
+                    "transitionFromStatusHash": "36001608340656403030",
+                    "transitionFromAssigneeHash": "97942933963092856534"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 10247687,
+                    "createdTransitionFromStatus": "2025-04-22T06:32:22.331Z",
+                    "createdTransitionFromAssignee": "2025-04-21T09:43:26.400Z",
+                    "transitionFromStatusHash": "24800794528067193317",
+                    "transitionFromAssigneeHash": "89122868093044402043"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 10247687,
+                    "createdTransitionFromStatus": "2025-04-22T06:32:22.331Z",
+                    "createdTransitionFromAssignee": "2025-04-21T09:43:26.400Z",
+                    "transitionFromStatusHash": "56476872303675812019",
+                    "transitionFromAssigneeHash": "59857809310463840964"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 10247687,
+                    "createdTransitionFromStatus": "2025-04-22T06:32:22.331Z",
+                    "createdTransitionFromAssignee": "2025-04-21T09:43:26.400Z",
+                    "transitionFromStatusHash": "39508049893526499277",
+                    "transitionFromAssigneeHash": "41405881488938107653"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 10247687,
+                    "createdTransitionFromStatus": "2025-04-22T06:32:22.331Z",
+                    "createdTransitionFromAssignee": "2025-04-21T09:43:26.400Z",
+                    "transitionFromStatusHash": "31359480288253329518",
+                    "transitionFromAssigneeHash": "06243521025120076557"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 10247687,
+                    "createdTransitionFromStatus": "2025-04-22T06:32:22.331Z",
+                    "createdTransitionFromAssignee": "2025-04-21T09:43:26.400Z",
+                    "transitionFromStatusHash": "84521661000172034208",
+                    "transitionFromAssigneeHash": "81802977893145088455"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 10247687,
+                    "createdTransitionFromStatus": "2025-04-22T06:32:22.331Z",
+                    "createdTransitionFromAssignee": "2025-04-21T09:43:26.400Z",
+                    "transitionFromStatusHash": "51902745851144745793",
+                    "transitionFromAssigneeHash": "53098119845136157790"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 10247687,
+                    "createdTransitionFromStatus": "2025-04-22T06:32:22.331Z",
+                    "createdTransitionFromAssignee": "2025-04-21T09:43:26.400Z",
+                    "transitionFromStatusHash": "18808988961334072701",
+                    "transitionFromAssigneeHash": "37391721219970727773"
+                }
             }
         ]
     },
@@ -642,27 +1774,81 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 328017,
+                    "createdTransitionFromStatus": "2025-04-24T05:41:31.902Z",
+                    "createdTransitionFromAssignee": "2025-04-23T05:50:53.562Z",
+                    "transitionFromStatusHash": "56042276278818774416",
+                    "transitionFromAssigneeHash": "55012595719941557142"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 328017,
+                    "createdTransitionFromStatus": "2025-04-24T05:41:31.902Z",
+                    "createdTransitionFromAssignee": "2025-04-23T05:50:53.562Z",
+                    "transitionFromStatusHash": "63914728953370952927",
+                    "transitionFromAssigneeHash": "86762259007411815336"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 328017,
+                    "createdTransitionFromStatus": "2025-04-24T05:41:31.902Z",
+                    "createdTransitionFromAssignee": "2025-04-23T05:50:53.562Z",
+                    "transitionFromStatusHash": "70548739229221896089",
+                    "transitionFromAssigneeHash": "46525000784844763404"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 328017,
+                    "createdTransitionFromStatus": "2025-04-24T05:41:31.902Z",
+                    "createdTransitionFromAssignee": "2025-04-23T05:50:53.562Z",
+                    "transitionFromStatusHash": "46630499059860135588",
+                    "transitionFromAssigneeHash": "42797289608651879179"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 190111,
+                    "createdTransitionFromStatus": "2025-04-25T09:10:56.036Z",
+                    "createdTransitionFromAssignee": "2025-04-24T05:44:42.013Z",
+                    "transitionFromStatusHash": "08374872502125744373",
+                    "transitionFromAssigneeHash": "73964438908667012022"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 190111,
+                    "createdTransitionFromStatus": "2025-04-25T09:10:56.036Z",
+                    "createdTransitionFromAssignee": "2025-04-24T05:44:42.013Z",
+                    "transitionFromStatusHash": "72786824454253543987",
+                    "transitionFromAssigneeHash": "24434495988987659585"
+                }
             }
         ]
     },
@@ -675,15 +1861,42 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Ким Виолетта",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "TO DO",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 76132245,
+                    "createdTransitionFromStatus": "2025-04-23T09:02:06.429Z",
+                    "createdTransitionFromAssignee": "2025-04-24T11:40:45.789Z",
+                    "transitionFromStatusHash": "54351527644338726289",
+                    "transitionFromAssigneeHash": "47616316269230506023"
+                }
             },
             {
                 "commentAuthor": "Ким Виолетта",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "TO DO",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 76132245,
+                    "createdTransitionFromStatus": "2025-04-23T09:02:06.429Z",
+                    "createdTransitionFromAssignee": "2025-04-24T11:40:45.789Z",
+                    "transitionFromStatusHash": "04799857514280408868",
+                    "transitionFromAssigneeHash": "46004690117758386300"
+                }
             },
             {
                 "commentAuthor": "Ким Виолетта",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "TO DO",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 76132245,
+                    "createdTransitionFromStatus": "2025-04-23T09:02:06.429Z",
+                    "createdTransitionFromAssignee": "2025-04-24T11:40:45.789Z",
+                    "transitionFromStatusHash": "91194546727794527504",
+                    "transitionFromAssigneeHash": "81176063860769341607"
+                }
             }
         ]
     },
@@ -696,23 +1909,68 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 105324,
+                    "createdTransitionFromStatus": "2025-04-15T10:27:33.345Z",
+                    "createdTransitionFromAssignee": "2025-04-16T10:58:40.802Z",
+                    "transitionFromStatusHash": "42356084199951693014",
+                    "transitionFromAssigneeHash": "35619719526847852462"
+                }
             },
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 105324,
+                    "createdTransitionFromStatus": "2025-04-15T10:27:33.345Z",
+                    "createdTransitionFromAssignee": "2025-04-16T10:58:40.802Z",
+                    "transitionFromStatusHash": "35485909960096498163",
+                    "transitionFromAssigneeHash": "19468123067339182806"
+                }
             },
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 105324,
+                    "createdTransitionFromStatus": "2025-04-15T10:27:33.345Z",
+                    "createdTransitionFromAssignee": "2025-04-16T10:58:40.802Z",
+                    "transitionFromStatusHash": "74261690395466826502",
+                    "transitionFromAssigneeHash": "03287706461080141649"
+                }
             },
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Есен Оразбайұлы",
+                    "overlap": true,
+                    "overlapDuration": 7676659,
+                    "createdTransitionFromStatus": "2025-04-23T07:02:25.650Z",
+                    "createdTransitionFromAssignee": "2025-04-23T07:02:35.003Z",
+                    "transitionFromStatusHash": "88550866654294612369",
+                    "transitionFromAssigneeHash": "18466908260891947289"
+                }
             },
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 81515870,
+                    "createdTransitionFromStatus": "2025-04-24T05:41:10.873Z",
+                    "createdTransitionFromAssignee": "2025-04-24T07:13:57.626Z",
+                    "transitionFromStatusHash": "73310971488568817279",
+                    "transitionFromAssigneeHash": "50101423087065196819"
+                }
             }
         ]
     },
@@ -725,15 +1983,42 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 16965,
+                    "createdTransitionFromStatus": "2025-04-15T10:29:01.164Z",
+                    "createdTransitionFromAssignee": "2025-04-24T10:18:16.659Z",
+                    "transitionFromStatusHash": "88062515917315333495",
+                    "transitionFromAssigneeHash": "42755082660143163978"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 1438848,
+                    "createdTransitionFromStatus": "2025-04-28T06:10:10.153Z",
+                    "createdTransitionFromAssignee": "2025-04-24T10:42:15.507Z",
+                    "transitionFromStatusHash": "41897050813677361075",
+                    "transitionFromAssigneeHash": "90665585282871903649"
+                }
             },
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 1438848,
+                    "createdTransitionFromStatus": "2025-04-28T06:10:10.153Z",
+                    "createdTransitionFromAssignee": "2025-04-24T10:42:15.507Z",
+                    "transitionFromStatusHash": "63987628029951298504",
+                    "transitionFromAssigneeHash": "54138524585456240044"
+                }
             }
         ]
     },
@@ -746,19 +2031,55 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Нурлан Кенжегулов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 5096,
+                    "createdTransitionFromStatus": "2025-04-15T10:31:06.381Z",
+                    "createdTransitionFromAssignee": "2025-04-29T13:11:56.740Z",
+                    "transitionFromStatusHash": "69918338038846595741",
+                    "transitionFromAssigneeHash": "20641247633590513846"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Нурлан Кенжегулов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 5096,
+                    "createdTransitionFromStatus": "2025-04-15T10:31:06.381Z",
+                    "createdTransitionFromAssignee": "2025-04-29T13:11:56.740Z",
+                    "transitionFromStatusHash": "00613147356208241606",
+                    "transitionFromAssigneeHash": "29024090642913709492"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Нурлан Кенжегулов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 5096,
+                    "createdTransitionFromStatus": "2025-04-15T10:31:06.381Z",
+                    "createdTransitionFromAssignee": "2025-04-29T13:11:56.740Z",
+                    "transitionFromStatusHash": "73131544874871933239",
+                    "transitionFromAssigneeHash": "37699997653881516254"
+                }
             },
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Нурлан Кенжегулов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 5096,
+                    "createdTransitionFromStatus": "2025-04-15T10:31:06.381Z",
+                    "createdTransitionFromAssignee": "2025-04-29T13:11:56.740Z",
+                    "transitionFromStatusHash": "52744248036155185312",
+                    "transitionFromAssigneeHash": "33045825403877318532"
+                }
             }
         ]
     },
@@ -771,7 +2092,16 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Нурлан Кенжегулов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Нурлан Кенжегулов",
+                    "overlap": true,
+                    "overlapDuration": 9205,
+                    "createdTransitionFromStatus": "2025-04-15T10:32:05.720Z",
+                    "createdTransitionFromAssignee": "2025-04-24T10:38:17.429Z",
+                    "transitionFromStatusHash": "15321882817070324060",
+                    "transitionFromAssigneeHash": "71341972326718618903"
+                }
             }
         ]
     },
@@ -784,7 +2114,16 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Юрий Егорин"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Юрий Егорин",
+                    "overlap": true,
+                    "overlapDuration": 114358,
+                    "createdTransitionFromStatus": "2025-04-15T10:35:31.196Z",
+                    "createdTransitionFromAssignee": "2025-04-16T07:36:15.991Z",
+                    "transitionFromStatusHash": "58931168087686193592",
+                    "transitionFromAssigneeHash": "22756551236759634841"
+                }
             }
         ]
     },
@@ -797,11 +2136,29 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 22045,
+                    "createdTransitionFromStatus": "2025-04-15T10:52:41.250Z",
+                    "createdTransitionFromAssignee": "2025-04-16T04:43:29.640Z",
+                    "transitionFromStatusHash": "18603043221393512702",
+                    "transitionFromAssigneeHash": "07405162438785500681"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 22045,
+                    "createdTransitionFromStatus": "2025-04-15T10:52:41.250Z",
+                    "createdTransitionFromAssignee": "2025-04-16T04:43:29.640Z",
+                    "transitionFromStatusHash": "05662559277925547691",
+                    "transitionFromAssigneeHash": "78578716054758456064"
+                }
             }
         ]
     },
@@ -814,7 +2171,38 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Әлішер Хамит",
-                "lastPreviousDevAssignee": "Илья Балтер"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Илья Балтер",
+                    "overlap": true,
+                    "overlapDuration": 4615064,
+                    "createdTransitionFromStatus": "2025-04-15T12:20:30.095Z",
+                    "createdTransitionFromAssignee": "2025-04-16T05:38:11.296Z",
+                    "transitionFromStatusHash": "88317983959645853515",
+                    "transitionFromAssigneeHash": "69018962094223032311"
+                }
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "IE",
+        "devType": "WEB",
+        "issuetype": "Task",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Анисимов Анатолий",
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 775555725,
+                    "createdTransitionFromStatus": "2025-04-24T10:54:45.045Z",
+                    "createdTransitionFromAssignee": "2025-05-26T14:18:44.741Z",
+                    "transitionFromStatusHash": "16915610233608277851",
+                    "transitionFromAssigneeHash": "28007265098690003822"
+                }
             }
         ]
     },
@@ -827,7 +2215,16 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 0,
+                    "createdTransitionFromStatus": "2025-04-17T10:42:47.486Z",
+                    "createdTransitionFromAssignee": "2025-04-17T10:53:17.729Z",
+                    "transitionFromStatusHash": "76331128785197794395",
+                    "transitionFromAssigneeHash": "60242370867890177415"
+                }
             }
         ]
     },
@@ -840,7 +2237,16 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Молдағалиева Еңлік",
-                "lastPreviousDevAssignee": "Adilkhan"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Adilkhan",
+                    "overlap": true,
+                    "overlapDuration": 403298686,
+                    "createdTransitionFromStatus": "2025-05-05T04:11:44.738Z",
+                    "createdTransitionFromAssignee": "2025-05-05T04:11:47.492Z",
+                    "transitionFromStatusHash": "63100128462792440208",
+                    "transitionFromAssigneeHash": "52100708343157022226"
+                }
             }
         ]
     },
@@ -853,19 +2259,55 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Молдағалиева Еңлік",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 650,
+                    "createdTransitionFromStatus": "2025-04-18T07:04:16.067Z",
+                    "createdTransitionFromAssignee": "2025-05-06T07:47:07.005Z",
+                    "transitionFromStatusHash": "67155677291758350296",
+                    "transitionFromAssigneeHash": "58805522857046922262"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 650,
+                    "createdTransitionFromStatus": "2025-04-18T07:04:16.067Z",
+                    "createdTransitionFromAssignee": "2025-05-06T07:47:07.005Z",
+                    "transitionFromStatusHash": "67954363580971357292",
+                    "transitionFromAssigneeHash": "93754196719306649879"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "In Progress",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 11951328,
+                    "createdTransitionFromStatus": "2025-05-13T07:42:17.644Z",
+                    "createdTransitionFromAssignee": "2025-05-13T07:42:20.907Z",
+                    "transitionFromStatusHash": "34262531600455103157",
+                    "transitionFromAssigneeHash": "12003393117161499441"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "REOPEN",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 251515587,
+                    "createdTransitionFromStatus": "2025-05-16T05:34:16.494Z",
+                    "createdTransitionFromAssignee": "2025-05-16T05:34:26.202Z",
+                    "transitionFromStatusHash": "92974726505585650318",
+                    "transitionFromAssigneeHash": "04734534538780415933"
+                }
             }
         ]
     },
@@ -878,7 +2320,16 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 0,
+                    "createdTransitionFromStatus": "2025-04-23T05:30:10.214Z",
+                    "createdTransitionFromAssignee": "2025-04-23T06:50:13.857Z",
+                    "transitionFromStatusHash": "40792805175459579467",
+                    "transitionFromAssigneeHash": "88327809696817249827"
+                }
             }
         ]
     },
@@ -891,7 +2342,16 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Антон Липатов",
-                "lastPreviousDevAssignee": "Абылайхан Султанбек"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Абылайхан Султанбек",
+                    "overlap": true,
+                    "overlapDuration": 0,
+                    "createdTransitionFromStatus": "2025-04-21T12:25:36.610Z",
+                    "createdTransitionFromAssignee": "2025-04-21T12:59:24.388Z",
+                    "transitionFromStatusHash": "37864827140507058926",
+                    "transitionFromAssigneeHash": "75964140908254197821"
+                }
             }
         ]
     },
@@ -904,11 +2364,29 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 682,
+                    "createdTransitionFromStatus": "2025-04-24T10:49:51.882Z",
+                    "createdTransitionFromAssignee": "2025-04-25T06:24:08.803Z",
+                    "transitionFromStatusHash": "90456628327864809835",
+                    "transitionFromAssigneeHash": "49191844318542814832"
+                }
             },
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 682,
+                    "createdTransitionFromStatus": "2025-04-24T10:49:51.882Z",
+                    "createdTransitionFromAssignee": "2025-04-25T06:24:08.803Z",
+                    "transitionFromStatusHash": "97735682163155796113",
+                    "transitionFromAssigneeHash": "30359922396725784440"
+                }
             }
         ]
     },
@@ -921,11 +2399,29 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Ким Виолетта",
-                "lastPreviousDevAssignee": "Глеб Баженов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Глеб Баженов",
+                    "overlap": true,
+                    "overlapDuration": 27608,
+                    "createdTransitionFromStatus": "2025-04-24T13:09:38.527Z",
+                    "createdTransitionFromAssignee": "2025-04-25T05:21:21.860Z",
+                    "transitionFromStatusHash": "73252625926406551300",
+                    "transitionFromAssigneeHash": "95930595423497685668"
+                }
             },
             {
                 "commentAuthor": "Ким Виолетта",
-                "lastPreviousDevAssignee": "Глеб Баженов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Глеб Баженов",
+                    "overlap": true,
+                    "overlapDuration": 27608,
+                    "createdTransitionFromStatus": "2025-04-24T13:09:38.527Z",
+                    "createdTransitionFromAssignee": "2025-04-25T05:21:21.860Z",
+                    "transitionFromStatusHash": "35291649373909749908",
+                    "transitionFromAssigneeHash": "64870757837332855105"
+                }
             }
         ]
     },
@@ -938,7 +2434,16 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Есен Оразбайұлы",
+                    "overlap": true,
+                    "overlapDuration": 470044,
+                    "createdTransitionFromStatus": "2025-04-28T11:07:18.022Z",
+                    "createdTransitionFromAssignee": "2025-05-06T09:59:40.222Z",
+                    "transitionFromStatusHash": "97867376379149026025",
+                    "transitionFromAssigneeHash": "35822530085143290045"
+                }
             }
         ]
     },
@@ -951,15 +2456,59 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 72307761,
+                    "createdTransitionFromStatus": "2025-04-29T07:18:10.812Z",
+                    "createdTransitionFromAssignee": "2025-05-06T10:00:39.540Z",
+                    "transitionFromStatusHash": "11531022384493735661",
+                    "transitionFromAssigneeHash": "32873085093643335953"
+                }
             },
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 72307761,
+                    "createdTransitionFromStatus": "2025-04-29T07:18:10.812Z",
+                    "createdTransitionFromAssignee": "2025-05-06T10:00:39.540Z",
+                    "transitionFromStatusHash": "20076921721357574491",
+                    "transitionFromAssigneeHash": "97045410770399434778"
+                }
             },
             {
                 "commentAuthor": "Turarbek Kairosh",
-                "lastPreviousDevAssignee": "Aibolat Batyrov"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 72307761,
+                    "createdTransitionFromStatus": "2025-04-29T07:18:10.812Z",
+                    "createdTransitionFromAssignee": "2025-05-06T10:00:39.540Z",
+                    "transitionFromStatusHash": "97959384195128660606",
+                    "transitionFromAssigneeHash": "94210099671768829150"
+                }
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "Операционная эффективность",
+        "devType": "1C",
+        "issuetype": "Task",
+        "bugsCount": 2,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": null
+            },
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": null
             }
         ]
     },
@@ -972,7 +2521,16 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Анисимов Анатолий",
-                "lastPreviousDevAssignee": "Сакен Сатенов"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Сакен Сатенов",
+                    "overlap": true,
+                    "overlapDuration": 46783,
+                    "createdTransitionFromStatus": "2025-05-13T09:44:12.880Z",
+                    "createdTransitionFromAssignee": "2025-05-13T10:58:05.254Z",
+                    "transitionFromStatusHash": "28279030523703807315",
+                    "transitionFromAssigneeHash": "74340228744522548798"
+                }
             }
         ]
     },
@@ -985,7 +2543,60 @@
         "linkedCommentsWithBugs": [
             {
                 "commentAuthor": "Ivan Voronov",
-                "lastPreviousDevAssignee": "Есен Оразбайұлы"
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "TO DO",
+                    "transitionFromAssignee": "Aibolat Batyrov",
+                    "overlap": true,
+                    "overlapDuration": 0,
+                    "createdTransitionFromStatus": "2025-05-14T07:21:29.523Z",
+                    "createdTransitionFromAssignee": "2025-05-14T09:11:44.537Z",
+                    "transitionFromStatusHash": "02052660180811741338",
+                    "transitionFromAssigneeHash": "25222158392091661290"
+                }
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "Операционная эффективность",
+        "devType": "1C",
+        "issuetype": "Task",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Әлішер Хамит",
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Илья Балтер",
+                    "overlap": true,
+                    "overlapDuration": 4396,
+                    "createdTransitionFromStatus": "2025-05-19T09:38:34.986Z",
+                    "createdTransitionFromAssignee": "2025-05-22T06:19:03.179Z",
+                    "transitionFromStatusHash": "86005975155517333742",
+                    "transitionFromAssigneeHash": "87722886575221806130"
+                }
+            }
+        ]
+    },
+    {
+        "priority": "Medium",
+        "projectName": "IE",
+        "devType": "1C",
+        "issuetype": "Task",
+        "bugsCount": 1,
+        "linkedCommentsWithBugs": [
+            {
+                "commentAuthor": "Молдағалиева Еңлік",
+                "lastPreviousDevAssignee": {
+                    "transitionFromStatus": "BACKLOG",
+                    "transitionFromAssignee": "Плотицин Николай",
+                    "overlap": true,
+                    "overlapDuration": 11017,
+                    "createdTransitionFromStatus": "2025-05-19T12:47:09.804Z",
+                    "createdTransitionFromAssignee": "2025-05-22T11:20:29.609Z",
+                    "transitionFromStatusHash": "89625388746812752664",
+                    "transitionFromAssigneeHash": "75581424721744532381"
+                }
             }
         ]
     }

@@ -1,33 +1,33 @@
 {
     "issuesCreatedFrom": "26.03.2025",
-    "issuesCreatedTo": "25.05.2025",
-    "issues": 407,
-    "testedIssues": 159,
-    "testedIssuesWithBugs": 38,
-    "bugs": 162,
-    "bugsPerTestedIssue": 1.02,
-    "bugsPerTestedIssueWithBugs": 4.26,
+    "issuesCreatedTo": "27.05.2025",
+    "issues": 423,
+    "testedIssues": 178,
+    "testedIssuesWithBugs": 44,
+    "bugs": 171,
+    "bugsPerTestedIssue": 0.96,
+    "bugsPerTestedIssueWithBugs": 3.89,
     "bugsInProjects": {
         "MADP": 1,
-        "IE": 57,
-        "Котировки": 49,
-        "ADP": 41,
+        "IE": 59,
+        "Котировки": 50,
+        "ADP": 42,
+        "Операционная эффективность": 7,
         "Architecture": 6,
-        "Операционная эффективность": 2,
         "Medpool": 2,
         "Amanat24": 4
     },
     "bugsPerPriorities": {
-        "Medium": 64,
+        "Medium": 73,
         "Critical": 98
     },
     "bugsPerDevTypes": {
-        "WEB": 154,
-        "1C": 8
+        "WEB": 157,
+        "1C": 14
     },
     "bugsPerIssueTypes": {
         "Bug": 15,
-        "Task": 143,
+        "Task": 152,
         "Story": 1,
         "Sub-task": 3
     },
@@ -41,17 +41,17 @@
         },
         "Молдағалиева Еңлік": {
             "projects": {
-                "IE": 8,
+                "IE": 9,
                 "Операционная эффективность": 1
             },
-            "overall": 9
+            "overall": 10
         },
         "Ivan Voronov": {
             "projects": {
-                "Котировки": 22,
+                "Котировки": 23,
                 "ADP": 5
             },
-            "overall": 27
+            "overall": 28
         },
         "Turarbek Kairosh": {
             "projects": {
@@ -61,83 +61,80 @@
             },
             "overall": 20
         },
+        "Антон Липатов": {
+            "projects": {
+                "ADP": 23
+            },
+            "overall": 23
+        },
         "Әлішер Хамит": {
             "projects": {
                 "Котировки": 21,
-                "Операционная эффективность": 1
+                "Операционная эффективность": 4
             },
-            "overall": 22
-        },
-        "Анисимов Анатолий": {
-            "projects": {
-                "IE": 49,
-                "ADP": 1,
-                "Architecture": 4
-            },
-            "overall": 54
-        },
-        "Антон Липатов": {
-            "projects": {
-                "ADP": 22
-            },
-            "overall": 22
+            "overall": 25
         },
         "Ким Виолетта": {
             "projects": {
                 "ADP": 3,
-                "Medpool": 2
-            },
-            "overall": 5
-        }
-    },
-    "bugsPerDeveloper": {
-        "Адиль Аманкулов": {
-            "projects": {
-                "MADP": 1
-            },
-            "overall": 1
-        },
-        "Сакен Сатенов": {
-            "projects": {
-                "IE": 53
-            },
-            "overall": 53
-        },
-        "Глеб Баженов": {
-            "projects": {
-                "Котировки": 5,
+                "Операционная эффективность": 2,
                 "Medpool": 2
             },
             "overall": 7
         },
-        "Абылайхан Султанбек": {
+        "Анисимов Анатолий": {
             "projects": {
-                "Котировки": 37,
-                "ADP": 11
+                "IE": 50,
+                "ADP": 1,
+                "Architecture": 4
             },
-            "overall": 48
-        },
+            "overall": 55
+        }
+    },
+    "bugsPerDeveloper": {
         "Есен Оразбайұлы": {
             "projects": {
+                "MADP": 1,
                 "Котировки": 6,
-                "ADP": 2,
+                "ADP": 1,
                 "Amanat24": 1
             },
             "overall": 9
         },
+        "Сакен Сатенов": {
+            "projects": {
+                "IE": 54
+            },
+            "overall": 54
+        },
+        "Глеб Баженов": {
+            "projects": {
+                "Котировки": 5,
+                "Операционная эффективность": 2,
+                "Medpool": 2
+            },
+            "overall": 9
+        },
+        "Абылайхан Султанбек": {
+            "projects": {
+                "Котировки": 35,
+                "ADP": 10
+            },
+            "overall": 45
+        },
         "Нурлан Кенжегулов": {
             "projects": {
-                "Котировки": 1,
-                "ADP": 5
+                "Котировки": 4,
+                "ADP": 17
             },
-            "overall": 6
+            "overall": 21
         },
         "Илья Балтер": {
             "projects": {
                 "IE": 1,
-                "Операционная эффективность": 1
+                "Операционная эффективность": 2
             },
-            "overall": 2
+            "overall": 3
         },
         "Sawa Laptev": {
             "projects": {
@@ -148,11 +145,11 @@
         "Aibolat Batyrov": {
             "projects": {
                 "IE": 1,
-                "ADP": 21,
+                "ADP": 12,
                 "Architecture": 6,
                 "Amanat24": 3
             },
-            "overall": 31
+            "overall": 22
         },
         "Adilkhan": {
             "projects": {
@@ -164,6 +161,18 @@
         "Юрий Егорин": {
             "projects": {
                 "ADP": 1
+            },
+            "overall": 1
+        },
+        "unassigned": {
+            "projects": {
+                "Операционная эффективность": 2
+            },
+            "overall": 2
+        },
+        "Плотицин Николай": {
+            "projects": {
+                "IE": 1
             },
             "overall": 1
         }

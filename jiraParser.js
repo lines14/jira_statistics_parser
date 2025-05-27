@@ -6,32 +6,32 @@ import timeUtils from './modules/main/utils/time/timeUtils.js';
 import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 
 const parseIssues = async () => {
-  const issuesArr = await jiraAPI.searchAll(JSONLoader.config.commentsWithBugsCreatedFromDateYMD);
-  const issuesWithCommentsArr = [];
-  for (const issue of issuesArr) {
-    const response = await jiraAPI.getIssueComments(issue.id);
-    const parsedIssue = {
-      key: issue.key,
-      summary: issue.fields.summary,
-      created: issue.fields.created,
-      updated: issue.fields.updated,
-      priority: issue.fields.priority.name,
-      projectKey: issue.fields.project.key,
-      projectName: issue.fields.project.name,
-      devType: issue.fields.customfield_10085?.value,
-      labels: issue.fields.labels,
-      issuetype: issue.fields.issuetype.name,
-      status: issue.fields.status.name,
-      comments: response.data.comments,
-      changelog: issue.changelog.histories,
-    };
+  // const issuesArr = await jiraAPI.searchAll(JSONLoader.config.commentsWithBugsCreatedFromDateYMD);
+  // const issuesWithCommentsArr = [];
+  // for (const issue of issuesArr) {
+  //   const response = await jiraAPI.getIssueComments(issue.id);
+  //   const parsedIssue = {
+  //     key: issue.key,
+  //     summary: issue.fields.summary,
+  //     created: issue.fields.created,
+  //     updated: issue.fields.updated,
+  //     priority: issue.fields.priority.name,
+  //     projectKey: issue.fields.project.key,
+  //     projectName: issue.fields.project.name,
+  //     devType: issue.fields.customfield_10085?.value,
+  //     labels: issue.fields.labels,
+  //     issuetype: issue.fields.issuetype.name,
+  //     status: issue.fields.status.name,
+  //     comments: response.data.comments,
+  //     changelog: issue.changelog.histories,
+  //   };
 
-    issuesWithCommentsArr.push(parsedIssue);
-  }
+  //   issuesWithCommentsArr.push(parsedIssue);
+  // }
 
-  dataUtils.saveToJSON({ issuesWithCommentsArr });
+  // dataUtils.saveToJSON({ issuesWithCommentsArr });
 
-  // const { issuesWithCommentsArr } = JSONLoader;
+  const { issuesWithCommentsArr } = JSONLoader;
 
   const testedIssuesWithCommentsArr = issuesWithCommentsArr
     .filter((issueWithComments) => issueWithComments.changelog
@@ -57,21 +57,8 @@ const parseIssues = async () => {
     delete issueWithBugs.changelog;
     issueWithBugs.bugsCount = issueWithBugs.linkedCommentsWithBugs.length;
 
-    if (testedIssueWithComments.key === 'ADP-2676') {
-      issueWithBugs.linkedCommentsWithBugs.forEach((el) => {
-        // console.log(el.overlappedAssignees);
-        // console.log(el.changedAssignees);
-        // console.log(el.lastPreviousDevAssignee);
-        // console.log(el.comment);    
-      });
-      // throw new Error('f');
-    }
-
     return issueWithBugs;
   }).filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
-
-  const kek = filteredIssuesWithBugsArr.filter((issue) => issue.key === 'ADP-2676');
-  console.log(kek.pop().linkedCommentsWithBugs);
 
   dataUtils.saveToJSON({ filteredIssuesWithBugsArr });
 
@@ -190,7 +177,7 @@ const parseIssues = async () => {
 
   const developers = [...new Set(trimmedIssuesWithBugsArr
     .flatMap((trimmedIssueWithBugs) => trimmedIssueWithBugs.linkedCommentsWithBugs
-      .map((linkedCommentWithBugs) => linkedCommentWithBugs.lastPreviousDevAssignee)))];
+      .map((linkedCommentWithBugs) => linkedCommentWithBugs.lastPreviousDevAssignee?.transitionFromAssignee ?? JSONLoader.config.issueWithoutAssignee)))];
 
   const bugsPerDeveloper = {};
   developers.forEach((developer) => {
@@ -202,7 +189,7 @@ const parseIssues = async () => {
         trimmedIssueWithBugs.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
           if (
             trimmedIssueWithBugs.projectName === projectName
-            && linkedCommentWithBugs.lastPreviousDevAssignee === developer
+            && (linkedCommentWithBugs.lastPreviousDevAssignee?.transitionFromAssignee ?? JSONLoader.config.issueWithoutAssignee) === developer
           ) {
             bugsCount += 1;
           }
