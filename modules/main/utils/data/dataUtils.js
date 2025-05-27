@@ -82,8 +82,8 @@ class DataUtils {
       overlapDuration,
       createdTransitionFromStatus: endFirstInterval.created,
       createdTransitionFromAssignee: endSecondInterval.created,
-      transitionFromStatusHash: endFirstInterval.hash,
-      transitionFromAssigneeHash: endSecondInterval.hash
+      transitionFromStatusID: endFirstInterval.ID,
+      transitionFromAssigneeID: endSecondInterval.ID
     };
   }
 
@@ -122,7 +122,7 @@ class DataUtils {
     return results;
   }
 
-  static linkDevsWithBugs(issueWithBugs) {
+  static linkDevelopersWithBugs(issueWithBugs) {
     if (issueWithBugs.commentsWithBugs.length > 0) {
       return issueWithBugs.commentsWithBugs.map((commentWithBug) => {
         const devStatusEnds = [];
@@ -146,7 +146,7 @@ class DataUtils {
               devStatusEnds.push({ 
                 transitionFrom: item.fromString, 
                 created: element.created,
-                hash: Randomizer.getRandomString(false, false, true, false, false, 20, 20)
+                ID: Randomizer.getRandomString(false, false, true, false, false, 20, 20)
               });
             }
           });
@@ -159,7 +159,7 @@ class DataUtils {
                 transitionFrom: item.fromString,
                 transitionTo: item.toString,
                 created: element.created,
-                hash: Randomizer.getRandomString(false, false, true, false, false, 20, 20)
+                ID: Randomizer.getRandomString(false, false, true, false, false, 20, 20)
               });
             }
           });

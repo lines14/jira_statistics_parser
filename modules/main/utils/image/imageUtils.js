@@ -13,7 +13,7 @@ class ImageUtils {
         configuration.data.labels = keys;
         configuration.data.datasets[0].data = values;
         const chartJSNodeCanvas = new ChartJSNodeCanvas({ width, height });
-        const image = await ChartJSNodeCanvas.renderToBuffer(configuration);
+        const image = await chartJSNodeCanvas.renderToBuffer(configuration);
         fs.writeFileSync('artifacts/diagram.png', image);
     }
 }

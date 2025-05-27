@@ -6,7 +6,7 @@ import TimeUtils from './modules/main/utils/time/timeUtils.js';
 import ImageUtils from './modules/main/utils/image/imageUtils.js';
 import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 
-const parseIssues = async () => {
+const parseIssues = async () => { // get Jira issues with comments
   // const issuesArr = await jiraAPI.searchAll(JSONLoader.config.commentsWithBugsCreatedFromDateYMD);
   // const issuesWithCommentsArr = [];
   // for (const issue of issuesArr) {
@@ -34,6 +34,7 @@ const parseIssues = async () => {
 
   const { issuesWithCommentsArr } = JSONLoader;
 
+  // get Jira issues with testing statuses in history
   const testedIssuesWithCommentsArr = issuesWithCommentsArr
     .filter((issueWithComments) => issueWithComments.changelog
       .some((changelogItem) => changelogItem.items
@@ -43,108 +44,94 @@ const parseIssues = async () => {
   DataUtils.saveToJSON({ testedIssuesWithCommentsArr });
 
   let commentAuthor;
-  let commentCreated;
-  const filteredIssuesWithBugsArr = testedIssuesWithCommentsArr.map((testedIssueWithComments) => {
-    const issueWithBugs = { ...testedIssueWithComments };
-    issueWithBugs.commentsWithBugs = testedIssueWithComments.comments
+  let commentCreated; // fill and filter Jira issues with bugs and authors
+  const testedIssuesWithBugsArr = testedIssuesWithCommentsArr.map((testedIssueWithComments) => {
+    const testedIssueWithBugs = { ...testedIssueWithComments };
+    testedIssueWithBugs.commentsWithBugs = testedIssueWithComments.comments
       .flatMap((comment) => DataUtils.filterCommentsWithStatuses(
         comment,
         commentCreated,
         commentAuthor,
       ));
-    delete issueWithBugs.comments;
-    issueWithBugs.linkedCommentsWithBugs = DataUtils.linkDevsWithBugs(issueWithBugs);
-    delete issueWithBugs.commentsWithBugs;
-    delete issueWithBugs.changelog;
-    issueWithBugs.bugsCount = issueWithBugs.linkedCommentsWithBugs.length;
+    delete testedIssueWithBugs.comments;
+    testedIssueWithBugs.linkedCommentsWithBugs = DataUtils.linkDevelopersWithBugs(testedIssueWithBugs);
+    delete testedIssueWithBugs.commentsWithBugs;
+    delete testedIssueWithBugs.changelog;
+    testedIssueWithBugs.bugsCount = testedIssueWithBugs.linkedCommentsWithBugs.length;
 
-    return issueWithBugs;
-  }).filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
+    return testedIssueWithBugs;
+  })
+  .filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
 
-  DataUtils.saveToJSON({ filteredIssuesWithBugsArr });
+  DataUtils.saveToJSON({ testedIssuesWithBugsArr });
 
-  let bugs = 0;
-  filteredIssuesWithBugsArr.forEach((issueWithBugs) => {
-    bugs += issueWithBugs.bugsCount;
+  let bugs = 0; // count overall bugs
+  testedIssuesWithBugsArr.forEach((testedIssueWithBugs) => {
+    bugs += testedIssueWithBugs.bugsCount;
   });
 
-  const trimmedIssuesWithBugsArr = filteredIssuesWithBugsArr.map((filteredIssueWithBugs) => ({
-    priority: filteredIssueWithBugs.priority,
-    projectName: filteredIssueWithBugs.projectName,
-    devType: filteredIssueWithBugs.devType,
-    issuetype: filteredIssueWithBugs.issuetype,
-    bugsCount: filteredIssueWithBugs.bugsCount,
-    linkedCommentsWithBugs: filteredIssueWithBugs.linkedCommentsWithBugs
-      .map((linkedCommentWithBugs) => ({
-        commentAuthor: linkedCommentWithBugs.commentAuthor,
-        lastPreviousDevAssignee: linkedCommentWithBugs.lastPreviousDevAssignee,
-      })),
-  }));
-
-  DataUtils.saveToJSON({ trimmedIssuesWithBugsArr });
-
-  const projectNames = [...new Set(trimmedIssuesWithBugsArr
-    .map((trimmedIssueWithBugs) => trimmedIssueWithBugs.projectName))];
+  const projectNames = [...new Set(testedIssuesWithBugsArr
+    .map((testedIssueWithBugsArr) => testedIssueWithBugsArr.projectName))];
 
   const bugsInProjects = {};
   projectNames.forEach((projectName) => {
     let bugsCount = 0;
-    trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
-      if (trimmedIssueWithBugs.projectName === projectName) {
-        bugsCount += trimmedIssueWithBugs.bugsCount;
+    testedIssuesWithBugsArr.forEach((testedIssueWithBugsArr) => {
+      if (testedIssueWithBugsArr.projectName === projectName) {
+        bugsCount += testedIssueWithBugsArr.bugsCount;
       }
     });
 
     bugsInProjects[projectName] = bugsCount;
   });
 
-  const priorities = [...new Set(trimmedIssuesWithBugsArr
-    .map((trimmedIssueWithBugs) => trimmedIssueWithBugs.priority))];
+  const priorities = [...new Set(testedIssuesWithBugsArr
+    .map((testedIssueWithBugsArr) => testedIssueWithBugsArr.priority))];
 
   const bugsPerPriorities = {};
   priorities.forEach((priority) => {
     let bugsCount = 0;
-    trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
-      if (trimmedIssueWithBugs.priority === priority) {
-        bugsCount += trimmedIssueWithBugs.bugsCount;
+    testedIssuesWithBugsArr.forEach((testedIssueWithBugsArr) => {
+      if (testedIssueWithBugsArr.priority === priority) {
+        bugsCount += testedIssueWithBugsArr.bugsCount;
       }
     });
 
     bugsPerPriorities[priority] = bugsCount;
   });
 
-  const devTypes = [...new Set(trimmedIssuesWithBugsArr
-    .map((trimmedIssueWithBugs) => trimmedIssueWithBugs.devType))];
+  const devTypes = [...new Set(testedIssuesWithBugsArr
+    .map((testedIssueWithBugsArr) => testedIssueWithBugsArr.devType))];
 
   const bugsPerDevTypes = {};
   devTypes.forEach((devType) => {
     let bugsCount = 0;
-    trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
-      if (trimmedIssueWithBugs.devType === devType) {
-        bugsCount += trimmedIssueWithBugs.bugsCount;
+    testedIssuesWithBugsArr.forEach((testedIssueWithBugsArr) => {
+      if (testedIssueWithBugsArr.devType === devType) {
+        bugsCount += testedIssueWithBugsArr.bugsCount;
       }
     });
 
     bugsPerDevTypes[devType] = bugsCount;
   });
 
-  const issueTypes = [...new Set(trimmedIssuesWithBugsArr
-    .map((trimmedIssueWithBugs) => trimmedIssueWithBugs.issuetype))];
+  const issueTypes = [...new Set(testedIssuesWithBugsArr
+    .map((testedIssueWithBugsArr) => testedIssueWithBugsArr.issuetype))];
 
   const bugsPerIssueTypes = {};
   issueTypes.forEach((issueType) => {
     let bugsCount = 0;
-    trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
-      if (trimmedIssueWithBugs.issuetype === issueType) {
-        bugsCount += trimmedIssueWithBugs.bugsCount;
+    testedIssuesWithBugsArr.forEach((testedIssueWithBugsArr) => {
+      if (testedIssueWithBugsArr.issuetype === issueType) {
+        bugsCount += testedIssueWithBugsArr.bugsCount;
       }
     });
 
     bugsPerIssueTypes[issueType] = bugsCount;
   });
 
-  const reporters = [...new Set(trimmedIssuesWithBugsArr
-    .flatMap((trimmedIssueWithBugs) => trimmedIssueWithBugs.linkedCommentsWithBugs
+  const reporters = [...new Set(testedIssuesWithBugsArr
+    .flatMap((testedIssueWithBugsArr) => testedIssueWithBugsArr.linkedCommentsWithBugs
       .map((linkedCommentWithBugs) => linkedCommentWithBugs.commentAuthor)))];
 
   const bugsPerReporter = {};
@@ -153,10 +140,10 @@ const parseIssues = async () => {
     const projectBugCounts = {};
     projectNames.forEach((projectName) => {
       let bugsCount = 0;
-      trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
-        trimmedIssueWithBugs.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
+      testedIssuesWithBugsArr.forEach((testedIssueWithBugsArr) => {
+        testedIssueWithBugsArr.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
           if (
-            trimmedIssueWithBugs.projectName === projectName
+            testedIssueWithBugsArr.projectName === projectName
             && linkedCommentWithBugs.commentAuthor === reporter
           ) {
             bugsCount += 1;
@@ -176,9 +163,10 @@ const parseIssues = async () => {
     }
   });
 
-  const developers = [...new Set(trimmedIssuesWithBugsArr
-    .flatMap((trimmedIssueWithBugs) => trimmedIssueWithBugs.linkedCommentsWithBugs
-      .map((linkedCommentWithBugs) => linkedCommentWithBugs.lastPreviousDevAssignee?.transitionFromAssignee ?? JSONLoader.config.issueWithoutAssignee)))];
+  const developers = [...new Set(testedIssuesWithBugsArr
+    .flatMap((testedIssueWithBugsArr) => testedIssueWithBugsArr.linkedCommentsWithBugs
+      .map((linkedCommentWithBugs) => linkedCommentWithBugs.lastPreviousDevAssignee?.transitionFromAssignee 
+      ?? JSONLoader.config.issueWithoutAssignee)))];
 
   const bugsPerDeveloper = {};
   developers.forEach((developer) => {
@@ -186,11 +174,12 @@ const parseIssues = async () => {
     const projectBugCounts = {};
     projectNames.forEach((projectName) => {
       let bugsCount = 0;
-      trimmedIssuesWithBugsArr.forEach((trimmedIssueWithBugs) => {
-        trimmedIssueWithBugs.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
+      testedIssuesWithBugsArr.forEach((testedIssueWithBugsArr) => {
+        testedIssueWithBugsArr.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
           if (
-            trimmedIssueWithBugs.projectName === projectName
-            && (linkedCommentWithBugs.lastPreviousDevAssignee?.transitionFromAssignee ?? JSONLoader.config.issueWithoutAssignee) === developer
+            testedIssueWithBugsArr.projectName === projectName
+            && (linkedCommentWithBugs.lastPreviousDevAssignee?.transitionFromAssignee 
+              ?? JSONLoader.config.issueWithoutAssignee) === developer
           ) {
             bugsCount += 1;
           }
@@ -215,10 +204,10 @@ const parseIssues = async () => {
     issuesCreatedTo: TimeUtils.reformatDateFromISOToDMY(TimeUtils.today()),
     issues: issuesWithCommentsArr.length,
     testedIssues: testedIssuesWithCommentsArr.length,
-    testedIssuesWithBugs: filteredIssuesWithBugsArr.length,
+    testedIssuesWithBugs: testedIssuesWithBugsArr.length,
     bugs,
     bugsPerTestedIssue: Number((bugs / testedIssuesWithCommentsArr.length).toFixed(2)),
-    bugsPerTestedIssueWithBugs: Number((bugs / filteredIssuesWithBugsArr.length).toFixed(2)),
+    bugsPerTestedIssueWithBugs: Number((bugs / testedIssuesWithBugsArr.length).toFixed(2)),
     bugsInProjects,
     bugsPerPriorities,
     bugsPerDevTypes,
@@ -228,8 +217,6 @@ const parseIssues = async () => {
   };
 
   DataUtils.saveToJSON({ summary });
-
-  await ImageUtils.generateDiagram(summary.bugsInProjects);
 };
 
 parseIssues();
