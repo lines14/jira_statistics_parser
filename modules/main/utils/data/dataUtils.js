@@ -222,14 +222,14 @@ class DataUtils {
   ) {
     entities.forEach((el) => {
       let bugsCount = 0;
-      testedIssuesWithBugsArr.forEach((testedIssueWithBugsArr) => {
-        if (testedIssueWithBugsArr[key] === el) {
-          bugsCount += testedIssueWithBugsArr.bugsCount;
+      testedIssuesWithBugsArr.forEach((testedIssueWithBugs) => {
+        if (testedIssueWithBugs[key] === el) {
+          bugsCount += testedIssueWithBugs.bugsCount;
         }
       });
 
-      const ratio = Number((bugsCount / overallBugsCount).toFixed(2));
-      accumulator[el] = { bugsCount, ratio };
+      const bugsCountPerOverallBugsCountRatio = Number((bugsCount / overallBugsCount).toFixed(2));
+      accumulator[el] = { bugsCount, bugsCountPerOverallBugsCountRatio };
     });
   }
 }
