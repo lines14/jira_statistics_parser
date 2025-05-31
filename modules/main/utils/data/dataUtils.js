@@ -21,11 +21,6 @@ class DataUtils {
     - this.convertTimestampToDateObject(b.created));
   }
 
-  static firstTimestampIsAfterSecondTimestamp(firstTimestamp, secondTimestamp) {
-    return this.convertTimestampToDateObject(firstTimestamp)
-    > this.convertTimestampToDateObject(secondTimestamp);
-  }
-
   static convertTimestampsToDateObjects(changelogItems) {
     return changelogItems
       .map((changelogItem) => ({
@@ -122,90 +117,94 @@ class DataUtils {
     return results;
   }
 
+  static getAssigneesWithDevStatuses(issue) {
+    const sortedChangelog = this.sortByTimestamps(issue.changelog);
+    const initialTimestamp = {
+      transitionFrom: JSONLoader.config.initIssueStatus,
+      created: sortedChangelog[0].created,
+    };
+
+    // get all dev statuses ends from issue history, includes
+    // only BACKLOG, TO DO, REOPEN and IN PROGRESS statuses
+    const devStatusEnds = [];
+    for (const element of sortedChangelog) {
+      element.items.forEach((item) => {
+        if (item.field === 'status'
+          && item.fromString
+          && JSONLoader.config.devIssueStatuses.includes(item.fromString.toUpperCase())) {
+          devStatusEnds.push({
+            transitionFrom: item.fromString,
+            created: element.created,
+            ID: Randomizer.getRandomString(false, false, true, false, false, 20, 20),
+          });
+        }
+      });
+    }
+
+    // get all assignees changes from issue history
+    const assigneeChanges = [];
+    for (const element of sortedChangelog) {
+      element.items.forEach((item) => {
+        if (item.field === 'assignee' && item.fromString) {
+          assigneeChanges.push({
+            transitionFrom: item.fromString,
+            transitionTo: item.toString,
+            created: element.created,
+            ID: Randomizer.getRandomString(false, false, true, false, false, 20, 20),
+          });
+        }
+      });
+    }
+
+    // filter not includes issues with only one assignee or status due to lack of transition
+    if (assigneeChanges.length > 0 && devStatusEnds.length > 0) {
+      devStatusEnds.unshift(initialTimestamp);
+      assigneeChanges.unshift(initialTimestamp);
+
+      // get time intervals between dev statuses changes
+      const devStatusEndTimeIntervals = this
+        .getTimeIntervals(this.convertTimestampsToDateObjects(devStatusEnds));
+
+      // filter developer assignees and get time intervals between assignees changes
+      const filteredAssigneeChanges = this.filterDevelopersAndMissclicks(this
+        .convertTimestampsToDateObjects(assigneeChanges));
+      const assigneeChangeTimeIntervals = this.getTimeIntervals(filteredAssigneeChanges);
+
+      // get developer assignees with dev statuses at the same time
+      return this.getAssigneesWithStatuses(
+        devStatusEndTimeIntervals,
+        assigneeChangeTimeIntervals,
+      ).map((assigneeWithStatus) => assigneeWithStatus
+        .filter((nestedAssigneeWithStatus) => nestedAssigneeWithStatus.overlap));
+    }
+  }
+
   // search previous developer assignee before bug found
   static linkDevelopersWithBugs(issueWithBugs) {
     if (issueWithBugs.commentsWithBugs.length > 0) {
       return issueWithBugs.commentsWithBugs.map((commentWithBug) => {
-        const devStatusEnds = [];
-        const assigneeChanges = [];
         const linkedAssigneeWithBug = { ...commentWithBug };
-
         const commentCreatedDateObj = this
           .convertTimestampToDateObject(commentWithBug.commentCreated);
-        const sortedChangelog = this.sortByTimestamps(issueWithBugs.changelog);
 
-        const initialTimestamp = {
-          transitionFrom: JSONLoader.config.initIssueStatus,
-          created: sortedChangelog[0].created,
-        };
+        // get developer assignees with dev statuses at the same time
+        const overlappedAssignees = this.getAssigneesWithDevStatuses(issueWithBugs);
 
-        // get all dev statuses ends from issue history, includes
-        // only BACKLOG, TO DO, REOPEN and IN PROGRESS statuses
-        for (const element of sortedChangelog) {
-          element.items.forEach((item) => {
-            if (item.field === 'status'
-              && item.fromString
-              && JSONLoader.config.devIssueStatuses.includes(item.fromString.toUpperCase())) {
-              devStatusEnds.push({
-                transitionFrom: item.fromString,
-                created: element.created,
-                ID: Randomizer.getRandomString(false, false, true, false, false, 20, 20),
-              });
-            }
-          });
-        }
+        // get last previous developer assignee with dev status before bug found
+        const lastPreviousDevAssignee = overlappedAssignees.flat()
+          .filter((overlappedAssignee) => overlappedAssignee
+            .createdTransitionFromAssignee <= commentCreatedDateObj
+            && overlappedAssignee
+              .createdTransitionFromStatus <= commentCreatedDateObj)
+          .reduce((prev, curr) => {
+            if (!prev) return curr;
+            return curr.createdTransitionFromStatus > prev.createdTransitionFromStatus
+            && curr.createdTransitionFromAssignee > prev.createdTransitionFromAssignee
+              ? curr
+              : prev;
+          }, null);
 
-        // get all developer assignees changes from issue history
-        for (const element of sortedChangelog) {
-          element.items.forEach((item) => {
-            if (item.field === 'assignee' && item.fromString) {
-              assigneeChanges.push({
-                transitionFrom: item.fromString,
-                transitionTo: item.toString,
-                created: element.created,
-                ID: Randomizer.getRandomString(false, false, true, false, false, 20, 20),
-              });
-            }
-          });
-        }
-
-        // filter not includes issues with only one assignee or status due to lack of transition
-        if (assigneeChanges.length > 0 && devStatusEnds.length > 0) {
-          devStatusEnds.unshift(initialTimestamp);
-          assigneeChanges.unshift(initialTimestamp);
-
-          // get time intervals between dev statuses and developer assignees changes
-          const devStatusEndTimeIntervals = this
-            .getTimeIntervals(this.convertTimestampsToDateObjects(devStatusEnds));
-
-          const filteredAssigneeChanges = this.filterDevelopersAndMissclicks(this
-            .convertTimestampsToDateObjects(assigneeChanges));
-          const assigneeChangeTimeIntervals = this.getTimeIntervals(filteredAssigneeChanges);
-
-          // get developer assignees with dev statuses at the same time
-          const overlappedAssignees = this.getAssigneesWithStatuses(
-            devStatusEndTimeIntervals,
-            assigneeChangeTimeIntervals,
-          ).map((assigneeWithStatus) => assigneeWithStatus
-            .filter((nestedAssigneeWithStatus) => nestedAssigneeWithStatus.overlap));
-
-          // get last previous developer assignee with dev status before bug found
-          const lastPreviousDevAssignee = overlappedAssignees.flat()
-            .filter((overlappedAssignee) => overlappedAssignee
-              .createdTransitionFromAssignee <= commentCreatedDateObj
-              && overlappedAssignee
-                .createdTransitionFromStatus <= commentCreatedDateObj)
-            .reduce((prev, curr) => {
-              if (!prev) return curr;
-              return curr.createdTransitionFromStatus > prev.createdTransitionFromStatus
-              && curr.createdTransitionFromAssignee > prev.createdTransitionFromAssignee
-                ? curr
-                : prev;
-            }, null);
-
-          linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee;
-        }
-
+        linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee;
         return linkedAssigneeWithBug;
       });
     }

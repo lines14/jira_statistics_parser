@@ -1,57 +1,129 @@
 {
     "issuesCreatedFrom": "26.03.2025",
-    "issuesCreatedTo": "27.05.2025",
-    "issues": 423,
-    "testedIssues": 178,
-    "testedIssuesWithBugs": 44,
-    "bugs": 171,
-    "bugsPerTestedIssue": 0.96,
-    "bugsPerTestedIssueWithBugs": 3.89,
-    "bugsInProjects": {
-        "MADP": 1,
-        "IE": 59,
-        "Котировки": 50,
-        "ADP": 42,
-        "Операционная эффективность": 7,
-        "Architecture": 6,
-        "Medpool": 2,
-        "Amanat24": 4
+    "issuesCreatedTo": "01.06.2025",
+    "issuesCount": 423,
+    "testedIssuesCount": 178,
+    "testedIssuesWithBugsCount": 44,
+    "overallBugsCount": 171,
+    "bugsCountPerTestedIssueCountRatio": 0.96,
+    "bugsCountPerTestedIssueWithBugsCountRatio": 3.89,
+    "priorities": {
+        "Medium": {
+            "bugsCount": 73,
+            "bugsCountPerOverallBugsCountRatio": 0.43
+        },
+        "Critical": {
+            "bugsCount": 98,
+            "bugsCountPerOverallBugsCountRatio": 0.57
+        }
     },
-    "bugsPerPriorities": {
-        "Medium": 73,
-        "Critical": 98
+    "devTypes": {
+        "WEB": {
+            "bugsCount": 157,
+            "bugsCountPerOverallBugsCountRatio": 0.92
+        },
+        "1C": {
+            "bugsCount": 14,
+            "bugsCountPerOverallBugsCountRatio": 0.08
+        }
     },
-    "bugsPerDevTypes": {
-        "WEB": 157,
-        "1C": 14
+    "issueTypes": {
+        "Bug": {
+            "bugsCount": 15,
+            "bugsCountPerOverallBugsCountRatio": 0.09
+        },
+        "Task": {
+            "bugsCount": 152,
+            "bugsCountPerOverallBugsCountRatio": 0.89
+        },
+        "Story": {
+            "bugsCount": 1,
+            "bugsCountPerOverallBugsCountRatio": 0.01
+        },
+        "Sub-task": {
+            "bugsCount": 3,
+            "bugsCountPerOverallBugsCountRatio": 0.02
+        }
     },
-    "bugsPerIssueTypes": {
-        "Bug": 15,
-        "Task": 152,
-        "Story": 1,
-        "Sub-task": 3
+    "projects": {
+        "MADP": {
+            "testedIssuesCount": 12,
+            "testedIssuesWithBugsCount": 1,
+            "bugsCount": 1,
+            "bugsCountPerTestedIssueCountRatio": 0.08,
+            "bugsCountPerTestedIssueWithBugsCountRatio": 1
+        },
+        "IE": {
+            "testedIssuesCount": 35,
+            "testedIssuesWithBugsCount": 11,
+            "bugsCount": 59,
+            "bugsCountPerTestedIssueCountRatio": 1.69,
+            "bugsCountPerTestedIssueWithBugsCountRatio": 5.36
+        },
+        "Котировки": {
+            "testedIssuesCount": 21,
+            "testedIssuesWithBugsCount": 9,
+            "bugsCount": 50,
+            "bugsCountPerTestedIssueCountRatio": 2.38,
+            "bugsCountPerTestedIssueWithBugsCountRatio": 5.56
+        },
+        "ADP": {
+            "testedIssuesCount": 45,
+            "testedIssuesWithBugsCount": 14,
+            "bugsCount": 42,
+            "bugsCountPerTestedIssueCountRatio": 0.93,
+            "bugsCountPerTestedIssueWithBugsCountRatio": 3
+        },
+        "Операционная эффективность": {
+            "testedIssuesCount": 17,
+            "testedIssuesWithBugsCount": 5,
+            "bugsCount": 7,
+            "bugsCountPerTestedIssueCountRatio": 0.41,
+            "bugsCountPerTestedIssueWithBugsCountRatio": 1.4
+        },
+        "Architecture": {
+            "testedIssuesCount": 3,
+            "testedIssuesWithBugsCount": 1,
+            "bugsCount": 6,
+            "bugsCountPerTestedIssueCountRatio": 2,
+            "bugsCountPerTestedIssueWithBugsCountRatio": 6
+        },
+        "Medpool": {
+            "testedIssuesCount": 9,
+            "testedIssuesWithBugsCount": 1,
+            "bugsCount": 2,
+            "bugsCountPerTestedIssueCountRatio": 0.22,
+            "bugsCountPerTestedIssueWithBugsCountRatio": 2
+        },
+        "Amanat24": {
+            "testedIssuesCount": 3,
+            "testedIssuesWithBugsCount": 2,
+            "bugsCount": 4,
+            "bugsCountPerTestedIssueCountRatio": 1.33,
+            "bugsCountPerTestedIssueWithBugsCountRatio": 2
+        }
     },
-    "bugsPerReporter": {
+    "reporters": {
         "Искаков Асхат": {
             "projects": {
                 "MADP": 1,
                 "Architecture": 2
             },
-            "overall": 3
+            "overAllBugsCount": 3
         },
         "Молдағалиева Еңлік": {
             "projects": {
                 "IE": 9,
                 "Операционная эффективность": 1
             },
-            "overall": 10
+            "overAllBugsCount": 10
         },
         "Ivan Voronov": {
             "projects": {
                 "Котировки": 23,
                 "ADP": 5
             },
-            "overall": 28
+            "overAllBugsCount": 28
         },
         "Turarbek Kairosh": {
             "projects": {
@@ -59,20 +131,20 @@
                 "ADP": 10,
                 "Amanat24": 4
             },
-            "overall": 20
+            "overAllBugsCount": 20
         },
         "Антон Липатов": {
             "projects": {
                 "ADP": 23
             },
-            "overall": 23
+            "overAllBugsCount": 23
         },
         "Әлішер Хамит": {
             "projects": {
                 "Котировки": 21,
                 "Операционная эффективность": 4
             },
-            "overall": 25
+            "overAllBugsCount": 25
         },
         "Ким Виолетта": {
             "projects": {
@@ -80,7 +152,7 @@
                 "Операционная эффективность": 2,
                 "Medpool": 2
             },
-            "overall": 7
+            "overAllBugsCount": 7
         },
         "Анисимов Анатолий": {
             "projects": {
@@ -88,10 +160,10 @@
                 "ADP": 1,
                 "Architecture": 4
             },
-            "overall": 55
+            "overAllBugsCount": 55
         }
     },
-    "bugsPerDeveloper": {
+    "developers": {
         "Есен Оразбайұлы": {
             "projects": {
                 "MADP": 1,
@@ -99,13 +171,13 @@
                 "ADP": 1,
                 "Amanat24": 1
             },
-            "overall": 9
+            "overAllBugsCount": 9
         },
         "Сакен Сатенов": {
             "projects": {
                 "IE": 54
             },
-            "overall": 54
+            "overAllBugsCount": 54
         },
         "Глеб Баженов": {
             "projects": {
@@ -113,34 +185,34 @@
                 "Операционная эффективность": 2,
                 "Medpool": 2
             },
-            "overall": 9
+            "overAllBugsCount": 9
         },
         "Абылайхан Султанбек": {
             "projects": {
                 "Котировки": 35,
                 "ADP": 10
             },
-            "overall": 45
+            "overAllBugsCount": 45
         },
         "Нурлан Кенжегулов": {
             "projects": {
                 "Котировки": 4,
                 "ADP": 17
             },
-            "overall": 21
+            "overAllBugsCount": 21
         },
         "Илья Балтер": {
             "projects": {
                 "IE": 1,
                 "Операционная эффективность": 2
             },
-            "overall": 3
+            "overAllBugsCount": 3
         },
         "Sawa Laptev": {
             "projects": {
                 "ADP": 1
             },
-            "overall": 1
+            "overAllBugsCount": 1
         },
         "Aibolat Batyrov": {
             "projects": {
@@ -149,32 +221,32 @@
                 "Architecture": 6,
                 "Amanat24": 3
             },
-            "overall": 22
+            "overAllBugsCount": 22
         },
         "Adilkhan": {
             "projects": {
                 "IE": 2,
                 "Операционная эффективность": 1
             },
-            "overall": 3
+            "overAllBugsCount": 3
         },
         "Юрий Егорин": {
             "projects": {
                 "ADP": 1
             },
-            "overall": 1
+            "overAllBugsCount": 1
         },
         "unassigned": {
             "projects": {
                 "Операционная эффективность": 2
             },
-            "overall": 2
+            "overAllBugsCount": 2
         },
         "Плотицин Николай": {
             "projects": {
                 "IE": 1
             },
-            "overall": 1
+            "overAllBugsCount": 1
         }
     }
 }

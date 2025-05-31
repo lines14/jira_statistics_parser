@@ -43,6 +43,12 @@ const parseIssues = async () => { // get Jira issues with comments
 
   DataUtils.saveToJSON({ testedIssuesWithCommentsArr });
 
+  // const testedIssuesWithAssigneesArr = testedIssuesWithCommentsArr.map((testedIssueWithComments) => {
+  //   getAssigneesWithDevStatuses
+  // });
+
+  console.log(testedIssuesWithCommentsArr[0]);
+
   let commentAuthor;
   let commentCreated; // fill and filter Jira issues with bugs and authors
   const testedIssuesWithBugsArr = testedIssuesWithCommentsArr.map((testedIssueWithComments) => {
