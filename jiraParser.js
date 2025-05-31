@@ -74,33 +74,33 @@ const parseIssues = async () => { // get Jira issues with comments
   const projectNames = [...new Set(testedIssuesWithBugsArr
     .map((testedIssueWithBugsArr) => testedIssueWithBugsArr.projectName))];
 
-  const priorities = [...new Set(testedIssuesWithBugsArr
+  const priorityNames = [...new Set(testedIssuesWithBugsArr
     .map((testedIssueWithBugsArr) => testedIssueWithBugsArr.priority))];
 
-  const devTypes = [...new Set(testedIssuesWithBugsArr
+  const devTypeNames = [...new Set(testedIssuesWithBugsArr
     .map((testedIssueWithBugsArr) => testedIssueWithBugsArr.devType))];
 
-  const issueTypes = [...new Set(testedIssuesWithBugsArr
+  const issueTypeNames = [...new Set(testedIssuesWithBugsArr
     .map((testedIssueWithBugsArr) => testedIssueWithBugsArr.issuetype))];
 
-  const reporters = [...new Set(testedIssuesWithBugsArr
+  const reporterNames = [...new Set(testedIssuesWithBugsArr
     .flatMap((testedIssueWithBugsArr) => testedIssueWithBugsArr.linkedCommentsWithBugs
       .map((linkedCommentWithBugs) => linkedCommentWithBugs.commentAuthor)))];
 
-  const developers = [...new Set(testedIssuesWithBugsArr
+  const developerNames = [...new Set(testedIssuesWithBugsArr
     .flatMap((testedIssueWithBugsArr) => testedIssueWithBugsArr.linkedCommentsWithBugs
       .map((linkedCommentWithBugs) => linkedCommentWithBugs
         .lastPreviousDevAssignee?.transitionFromAssignee
       ?? JSONLoader.config.issueWithoutAssignee)))];
 
-  const bugsPerPriorities = {};
-  DataUtils.fillBugsPerEntities(bugsPerPriorities, testedIssuesWithBugsArr, 'priority', priorities, overallBugsCount);
+  const priorities = {};
+  DataUtils.fillBugsPerEntities(priorities, testedIssuesWithBugsArr, 'priority', priorityNames, overallBugsCount);
 
-  const bugsPerDevTypes = {};
-  DataUtils.fillBugsPerEntities(bugsPerDevTypes, testedIssuesWithBugsArr, 'devType', devTypes, overallBugsCount);
+  const devTypes = {};
+  DataUtils.fillBugsPerEntities(devTypes, testedIssuesWithBugsArr, 'devType', devTypeNames, overallBugsCount);
 
-  const bugsPerIssueTypes = {};
-  DataUtils.fillBugsPerEntities(bugsPerIssueTypes, testedIssuesWithBugsArr, 'issuetype', issueTypes, overallBugsCount);
+  const issueTypes = {};
+  DataUtils.fillBugsPerEntities(issueTypes, testedIssuesWithBugsArr, 'issuetype', issueTypeNames, overallBugsCount);
 
   const projects = {};
   projectNames.forEach((projectName) => {
@@ -128,8 +128,8 @@ const parseIssues = async () => { // get Jira issues with comments
     };
   });
 
-  const bugsPerReporter = {};
-  reporters.forEach((reporter) => {
+  const reporters = {};
+  reporterNames.forEach((reporterName) => {
     let overAllBugsCount = 0;
     const projectBugCounts = {};
     projectNames.forEach((projectName) => {
@@ -138,7 +138,7 @@ const parseIssues = async () => { // get Jira issues with comments
         testedIssueWithBugs.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
           if (
             testedIssueWithBugs.projectName === projectName
-            && linkedCommentWithBugs.commentAuthor === reporter
+            && linkedCommentWithBugs.commentAuthor === reporterName
           ) {
             bugsCount += 1;
           }
@@ -150,15 +150,15 @@ const parseIssues = async () => { // get Jira issues with comments
       }
     });
     if (overAllBugsCount > 0) {
-      bugsPerReporter[reporter] = {
+      reporters[reporterName] = {
         projects: projectBugCounts,
         overAllBugsCount,
       };
     }
   });
 
-  const bugsPerDeveloper = {};
-  developers.forEach((developer) => {
+  const developers = {};
+  developerNames.forEach((developerName) => {
     let overAllBugsCount = 0;
     const projectBugCounts = {};
     projectNames.forEach((projectName) => {
@@ -168,7 +168,7 @@ const parseIssues = async () => { // get Jira issues with comments
           if (
             testedIssueWithBugs.projectName === projectName
             && (linkedCommentWithBugs.lastPreviousDevAssignee?.transitionFromAssignee
-              ?? JSONLoader.config.issueWithoutAssignee) === developer
+              ?? JSONLoader.config.issueWithoutAssignee) === developerName
           ) {
             bugsCount += 1;
           }
@@ -180,7 +180,7 @@ const parseIssues = async () => { // get Jira issues with comments
       }
     });
     if (overAllBugsCount > 0) {
-      bugsPerDeveloper[developer] = {
+      developers[developerName] = {
         projects: projectBugCounts,
         overAllBugsCount,
       };
@@ -199,12 +199,12 @@ const parseIssues = async () => { // get Jira issues with comments
       / testedIssuesWithCommentsArr.length).toFixed(2)),
     bugsCountPerTestedIssueWithBugsCountRatio: Number((overallBugsCount
       / testedIssuesWithBugsArr.length).toFixed(2)),
-    bugsPerPriorities,
-    bugsPerDevTypes,
-    bugsPerIssueTypes,
+    priorities,
+    devTypes,
+    issueTypes,
     projects,
-    bugsPerReporter,
-    bugsPerDeveloper,
+    reporters,
+    developers,
   };
 
   DataUtils.saveToJSON({ summary });
