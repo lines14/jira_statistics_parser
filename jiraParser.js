@@ -45,13 +45,22 @@ const parseIssues = async () => { // get Jira issues with comments
   DataUtils.saveToJSON({ testedIssuesWithCommentsArr });
 
   const developersWorkload = testedIssuesWithCommentsArr
-    .map((testedIssueWithComments, index) => DataUtils.getDevelopersWorkload(testedIssueWithComments));
+    .filter((testedIssueWithComments) => !JSONLoader.config.debugIssues.includes(testedIssueWithComments.key))
+    .map((testedIssueWithComments) => ({
+      [testedIssueWithComments.projectName]: [...new Set(DataUtils.getDevelopersWorkload(testedIssueWithComments)
+        .flat()
+        .map((developer) => developer.transitionFromAssignee))],
+    }));
 
-  // .map((testedIssueWithComments) => [...new Set(DataUtils.getDevelopersWorkload(testedIssueWithComments)
-  // .flat()
-  // .map((developer) => developer.transitionFromAssignee))]);
+  // .map((testedIssueWithComments, index) => {
+  //     if (testedIssueWithComments.key === 'MADP-384') {
+  //       DataUtils.getDevelopersWorkload(testedIssueWithComments)
+  //       throw new Error('kek')
+  //     }
+  //   });
+  // .map((testedIssueWithComments) => DataUtils.getDevelopersWorkload(testedIssueWithComments))
 
-  console.log(developersWorkload[7]);
+  console.log(developersWorkload);
 
   let commentAuthor;
   let commentCreated; // fill and filter Jira issues with bugs and authors

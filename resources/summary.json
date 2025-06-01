@@ -164,14 +164,11 @@
         }
     },
     "developers": {
-        "Есен Оразбайұлы": {
+        "Адиль Аманкулов": {
             "projects": {
-                "MADP": 1,
-                "Котировки": 6,
-                "ADP": 1,
-                "Amanat24": 1
+                "MADP": 1
             },
-            "overAllBugsCount": 9
+            "overAllBugsCount": 1
         },
         "Сакен Сатенов": {
             "projects": {
@@ -182,24 +179,33 @@
         "Глеб Баженов": {
             "projects": {
                 "Котировки": 5,
+                "ADP": 1,
                 "Операционная эффективность": 2,
                 "Medpool": 2
             },
-            "overAllBugsCount": 9
+            "overAllBugsCount": 10
         },
         "Абылайхан Султанбек": {
             "projects": {
                 "Котировки": 35,
-                "ADP": 10
+                "ADP": 15
             },
-            "overAllBugsCount": 45
+            "overAllBugsCount": 50
+        },
+        "Есен Оразбайұлы": {
+            "projects": {
+                "Котировки": 6,
+                "ADP": 2,
+                "Amanat24": 1
+            },
+            "overAllBugsCount": 9
         },
         "Нурлан Кенжегулов": {
             "projects": {
                 "Котировки": 4,
-                "ADP": 17
+                "ADP": 5
             },
-            "overAllBugsCount": 21
+            "overAllBugsCount": 9
         },
         "Илья Балтер": {
             "projects": {
@@ -217,11 +223,11 @@
         "Aibolat Batyrov": {
             "projects": {
                 "IE": 1,
-                "ADP": 12,
+                "ADP": 17,
                 "Architecture": 6,
                 "Amanat24": 3
             },
-            "overAllBugsCount": 22
+            "overAllBugsCount": 27
         },
         "Adilkhan": {
             "projects": {
