@@ -1,6 +1,6 @@
 {
     "issuesCreatedFrom": "26.03.2025",
-    "issuesCreatedTo": "01.06.2025",
+    "issuesCreatedTo": "02.06.2025",
     "issuesCount": 423,
     "testedIssuesCount": 178,
     "testedIssuesWithBugsCount": 44,
@@ -167,272 +167,327 @@
         "Адиль Аманкулов": {
             "projects": {
                 "MADP": {
+                    "testedIssuesCount": 9,
+                    "testedIssuesWithBugsCount": 1,
                     "bugsCount": 1,
-                    "issuesCount": 9
+                    "bugsCountPerTestedIssueCountRatio": 0.11,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 1
                 },
-                "IE": {},
-                "Котировки": {},
                 "ADP": {
-                    "issuesCount": 2
-                },
-                "Операционная эффективность": {},
-                "Architecture": {},
-                "Medpool": {},
-                "Amanat24": {}
+                    "testedIssuesCount": 2
+                }
             },
+            "overAllTestedIssuesCount": 11,
+            "overAllTestedIssuesWithBugsCount": 1,
             "overAllBugsCount": 1,
-            "overAllIssuesCount": 11
+            "bugsCountPerTestedIssueCountMeanRatio": 0.11,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 1
         },
         "Сакен Сатенов": {
             "projects": {
-                "MADP": {},
                 "IE": {
+                    "testedIssuesCount": 21,
+                    "testedIssuesWithBugsCount": 7,
                     "bugsCount": 54,
-                    "issuesCount": 21
+                    "bugsCountPerTestedIssueCountRatio": 2.57,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 7.71
                 },
-                "Котировки": {},
                 "ADP": {
-                    "issuesCount": 1
-                },
-                "Операционная эффективность": {},
-                "Architecture": {},
-                "Medpool": {},
-                "Amanat24": {}
+                    "testedIssuesCount": 1
+                }
             },
+            "overAllTestedIssuesCount": 22,
+            "overAllTestedIssuesWithBugsCount": 7,
             "overAllBugsCount": 54,
-            "overAllIssuesCount": 22
+            "bugsCountPerTestedIssueCountMeanRatio": 2.57,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 7.71
         },
         "Глеб Баженов": {
             "projects": {
-                "MADP": {},
-                "IE": {},
                 "Котировки": {
+                    "testedIssuesCount": 1,
+                    "testedIssuesWithBugsCount": 1,
                     "bugsCount": 5,
-                    "issuesCount": 1
+                    "bugsCountPerTestedIssueCountRatio": 5,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 5
                 },
                 "ADP": {
                     "bugsCount": 1
                 },
                 "Операционная эффективность": {
+                    "testedIssuesCount": 3,
+                    "testedIssuesWithBugsCount": 1,
                     "bugsCount": 2,
-                    "issuesCount": 3
+                    "bugsCountPerTestedIssueCountRatio": 0.67,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 2
                 },
-                "Architecture": {},
                 "Medpool": {
+                    "testedIssuesCount": 4,
+                    "testedIssuesWithBugsCount": 1,
                     "bugsCount": 2,
-                    "issuesCount": 4
-                },
-                "Amanat24": {}
+                    "bugsCountPerTestedIssueCountRatio": 0.5,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 2
+                }
             },
+            "overAllTestedIssuesCount": 8,
+            "overAllTestedIssuesWithBugsCount": 3,
             "overAllBugsCount": 10,
-            "overAllIssuesCount": 8
+            "bugsCountPerTestedIssueCountMeanRatio": 2.06,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 3
         },
         "Абылайхан Султанбек": {
             "projects": {
-                "MADP": {},
-                "IE": {},
                 "Котировки": {
+                    "testedIssuesCount": 10,
+                    "testedIssuesWithBugsCount": 6,
                     "bugsCount": 35,
-                    "issuesCount": 10
+                    "bugsCountPerTestedIssueCountRatio": 3.5,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 5.83
                 },
                 "ADP": {
+                    "testedIssuesCount": 9,
+                    "testedIssuesWithBugsCount": 7,
                     "bugsCount": 15,
-                    "issuesCount": 9
-                },
-                "Операционная эффективность": {},
-                "Architecture": {},
-                "Medpool": {},
-                "Amanat24": {}
+                    "bugsCountPerTestedIssueCountRatio": 1.67,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 2.14
+                }
             },
+            "overAllTestedIssuesCount": 19,
+            "overAllTestedIssuesWithBugsCount": 13,
             "overAllBugsCount": 50,
-            "overAllIssuesCount": 19
+            "bugsCountPerTestedIssueCountMeanRatio": 2.58,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 3.99
         },
         "Есен Оразбайұлы": {
             "projects": {
-                "MADP": {},
-                "IE": {},
                 "Котировки": {
+                    "testedIssuesCount": 10,
+                    "testedIssuesWithBugsCount": 3,
                     "bugsCount": 6,
-                    "issuesCount": 10
+                    "bugsCountPerTestedIssueCountRatio": 0.6,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 2
                 },
                 "ADP": {
+                    "testedIssuesCount": 8,
+                    "testedIssuesWithBugsCount": 2,
                     "bugsCount": 2,
-                    "issuesCount": 8
+                    "bugsCountPerTestedIssueCountRatio": 0.25,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 1
                 },
-                "Операционная эффективность": {},
-                "Architecture": {},
-                "Medpool": {},
                 "Amanat24": {
+                    "testedIssuesCount": 1,
+                    "testedIssuesWithBugsCount": 1,
                     "bugsCount": 1,
-                    "issuesCount": 1
+                    "bugsCountPerTestedIssueCountRatio": 1,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 1
                 }
             },
+            "overAllTestedIssuesCount": 19,
+            "overAllTestedIssuesWithBugsCount": 6,
             "overAllBugsCount": 9,
-            "overAllIssuesCount": 19
+            "bugsCountPerTestedIssueCountMeanRatio": 0.62,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 1.33
         },
         "Нурлан Кенжегулов": {
             "projects": {
-                "MADP": {},
-                "IE": {},
                 "Котировки": {
+                    "testedIssuesCount": 3,
+                    "testedIssuesWithBugsCount": 3,
                     "bugsCount": 4,
-                    "issuesCount": 3
+                    "bugsCountPerTestedIssueCountRatio": 1.33,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 1.33
                 },
                 "ADP": {
+                    "testedIssuesCount": 4,
+                    "testedIssuesWithBugsCount": 3,
                     "bugsCount": 5,
-                    "issuesCount": 4
+                    "bugsCountPerTestedIssueCountRatio": 1.25,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 1.67
                 },
-                "Операционная эффективность": {},
                 "Architecture": {
-                    "issuesCount": 1
-                },
-                "Medpool": {},
-                "Amanat24": {}
+                    "testedIssuesCount": 1
+                }
             },
+            "overAllTestedIssuesCount": 8,
+            "overAllTestedIssuesWithBugsCount": 6,
             "overAllBugsCount": 9,
-            "overAllIssuesCount": 8
+            "bugsCountPerTestedIssueCountMeanRatio": 1.29,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 1.5
         },
         "Илья Балтер": {
             "projects": {
-                "MADP": {},
                 "IE": {
+                    "testedIssuesCount": 1,
+                    "testedIssuesWithBugsCount": 1,
                     "bugsCount": 1,
-                    "issuesCount": 1
+                    "bugsCountPerTestedIssueCountRatio": 1,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 1
                 },
-                "Котировки": {},
-                "ADP": {},
                 "Операционная эффективность": {
+                    "testedIssuesCount": 8,
+                    "testedIssuesWithBugsCount": 2,
                     "bugsCount": 2,
-                    "issuesCount": 8
-                },
-                "Architecture": {},
-                "Medpool": {},
-                "Amanat24": {}
+                    "bugsCountPerTestedIssueCountRatio": 0.25,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 1
+                }
             },
+            "overAllTestedIssuesCount": 9,
+            "overAllTestedIssuesWithBugsCount": 3,
             "overAllBugsCount": 3,
-            "overAllIssuesCount": 9
+            "bugsCountPerTestedIssueCountMeanRatio": 0.63,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 1
         },
         "Sawa Laptev": {
             "projects": {
                 "MADP": {
-                    "issuesCount": 1
+                    "testedIssuesCount": 1
                 },
-                "IE": {},
-                "Котировки": {},
                 "ADP": {
+                    "testedIssuesCount": 8,
+                    "testedIssuesWithBugsCount": 1,
                     "bugsCount": 1,
-                    "issuesCount": 8
+                    "bugsCountPerTestedIssueCountRatio": 0.13,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 1
                 },
-                "Операционная эффективность": {},
-                "Architecture": {},
                 "Medpool": {
-                    "issuesCount": 6
-                },
-                "Amanat24": {}
+                    "testedIssuesCount": 6
+                }
             },
+            "overAllTestedIssuesCount": 15,
+            "overAllTestedIssuesWithBugsCount": 1,
             "overAllBugsCount": 1,
-            "overAllIssuesCount": 15
+            "bugsCountPerTestedIssueCountMeanRatio": 0.13,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 1
         },
         "Aibolat Batyrov": {
             "projects": {
                 "MADP": {
-                    "issuesCount": 3
+                    "testedIssuesCount": 3
                 },
                 "IE": {
+                    "testedIssuesCount": 1,
+                    "testedIssuesWithBugsCount": 1,
                     "bugsCount": 1,
-                    "issuesCount": 1
+                    "bugsCountPerTestedIssueCountRatio": 1,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 1
                 },
-                "Котировки": {},
                 "ADP": {
+                    "testedIssuesCount": 11,
+                    "testedIssuesWithBugsCount": 4,
                     "bugsCount": 17,
-                    "issuesCount": 11
+                    "bugsCountPerTestedIssueCountRatio": 1.55,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 4.25
                 },
-                "Операционная эффективность": {},
                 "Architecture": {
+                    "testedIssuesCount": 1,
+                    "testedIssuesWithBugsCount": 1,
                     "bugsCount": 6,
-                    "issuesCount": 1
+                    "bugsCountPerTestedIssueCountRatio": 6,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 6
                 },
-                "Medpool": {},
                 "Amanat24": {
+                    "testedIssuesCount": 2,
+                    "testedIssuesWithBugsCount": 1,
                     "bugsCount": 3,
-                    "issuesCount": 2
+                    "bugsCountPerTestedIssueCountRatio": 1.5,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 3
                 }
             },
+            "overAllTestedIssuesCount": 18,
+            "overAllTestedIssuesWithBugsCount": 7,
             "overAllBugsCount": 27,
-            "overAllIssuesCount": 18
+            "bugsCountPerTestedIssueCountMeanRatio": 2.51,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 3.56
         },
         "Adilkhan": {
             "projects": {
-                "MADP": {},
                 "IE": {
+                    "testedIssuesCount": 6,
+                    "testedIssuesWithBugsCount": 1,
                     "bugsCount": 2,
-                    "issuesCount": 6
+                    "bugsCountPerTestedIssueCountRatio": 0.33,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 2
                 },
-                "Котировки": {},
-                "ADP": {},
                 "Операционная эффективность": {
+                    "testedIssuesCount": 5,
+                    "testedIssuesWithBugsCount": 1,
                     "bugsCount": 1,
-                    "issuesCount": 5
-                },
-                "Architecture": {},
-                "Medpool": {},
-                "Amanat24": {}
+                    "bugsCountPerTestedIssueCountRatio": 0.2,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 1
+                }
             },
+            "overAllTestedIssuesCount": 11,
+            "overAllTestedIssuesWithBugsCount": 2,
             "overAllBugsCount": 3,
-            "overAllIssuesCount": 11
+            "bugsCountPerTestedIssueCountMeanRatio": 0.27,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 1.5
         },
         "Юрий Егорин": {
             "projects": {
-                "MADP": {},
-                "IE": {},
-                "Котировки": {},
                 "ADP": {
+                    "testedIssuesCount": 5,
+                    "testedIssuesWithBugsCount": 1,
                     "bugsCount": 1,
-                    "issuesCount": 5
+                    "bugsCountPerTestedIssueCountRatio": 0.2,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 1
                 },
                 "Операционная эффективность": {
-                    "issuesCount": 1
-                },
-                "Architecture": {},
-                "Medpool": {},
-                "Amanat24": {}
+                    "testedIssuesCount": 1
+                }
             },
+            "overAllTestedIssuesCount": 6,
+            "overAllTestedIssuesWithBugsCount": 1,
             "overAllBugsCount": 1,
-            "overAllIssuesCount": 6
+            "bugsCountPerTestedIssueCountMeanRatio": 0.2,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 1
         },
         "unassigned": {
             "projects": {
-                "MADP": {},
-                "IE": {},
-                "Котировки": {},
-                "ADP": {},
-                "Операционная эффективность": {
-                    "bugsCount": 2
+                "IE": {
+                    "testedIssuesCount": 1
                 },
-                "Architecture": {},
-                "Medpool": {},
-                "Amanat24": {}
+                "Котировки": {
+                    "testedIssuesCount": 1
+                },
+                "ADP": {
+                    "testedIssuesCount": 3
+                },
+                "Операционная эффективность": {
+                    "testedIssuesCount": 3,
+                    "testedIssuesWithBugsCount": 1,
+                    "bugsCount": 2,
+                    "bugsCountPerTestedIssueCountRatio": 0.67,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 2
+                },
+                "Architecture": {
+                    "testedIssuesCount": 1
+                }
             },
-            "overAllBugsCount": 2
+            "overAllTestedIssuesCount": 9,
+            "overAllTestedIssuesWithBugsCount": 1,
+            "overAllBugsCount": 2,
+            "bugsCountPerTestedIssueCountMeanRatio": 0.67,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 2
         },
         "Плотицин Николай": {
             "projects": {
-                "MADP": {},
                 "IE": {
+                    "testedIssuesCount": 5,
+                    "testedIssuesWithBugsCount": 2,
                     "bugsCount": 1,
-                    "issuesCount": 5
+                    "bugsCountPerTestedIssueCountRatio": 0.2,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 0.5
                 },
-                "Котировки": {},
                 "ADP": {
-                    "issuesCount": 1
-                },
-                "Операционная эффективность": {},
-                "Architecture": {},
-                "Medpool": {},
-                "Amanat24": {}
+                    "testedIssuesCount": 1,
+                    "testedIssuesWithBugsCount": 1
+                }
             },
+            "overAllTestedIssuesCount": 6,
+            "overAllTestedIssuesWithBugsCount": 3,
             "overAllBugsCount": 1,
-            "overAllIssuesCount": 6
+            "bugsCountPerTestedIssueCountMeanRatio": 0.2,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 0.5
         }
     }
 }

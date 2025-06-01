@@ -161,7 +161,6 @@ class DataUtils {
   ) {
     statusEnds.unshift(initialTimestamp);
     assigneeChanges.unshift(initialTimestamp);
-    // console.log(statusEnds)
 
     // get time intervals between statuses changes
     const statusEndTimeIntervals = this.getTimeIntervals(statusEnds);
@@ -240,8 +239,7 @@ class DataUtils {
     return [];
   }
 
-  // get developer assignees with dev statuses at the same time
-  static getDevelopersWorkload(testedIssue) {
+  static getIssueDevelopers(testedIssue) {
     const sortedChangelog = this.sortByTimestamps(testedIssue.changelog);
     const initialTimestamp = {
       transitionFrom: JSONLoader.config.initIssueStatus,
@@ -281,6 +279,28 @@ class DataUtils {
       const bugsCountPerOverallBugsCountRatio = Number((bugsCount / overallBugsCount).toFixed(2));
       accumulator[el] = { bugsCount, bugsCountPerOverallBugsCountRatio };
     });
+  }
+
+  static getDevelopersWorkload(issuesArr) {
+    return issuesArr
+      .filter((issue) => !JSONLoader.config.debugIssues
+        .includes(issue.key))
+      .map((issue) => {
+        const developers = [...new Set(DataUtils.getIssueDevelopers(issue)
+          .flat()
+          .map((developer) => developer.transitionFromAssignee))];
+
+        return {
+          projectName: issue.projectName,
+          developers: developers.length > 0
+            ? developers
+            : [JSONLoader.config.issueWithoutAssignee],
+        };
+      });
+  }
+
+  static averageRatio(ratiosArr) {
+    return Number((ratiosArr.reduce((sum, val) => sum + val, 0) / ratiosArr.length).toFixed(2));
   }
 }
 
