@@ -44,6 +44,15 @@ const parseIssues = async () => { // get Jira issues with comments
 
   DataUtils.saveToJSON({ testedIssuesWithCommentsArr });
 
+  const developersWorkload = testedIssuesWithCommentsArr
+    .map((testedIssueWithComments, index) => DataUtils.getDevelopersWorkload(testedIssueWithComments));
+
+  // .map((testedIssueWithComments) => [...new Set(DataUtils.getDevelopersWorkload(testedIssueWithComments)
+  // .flat()
+  // .map((developer) => developer.transitionFromAssignee))]);
+
+  console.log(developersWorkload[7]);
+
   let commentAuthor;
   let commentCreated; // fill and filter Jira issues with bugs and authors
   testedIssuesWithCommentsArr.forEach((testedIssueWithComments) => {

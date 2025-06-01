@@ -168,23 +168,32 @@ class DataUtils {
       : this.filterDevelopersAndMissclicks(assigneeChanges);
     const assigneeChangeTimeIntervals = this.getTimeIntervals(filteredAssigneeChanges);
 
-    // get assignees with statuses at the same time
+    // get assignees with statuses at the same and longest amount of time
     return statusEndTimeIntervals
       .map((statusEndTimeInterval) => assigneeChangeTimeIntervals
         .map((assigneeChangeTimeInterval) => this
           .getAssigneeWithStatus(statusEndTimeInterval, assigneeChangeTimeInterval)))
-      .map((assigneeWithStatus) => assigneeWithStatus
-        .filter((nestedAssigneeWithStatus) => nestedAssigneeWithStatus.overlap));
+      .map((assigneeWithStatus) => [assigneeWithStatus
+        .reduce((overlappedAssignee, currentElement) => {
+          if (!overlappedAssignee
+            || (currentElement.overlapDuration
+              ?? 0) > (overlappedAssignee.overlapDuration ?? 0)) {
+            return currentElement;
+          }
+
+          return overlappedAssignee;
+        }, null)]
+        .filter((nestedAssigneeWithStatus) => nestedAssigneeWithStatus?.overlap));
   }
 
   // search previous developer assignee before bug found
-  static linkDevelopersWithBugs(issueWithBugs) {
-    if (issueWithBugs.commentsWithBugs.length > 0) {
-      return issueWithBugs.commentsWithBugs.map((commentWithBug) => {
+  static linkDevelopersWithBugs(testedIssue) {
+    if (testedIssue.commentsWithBugs.length > 0) {
+      return testedIssue.commentsWithBugs.map((commentWithBug) => {
         const linkedAssigneeWithBug = { ...commentWithBug };
         const commentCreatedDateObj = TimeUtils
           .convertTimestampToDateObject(commentWithBug.commentCreated);
-        const sortedChangelog = this.sortByTimestamps(issueWithBugs.changelog);
+        const sortedChangelog = this.sortByTimestamps(testedIssue.changelog);
         const initialTimestamp = {
           transitionFrom: JSONLoader.config.initIssueStatus,
           created: sortedChangelog[0].created,
@@ -228,6 +237,29 @@ class DataUtils {
     }
 
     return [];
+  }
+
+  // get developer assignees with dev statuses at the same time
+  static getDevelopersWorkload(testedIssue) {
+    const sortedChangelog = this.sortByTimestamps(testedIssue.changelog);
+    const initialTimestamp = {
+      transitionFrom: JSONLoader.config.initIssueStatus,
+      created: sortedChangelog[0].created,
+    };
+
+    // get all dev statuses ends from issue history, includes
+    // only BACKLOG, TO DO, REOPEN and IN PROGRESS statuses
+    const devStatusEnds = this.getDevStatusEnds(sortedChangelog);
+
+    // get all assignees changes from issue history
+    const assigneeChanges = this.getAssigneeChanges(sortedChangelog);
+
+    // get developer assignees with dev statuses at the same time
+    return this.getAssigneesWithStatuses(
+      devStatusEnds,
+      assigneeChanges,
+      initialTimestamp,
+    );
   }
 
   static fillBugsPerEntities(
