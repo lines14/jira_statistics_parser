@@ -166,93 +166,273 @@
     "developers": {
         "Адиль Аманкулов": {
             "projects": {
-                "MADP": 1
+                "MADP": {
+                    "bugsCount": 1,
+                    "issuesCount": 9
+                },
+                "IE": {},
+                "Котировки": {},
+                "ADP": {
+                    "issuesCount": 2
+                },
+                "Операционная эффективность": {},
+                "Architecture": {},
+                "Medpool": {},
+                "Amanat24": {}
             },
-            "overAllBugsCount": 1
+            "overAllBugsCount": 1,
+            "overAllIssuesCount": 11
         },
         "Сакен Сатенов": {
             "projects": {
-                "IE": 54
+                "MADP": {},
+                "IE": {
+                    "bugsCount": 54,
+                    "issuesCount": 21
+                },
+                "Котировки": {},
+                "ADP": {
+                    "issuesCount": 1
+                },
+                "Операционная эффективность": {},
+                "Architecture": {},
+                "Medpool": {},
+                "Amanat24": {}
             },
-            "overAllBugsCount": 54
+            "overAllBugsCount": 54,
+            "overAllIssuesCount": 22
         },
         "Глеб Баженов": {
             "projects": {
-                "Котировки": 5,
-                "ADP": 1,
-                "Операционная эффективность": 2,
-                "Medpool": 2
+                "MADP": {},
+                "IE": {},
+                "Котировки": {
+                    "bugsCount": 5,
+                    "issuesCount": 1
+                },
+                "ADP": {
+                    "bugsCount": 1
+                },
+                "Операционная эффективность": {
+                    "bugsCount": 2,
+                    "issuesCount": 3
+                },
+                "Architecture": {},
+                "Medpool": {
+                    "bugsCount": 2,
+                    "issuesCount": 4
+                },
+                "Amanat24": {}
             },
-            "overAllBugsCount": 10
+            "overAllBugsCount": 10,
+            "overAllIssuesCount": 8
         },
         "Абылайхан Султанбек": {
             "projects": {
-                "Котировки": 35,
-                "ADP": 15
+                "MADP": {},
+                "IE": {},
+                "Котировки": {
+                    "bugsCount": 35,
+                    "issuesCount": 10
+                },
+                "ADP": {
+                    "bugsCount": 15,
+                    "issuesCount": 9
+                },
+                "Операционная эффективность": {},
+                "Architecture": {},
+                "Medpool": {},
+                "Amanat24": {}
             },
-            "overAllBugsCount": 50
+            "overAllBugsCount": 50,
+            "overAllIssuesCount": 19
         },
         "Есен Оразбайұлы": {
             "projects": {
-                "Котировки": 6,
-                "ADP": 2,
-                "Amanat24": 1
+                "MADP": {},
+                "IE": {},
+                "Котировки": {
+                    "bugsCount": 6,
+                    "issuesCount": 10
+                },
+                "ADP": {
+                    "bugsCount": 2,
+                    "issuesCount": 8
+                },
+                "Операционная эффективность": {},
+                "Architecture": {},
+                "Medpool": {},
+                "Amanat24": {
+                    "bugsCount": 1,
+                    "issuesCount": 1
+                }
             },
-            "overAllBugsCount": 9
+            "overAllBugsCount": 9,
+            "overAllIssuesCount": 19
         },
         "Нурлан Кенжегулов": {
             "projects": {
-                "Котировки": 4,
-                "ADP": 5
+                "MADP": {},
+                "IE": {},
+                "Котировки": {
+                    "bugsCount": 4,
+                    "issuesCount": 3
+                },
+                "ADP": {
+                    "bugsCount": 5,
+                    "issuesCount": 4
+                },
+                "Операционная эффективность": {},
+                "Architecture": {
+                    "issuesCount": 1
+                },
+                "Medpool": {},
+                "Amanat24": {}
             },
-            "overAllBugsCount": 9
+            "overAllBugsCount": 9,
+            "overAllIssuesCount": 8
         },
         "Илья Балтер": {
             "projects": {
-                "IE": 1,
-                "Операционная эффективность": 2
+                "MADP": {},
+                "IE": {
+                    "bugsCount": 1,
+                    "issuesCount": 1
+                },
+                "Котировки": {},
+                "ADP": {},
+                "Операционная эффективность": {
+                    "bugsCount": 2,
+                    "issuesCount": 8
+                },
+                "Architecture": {},
+                "Medpool": {},
+                "Amanat24": {}
             },
-            "overAllBugsCount": 3
+            "overAllBugsCount": 3,
+            "overAllIssuesCount": 9
         },
         "Sawa Laptev": {
             "projects": {
-                "ADP": 1
+                "MADP": {
+                    "issuesCount": 1
+                },
+                "IE": {},
+                "Котировки": {},
+                "ADP": {
+                    "bugsCount": 1,
+                    "issuesCount": 8
+                },
+                "Операционная эффективность": {},
+                "Architecture": {},
+                "Medpool": {
+                    "issuesCount": 6
+                },
+                "Amanat24": {}
             },
-            "overAllBugsCount": 1
+            "overAllBugsCount": 1,
+            "overAllIssuesCount": 15
         },
         "Aibolat Batyrov": {
             "projects": {
-                "IE": 1,
-                "ADP": 17,
-                "Architecture": 6,
-                "Amanat24": 3
+                "MADP": {
+                    "issuesCount": 3
+                },
+                "IE": {
+                    "bugsCount": 1,
+                    "issuesCount": 1
+                },
+                "Котировки": {},
+                "ADP": {
+                    "bugsCount": 17,
+                    "issuesCount": 11
+                },
+                "Операционная эффективность": {},
+                "Architecture": {
+                    "bugsCount": 6,
+                    "issuesCount": 1
+                },
+                "Medpool": {},
+                "Amanat24": {
+                    "bugsCount": 3,
+                    "issuesCount": 2
+                }
             },
-            "overAllBugsCount": 27
+            "overAllBugsCount": 27,
+            "overAllIssuesCount": 18
         },
         "Adilkhan": {
             "projects": {
-                "IE": 2,
-                "Операционная эффективность": 1
+                "MADP": {},
+                "IE": {
+                    "bugsCount": 2,
+                    "issuesCount": 6
+                },
+                "Котировки": {},
+                "ADP": {},
+                "Операционная эффективность": {
+                    "bugsCount": 1,
+                    "issuesCount": 5
+                },
+                "Architecture": {},
+                "Medpool": {},
+                "Amanat24": {}
             },
-            "overAllBugsCount": 3
+            "overAllBugsCount": 3,
+            "overAllIssuesCount": 11
         },
         "Юрий Егорин": {
             "projects": {
-                "ADP": 1
+                "MADP": {},
+                "IE": {},
+                "Котировки": {},
+                "ADP": {
+                    "bugsCount": 1,
+                    "issuesCount": 5
+                },
+                "Операционная эффективность": {
+                    "issuesCount": 1
+                },
+                "Architecture": {},
+                "Medpool": {},
+                "Amanat24": {}
             },
-            "overAllBugsCount": 1
+            "overAllBugsCount": 1,
+            "overAllIssuesCount": 6
         },
         "unassigned": {
             "projects": {
-                "Операционная эффективность": 2
+                "MADP": {},
+                "IE": {},
+                "Котировки": {},
+                "ADP": {},
+                "Операционная эффективность": {
+                    "bugsCount": 2
+                },
+                "Architecture": {},
+                "Medpool": {},
+                "Amanat24": {}
             },
             "overAllBugsCount": 2
         },
         "Плотицин Николай": {
             "projects": {
-                "IE": 1
+                "MADP": {},
+                "IE": {
+                    "bugsCount": 1,
+                    "issuesCount": 5
+                },
+                "Котировки": {},
+                "ADP": {
+                    "issuesCount": 1
+                },
+                "Операционная эффективность": {},
+                "Architecture": {},
+                "Medpool": {},
+                "Amanat24": {}
             },
-            "overAllBugsCount": 1
+            "overAllBugsCount": 1,
+            "overAllIssuesCount": 6
         }
     }
 }

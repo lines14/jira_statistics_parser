@@ -44,23 +44,21 @@ const parseIssues = async () => { // get Jira issues with comments
 
   DataUtils.saveToJSON({ testedIssuesWithCommentsArr });
 
-  const developersWorkload = testedIssuesWithCommentsArr
-    .filter((testedIssueWithComments) => !JSONLoader.config.debugIssues.includes(testedIssueWithComments.key))
-    .map((testedIssueWithComments) => ({
-      [testedIssueWithComments.projectName]: [...new Set(DataUtils.getDevelopersWorkload(testedIssueWithComments)
+  const testedIssuesWithDevelopersArr = testedIssuesWithCommentsArr
+    .filter((testedIssueWithComments) => !JSONLoader.config.debugIssues
+      .includes(testedIssueWithComments.key))
+    .map((testedIssueWithComments) => {
+      const developers = [...new Set(DataUtils.getDevelopersWorkload(testedIssueWithComments)
         .flat()
-        .map((developer) => developer.transitionFromAssignee))],
-    }));
+        .map((developer) => developer.transitionFromAssignee))];
 
-  // .map((testedIssueWithComments, index) => {
-  //     if (testedIssueWithComments.key === 'MADP-384') {
-  //       DataUtils.getDevelopersWorkload(testedIssueWithComments)
-  //       throw new Error('kek')
-  //     }
-  //   });
-  // .map((testedIssueWithComments) => DataUtils.getDevelopersWorkload(testedIssueWithComments))
-
-  console.log(developersWorkload);
+      return {
+        projectName: testedIssueWithComments.projectName,
+        developers: developers.length > 0
+          ? developers
+          : [JSONLoader.config.issueWithoutAssignee],
+      };
+    });
 
   let commentAuthor;
   let commentCreated; // fill and filter Jira issues with bugs and authors
@@ -180,9 +178,13 @@ const parseIssues = async () => { // get Jira issues with comments
   const developers = {};
   developerNames.forEach((developerName) => {
     let overAllBugsCount = 0;
+    let overAllIssuesCount = 0;
     const projectBugCounts = {};
+
     projectNames.forEach((projectName) => {
       let bugsCount = 0;
+      let issuesCount = 0;
+
       testedIssuesWithBugsArr.forEach((testedIssueWithBugs) => {
         testedIssueWithBugs.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
           if (
@@ -194,16 +196,42 @@ const parseIssues = async () => { // get Jira issues with comments
           }
         });
       });
+
+      testedIssuesWithDevelopersArr.forEach((testedIssueWithDevelopers) => {
+        if (testedIssueWithDevelopers.projectName === projectName) {
+          testedIssueWithDevelopers.developers.forEach((developer) => {
+            if (developer === developerName) {
+              issuesCount += 1;
+            }
+          });
+        }
+      });
+
+      if (bugsCount > 0 || issuesCount > 0) {
+        projectBugCounts[projectName] = {};
+      }
+
+      if (issuesCount > 0) {
+        projectBugCounts[projectName].issuesCount = issuesCount;
+        overAllIssuesCount += issuesCount;
+      }
+
       if (bugsCount > 0) {
-        projectBugCounts[projectName] = bugsCount;
+        projectBugCounts[projectName].bugsCount = bugsCount;
         overAllBugsCount += bugsCount;
       }
     });
+
+    developers[developerName] = {
+      projects: projectBugCounts,
+    };
+
+    if (overAllIssuesCount > 0) {
+      developers[developerName].overAllIssuesCount = overAllIssuesCount;
+    }
+
     if (overAllBugsCount > 0) {
-      developers[developerName] = {
-        projects: projectBugCounts,
-        overAllBugsCount,
-      };
+      developers[developerName].overAllBugsCount = overAllBugsCount;
     }
   });
 
