@@ -1,4 +1,5 @@
 /* eslint-disable no-await-in-loop */
+/* eslint no-param-reassign: ["off"] */
 /* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
 import jiraAPI from './modules/API/jiraAPI.js';
 import DataUtils from './modules/main/utils/data/dataUtils.js';
@@ -43,31 +44,25 @@ const parseIssues = async () => { // get Jira issues with comments
 
   DataUtils.saveToJSON({ testedIssuesWithCommentsArr });
 
-  // const testedIssuesWithAssigneesArr = testedIssuesWithCommentsArr.map((testedIssueWithComments) => {
-  //   getAssigneesWithDevStatuses
-  // });
-
-  console.log(testedIssuesWithCommentsArr[0]);
-
   let commentAuthor;
   let commentCreated; // fill and filter Jira issues with bugs and authors
-  const testedIssuesWithBugsArr = testedIssuesWithCommentsArr.map((testedIssueWithComments) => {
-    const testedIssueWithBugs = { ...testedIssueWithComments };
-    testedIssueWithBugs.commentsWithBugs = testedIssueWithComments.comments
+  testedIssuesWithCommentsArr.forEach((testedIssueWithComments) => {
+    testedIssueWithComments.commentsWithBugs = testedIssueWithComments.comments
       .flatMap((comment) => DataUtils.filterCommentsWithBugs(
         comment,
         commentCreated,
         commentAuthor,
       ));
-    delete testedIssueWithBugs.comments;
-    testedIssueWithBugs.linkedCommentsWithBugs = DataUtils
-      .linkDevelopersWithBugs(testedIssueWithBugs);
-    delete testedIssueWithBugs.commentsWithBugs;
-    delete testedIssueWithBugs.changelog;
-    testedIssueWithBugs.bugsCount = testedIssueWithBugs.linkedCommentsWithBugs.length;
+    testedIssueWithComments.linkedCommentsWithBugs = DataUtils
+      .linkDevelopersWithBugs(testedIssueWithComments);
+    testedIssueWithComments.bugsCount = testedIssueWithComments.linkedCommentsWithBugs.length;
+    delete testedIssueWithComments.commentsWithBugs;
+    delete testedIssueWithComments.comments;
+    delete testedIssueWithComments.changelog;
+  });
 
-    return testedIssueWithBugs;
-  }).filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
+  const testedIssuesWithBugsArr = testedIssuesWithCommentsArr
+    .filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
 
   DataUtils.saveToJSON({ testedIssuesWithBugsArr });
 
@@ -99,6 +94,7 @@ const parseIssues = async () => { // get Jira issues with comments
         .lastPreviousDevAssignee?.transitionFromAssignee
       ?? JSONLoader.config.issueWithoutAssignee)))];
 
+  // get statistics
   const priorities = {};
   DataUtils.fillBugsPerEntities(priorities, testedIssuesWithBugsArr, 'priority', priorityNames, overallBugsCount);
 
