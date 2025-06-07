@@ -530,6 +530,40 @@ class DataUtils {
       }
     });
   }
+
+  static extractPropertyByName(obj, ...propertyNames) {
+    const result = {};
+    for (const [name, data] of Object.entries(obj)) {
+      result[name] = {};
+
+      for (const propertyName of propertyNames) {
+        if (propertyName in data) {
+          result[name][propertyName] = data[propertyName];
+        }
+      }
+
+      if (Object.keys(result[name]).length === 0) {
+        delete result[name];
+      }
+    }
+    return result;
+  }
+
+  static setCyrillicNames(obj, namesMapping) {
+    if (Array.isArray(obj)) {
+      return obj.map((item) => this.setCyrillicNames(item, namesMapping));
+    } else if (obj !== null && typeof obj === 'object') {
+      const newObj = {};
+      for (const [key, value] of Object.entries(obj)) {
+        const newKey = namesMapping[key] || key;
+        newObj[newKey] = this.setCyrillicNames(value, namesMapping);
+      }
+
+      return newObj;
+    }
+
+    return obj;
+  }
 }
 
 export default DataUtils;

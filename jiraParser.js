@@ -4,7 +4,7 @@
 import jiraAPI from './modules/API/jiraAPI.js';
 import DataUtils from './modules/main/utils/data/dataUtils.js';
 import TimeUtils from './modules/main/utils/time/timeUtils.js';
-// import ImageUtils from './modules/main/utils/image/imageUtils.js';
+import ImageUtils from './modules/main/utils/image/imageUtils.js';
 import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 
 const parseIssues = async () => { // get Jira issues with comments
@@ -205,6 +205,19 @@ const parseIssues = async () => { // get Jira issues with comments
   };
 
   DataUtils.saveToJSON({ summary });
+  const cyrillicSummary = DataUtils.setCyrillicNames(summary, JSONLoader.config.cyrillicNames);
+
+  await ImageUtils.generateDiagram(
+    "Количество протестированных задач и багов в проектах", 
+    "Количество",
+    "Проекты",
+    DataUtils.extractPropertyByName(
+      cyrillicSummary.projects, 
+      'Количество протестированных задач', 
+      'Количество протестированных задач с багами', 
+      'Количество багов'
+    )
+  );
 };
 
 parseIssues();

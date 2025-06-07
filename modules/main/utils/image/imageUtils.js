@@ -3,15 +3,46 @@ import { ChartJSNodeCanvas } from 'chartjs-node-canvas';
 import JSONLoader from '../data/JSONLoader.js';
 
 class ImageUtils {
-  static async generateDiagram(data) {
-    const width = 800;
-    const height = 600;
+  static async generateDiagram(mainTitle, verticalTitle, horizontalTitle, summary) {
+    const chartJSNodeCanvas = new ChartJSNodeCanvas(JSONLoader.config.diagramConfig);
+    const colors = JSONLoader.config.diagramColors;
+
+    const summaryKeys = Object.keys(summary);
+    const metricsSet = new Set();
+
+    for (const values of Object.values(summary)) {
+      Object.keys(values).forEach((key) => metricsSet.add(key));
+    }
+
+    const metrics = Array.from(metricsSet);
+    const data = {
+      labels: summaryKeys,
+      datasets: [],
+    };
+
+    metrics.forEach((metric, index) => {
+      const dataset = {
+        label: metric,
+        data: [],
+        backgroundColor: colors[index % colors.length],
+        borderColor: colors[index % colors.length].replace('0.5', '1'),
+        borderWidth: 2,
+      };
+
+      for (const label of summaryKeys) {
+        const value = summary[label][metric];
+        dataset.data.push(typeof value === 'number' ? value : 0);
+      }
+
+      data.datasets.push(dataset);
+    });
+
     const configuration = JSONLoader.diagramSchema;
-    const keys = Object.keys(data);
-    const values = Object.values(data);
-    configuration.data.labels = keys;
-    configuration.data.datasets[0].data = values;
-    const chartJSNodeCanvas = new ChartJSNodeCanvas({ width, height });
+    configuration.data = data;
+    configuration.options.plugins.title.text = mainTitle;
+    configuration.options.scales.y.title.text = verticalTitle;
+    configuration.options.scales.x.title.text = horizontalTitle;
+
     const image = await chartJSNodeCanvas.renderToBuffer(configuration);
     fs.writeFileSync('artifacts/diagram.png', image);
   }

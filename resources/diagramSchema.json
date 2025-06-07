@@ -1,21 +1,29 @@
 {
     "type": "bar",
-    "data": {
-        "labels": "",
-        "datasets": [
-            {
-                "label": "Monthly Sales",
-                "data": "",
-                "backgroundColor": "rgba(75, 192, 192, 0.5)",
-                "borderColor": "rgba(75, 192, 192, 1)",
-                "borderWidth": 1
-            }
-        ]
-    },
     "options": {
+        "responsive": false,
+        "plugins": {
+            "title": {
+                "display": true,
+                "text": ""
+            },
+            "legend": {
+                "position": "top"
+            }
+        },
         "scales": {
             "y": {
-                "beginAtZero": true
+                "beginAtZero": true,
+                "title": {
+                    "display": true,
+                    "text": ""
+                }
+            },
+            "x": {
+                "title": {
+                    "display": true,
+                    "text": ""
+                }
             }
         }
     }

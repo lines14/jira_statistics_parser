@@ -6,6 +6,23 @@
     "datesFormatISO": "YYYY-MM-DDTHH:mm:ss",
     "halfMinute": 30000,
     "decimalPlaces": 4,
+    "diagramConfig": { 
+        "width": 1920, 
+        "height": 1080, 
+        "backgroundColour": "white" 
+    },
+    "diagramColors": [
+      "rgba(75, 192, 192, 0.5)",
+      "rgba(255, 206, 86, 0.5)",
+      "rgba(255, 99, 132, 0.5)",
+      "rgba(54, 162, 235, 0.5)",
+      "rgba(153, 102, 255, 0.5)",
+      "rgba(255, 159, 64, 0.5)",
+      "rgba(199, 199, 199, 0.5)",
+      "rgba(83, 102, 255, 0.5)",
+      "rgba(153, 203, 255, 0.5)",
+      "rgba(255, 102, 255, 0.5)"
+    ],
     "commentsWithBugsCreatedFromDateYMD": "2025-03-26",
     "commentsWithBugsCreatedToDateYMD": "",
     "issueWithoutAssignee": "unassigned",
@@ -58,5 +75,10 @@
         "Ким Виолетта",
         "Антон Липатов",
         "Адильбек"
-    ]
+    ],
+    "cyrillicNames": {
+        "testedIssuesCount": "Количество протестированных задач",
+        "testedIssuesWithBugsCount": "Количество протестированных задач с багами",
+        "bugsCount": "Количество багов"
+    }
 }
