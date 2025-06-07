@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 import BaseAPI from '../main/utils/API/baseAPI.js';
-import timeUtils from '../main/utils/time/timeUtils.js';
 import JSONLoader from '../main/utils/data/JSONLoader.js';
 
 dotenv.config({ override: true });
@@ -16,20 +15,18 @@ class JiraAPI extends BaseAPI {
     super(options);
   }
 
-  async searchAll(fromDate) {
+  async searchAll(fromDate, toDate) {
     let total;
     let startAt = 0;
     const maxResults = 100;
     const issues = [];
-    const todayYMD = timeUtils
-      .reformatDateFromDMYToYMD(timeUtils.reformatDateFromISOToDMY(timeUtils.today()));
 
     while (!total || startAt < total) {
       const params = {
         startAt,
         maxResults,
         expand: 'changelog',
-        jql: `created >= ${fromDate} AND created <= ${todayYMD} ORDER BY created ASC`,
+        jql: `created >= ${fromDate} AND created <= ${toDate} ORDER BY created ASC`,
       };
 
       // eslint-disable-next-line no-await-in-loop

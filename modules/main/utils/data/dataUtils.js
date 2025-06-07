@@ -34,12 +34,19 @@ class DataUtils {
     return timeIntervals;
   }
 
-  static filterAssignedEntitiesMoreThanHalfMinute(assigneeEntityChanges) {
-    return assigneeEntityChanges.filter((assigneeEntityChange, index, arr) => {
-      if (index === 0) return true;
-      const prev = arr[index - 1];
-      const diff = assigneeEntityChange.created - prev.created;
-      return diff >= JSONLoader.config.halfMinute;
+  static markAssignedEntitiesLessThanHalfMinute(assignedEntityChanges) {
+    assignedEntityChanges.forEach((assignedEntityChange, index, arr) => {
+      if (index === 0) {
+        assignedEntityChange.assignedLessThanHalfMinute = false;
+      } else {
+        const prev = arr[index - 1];
+        const diff = assignedEntityChange.created - prev.created;
+        if (diff >= JSONLoader.config.halfMinute) {
+          assignedEntityChange.assignedLessThanHalfMinute = false;
+        } else {
+          assignedEntityChange.assignedLessThanHalfMinute = true;
+        };
+      }
     });
   }
 
@@ -63,12 +70,16 @@ class DataUtils {
     return {
       transitionFromStatus: endFirstInterval.transitionFrom,
       transitionFromAssignee: endSecondInterval.transitionFrom,
+      transitionToStatus: endFirstInterval.transitionTo,
+      transitionToAssignee: endSecondInterval.transitionTo,
       overlap,
       overlapDuration,
       createdTransitionFromStatus: endFirstInterval.created,
       createdTransitionFromAssignee: endSecondInterval.created,
-      transitionFromStatusID: endFirstInterval.ID,
-      transitionFromAssigneeID: endSecondInterval.ID,
+      transitionStatusID: endFirstInterval.ID,
+      transitionAssigneeID: endSecondInterval.ID,
+      assignedLessThanHalfMinuteStatus: endFirstInterval.assignedLessThanHalfMinute,
+      assignedLessThanHalfMinuteAssignee: endSecondInterval.assignedLessThanHalfMinute,
     };
   }
 
@@ -103,13 +114,14 @@ class DataUtils {
     return results;
   }
 
-  static getStatusEnds(changelog) {
-    const statusEnds = [];
+  static getStatusChanges(changelog) {
+    const statusChanges = [];
     for (const element of changelog) {
       element.items.forEach((item) => {
-        if (item.field === 'status' && item.fromString) {
-          statusEnds.push({
+        if (item.field === 'status') {
+          statusChanges.push({
             transitionFrom: item.fromString,
+            transitionTo: item.toString,
             created: element.created,
             ID: Randomizer.getRandomString(false, false, true, false, false, 20, 20),
           });
@@ -118,14 +130,21 @@ class DataUtils {
     }
 
     // filter if status assigned more than half minute
-    this.convertTimestampsToDateObjects(statusEnds);
-    return this.filterAssignedEntitiesMoreThanHalfMinute(statusEnds);
+    this.convertTimestampsToDateObjects(statusChanges);
+    this.markAssignedEntitiesLessThanHalfMinute(statusChanges);
+    return statusChanges;
   }
 
   static getDevStatusEnds(changelog) {
-    return this.getStatusEnds(changelog)
-      .filter((statusEnd) => JSONLoader.config.devIssueStatuses
-        .includes(statusEnd.transitionFrom.toUpperCase()));
+    return this.getStatusChanges(changelog)
+      .filter((statusChange) => JSONLoader.config.devIssueStatuses
+        .includes(statusChange.transitionFrom.toUpperCase()));
+  }
+
+  static getTestStatusEnds(changelog) {
+    return this.getStatusChanges(changelog)
+      .filter((statusChange) => JSONLoader.config.testIssueStatuses
+        .includes(statusChange.transitionFrom.toUpperCase()));
   }
 
   static getAssigneeChanges(changelog) {
@@ -145,7 +164,8 @@ class DataUtils {
 
     // filter if assignee assigned more than half minute
     this.convertTimestampsToDateObjects(assigneeChanges);
-    return this.filterAssignedEntitiesMoreThanHalfMinute(assigneeChanges);
+    this.markAssignedEntitiesLessThanHalfMinute(assigneeChanges);
+    return assigneeChanges;
   }
 
   static getDeveloperChanges(changelog) {
@@ -154,25 +174,31 @@ class DataUtils {
         .includes(assigneeChange.transitionFrom));
   }
 
+  static getReporterChanges(changelog) {
+    return this.getAssigneeChanges(changelog)
+      .filter((assigneeChange) => JSONLoader.config.reporters
+        .includes(assigneeChange.transitionTo));
+  }
+
   static getAssigneesWithStatuses(
-    statusEnds,
+    statusChanges,
     assigneeChanges,
     initialTimestamp,
   ) {
-    statusEnds.unshift(initialTimestamp);
+    statusChanges.unshift(initialTimestamp);
     assigneeChanges.unshift(initialTimestamp);
 
     // get time intervals between statuses changes
-    const statusEndTimeIntervals = this.getTimeIntervals(statusEnds);
+    const statusChangeTimeIntervals = this.getTimeIntervals(statusChanges);
 
     // get time intervals between assignees changes
     const assigneeChangeTimeIntervals = this.getTimeIntervals(assigneeChanges);
 
     // get assignees with statuses at the same and longest amount of time
-    return statusEndTimeIntervals
-      .map((statusEndTimeInterval) => assigneeChangeTimeIntervals
+    return statusChangeTimeIntervals
+      .map((statusChangeTimeInterval) => assigneeChangeTimeIntervals
         .map((assigneeChangeTimeInterval) => this
-          .getAssigneeWithStatus(statusEndTimeInterval, assigneeChangeTimeInterval)))
+          .getAssigneeWithStatus(statusChangeTimeInterval, assigneeChangeTimeInterval)))
       .map((assigneeWithStatus) => [assigneeWithStatus
         .reduce((overlappedAssignee, currentElement) => {
           if (!overlappedAssignee
@@ -183,7 +209,9 @@ class DataUtils {
 
           return overlappedAssignee;
         }, null)]
-        .filter((nestedAssigneeWithStatus) => nestedAssigneeWithStatus?.overlap));
+        .filter((nestedAssigneeWithStatus) => nestedAssigneeWithStatus?.overlap)
+        .filter((nestedAssigneeWithStatus) => !nestedAssigneeWithStatus.assignedLessThanHalfMinuteStatus 
+        && !nestedAssigneeWithStatus.assignedLessThanHalfMinuteAssignee));
   }
 
   // search previous developer assignee before bug found
@@ -248,14 +276,36 @@ class DataUtils {
 
     // get all dev statuses ends from issue history, includes
     // only BACKLOG, TO DO, REOPEN and IN PROGRESS statuses
-    const devStatusEnds = this.getDevStatusEnds(sortedChangelog);
+    const statusEnds = this.getDevStatusEnds(sortedChangelog);
 
     // get developer assignee changes from issue history
     const assigneeChanges = this.getDeveloperChanges(sortedChangelog);
 
     // get developer assignees with dev statuses at the same time
     return this.getAssigneesWithStatuses(
-      devStatusEnds,
+      statusEnds,
+      assigneeChanges,
+      initialTimestamp,
+    );
+  }
+
+  static getIssueReporters(testedIssue) {
+    const sortedChangelog = this.sortByTimestamps(testedIssue.changelog);
+    const initialTimestamp = {
+      transitionFrom: JSONLoader.config.initIssueStatus,
+      created: TimeUtils.convertTimestampToDateObject(sortedChangelog[0].created),
+    };
+
+    // get all test statuses starts from issue history, includes
+    // only IN TEST, IN TEST (LOCAL), IN TEST (DEV) and IN TEST (STAGE) statuses
+    const statusEnds = this.getTestStatusEnds(sortedChangelog);
+
+    // get reporter assignee changes from issue history
+    const assigneeChanges = this.getReporterChanges(sortedChangelog);
+
+    // get reporter assignees with test statuses at the same time
+    return this.getAssigneesWithStatuses(
+      statusEnds,
       assigneeChanges,
       initialTimestamp,
     );
@@ -286,14 +336,32 @@ class DataUtils {
       .filter((issue) => !JSONLoader.config.debugIssues
         .includes(issue.key))
       .map((issue) => {
-        const developers = [...new Set(DataUtils.getIssueDevelopers(issue)
+        const assignees = [...new Set(DataUtils.getIssueDevelopers(issue)
           .flat()
-          .map((developer) => developer.transitionFromAssignee))];
+          .map((assignee) => assignee.transitionFromAssignee))];
 
         return {
           projectName: issue.projectName,
-          developers: developers.length > 0
-            ? developers
+          assignees: assignees.length > 0
+            ? assignees
+            : [JSONLoader.config.issueWithoutAssignee],
+        };
+      });
+  }
+
+  static getReportersWorkload(issuesArr) {
+    return issuesArr
+      .filter((issue) => !JSONLoader.config.debugIssues
+        .includes(issue.key))
+      .map((issue) => {
+        const assignees = [...new Set(DataUtils.getIssueReporters(issue)
+          .flat()
+          .map((assignee) => assignee.transitionToAssignee))];
+
+        return {
+          projectName: issue.projectName,
+          assignees: assignees.length > 0
+            ? assignees
             : [JSONLoader.config.issueWithoutAssignee],
         };
       });

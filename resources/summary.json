@@ -1,40 +1,40 @@
 {
     "issuesCreatedFrom": "26.03.2025",
-    "issuesCreatedTo": "02.06.2025",
-    "issuesCount": 423,
-    "testedIssuesCount": 178,
-    "testedIssuesWithBugsCount": 44,
-    "overallBugsCount": 171,
-    "bugsCountPerTestedIssueCountRatio": 0.96,
-    "bugsCountPerTestedIssueWithBugsCountRatio": 3.89,
+    "issuesCreatedTo": "07.06.2025",
+    "issuesCount": 485,
+    "testedIssuesCount": 215,
+    "testedIssuesWithBugsCount": 53,
+    "overallBugsCount": 189,
+    "bugsCountPerTestedIssueCountRatio": 0.88,
+    "bugsCountPerTestedIssueWithBugsCountRatio": 3.57,
     "priorities": {
         "Medium": {
-            "bugsCount": 73,
-            "bugsCountPerOverallBugsCountRatio": 0.43
+            "bugsCount": 90,
+            "bugsCountPerOverallBugsCountRatio": 0.48
         },
         "Critical": {
-            "bugsCount": 98,
-            "bugsCountPerOverallBugsCountRatio": 0.57
+            "bugsCount": 99,
+            "bugsCountPerOverallBugsCountRatio": 0.52
         }
     },
     "devTypes": {
         "WEB": {
-            "bugsCount": 157,
-            "bugsCountPerOverallBugsCountRatio": 0.92
+            "bugsCount": 170,
+            "bugsCountPerOverallBugsCountRatio": 0.9
         },
         "1C": {
-            "bugsCount": 14,
-            "bugsCountPerOverallBugsCountRatio": 0.08
+            "bugsCount": 19,
+            "bugsCountPerOverallBugsCountRatio": 0.1
         }
     },
     "issueTypes": {
         "Bug": {
-            "bugsCount": 15,
-            "bugsCountPerOverallBugsCountRatio": 0.09
+            "bugsCount": 21,
+            "bugsCountPerOverallBugsCountRatio": 0.11
         },
         "Task": {
-            "bugsCount": 152,
-            "bugsCountPerOverallBugsCountRatio": 0.89
+            "bugsCount": 164,
+            "bugsCountPerOverallBugsCountRatio": 0.87
         },
         "Story": {
             "bugsCount": 1,
@@ -47,52 +47,52 @@
     },
     "projects": {
         "MADP": {
-            "testedIssuesCount": 12,
+            "testedIssuesCount": 14,
             "testedIssuesWithBugsCount": 1,
             "bugsCount": 1,
-            "bugsCountPerTestedIssueCountRatio": 0.08,
+            "bugsCountPerTestedIssueCountRatio": 0.07,
             "bugsCountPerTestedIssueWithBugsCountRatio": 1
         },
         "IE": {
-            "testedIssuesCount": 35,
-            "testedIssuesWithBugsCount": 11,
-            "bugsCount": 59,
-            "bugsCountPerTestedIssueCountRatio": 1.69,
-            "bugsCountPerTestedIssueWithBugsCountRatio": 5.36
+            "testedIssuesCount": 44,
+            "testedIssuesWithBugsCount": 15,
+            "bugsCount": 69,
+            "bugsCountPerTestedIssueCountRatio": 1.57,
+            "bugsCountPerTestedIssueWithBugsCountRatio": 4.6
         },
         "Котировки": {
-            "testedIssuesCount": 21,
-            "testedIssuesWithBugsCount": 9,
-            "bugsCount": 50,
-            "bugsCountPerTestedIssueCountRatio": 2.38,
-            "bugsCountPerTestedIssueWithBugsCountRatio": 5.56
+            "testedIssuesCount": 33,
+            "testedIssuesWithBugsCount": 11,
+            "bugsCount": 53,
+            "bugsCountPerTestedIssueCountRatio": 1.61,
+            "bugsCountPerTestedIssueWithBugsCountRatio": 4.82
         },
         "ADP": {
-            "testedIssuesCount": 45,
+            "testedIssuesCount": 47,
             "testedIssuesWithBugsCount": 14,
             "bugsCount": 42,
-            "bugsCountPerTestedIssueCountRatio": 0.93,
+            "bugsCountPerTestedIssueCountRatio": 0.89,
             "bugsCountPerTestedIssueWithBugsCountRatio": 3
         },
         "Операционная эффективность": {
-            "testedIssuesCount": 17,
-            "testedIssuesWithBugsCount": 5,
-            "bugsCount": 7,
-            "bugsCountPerTestedIssueCountRatio": 0.41,
-            "bugsCountPerTestedIssueWithBugsCountRatio": 1.4
+            "testedIssuesCount": 24,
+            "testedIssuesWithBugsCount": 7,
+            "bugsCount": 11,
+            "bugsCountPerTestedIssueCountRatio": 0.46,
+            "bugsCountPerTestedIssueWithBugsCountRatio": 1.57
         },
         "Architecture": {
-            "testedIssuesCount": 3,
-            "testedIssuesWithBugsCount": 1,
-            "bugsCount": 6,
-            "bugsCountPerTestedIssueCountRatio": 2,
-            "bugsCountPerTestedIssueWithBugsCountRatio": 6
+            "testedIssuesCount": 4,
+            "testedIssuesWithBugsCount": 2,
+            "bugsCount": 7,
+            "bugsCountPerTestedIssueCountRatio": 1.75,
+            "bugsCountPerTestedIssueWithBugsCountRatio": 3.5
         },
         "Medpool": {
-            "testedIssuesCount": 9,
+            "testedIssuesCount": 10,
             "testedIssuesWithBugsCount": 1,
             "bugsCount": 2,
-            "bugsCountPerTestedIssueCountRatio": 0.22,
+            "bugsCountPerTestedIssueCountRatio": 0.2,
             "bugsCountPerTestedIssueWithBugsCountRatio": 2
         },
         "Amanat24": {
@@ -103,104 +103,44 @@
             "bugsCountPerTestedIssueWithBugsCountRatio": 2
         }
     },
-    "reporters": {
-        "Искаков Асхат": {
-            "projects": {
-                "MADP": 1,
-                "Architecture": 2
-            },
-            "overAllBugsCount": 3
-        },
-        "Молдағалиева Еңлік": {
-            "projects": {
-                "IE": 9,
-                "Операционная эффективность": 1
-            },
-            "overAllBugsCount": 10
-        },
-        "Ivan Voronov": {
-            "projects": {
-                "Котировки": 23,
-                "ADP": 5
-            },
-            "overAllBugsCount": 28
-        },
-        "Turarbek Kairosh": {
-            "projects": {
-                "Котировки": 6,
-                "ADP": 10,
-                "Amanat24": 4
-            },
-            "overAllBugsCount": 20
-        },
-        "Антон Липатов": {
-            "projects": {
-                "ADP": 23
-            },
-            "overAllBugsCount": 23
-        },
-        "Әлішер Хамит": {
-            "projects": {
-                "Котировки": 21,
-                "Операционная эффективность": 4
-            },
-            "overAllBugsCount": 25
-        },
-        "Ким Виолетта": {
-            "projects": {
-                "ADP": 3,
-                "Операционная эффективность": 2,
-                "Medpool": 2
-            },
-            "overAllBugsCount": 7
-        },
-        "Анисимов Анатолий": {
-            "projects": {
-                "IE": 50,
-                "ADP": 1,
-                "Architecture": 4
-            },
-            "overAllBugsCount": 55
-        }
-    },
     "developers": {
         "Адиль Аманкулов": {
             "projects": {
                 "MADP": {
-                    "testedIssuesCount": 9,
+                    "testedIssuesCount": 10,
                     "testedIssuesWithBugsCount": 1,
                     "bugsCount": 1,
-                    "bugsCountPerTestedIssueCountRatio": 0.11,
+                    "bugsCountPerTestedIssueCountRatio": 0.1,
                     "bugsCountPerTestedIssueWithBugsCountRatio": 1
                 },
                 "ADP": {
                     "testedIssuesCount": 2
                 }
             },
-            "overAllTestedIssuesCount": 11,
+            "overAllTestedIssuesCount": 12,
             "overAllTestedIssuesWithBugsCount": 1,
             "overAllBugsCount": 1,
-            "bugsCountPerTestedIssueCountMeanRatio": 0.11,
+            "bugsCountPerTestedIssueCountMeanRatio": 0.1,
             "bugsCountPerTestedIssueWithBugsCountMeanRatio": 1
         },
         "Сакен Сатенов": {
             "projects": {
                 "IE": {
-                    "testedIssuesCount": 21,
-                    "testedIssuesWithBugsCount": 7,
-                    "bugsCount": 54,
-                    "bugsCountPerTestedIssueCountRatio": 2.57,
-                    "bugsCountPerTestedIssueWithBugsCountRatio": 7.71
+                    "testedIssuesCount": 28,
+                    "testedIssuesWithBugsCount": 10,
+                    "bugsCount": 63,
+                    "bugsCountPerTestedIssueCountRatio": 2.25,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 6.3
                 },
                 "ADP": {
                     "testedIssuesCount": 1
                 }
             },
-            "overAllTestedIssuesCount": 22,
-            "overAllTestedIssuesWithBugsCount": 7,
-            "overAllBugsCount": 54,
-            "bugsCountPerTestedIssueCountMeanRatio": 2.57,
-            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 7.71
+            "overAllTestedIssuesCount": 29,
+            "overAllTestedIssuesWithBugsCount": 10,
+            "overAllBugsCount": 63,
+            "bugsCountPerTestedIssueCountMeanRatio": 2.25,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 6.3
         },
         "Глеб Баженов": {
             "projects": {
@@ -222,27 +162,27 @@
                     "bugsCountPerTestedIssueWithBugsCountRatio": 2
                 },
                 "Medpool": {
-                    "testedIssuesCount": 4,
+                    "testedIssuesCount": 5,
                     "testedIssuesWithBugsCount": 1,
                     "bugsCount": 2,
-                    "bugsCountPerTestedIssueCountRatio": 0.5,
+                    "bugsCountPerTestedIssueCountRatio": 0.4,
                     "bugsCountPerTestedIssueWithBugsCountRatio": 2
                 }
             },
-            "overAllTestedIssuesCount": 8,
+            "overAllTestedIssuesCount": 9,
             "overAllTestedIssuesWithBugsCount": 3,
             "overAllBugsCount": 10,
-            "bugsCountPerTestedIssueCountMeanRatio": 2.06,
+            "bugsCountPerTestedIssueCountMeanRatio": 2.02,
             "bugsCountPerTestedIssueWithBugsCountMeanRatio": 3
         },
         "Абылайхан Султанбек": {
             "projects": {
                 "Котировки": {
-                    "testedIssuesCount": 10,
-                    "testedIssuesWithBugsCount": 6,
-                    "bugsCount": 35,
-                    "bugsCountPerTestedIssueCountRatio": 3.5,
-                    "bugsCountPerTestedIssueWithBugsCountRatio": 5.83
+                    "testedIssuesCount": 19,
+                    "testedIssuesWithBugsCount": 8,
+                    "bugsCount": 36,
+                    "bugsCountPerTestedIssueCountRatio": 1.89,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 4.5
                 },
                 "ADP": {
                     "testedIssuesCount": 9,
@@ -252,20 +192,20 @@
                     "bugsCountPerTestedIssueWithBugsCountRatio": 2.14
                 }
             },
-            "overAllTestedIssuesCount": 19,
-            "overAllTestedIssuesWithBugsCount": 13,
-            "overAllBugsCount": 50,
-            "bugsCountPerTestedIssueCountMeanRatio": 2.58,
-            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 3.99
+            "overAllTestedIssuesCount": 28,
+            "overAllTestedIssuesWithBugsCount": 15,
+            "overAllBugsCount": 51,
+            "bugsCountPerTestedIssueCountMeanRatio": 1.78,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 3.32
         },
         "Есен Оразбайұлы": {
             "projects": {
                 "Котировки": {
-                    "testedIssuesCount": 10,
-                    "testedIssuesWithBugsCount": 3,
-                    "bugsCount": 6,
-                    "bugsCountPerTestedIssueCountRatio": 0.6,
-                    "bugsCountPerTestedIssueWithBugsCountRatio": 2
+                    "testedIssuesCount": 20,
+                    "testedIssuesWithBugsCount": 6,
+                    "bugsCount": 7,
+                    "bugsCountPerTestedIssueCountRatio": 0.35,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 1.17
                 },
                 "ADP": {
                     "testedIssuesCount": 8,
@@ -282,20 +222,20 @@
                     "bugsCountPerTestedIssueWithBugsCountRatio": 1
                 }
             },
-            "overAllTestedIssuesCount": 19,
-            "overAllTestedIssuesWithBugsCount": 6,
-            "overAllBugsCount": 9,
-            "bugsCountPerTestedIssueCountMeanRatio": 0.62,
-            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 1.33
+            "overAllTestedIssuesCount": 29,
+            "overAllTestedIssuesWithBugsCount": 9,
+            "overAllBugsCount": 10,
+            "bugsCountPerTestedIssueCountMeanRatio": 0.53,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 1.06
         },
         "Нурлан Кенжегулов": {
             "projects": {
                 "Котировки": {
                     "testedIssuesCount": 3,
                     "testedIssuesWithBugsCount": 3,
-                    "bugsCount": 4,
-                    "bugsCountPerTestedIssueCountRatio": 1.33,
-                    "bugsCountPerTestedIssueWithBugsCountRatio": 1.33
+                    "bugsCount": 5,
+                    "bugsCountPerTestedIssueCountRatio": 1.67,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 1.67
                 },
                 "ADP": {
                     "testedIssuesCount": 4,
@@ -305,37 +245,41 @@
                     "bugsCountPerTestedIssueWithBugsCountRatio": 1.67
                 },
                 "Architecture": {
-                    "testedIssuesCount": 1
-                }
-            },
-            "overAllTestedIssuesCount": 8,
-            "overAllTestedIssuesWithBugsCount": 6,
-            "overAllBugsCount": 9,
-            "bugsCountPerTestedIssueCountMeanRatio": 1.29,
-            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 1.5
-        },
-        "Илья Балтер": {
-            "projects": {
-                "IE": {
-                    "testedIssuesCount": 1,
+                    "testedIssuesCount": 2,
                     "testedIssuesWithBugsCount": 1,
                     "bugsCount": 1,
-                    "bugsCountPerTestedIssueCountRatio": 1,
-                    "bugsCountPerTestedIssueWithBugsCountRatio": 1
-                },
-                "Операционная эффективность": {
-                    "testedIssuesCount": 8,
-                    "testedIssuesWithBugsCount": 2,
-                    "bugsCount": 2,
-                    "bugsCountPerTestedIssueCountRatio": 0.25,
+                    "bugsCountPerTestedIssueCountRatio": 0.5,
                     "bugsCountPerTestedIssueWithBugsCountRatio": 1
                 }
             },
             "overAllTestedIssuesCount": 9,
-            "overAllTestedIssuesWithBugsCount": 3,
-            "overAllBugsCount": 3,
-            "bugsCountPerTestedIssueCountMeanRatio": 0.63,
-            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 1
+            "overAllTestedIssuesWithBugsCount": 7,
+            "overAllBugsCount": 11,
+            "bugsCountPerTestedIssueCountMeanRatio": 1.14,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 1.45
+        },
+        "Илья Балтер": {
+            "projects": {
+                "IE": {
+                    "testedIssuesCount": 2,
+                    "testedIssuesWithBugsCount": 1,
+                    "bugsCount": 1,
+                    "bugsCountPerTestedIssueCountRatio": 0.5,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 1
+                },
+                "Операционная эффективность": {
+                    "testedIssuesCount": 12,
+                    "testedIssuesWithBugsCount": 4,
+                    "bugsCount": 5,
+                    "bugsCountPerTestedIssueCountRatio": 0.42,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 1.25
+                }
+            },
+            "overAllTestedIssuesCount": 14,
+            "overAllTestedIssuesWithBugsCount": 5,
+            "overAllBugsCount": 6,
+            "bugsCountPerTestedIssueCountMeanRatio": 0.46,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 1.13
         },
         "Sawa Laptev": {
             "projects": {
@@ -362,7 +306,7 @@
         "Aibolat Batyrov": {
             "projects": {
                 "MADP": {
-                    "testedIssuesCount": 3
+                    "testedIssuesCount": 4
                 },
                 "IE": {
                     "testedIssuesCount": 1,
@@ -372,10 +316,10 @@
                     "bugsCountPerTestedIssueWithBugsCountRatio": 1
                 },
                 "ADP": {
-                    "testedIssuesCount": 11,
+                    "testedIssuesCount": 13,
                     "testedIssuesWithBugsCount": 4,
                     "bugsCount": 17,
-                    "bugsCountPerTestedIssueCountRatio": 1.55,
+                    "bugsCountPerTestedIssueCountRatio": 1.31,
                     "bugsCountPerTestedIssueWithBugsCountRatio": 4.25
                 },
                 "Architecture": {
@@ -393,10 +337,10 @@
                     "bugsCountPerTestedIssueWithBugsCountRatio": 3
                 }
             },
-            "overAllTestedIssuesCount": 18,
+            "overAllTestedIssuesCount": 21,
             "overAllTestedIssuesWithBugsCount": 7,
             "overAllBugsCount": 27,
-            "bugsCountPerTestedIssueCountMeanRatio": 2.51,
+            "bugsCountPerTestedIssueCountMeanRatio": 2.45,
             "bugsCountPerTestedIssueWithBugsCountMeanRatio": 3.56
         },
         "Adilkhan": {
@@ -409,17 +353,17 @@
                     "bugsCountPerTestedIssueWithBugsCountRatio": 2
                 },
                 "Операционная эффективность": {
-                    "testedIssuesCount": 5,
-                    "testedIssuesWithBugsCount": 1,
-                    "bugsCount": 1,
-                    "bugsCountPerTestedIssueCountRatio": 0.2,
+                    "testedIssuesCount": 9,
+                    "testedIssuesWithBugsCount": 2,
+                    "bugsCount": 2,
+                    "bugsCountPerTestedIssueCountRatio": 0.22,
                     "bugsCountPerTestedIssueWithBugsCountRatio": 1
                 }
             },
-            "overAllTestedIssuesCount": 11,
-            "overAllTestedIssuesWithBugsCount": 2,
-            "overAllBugsCount": 3,
-            "bugsCountPerTestedIssueCountMeanRatio": 0.27,
+            "overAllTestedIssuesCount": 15,
+            "overAllTestedIssuesWithBugsCount": 3,
+            "overAllBugsCount": 4,
+            "bugsCountPerTestedIssueCountMeanRatio": 0.28,
             "bugsCountPerTestedIssueWithBugsCountMeanRatio": 1.5
         },
         "Юрий Егорин": {
@@ -472,22 +416,22 @@
         "Плотицин Николай": {
             "projects": {
                 "IE": {
-                    "testedIssuesCount": 5,
-                    "testedIssuesWithBugsCount": 2,
-                    "bugsCount": 1,
-                    "bugsCountPerTestedIssueCountRatio": 0.2,
-                    "bugsCountPerTestedIssueWithBugsCountRatio": 0.5
+                    "testedIssuesCount": 7,
+                    "testedIssuesWithBugsCount": 3,
+                    "bugsCount": 2,
+                    "bugsCountPerTestedIssueCountRatio": 0.29,
+                    "bugsCountPerTestedIssueWithBugsCountRatio": 0.67
                 },
                 "ADP": {
                     "testedIssuesCount": 1,
                     "testedIssuesWithBugsCount": 1
                 }
             },
-            "overAllTestedIssuesCount": 6,
-            "overAllTestedIssuesWithBugsCount": 3,
-            "overAllBugsCount": 1,
-            "bugsCountPerTestedIssueCountMeanRatio": 0.2,
-            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 0.5
+            "overAllTestedIssuesCount": 8,
+            "overAllTestedIssuesWithBugsCount": 4,
+            "overAllBugsCount": 2,
+            "bugsCountPerTestedIssueCountMeanRatio": 0.29,
+            "bugsCountPerTestedIssueWithBugsCountMeanRatio": 0.67
         }
     }
 }

@@ -8,7 +8,12 @@ import ImageUtils from './modules/main/utils/image/imageUtils.js';
 import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 
 const parseIssues = async () => { // get Jira issues with comments
-  // const issuesArr = await jiraAPI.searchAll(JSONLoader.config.commentsWithBugsCreatedFromDateYMD);
+  const toDate = JSONLoader.config.commentsWithBugsCreatedToDateYMD 
+    ? JSONLoader.config.commentsWithBugsCreatedToDateYMD 
+    : TimeUtils
+    .reformatDateFromDMYToYMD(TimeUtils.reformatDateFromISOToDMY(TimeUtils.today()));
+
+  // const issuesArr = await jiraAPI.searchAll(JSONLoader.config.commentsWithBugsCreatedFromDateYMD, toDate);
   // const issuesWithCommentsArr = [];
   // for (const issue of issuesArr) {
   //   const response = await jiraAPI.getIssueComments(issue.id);
@@ -47,6 +52,9 @@ const parseIssues = async () => { // get Jira issues with comments
   const testedIssuesWithDevelopersArr = DataUtils
     .getDevelopersWorkload(testedIssuesWithCommentsArr);
 
+  const testedIssuesWithReportersArr = DataUtils
+    .getReportersWorkload(testedIssuesWithCommentsArr);
+
   let commentAuthor;
   let commentCreated; // fill and filter Jira issues with bugs and authors
   testedIssuesWithCommentsArr.forEach((testedIssueWithComments) => {
@@ -70,6 +78,9 @@ const parseIssues = async () => { // get Jira issues with comments
 
   const testedIssuesWithBugsAndDevelopersArr = DataUtils
     .getDevelopersWorkload(testedIssuesWithBugsArr);
+
+  const testedIssuesWithBugsAndReportersArr = DataUtils
+    .getReportersWorkload(testedIssuesWithBugsArr);
 
   let overallBugsCount = 0; // count overall bugs
   testedIssuesWithBugsArr.forEach((testedIssueWithBugs) => {
@@ -143,10 +154,16 @@ const parseIssues = async () => { // get Jira issues with comments
   const reporters = {};
   reporterNames.forEach((reporterName) => {
     let overAllBugsCount = 0;
+    let overAllTestedIssuesCount = 0;
+    let overAllTestedIssuesWithBugsCount = 0;
+    const bugsCountPerTestedIssueCountRatios = [];
+    const bugsCountPerTestedIssueWithBugsCountRatios = [];
     const projectBugCounts = {};
 
     projectNames.forEach((projectName) => {
       let bugsCount = 0;
+      let testedIssuesCount = 0;
+      let testedIssuesWithBugsCount = 0;
 
       testedIssuesWithBugsArr.forEach((testedIssueWithBugs) => {
         testedIssueWithBugs.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
@@ -159,17 +176,86 @@ const parseIssues = async () => { // get Jira issues with comments
         });
       });
 
+      testedIssuesWithReportersArr.forEach((testedIssueWithReporters) => {
+        if (testedIssueWithReporters.projectName === projectName) {
+          testedIssueWithReporters.assignees.forEach((assignee) => {
+            if (assignee === reporterName) {
+              testedIssuesCount += 1;
+            }
+          });
+        }
+      });
+
+      testedIssuesWithBugsAndReportersArr.forEach((testedIssueWithBugsAndReporters) => {
+        if (testedIssueWithBugsAndReporters.projectName === projectName) {
+          testedIssueWithBugsAndReporters.assignees.forEach((assignee) => {
+            if (assignee === reporterName) {
+              testedIssuesWithBugsCount += 1;
+            }
+          });
+        }
+      });
+
+      if (testedIssuesCount > 0 || testedIssuesWithBugsCount > 0 || bugsCount > 0) {
+        projectBugCounts[projectName] = {};
+      }
+
+      if (testedIssuesCount > 0) {
+        projectBugCounts[projectName].testedIssuesCount = testedIssuesCount;
+        overAllTestedIssuesCount += testedIssuesCount;
+      }
+
+      if (testedIssuesWithBugsCount > 0) {
+        projectBugCounts[projectName].testedIssuesWithBugsCount = testedIssuesWithBugsCount;
+        overAllTestedIssuesWithBugsCount += testedIssuesWithBugsCount;
+      }
+
       if (bugsCount > 0) {
         projectBugCounts[projectName] = bugsCount;
         overAllBugsCount += bugsCount;
       }
+
+      if (testedIssuesCount > 0 && bugsCount > 0) {
+        const bugsCountPerTestedIssueCountRatio = Number((bugsCount
+          / testedIssuesCount).toFixed(2));
+        projectBugCounts[projectName]
+          .bugsCountPerTestedIssueCountRatio = bugsCountPerTestedIssueCountRatio;
+        bugsCountPerTestedIssueCountRatios.push(bugsCountPerTestedIssueCountRatio);
+      }
+
+      if (testedIssuesWithBugsCount > 0 && bugsCount > 0) {
+        const bugsCountPerTestedIssueWithBugsCountRatio = Number((bugsCount
+          / testedIssuesWithBugsCount).toFixed(2));
+        projectBugCounts[projectName]
+          .bugsCountPerTestedIssueWithBugsCountRatio = bugsCountPerTestedIssueWithBugsCountRatio;
+        bugsCountPerTestedIssueWithBugsCountRatios.push(bugsCountPerTestedIssueWithBugsCountRatio);
+      }
     });
 
+    reporters[reporterName] = {
+      projects: projectBugCounts,
+    };
+
+    if (overAllTestedIssuesCount > 0) {
+      reporters[reporterName].overAllTestedIssuesCount = overAllTestedIssuesCount;
+    }
+
+    if (overAllTestedIssuesWithBugsCount > 0) {
+      reporters[reporterName].overAllTestedIssuesWithBugsCount = overAllTestedIssuesWithBugsCount;
+    }
+
     if (overAllBugsCount > 0) {
-      reporters[reporterName] = {
-        projects: projectBugCounts,
-        overAllBugsCount,
-      };
+      reporters[reporterName].overAllBugsCount = overAllBugsCount;
+    }
+
+    if (overAllTestedIssuesCount > 0 && overAllBugsCount > 0) {
+      reporters[reporterName].bugsCountPerTestedIssueCountMeanRatio = DataUtils
+        .averageRatio(bugsCountPerTestedIssueCountRatios);
+    }
+
+    if (overAllTestedIssuesWithBugsCount > 0 && overAllBugsCount > 0) {
+      reporters[reporterName].bugsCountPerTestedIssueWithBugsCountMeanRatio = DataUtils
+        .averageRatio(bugsCountPerTestedIssueWithBugsCountRatios);
     }
   });
 
@@ -201,8 +287,8 @@ const parseIssues = async () => { // get Jira issues with comments
 
       testedIssuesWithDevelopersArr.forEach((testedIssueWithDevelopers) => {
         if (testedIssueWithDevelopers.projectName === projectName) {
-          testedIssueWithDevelopers.developers.forEach((developer) => {
-            if (developer === developerName) {
+          testedIssueWithDevelopers.assignees.forEach((assignee) => {
+            if (assignee === developerName) {
               testedIssuesCount += 1;
             }
           });
@@ -211,8 +297,8 @@ const parseIssues = async () => { // get Jira issues with comments
 
       testedIssuesWithBugsAndDevelopersArr.forEach((testedIssueWithBugsAndDevelopers) => {
         if (testedIssueWithBugsAndDevelopers.projectName === projectName) {
-          testedIssueWithBugsAndDevelopers.developers.forEach((developer) => {
-            if (developer === developerName) {
+          testedIssueWithBugsAndDevelopers.assignees.forEach((assignee) => {
+            if (assignee === developerName) {
               testedIssuesWithBugsCount += 1;
             }
           });
@@ -285,7 +371,7 @@ const parseIssues = async () => { // get Jira issues with comments
   const summary = { // generate statistics summary
     issuesCreatedFrom: TimeUtils
       .reformatDateFromYMDToDMY(JSONLoader.config.commentsWithBugsCreatedFromDateYMD),
-    issuesCreatedTo: TimeUtils.reformatDateFromISOToDMY(TimeUtils.today()),
+    issuesCreatedTo: TimeUtils.reformatDateFromYMDToDMY(toDate),
     issuesCount: issuesWithCommentsArr.length,
     testedIssuesCount: testedIssuesWithCommentsArr.length,
     testedIssuesWithBugsCount: testedIssuesWithBugsArr.length,

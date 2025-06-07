@@ -6,6 +6,7 @@
     "datesFormatISO": "YYYY-MM-DDTHH:mm:ss",
     "halfMinute": 30000,
     "commentsWithBugsCreatedFromDateYMD": "2025-03-26",
+    "commentsWithBugsCreatedToDateYMD": "",
     "issueWithoutAssignee": "unassigned",
     "debugIssues": [
         "ADP-2676"
@@ -44,5 +45,17 @@
         "Adilkhan",
         "Илья Балтер",
         "Адилет Абилхан"
+    ],
+    "reporters": [
+        "Акбала",
+        "Анисимов Анатолий",
+        "Ivan Voronov",
+        "Әлішер Хамит",
+        "Искаков Асхат",
+        "Turarbek Kairosh",
+        "Молдағалиева Еңлік",
+        "Ким Виолетта",
+        "Антон Липатов",
+        "Адильбек"
     ]
 }
