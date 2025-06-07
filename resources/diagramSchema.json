@@ -9,6 +9,14 @@
             },
             "legend": {
                 "position": "top"
+            },
+            "datalabels": {
+                "color": "#000",
+                "anchor": "end",
+                "align": "top",
+                "font": {
+                    "weight": "bold"
+                }
             }
         },
         "scales": {

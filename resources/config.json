@@ -79,6 +79,9 @@
     "cyrillicNames": {
         "testedIssuesCount": "Количество протестированных задач",
         "testedIssuesWithBugsCount": "Количество протестированных задач с багами",
-        "bugsCount": "Количество багов"
+        "bugsCount": "Количество багов",
+        "bugsCountPerTestedIssueCountRatio": "Соотношение количества багов к количеству протестированных задач",
+        "bugsCountPerTestedIssueWithBugsCountRatio": "Соотношение количества багов к количеству протестированных задач с багами",
+        "bugsCountPerOverallBugsCountRatio": "Соотношение количества багов к общему количеству багов"
     }
 }
