@@ -34,6 +34,13 @@ class DataUtils {
     return timeIntervals;
   }
 
+  static createInitialTimestamp(sortedChangelog) {
+    return {
+      transitionFrom: JSONLoader.config.initIssueStatus,
+      created: TimeUtils.convertTimestampToDateObject(sortedChangelog[0].created),
+    };
+  }
+
   static markAssignedEntitiesLessThanHalfMinute(assignedEntityChanges) {
     assignedEntityChanges.forEach((assignedEntityChange, index, arr) => {
       if (index === 0) {
@@ -114,12 +121,12 @@ class DataUtils {
     return results;
   }
 
-  static getStatusChanges(changelog) {
-    const statusChanges = [];
+  static getFieldChanges(fieldName, changelog) {
+    const fieldChanges = [];
     for (const element of changelog) {
       element.items.forEach((item) => {
-        if (item.field === 'status') {
-          statusChanges.push({
+        if (item.field === fieldName && item.fromString) {
+          fieldChanges.push({
             transitionFrom: item.fromString,
             transitionTo: item.toString,
             created: element.created,
@@ -129,53 +136,32 @@ class DataUtils {
       });
     }
 
-    // filter if status assigned more than half minute
-    this.convertTimestampsToDateObjects(statusChanges);
-    this.markAssignedEntitiesLessThanHalfMinute(statusChanges);
-    return statusChanges;
+    // filter if field assigned more than half minute
+    this.convertTimestampsToDateObjects(fieldChanges);
+    this.markAssignedEntitiesLessThanHalfMinute(fieldChanges);
+    return fieldChanges;
   }
 
   static getDevStatusEnds(changelog) {
-    return this.getStatusChanges(changelog)
+    return this.getFieldChanges('status', changelog)
       .filter((statusChange) => JSONLoader.config.devIssueStatuses
         .includes(statusChange.transitionFrom.toUpperCase()));
   }
 
   static getTestStatusEnds(changelog) {
-    return this.getStatusChanges(changelog)
+    return this.getFieldChanges('status', changelog)
       .filter((statusChange) => JSONLoader.config.testIssueStatuses
         .includes(statusChange.transitionFrom.toUpperCase()));
   }
 
-  static getAssigneeChanges(changelog) {
-    const assigneeChanges = [];
-    for (const element of changelog) {
-      element.items.forEach((item) => {
-        if (item.field === 'assignee' && item.fromString) {
-          assigneeChanges.push({
-            transitionFrom: item.fromString,
-            transitionTo: item.toString,
-            created: element.created,
-            ID: Randomizer.getRandomString(false, false, true, false, false, 20, 20),
-          });
-        }
-      });
-    }
-
-    // filter if assignee assigned more than half minute
-    this.convertTimestampsToDateObjects(assigneeChanges);
-    this.markAssignedEntitiesLessThanHalfMinute(assigneeChanges);
-    return assigneeChanges;
-  }
-
   static getDeveloperChanges(changelog) {
-    return this.getAssigneeChanges(changelog)
+    return this.getFieldChanges('assignee', changelog)
       .filter((assigneeChange) => JSONLoader.config.developers
         .includes(assigneeChange.transitionFrom));
   }
 
   static getReporterChanges(changelog) {
-    return this.getAssigneeChanges(changelog)
+    return this.getFieldChanges('assignee', changelog)
       .filter((assigneeChange) => JSONLoader.config.reporters
         .includes(assigneeChange.transitionTo));
   }
@@ -217,27 +203,24 @@ class DataUtils {
 
   // search previous developer assignee before bug found
   static linkDevelopersWithBugs(testedIssue) {
-    if (testedIssue.commentsWithBugs.length > 0) {
+    if (testedIssue.commentsWithBugs.length) {
       return testedIssue.commentsWithBugs.map((commentWithBug) => {
         const linkedAssigneeWithBug = { ...commentWithBug };
         const commentCreatedDateObj = TimeUtils
           .convertTimestampToDateObject(commentWithBug.commentCreated);
-        const sortedChangelog = this.sortByTimestamps(testedIssue.changelog);
-        const initialTimestamp = {
-          transitionFrom: JSONLoader.config.initIssueStatus,
-          created: TimeUtils.convertTimestampToDateObject(sortedChangelog[0].created),
-        };
 
-        // get all dev statuses ends from issue history, includes
-        // only BACKLOG, TO DO, REOPEN and IN PROGRESS statuses
+        const sortedChangelog = this.sortByTimestamps(testedIssue.changelog);
+        const initialTimestamp = this.createInitialTimestamp(sortedChangelog);
+
+        // get dev status ends from issue history
         const devStatusEnds = this.getDevStatusEnds(sortedChangelog);
 
         // get developer assignee changes from issue history
         const assigneeChanges = this.getDeveloperChanges(sortedChangelog);
 
         // filter not includes issues with only one assignee or status due to lack of transition
-        if (assigneeChanges.length > 0 && devStatusEnds.length > 0) {
-          // get developer assignees with dev statuses at the same time
+        // and get developer assignees with dev statuses at the same time
+        if (assigneeChanges.length && devStatusEnds.length) {
           const overlappedAssignees = this.getAssigneesWithStatuses(
             devStatusEnds,
             assigneeChanges,
@@ -270,13 +253,9 @@ class DataUtils {
 
   static getIssueDevelopers(testedIssue) {
     const sortedChangelog = this.sortByTimestamps(testedIssue.changelog);
-    const initialTimestamp = {
-      transitionFrom: JSONLoader.config.initIssueStatus,
-      created: TimeUtils.convertTimestampToDateObject(sortedChangelog[0].created),
-    };
+    const initialTimestamp = this.createInitialTimestamp(sortedChangelog);
 
-    // get all dev statuses ends from issue history, includes
-    // only BACKLOG, TO DO, REOPEN and IN PROGRESS statuses
+    // get dev status ends from issue history
     const statusEnds = this.getDevStatusEnds(sortedChangelog);
 
     // get developer assignee changes from issue history
@@ -292,13 +271,9 @@ class DataUtils {
 
   static getIssueReporters(testedIssue) {
     const sortedChangelog = this.sortByTimestamps(testedIssue.changelog);
-    const initialTimestamp = {
-      transitionFrom: JSONLoader.config.initIssueStatus,
-      created: TimeUtils.convertTimestampToDateObject(sortedChangelog[0].created),
-    };
+    const initialTimestamp = this.createInitialTimestamp(sortedChangelog);
 
-    // get all test statuses starts from issue history, includes
-    // only IN TEST, IN TEST (LOCAL), IN TEST (DEV) and IN TEST (STAGE) statuses
+    // get test status starts from issue history
     const statusEnds = this.getTestStatusEnds(sortedChangelog);
 
     // get reporter assignee changes from issue history
@@ -379,7 +354,7 @@ class DataUtils {
 
         return {
           projectName: issue.projectName,
-          assignees: assignees.length > 0
+          assignees: assignees.length
             ? assignees
             : [JSONLoader.config.issueWithoutAssignee],
         };
@@ -397,7 +372,7 @@ class DataUtils {
 
         return {
           projectName: issue.projectName,
-          assignees: assignees.length > 0
+          assignees: assignees.length
             ? assignees
             : [JSONLoader.config.issueWithoutAssignee],
         };
