@@ -5,6 +5,7 @@
     "datesFormatDMY": "DD.MM.YYYY",
     "datesFormatISO": "YYYY-MM-DDTHH:mm:ss",
     "halfMinute": 30000,
+    "decimalPlaces": 4,
     "commentsWithBugsCreatedFromDateYMD": "2025-03-26",
     "commentsWithBugsCreatedToDateYMD": "",
     "issueWithoutAssignee": "unassigned",

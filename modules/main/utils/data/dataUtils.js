@@ -45,7 +45,7 @@ class DataUtils {
           assignedEntityChange.assignedLessThanHalfMinute = false;
         } else {
           assignedEntityChange.assignedLessThanHalfMinute = true;
-        };
+        }
       }
     });
   }
@@ -210,7 +210,8 @@ class DataUtils {
           return overlappedAssignee;
         }, null)]
         .filter((nestedAssigneeWithStatus) => nestedAssigneeWithStatus?.overlap)
-        .filter((nestedAssigneeWithStatus) => !nestedAssigneeWithStatus.assignedLessThanHalfMinuteStatus 
+        .filter((nestedAssigneeWithStatus) => !nestedAssigneeWithStatus
+          .assignedLessThanHalfMinuteStatus
         && !nestedAssigneeWithStatus.assignedLessThanHalfMinuteAssignee));
   }
 
@@ -313,21 +314,57 @@ class DataUtils {
 
   static fillBugsPerEntities(
     accumulator,
+    testedIssuesWithCommentsArr,
     testedIssuesWithBugsArr,
     key,
-    entities,
+    entityNames,
     overallBugsCount,
   ) {
-    entities.forEach((el) => {
+    entityNames.forEach((el) => {
       let bugsCount = 0;
+
+      const testedIssuesCount = testedIssuesWithCommentsArr
+        .filter((testedIssueWithComments) => testedIssueWithComments[key] === el).length;
+
+      const testedIssuesWithBugsCount = testedIssuesWithBugsArr
+        .filter((testedIssueWithBugs) => testedIssueWithBugs[key] === el).length;
+
       testedIssuesWithBugsArr.forEach((testedIssueWithBugs) => {
         if (testedIssueWithBugs[key] === el) {
           bugsCount += testedIssueWithBugs.bugsCount;
         }
       });
 
-      const bugsCountPerOverallBugsCountRatio = Number((bugsCount / overallBugsCount).toFixed(2));
-      accumulator[el] = { bugsCount, bugsCountPerOverallBugsCountRatio };
+      if (testedIssuesCount > 0) {
+        accumulator[el] = { testedIssuesCount };
+      }
+
+      if (testedIssuesWithBugsCount > 0) {
+        accumulator[el].testedIssuesWithBugsCount = testedIssuesWithBugsCount;
+      }
+
+      if (bugsCount > 0) {
+        accumulator[el].bugsCount = bugsCount;
+      }
+
+      if (bugsCount > 0 && testedIssuesCount > 0) {
+        const bugsCountPerTestedIssueCountRatio = Number((bugsCount
+        / testedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
+        accumulator[el].bugsCountPerTestedIssueCountRatio = bugsCountPerTestedIssueCountRatio;
+      }
+
+      if (bugsCount > 0 && testedIssuesWithBugsCount > 0) {
+        const bugsCountPerTestedIssueWithBugsCountRatio = Number((bugsCount
+        / testedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
+        accumulator[el]
+          .bugsCountPerTestedIssueWithBugsCountRatio = bugsCountPerTestedIssueWithBugsCountRatio;
+      }
+
+      if (bugsCount > 0 && overallBugsCount > 0) {
+        const bugsCountPerOverallBugsCountRatio = Number((bugsCount
+          / overallBugsCount).toFixed(JSONLoader.config.decimalPlaces));
+        accumulator[el].bugsCountPerOverallBugsCountRatio = bugsCountPerOverallBugsCountRatio;
+      }
     });
   }
 
@@ -368,7 +405,155 @@ class DataUtils {
   }
 
   static averageRatio(ratiosArr) {
-    return Number((ratiosArr.reduce((sum, val) => sum + val, 0) / ratiosArr.length).toFixed(2));
+    return Number((ratiosArr.reduce((sum, val) => sum + val, 0)
+    / ratiosArr.length).toFixed(JSONLoader.config.decimalPlaces));
+  }
+
+  static fillBugsPerAssignees(
+    accumulator,
+    testedIssuesWithBugsArr,
+    testedIssuesWithAssigneesArr,
+    testedIssuesWithBugsAndAssigneesArr,
+    projectNames,
+    assigneeNames,
+    overallBugsCount,
+    options = { lastPreviousDevAssignee: true },
+  ) {
+    assigneeNames.forEach((el) => {
+      let allBugsCount = 0;
+      let allTestedIssuesCount = 0;
+      let allTestedIssuesWithBugsCount = 0;
+      let allBugsCountPerOverallBugsCountRatio = 0;
+      const bugsCountPerTestedIssueCountRatios = [];
+      const bugsCountPerTestedIssueWithBugsCountRatios = [];
+      const projectBugCounts = {};
+
+      projectNames.forEach((projectName) => {
+        let bugsCount = 0;
+        let testedIssuesCount = 0;
+        let testedIssuesWithBugsCount = 0;
+
+        testedIssuesWithBugsArr.forEach((testedIssueWithBugs) => {
+          testedIssueWithBugs.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
+            if (
+              testedIssueWithBugs.projectName === projectName
+              && (options.lastPreviousDevAssignee
+                ? (linkedCommentWithBugs.lastPreviousDevAssignee?.transitionFromAssignee
+                ?? JSONLoader.config.issueWithoutAssignee)
+                : linkedCommentWithBugs.commentAuthor) === el
+            ) {
+              bugsCount += 1;
+            }
+          });
+        });
+
+        testedIssuesWithAssigneesArr.forEach((testedIssueWithDevelopers) => {
+          if (testedIssueWithDevelopers.projectName === projectName) {
+            testedIssueWithDevelopers.assignees.forEach((assignee) => {
+              if (assignee === el) {
+                testedIssuesCount += 1;
+              }
+            });
+          }
+        });
+
+        testedIssuesWithBugsAndAssigneesArr.forEach((testedIssueWithBugsAndDevelopers) => {
+          if (testedIssueWithBugsAndDevelopers.projectName === projectName) {
+            testedIssueWithBugsAndDevelopers.assignees.forEach((assignee) => {
+              if (assignee === el) {
+                testedIssuesWithBugsCount += 1;
+              }
+            });
+          }
+        });
+
+        if (testedIssuesCount > 0 || testedIssuesWithBugsCount > 0 || bugsCount > 0) {
+          projectBugCounts[projectName] = {};
+        }
+
+        if (testedIssuesCount > 0) {
+          projectBugCounts[projectName].testedIssuesCount = testedIssuesCount;
+          allTestedIssuesCount += testedIssuesCount;
+        }
+
+        if (testedIssuesWithBugsCount > 0) {
+          projectBugCounts[projectName].testedIssuesWithBugsCount = testedIssuesWithBugsCount;
+          allTestedIssuesWithBugsCount += testedIssuesWithBugsCount;
+        }
+
+        if (bugsCount > 0) {
+          projectBugCounts[projectName].bugsCount = bugsCount;
+          allBugsCount += bugsCount;
+        }
+
+        if (testedIssuesCount > 0 && bugsCount > 0) {
+          const bugsCountPerTestedIssueCountRatio = Number((bugsCount
+            / testedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
+          projectBugCounts[projectName]
+            .bugsCountPerTestedIssueCountRatio = bugsCountPerTestedIssueCountRatio;
+          bugsCountPerTestedIssueCountRatios.push(bugsCountPerTestedIssueCountRatio);
+        }
+
+        if (testedIssuesWithBugsCount > 0 && bugsCount > 0) {
+          const bugsCountPerTestedIssueWithBugsCountRatio = Number((bugsCount
+            / testedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
+          projectBugCounts[projectName]
+            .bugsCountPerTestedIssueWithBugsCountRatio = bugsCountPerTestedIssueWithBugsCountRatio;
+          bugsCountPerTestedIssueWithBugsCountRatios
+            .push(bugsCountPerTestedIssueWithBugsCountRatio);
+        }
+
+        if (bugsCount > 0 && overallBugsCount > 0) {
+          const bugsCountPerOverallBugsCountRatio = Number((bugsCount
+            / overallBugsCount).toFixed(JSONLoader.config.decimalPlaces));
+          projectBugCounts[projectName]
+            .bugsCountPerOverallBugsCountRatio = bugsCountPerOverallBugsCountRatio;
+          allBugsCountPerOverallBugsCountRatio += bugsCountPerOverallBugsCountRatio;
+        }
+      });
+
+      accumulator[el] = {
+        projects: projectBugCounts,
+      };
+
+      if (allTestedIssuesCount > 0) {
+        accumulator[el].allTestedIssuesCount = allTestedIssuesCount;
+      }
+
+      if (allTestedIssuesWithBugsCount > 0) {
+        accumulator[el].allTestedIssuesWithBugsCount = allTestedIssuesWithBugsCount;
+      }
+
+      if (allBugsCount > 0) {
+        accumulator[el].allBugsCount = allBugsCount;
+      }
+
+      if (allBugsCountPerOverallBugsCountRatio > 0) {
+        accumulator[el]
+          .allBugsCountPerOverallBugsCountRatio = Number(allBugsCountPerOverallBugsCountRatio
+            .toFixed(JSONLoader.config.decimalPlaces));
+      }
+
+      if (allBugsCount > 0 && allTestedIssuesCount > 0) {
+        accumulator[el].allBugsCountPerAllTestedIssueCountRatio = Number((allBugsCount
+          / allTestedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
+      }
+
+      if (allBugsCount > 0 && allTestedIssuesWithBugsCount > 0) {
+        accumulator[el].allBugsCountPerAllTestedIssueWithBugsCountRatio = Number((allBugsCount
+          / allTestedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
+      }
+
+      if (allTestedIssuesCount > 0 && allBugsCount > 0) {
+        accumulator[el].bugsCountPerTestedIssueCountAverageRatio = DataUtils
+          .averageRatio(bugsCountPerTestedIssueCountRatios);
+      }
+
+      if (allTestedIssuesWithBugsCount > 0 && allBugsCount > 0) {
+        accumulator[el].bugsCountPerTestedIssueWithBugsCountAverageRatio = DataUtils
+          .averageRatio(bugsCountPerTestedIssueWithBugsCountRatios);
+      }
+    });
   }
 }
 
