@@ -182,14 +182,16 @@ const parseIssues = async () => { // get Jira issues with comments
     issuesCreatedFrom: TimeUtils
       .reformatDateFromYMDToDMY(JSONLoader.config.commentsWithBugsCreatedFromDateYMD),
     issuesCreatedTo: TimeUtils.reformatDateFromYMDToDMY(toDate),
-    issuesCount: issuesWithCommentsArr.length,
-    testedIssuesCount: testedIssuesWithCommentsArr.length,
-    testedIssuesWithBugsCount: testedIssuesWithBugsArr.length,
-    overallBugsCount,
-    bugsCountPerTestedIssueCountRatio: Number((overallBugsCount
-      / testedIssuesWithCommentsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
-    bugsCountPerTestedIssueWithBugsCountRatio: Number((overallBugsCount
-      / testedIssuesWithBugsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
+    overall: {
+      issuesCount: issuesWithCommentsArr.length,
+      testedIssuesCount: testedIssuesWithCommentsArr.length,
+      testedIssuesWithBugsCount: testedIssuesWithBugsArr.length,
+      overallBugsCount,
+      bugsCountPerTestedIssueCountRatio: Number((overallBugsCount
+        / testedIssuesWithCommentsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
+      bugsCountPerTestedIssueWithBugsCountRatio: Number((overallBugsCount
+        / testedIssuesWithBugsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
+    },
     priorities,
     devTypes,
     issueTypes,

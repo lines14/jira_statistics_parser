@@ -12,6 +12,26 @@ const generateDiagrams = async () => {
   const colors = JSONLoader.config.diagramColors;
   const diagramsData = [
     {
+      title: 'Общее количество протестированных задач и багов',
+      yLabel: 'Количество',
+      data: DataUtils.extractPropertyByName(
+        cyrillicSummary,
+        'Количество протестированных задач',
+        'Количество протестированных задач с багами',
+        'Общее количество багов',
+        'Количество задач',
+      ),
+    },
+    {
+      title: 'Общее соотношение количества багов к количеству протестированных задач',
+      yLabel: 'Процент',
+      data: DataUtils.extractPropertyByName(
+        cyrillicSummary,
+        'Соотношение количества багов к количеству протестированных задач',
+        'Соотношение количества багов к количеству протестированных задач с багами',
+      ),
+    },
+    {
       title: 'Количество протестированных задач и багов по приоритетам',
       yLabel: 'Количество',
       xLabel: 'Приоритеты',
@@ -135,7 +155,7 @@ const generateDiagrams = async () => {
 
   for (const diagram of diagramsData) {
     await imageUtils.generateDiagram( // eslint-disable-line no-await-in-loop
-      diagram.title,
+      `${diagram.title} c ${cyrillicSummary.issuesCreatedFrom} по ${cyrillicSummary.issuesCreatedTo}`,
       diagram.yLabel,
       diagram.xLabel,
       diagram.data,

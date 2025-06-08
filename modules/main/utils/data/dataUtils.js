@@ -531,21 +531,49 @@ class DataUtils {
     });
   }
 
+  // static extractPropertyByName(obj, ...propertyNames) {
+  //   const result = {};
+  //   for (const [name, data] of Object.entries(obj)) {
+  //     result[name] = {};
+
+  //     for (const propertyName of propertyNames) {
+  //       if (propertyName in data) {
+  //         result[name][propertyName] = data[propertyName];
+  //       }
+  //     }
+
+  //     if (Object.keys(result[name]).length === 0) {
+  //       delete result[name];
+  //     }
+  //   }
+  //   return result;
+  // }
+
   static extractPropertyByName(obj, ...propertyNames) {
     const result = {};
-    for (const [name, data] of Object.entries(obj)) {
-      result[name] = {};
-
-      for (const propertyName of propertyNames) {
-        if (propertyName in data) {
-          result[name][propertyName] = data[propertyName];
+    if (typeof obj !== 'object' || obj === null) return result;
+    const isFlat = propertyNames.some((p) => p in obj);
+    if (isFlat) {
+      for (const prop of propertyNames) {
+        if (prop in obj) {
+          result[prop] = obj[prop];
         }
       }
+      return result;
+    }
 
-      if (Object.keys(result[name]).length === 0) {
-        delete result[name];
+    for (const [key, value] of Object.entries(obj)) {
+      if (typeof value === 'object' && value !== null) {
+        const filtered = {};
+        for (const prop of propertyNames) {
+          if (prop in value) filtered[prop] = value[prop];
+        }
+        if (Object.keys(filtered).length > 0) {
+          result[key] = filtered;
+        }
       }
     }
+
     return result;
   }
 

@@ -77,9 +77,11 @@
         "Адильбек"
     ],
     "cyrillicNames": {
+        "issuesCount": "Количество задач",
         "testedIssuesCount": "Количество протестированных задач",
         "testedIssuesWithBugsCount": "Количество протестированных задач с багами",
         "bugsCount": "Количество багов",
+        "overallBugsCount": "Общее количество багов",
         "bugsCountPerTestedIssueCountRatio": "Соотношение количества багов к количеству протестированных задач",
         "bugsCountPerTestedIssueWithBugsCountRatio": "Соотношение количества багов к количеству протестированных задач с багами",
         "bugsCountPerOverallBugsCountRatio": "Процент количества багов от общего числа багов"

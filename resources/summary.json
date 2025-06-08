@@ -1,12 +1,14 @@
 {
     "issuesCreatedFrom": "26.03.2025",
     "issuesCreatedTo": "08.06.2025",
-    "issuesCount": 485,
-    "testedIssuesCount": 215,
-    "testedIssuesWithBugsCount": 53,
-    "overallBugsCount": 189,
-    "bugsCountPerTestedIssueCountRatio": 0.8791,
-    "bugsCountPerTestedIssueWithBugsCountRatio": 3.566,
+    "overall": {
+        "issuesCount": 485,
+        "testedIssuesCount": 215,
+        "testedIssuesWithBugsCount": 53,
+        "overallBugsCount": 189,
+        "bugsCountPerTestedIssueCountRatio": 0.8791,
+        "bugsCountPerTestedIssueWithBugsCountRatio": 3.566
+    },
     "priorities": {
         "Medium": {
             "testedIssuesCount": 173,
