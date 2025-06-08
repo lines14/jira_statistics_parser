@@ -6,7 +6,7 @@
     "datesFormatISO": "YYYY-MM-DDTHH:mm:ss",
     "halfMinute": 30000,
     "decimalPlaces": 4,
-    "diagramConfig": { 
+    "canvas": { 
         "width": 1500, 
         "height": 500, 
         "backgroundColour": "white" 

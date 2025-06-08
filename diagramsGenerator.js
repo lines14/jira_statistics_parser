@@ -1,11 +1,15 @@
+/* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
 import DataUtils from './modules/main/utils/data/dataUtils.js';
 import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 import imageUtils from './modules/main/utils/image/imageUtils.js';
 
 const generateDiagrams = async () => {
-  const cyrillicSummary = DataUtils.setCyrillicNames(JSONLoader.summary, JSONLoader.config.cyrillicNames);
-  const colors = JSONLoader.config.diagramColors;
+  const cyrillicSummary = DataUtils.setCyrillicNames(
+    JSONLoader.summary,
+    JSONLoader.config.cyrillicNames,
+  );
 
+  const colors = JSONLoader.config.diagramColors;
   const diagramsData = [
     {
       title: 'Количество протестированных задач и багов по приоритетам',
@@ -67,7 +71,6 @@ const generateDiagrams = async () => {
         'Процент количества багов от общего числа багов',
       ),
     },
-
     {
       title: 'Количество протестированных задач и багов по типам задач',
       yLabel: 'Количество',
@@ -98,8 +101,6 @@ const generateDiagrams = async () => {
         'Процент количества багов от общего числа багов',
       ),
     },
-
-
     {
       title: 'Количество протестированных задач и багов по проектам',
       yLabel: 'Количество',
@@ -133,7 +134,7 @@ const generateDiagrams = async () => {
   ];
 
   for (const diagram of diagramsData) {
-    await imageUtils.generateDiagram(
+    await imageUtils.generateDiagram( // eslint-disable-line no-await-in-loop
       diagram.title,
       diagram.yLabel,
       diagram.xLabel,

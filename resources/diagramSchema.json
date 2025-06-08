@@ -1,38 +1,56 @@
 {
     "type": "bar",
+    "data": {
+        "labels": [],
+        "datasets": []
+    },
     "options": {
         "responsive": false,
+        "animation": false,
         "plugins": {
             "title": {
                 "display": true,
-                "text": ""
-            },
-            "legend": {
-                "position": "top"
+                "text": "",
+                "color": "#000"
             },
             "datalabels": {
-                "color": "#000",
                 "anchor": "end",
                 "align": "top",
-                "font": {
-                    "weight": "bold"
+                "formatter": null,
+                "display": true,
+                "color": "#000"
+            },
+            "legend": {
+                "display": true,
+                "position": "bottom",
+                "labels": {
+                    "color": "#000"
                 }
             }
         },
         "scales": {
+            "x": {
+                "title": {
+                    "display": null,
+                    "text": "",
+                    "color": "#000"
+                },
+                "ticks": {
+                    "color": "#000"
+                }
+            },
             "y": {
                 "beginAtZero": true,
                 "title": {
-                    "display": true,
-                    "text": ""
-                }
-            },
-            "x": {
-                "title": {
-                    "display": true,
-                    "text": ""
+                    "display": null,
+                    "text": "",
+                    "color": "#000"
+                },
+                "ticks": {
+                    "color": "#000"
                 }
             }
         }
-    }
+    },
+    "plugins": []
 }

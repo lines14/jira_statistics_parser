@@ -1,6 +1,5 @@
 /* eslint-disable no-await-in-loop */
 /* eslint no-param-reassign: ["off"] */
-/* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
 import jiraAPI from './modules/API/jiraAPI.js';
 import DataUtils from './modules/main/utils/data/dataUtils.js';
 import TimeUtils from './modules/main/utils/time/timeUtils.js';

@@ -1,71 +1,30 @@
+/* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
 import fs from 'fs';
 import path from 'path';
 import Chart from 'chart.js/auto';
-import JSONLoader from '../data/JSONLoader.js';
 import { ChartJSNodeCanvas } from 'chartjs-node-canvas';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import JSONLoader from '../data/JSONLoader.js';
 
 Chart.register(ChartDataLabels);
 
 class ImageUtils {
-  constructor(
-    width = JSONLoader.config.diagramConfig.width,
-    height = JSONLoader.config.diagramConfig.height
-  ) {
-    this.canvas = new ChartJSNodeCanvas({
-      width,
-      height,
-      backgroundColour: 'white',
-    });
+  constructor() {
+    this.canvas = new ChartJSNodeCanvas(JSONLoader.config.canvas);
   }
 
-  static createChartConfig(title, labels, datasets) {
-    return {
-      type: 'bar',
-      data: {
-        labels,
-        datasets,
-      },
-      options: {
-        responsive: false,
-        animation: false,
-        plugins: {
-          title: {
-            display: true,
-            text: title,
-            color: '#000',
-          },
-          datalabels: {
-            anchor: 'end',
-            align: 'top',
-            formatter: (value) => value,
-            display: true,
-            color: '#000',
-          },
-          legend: {
-            display: true,
-            position: 'bottom',
-            labels: {
-              color: '#000',
-            },
-          },
-        },
-        scales: {
-          x: {
-            ticks: {
-              color: '#000',
-            },
-          },
-          y: {
-            beginAtZero: true,
-            ticks: {
-              color: '#000',
-            },
-          },
-        },
-      },
-      plugins: [ChartDataLabels],
-    };
+  static createChartConfig(title, labels, datasets, axisLabels = {}) {
+    const config = JSONLoader.diagramSchema;
+    config.data.labels = labels;
+    config.data.datasets = datasets;
+    config.plugins = [ChartDataLabels];
+    config.options.plugins.title.text = title;
+    config.options.scales.x.title.text = axisLabels.xLabel;
+    config.options.scales.y.title.text = axisLabels.yLabel;
+    config.options.scales.x.title.display = !!axisLabels.xLabel;
+    config.options.scales.y.title.display = !!axisLabels.yLabel;
+    config.options.plugins.datalabels.formatter = (value) => value;
+    return config;
   }
 
   async generateDiagram(
@@ -73,7 +32,7 @@ class ImageUtils {
     yLabel,
     xLabel,
     summary,
-    colors
+    colors,
   ) {
     const summaryKeys = Object.keys(summary);
     const metricsSet = new Set();
@@ -102,11 +61,7 @@ class ImageUtils {
       datasets.push(dataset);
     });
 
-    const config = ImageUtils.createChartConfig(title, summaryKeys, datasets, {
-      xLabel,
-      yLabel,
-    });
-
+    const config = ImageUtils.createChartConfig(title, summaryKeys, datasets, { xLabel, yLabel });
     const buffer = await this.canvas.renderToBuffer(config);
     const filepath = path.join('images', `${title}.png`);
     fs.writeFileSync(filepath, buffer);
