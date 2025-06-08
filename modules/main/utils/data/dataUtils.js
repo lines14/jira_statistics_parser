@@ -552,7 +552,7 @@ class DataUtils {
   static setCyrillicNames(obj, namesMapping) {
     if (Array.isArray(obj)) {
       return obj.map((item) => this.setCyrillicNames(item, namesMapping));
-    } else if (obj !== null && typeof obj === 'object') {
+    } if (obj !== null && typeof obj === 'object') {
       const newObj = {};
       for (const [key, value] of Object.entries(obj)) {
         const newKey = namesMapping[key] || key;

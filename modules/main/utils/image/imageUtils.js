@@ -1,13 +1,22 @@
+/* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
 import fs from 'fs';
-import JSONLoader from '../data/JSONLoader.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { ChartJSNodeCanvas } from 'chartjs-node-canvas';
-import { Chart, BarElement, CategoryScale, LinearScale } from 'chart.js';
+import {
+  Chart, BarElement, CategoryScale, LinearScale,
+} from 'chart.js';
+import JSONLoader from '../data/JSONLoader.js';
 
 Chart.register(BarElement, CategoryScale, LinearScale, ChartDataLabels);
 
 class ImageUtils {
-  static async generateDiagram(mainTitle, verticalTitle, horizontalTitle, summary, options = { minimumDatalabelValue: 0 }) {
+  static async generateDiagram(
+    mainTitle,
+    verticalTitle,
+    horizontalTitle,
+    summary,
+    options = { minimumDatalabelValue: 0 },
+  ) {
     const chartJSNodeCanvas = new ChartJSNodeCanvas(JSONLoader.config.diagramConfig);
     const colors = JSONLoader.config.diagramColors;
 
@@ -43,11 +52,11 @@ class ImageUtils {
 
     const configuration = JSONLoader.diagramSchema;
     configuration.data = data;
-    configuration.plugins = [ChartDataLabels],
+    configuration.plugins = [ChartDataLabels];
     configuration.options.plugins.title.text = mainTitle;
     configuration.options.scales.y.title.text = verticalTitle;
     configuration.options.scales.x.title.text = horizontalTitle;
-    configuration.options.plugins.datalabels.formatter = (value) => value >= options.minimumDatalabelValue ? `${value}` : null;
+    configuration.options.plugins.datalabels.formatter = (value) => (value >= options.minimumDatalabelValue ? `${value}` : null);
 
     const image = await chartJSNodeCanvas.renderToBuffer(configuration);
     fs.writeFileSync(`artifacts/${mainTitle}.png`, image);
