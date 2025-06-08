@@ -19,15 +19,13 @@ const generateDiagrams = async () => {
       "rgba(255, 102, 255, 0.5)"
     ];
 
-  const getColor = (index) => colors[index % colors.length];
-
   let diagramCount = 0;
 
   const diagramsData = [
     {
       title: 'Количество протестированных задач и багов по приоритетам',
       yLabel: 'Количество',
-      xLabel: 'Проекты',
+      xLabel: 'Приоритеты',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.priorities,
         'Количество протестированных задач',
@@ -39,7 +37,7 @@ const generateDiagrams = async () => {
     {
       title: 'Соотношение количества багов к количеству протестированных задач по приоритетам',
       yLabel: 'Процент',
-      xLabel: 'Проекты',
+      xLabel: 'Приоритеты',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.priorities,
         'Соотношение количества багов к количеству протестированных задач',
@@ -49,7 +47,7 @@ const generateDiagrams = async () => {
     {
       title: 'Процент количества багов от общего числа багов по приоритетам',
       yLabel: 'Процент',
-      xLabel: 'Проекты',
+      xLabel: 'Приоритеты',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.priorities,
         'Процент количества багов от общего числа багов',
@@ -58,7 +56,7 @@ const generateDiagrams = async () => {
     {
       title: 'Количество протестированных задач и багов по типам разработки',
       yLabel: 'Количество',
-      xLabel: 'Проекты',
+      xLabel: 'Типы разработки',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.devTypes,
         'Количество протестированных задач',
@@ -70,7 +68,7 @@ const generateDiagrams = async () => {
     {
       title: 'Соотношение количества багов к количеству протестированных задач по типам разработки',
       yLabel: 'Процент',
-      xLabel: 'Проекты',
+      xLabel: 'Типы разработки',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.devTypes,
         'Соотношение количества багов к количеству протестированных задач',
@@ -80,7 +78,7 @@ const generateDiagrams = async () => {
     {
       title: 'Процент количества багов от общего числа багов по типам разработки',
       yLabel: 'Процент',
-      xLabel: 'Проекты',
+      xLabel: 'Типы разработки',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.devTypes,
         'Процент количества багов от общего числа багов',
@@ -90,7 +88,7 @@ const generateDiagrams = async () => {
     {
       title: 'Количество протестированных задач и багов по типам задач',
       yLabel: 'Количество',
-      xLabel: 'Проекты',
+      xLabel: 'Типы задач',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.issueTypes,
         'Количество протестированных задач',
@@ -102,7 +100,7 @@ const generateDiagrams = async () => {
     {
       title: 'Соотношение количества багов к количеству протестированных задач по типам задач',
       yLabel: 'Процент',
-      xLabel: 'Проекты',
+      xLabel: 'Типы задач',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.issueTypes,
         'Соотношение количества багов к количеству протестированных задач',
@@ -112,7 +110,7 @@ const generateDiagrams = async () => {
     {
       title: 'Процент количества багов от общего числа багов по типам задач',
       yLabel: 'Процент',
-      xLabel: 'Проекты',
+      xLabel: 'Типы задач',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.issueTypes,
         'Процент количества багов от общего числа багов',
@@ -160,7 +158,7 @@ const generateDiagrams = async () => {
       diagram.xLabel,
       diagram.data,
       diagram.options,
-      getColor(diagramCount),
+      colors,
     );
     diagramCount++;
   }

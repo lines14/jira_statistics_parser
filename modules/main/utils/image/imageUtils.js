@@ -42,6 +42,13 @@ export default class ImageUtils {
             display: true,
             color: '#000',
           },
+          legend: {
+            display: true,
+            position: 'bottom', // ⬅️ Move legend to bottom
+            labels: {
+              color: '#000', // optional: label text color
+            },
+          },
         },
         scales: {
           x: {
@@ -77,7 +84,7 @@ export default class ImageUtils {
     xLabel,
     summary,
     options = {},
-    colors = JSONLoader.config.diagramColors
+    colors
   ) {
     const summaryKeys = Object.keys(summary);
     const metricsSet = new Set();
@@ -94,7 +101,7 @@ export default class ImageUtils {
         label: metric,
         data: [],
         backgroundColor: colors[index % colors.length],
-        borderColor: colors[index % colors.length].replace('0.5', '1'),
+        borderColor: colors[index % colors.length].replace(/[\d.]+\)$/g, '1)'),
         borderWidth: 2,
       };
 
