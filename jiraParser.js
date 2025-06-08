@@ -211,32 +211,32 @@ const parseIssues = async () => { // get Jira issues with comments
 const createDiagrams = async (summary) => {
   const cyrillicSummary = DataUtils.setCyrillicNames(summary, JSONLoader.config.cyrillicNames);
   
-  await ImageUtils.generateDiagram(
-    "Количество протестированных задач и багов в проектах", 
-    "Количество",
-    "Проекты",
-    DataUtils.extractPropertyByName(
-      cyrillicSummary.projects, 
-      'Количество протестированных задач', 
-      'Количество протестированных задач с багами',
-      'Количество багов',
-    ),
-    { minimumDatalabelValue: 1 }
-  );
+  // await ImageUtils.generateDiagram(
+  //   "Количество протестированных задач и багов в проектах", 
+  //   "Количество",
+  //   "Проекты",
+  //   DataUtils.extractPropertyByName(
+  //     cyrillicSummary.projects, 
+  //     'Количество протестированных задач', 
+  //     'Количество протестированных задач с багами',
+  //     'Количество багов',
+  //   ),
+  //   { minimumDatalabelValue: 1 }
+  // );
+
+  // await ImageUtils.generateDiagram(
+  //   "Соотношение количества багов к количеству протестированных задач", 
+  //   "Процент",
+  //   "Проекты",
+  //   DataUtils.extractPropertyByName(
+  //     cyrillicSummary.projects, 
+  //     'Соотношение количества багов к количеству протестированных задач', 
+  //     'Соотношение количества багов к количеству протестированных задач с багами'
+  //   )
+  // );
 
   await ImageUtils.generateDiagram(
-    "Соотношение количества багов к количеству протестированных задач", 
-    "Процент",
-    "Проекты",
-    DataUtils.extractPropertyByName(
-      cyrillicSummary.projects, 
-      'Соотношение количества багов к количеству протестированных задач', 
-      'Соотношение количества багов к количеству протестированных задач с багами'
-    )
-  );
-
-  await ImageUtils.generateDiagram(
-    "Соотношение количества багов к общему количеству багов", 
+    "Процент количества багов от общего числа багов", 
     "Процент",
     "Проекты",
     DataUtils.extractPropertyByName(
