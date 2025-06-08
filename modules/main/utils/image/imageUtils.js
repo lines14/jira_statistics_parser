@@ -1,13 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import Chart from 'chart.js/auto';
+import JSONLoader from '../data/JSONLoader.js';
 import { ChartJSNodeCanvas } from 'chartjs-node-canvas';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import JSONLoader from '../data/JSONLoader.js';
 
 Chart.register(ChartDataLabels);
 
-export default class ImageUtils {
+class ImageUtils {
   constructor(
     width = JSONLoader.config.diagramConfig.width,
     height = JSONLoader.config.diagramConfig.height
@@ -15,11 +15,11 @@ export default class ImageUtils {
     this.canvas = new ChartJSNodeCanvas({
       width,
       height,
-      backgroundColour: 'white', // white background
+      backgroundColour: 'white',
     });
   }
 
-  static createChartConfig(title, labels, datasets, options = {}) {
+  static createChartConfig(title, labels, datasets) {
     return {
       type: 'bar',
       data: {
@@ -44,30 +44,20 @@ export default class ImageUtils {
           },
           legend: {
             display: true,
-            position: 'bottom', // ⬅️ Move legend to bottom
+            position: 'bottom',
             labels: {
-              color: '#000', // optional: label text color
+              color: '#000',
             },
           },
         },
         scales: {
           x: {
-            title: {
-              display: !!options.xLabel,
-              text: options.xLabel,
-              color: '#000',
-            },
             ticks: {
               color: '#000',
             },
           },
           y: {
             beginAtZero: true,
-            title: {
-              display: !!options.yLabel,
-              text: options.yLabel,
-              color: '#000',
-            },
             ticks: {
               color: '#000',
             },
@@ -83,7 +73,6 @@ export default class ImageUtils {
     yLabel,
     xLabel,
     summary,
-    options = {},
     colors
   ) {
     const summaryKeys = Object.keys(summary);
@@ -123,3 +112,5 @@ export default class ImageUtils {
     fs.writeFileSync(filepath, buffer);
   }
 }
+
+export default new ImageUtils();
