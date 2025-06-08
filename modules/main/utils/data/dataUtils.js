@@ -6,11 +6,11 @@ import TimeUtils from '../time/timeUtils.js';
 import Randomizer from '../random/randomizer.js';
 
 class DataUtils {
-  static saveToJSON(obj) {
+  static saveToJSON(obj, options = { folder: 'artifacts' }) {
     const [name] = Object.keys(obj);
     const data = obj[name];
     const replacer = (key, value) => (typeof value === 'undefined' ? null : value);
-    fs.writeFileSync(`./artifacts/${name}.json`, JSON.stringify(data, replacer, 4));
+    fs.writeFileSync(`./${options.folder}/${name}.json`, JSON.stringify(data, replacer, 4));
   }
 
   static sortByTimestamps(changelog) {

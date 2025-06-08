@@ -38,7 +38,7 @@ const parseIssues = async () => { // get Jira issues with comments
   //   issuesWithCommentsArr.push(parsedIssue);
   // }
 
-  // DataUtils.saveToJSON({ issuesWithCommentsArr });
+  // DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
 
   const { issuesWithCommentsArr } = JSONLoader;
 
@@ -48,8 +48,6 @@ const parseIssues = async () => { // get Jira issues with comments
       .some((changelogItem) => changelogItem.items
         .some((item) => JSONLoader.config.testIssueStatuses.includes(item.fromString?.toUpperCase())
         || JSONLoader.config.testIssueStatuses.includes(item.toString?.toUpperCase()))));
-
-  DataUtils.saveToJSON({ testedIssuesWithCommentsArr });
 
   const testedIssuesWithDevelopersArr = DataUtils
     .getDevelopersWorkload(testedIssuesWithCommentsArr);
@@ -75,8 +73,6 @@ const parseIssues = async () => { // get Jira issues with comments
 
   const testedIssuesWithBugsArr = testedIssuesWithCommentsArr
     .filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
-
-  DataUtils.saveToJSON({ testedIssuesWithBugsArr });
 
   const testedIssuesWithBugsAndDevelopersArr = DataUtils
     .getDevelopersWorkload(testedIssuesWithBugsArr);
@@ -202,7 +198,7 @@ const parseIssues = async () => { // get Jira issues with comments
     developers,
   };
 
-  DataUtils.saveToJSON({ summary });
+  DataUtils.saveToJSON({ summary }, { folder: 'resources' });
 };
 
 parseIssues();
