@@ -7,8 +7,8 @@
     "halfMinute": 30000,
     "decimalPlaces": 4,
     "diagramConfig": { 
-        "width": 1920, 
-        "height": 1080, 
+        "width": 1500, 
+        "height": 500, 
         "backgroundColour": "white" 
     },
     "diagramColors": [
@@ -82,6 +82,6 @@
         "bugsCount": "Количество багов",
         "bugsCountPerTestedIssueCountRatio": "Соотношение количества багов к количеству протестированных задач",
         "bugsCountPerTestedIssueWithBugsCountRatio": "Соотношение количества багов к количеству протестированных задач с багами",
-        "bugsCountPerOverallBugsCountRatio": "Соотношение количества багов к общему количеству багов"
+        "bugsCountPerOverallBugsCountRatio": "Процент количества багов от общего числа багов"
     }
 }

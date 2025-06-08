@@ -19,6 +19,8 @@
         "lint:fix": "npm run config && npm run eslint:fix",
         "config": "node ./modules/main/utils/data/filesParser.js",
         "parse:run": "node ./jiraParser.js",
-        "parse": "npm run config && npm run parse:run"
+        "generate:run": "node ./diagramsGenerator.js",
+        "parse": "npm run config && npm run parse:run",
+        "generate": "npm run config && npm run generate:run"
     }
 }

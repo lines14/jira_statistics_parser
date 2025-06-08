@@ -205,8 +205,21 @@ const parseIssues = async () => { // get Jira issues with comments
   };
 
   DataUtils.saveToJSON({ summary });
-  return summary;
 };
+
+parseIssues();
+
+
+
+
+
+
+
+
+
+
+
+
 
 const createDiagrams = async (summary) => {
   const cyrillicSummary = DataUtils.setCyrillicNames(summary, JSONLoader.config.cyrillicNames);
@@ -245,6 +258,3 @@ const createDiagrams = async (summary) => {
     ),
   );
 };
-
-const summary = await parseIssues();
-await createDiagrams(summary);
