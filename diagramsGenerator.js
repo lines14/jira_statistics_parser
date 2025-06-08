@@ -152,33 +152,33 @@ const generateDiagrams = async () => {
       ),
     },
     {
-      title: 'Количество всех протестированных задач и багов сотрудника (QA)',
+      title: 'Количество всех протестированных задач и багов сотрудников (QA)',
       yLabel: 'Количество',
       xLabel: 'QA',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.reporters,
         'Количество всех протестированных задач сотрудника',
         'Количество всех протестированных задач сотрудника с багами',
-        'Количество всех багов сотрудника'
+        'Количество всех багов сотрудника',
       ),
     },
     {
-      title: 'Соотношение количества всех багов сотрудника к количеству протестированных задач сотрудника (QA)',
+      title: 'Соотношение количества всех багов сотрудников к количеству протестированных задач сотрудников (QA)',
       yLabel: 'Процент',
       xLabel: 'QA',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.reporters,
         'Соотношение количества всех багов сотрудника к количеству всех протестированных задач сотрудника',
-        'Соотношение количества всех багов сотрудника к количеству всех протестированных задач сотрудника с багами'
+        'Соотношение количества всех багов сотрудника к количеству всех протестированных задач сотрудника с багами',
       ),
     },
     {
-      title: 'Процент количества всех багов сотрудника от общего числа багов (QA)',
+      title: 'Процент количества всех багов сотрудников от общего числа багов (QA)',
       yLabel: 'Процент',
       xLabel: 'QA',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.reporters,
-        'Процент количества всех багов сотрудника от общего числа багов'
+        'Процент количества всех багов сотрудника от общего числа багов',
       ),
     },
     {
@@ -188,47 +188,47 @@ const generateDiagrams = async () => {
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.reporters,
         'Среднее соотношение количества багов к количеству протестированных задач по проектам',
-        'Среднее соотношение количества багов к количеству протестированных задач с багами по проектам'
+        'Среднее соотношение количества багов к количеству протестированных задач с багами по проектам',
       ),
     },
-        {
-      title: 'Количество всех протестированных задач и багов сотрудника (developer)',
+    {
+      title: 'Количество всех протестированных задач и багов сотрудников (developers)',
       yLabel: 'Количество',
-      xLabel: 'developer',
+      xLabel: 'developers',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.developers,
         'Количество всех протестированных задач сотрудника',
         'Количество всех протестированных задач сотрудника с багами',
-        'Количество всех багов сотрудника'
+        'Количество всех багов сотрудника',
       ),
     },
     {
-      title: 'Соотношение количества всех багов сотрудника к количеству протестированных задач сотрудника (developer)',
+      title: 'Соотношение количества всех багов сотрудников к количеству протестированных задач сотрудников (developers)',
       yLabel: 'Процент',
-      xLabel: 'developer',
+      xLabel: 'developers',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.developers,
         'Соотношение количества всех багов сотрудника к количеству всех протестированных задач сотрудника',
-        'Соотношение количества всех багов сотрудника к количеству всех протестированных задач сотрудника с багами'
+        'Соотношение количества всех багов сотрудника к количеству всех протестированных задач сотрудника с багами',
       ),
     },
     {
-      title: 'Процент количества всех багов сотрудника от общего числа багов (developer)',
+      title: 'Процент количества всех багов сотрудников от общего числа багов (developers)',
       yLabel: 'Процент',
-      xLabel: 'developer',
+      xLabel: 'developers',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.developers,
-        'Процент количества всех багов сотрудника от общего числа багов'
+        'Процент количества всех багов сотрудника от общего числа багов',
       ),
     },
     {
-      title: 'Среднее соотношение количества багов к количеству протестированных задач по проектам (developer)',
+      title: 'Среднее соотношение количества багов к количеству протестированных задач по проектам (developers)',
       yLabel: 'Процент',
-      xLabel: 'developer',
+      xLabel: 'developers',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.developers,
         'Среднее соотношение количества багов к количеству протестированных задач по проектам',
-        'Среднее соотношение количества багов к количеству протестированных задач с багами по проектам'
+        'Среднее соотношение количества багов к количеству протестированных задач с багами по проектам',
       ),
     },
   ];
@@ -264,10 +264,125 @@ const generateDiagrams = async () => {
           value.projects,
           'Процент количества багов от общего числа багов',
         ),
-      }
-    ]
+      },
+    ];
 
     diagramsData.push(...reporterDiagramsData);
+  }
+
+  for (const [key, value] of Object.entries(cyrillicSummary.developers)) {
+    const developerDiagramsData = [
+      {
+        title: `Количество протестированных задач и багов (${key})`,
+        yLabel: 'Количество',
+        xLabel: 'Проекты',
+        data: DataUtils.extractPropertyByName(
+          value.projects,
+          'Количество протестированных задач',
+          'Количество протестированных задач с багами',
+          'Количество багов',
+        ),
+      },
+      {
+        title: `Соотношение количества багов к количеству протестированных задач (${key})`,
+        yLabel: 'Процент',
+        xLabel: 'Проекты',
+        data: DataUtils.extractPropertyByName(
+          value.projects,
+          'Соотношение количества багов к количеству протестированных задач',
+          'Соотношение количества багов к количеству протестированных задач с багами',
+        ),
+      },
+      {
+        title: `Процент количества багов от общего числа багов (${key})`,
+        yLabel: 'Процент',
+        xLabel: 'Проекты',
+        data: DataUtils.extractPropertyByName(
+          value.projects,
+          'Процент количества багов от общего числа багов',
+        ),
+      },
+    ];
+
+    diagramsData.push(...developerDiagramsData);
+  }
+
+  const convertedReportersToProjects = DataUtils
+    .convertAssigneesToProjectsStructure(cyrillicSummary.reporters);
+  for (const [key, value] of Object.entries(convertedReportersToProjects)) {
+    const reporterDiagramsData = [
+      {
+        title: `Количество протестированных задач и багов (${key})`,
+        yLabel: 'Количество',
+        xLabel: 'QA',
+        data: DataUtils.extractPropertyByName(
+          value.assignees,
+          'Количество протестированных задач',
+          'Количество протестированных задач с багами',
+          'Количество багов',
+        ),
+      },
+      {
+        title: `Соотношение количества багов к количеству протестированных задач (${key})`,
+        yLabel: 'Процент',
+        xLabel: 'QA',
+        data: DataUtils.extractPropertyByName(
+          value.assignees,
+          'Соотношение количества багов к количеству протестированных задач',
+          'Соотношение количества багов к количеству протестированных задач с багами',
+        ),
+      },
+      {
+        title: `Процент количества багов от общего числа багов (${key})`,
+        yLabel: 'Процент',
+        xLabel: 'QA',
+        data: DataUtils.extractPropertyByName(
+          value.assignees,
+          'Процент количества багов от общего числа багов',
+        ),
+      },
+    ];
+
+    diagramsData.push(...reporterDiagramsData);
+  }
+
+  const convertedDevelopersToProjects = DataUtils
+    .convertAssigneesToProjectsStructure(cyrillicSummary.developers);
+  for (const [key, value] of Object.entries(convertedDevelopersToProjects)) {
+    const developerDiagramsData = [
+      {
+        title: `Количество протестированных задач и багов (${key})`,
+        yLabel: 'Количество',
+        xLabel: 'developers',
+        data: DataUtils.extractPropertyByName(
+          value.assignees,
+          'Количество протестированных задач',
+          'Количество протестированных задач с багами',
+          'Количество багов',
+        ),
+      },
+      {
+        title: `Соотношение количества багов к количеству протестированных задач (${key})`,
+        yLabel: 'Процент',
+        xLabel: 'developers',
+        data: DataUtils.extractPropertyByName(
+          value.assignees,
+          'Соотношение количества багов к количеству протестированных задач',
+          'Соотношение количества багов к количеству протестированных задач с багами',
+        ),
+      },
+      {
+        title: `Процент количества багов от общего числа багов (${key})`,
+        yLabel: 'Процент',
+        xLabel: 'developers',
+        data: DataUtils.extractPropertyByName(
+          value.assignees,
+          'Процент количества багов от общего числа багов',
+        ),
+      },
+    ];
+
+    diagramsData.push(...developerDiagramsData);
   }
 
   for (const diagram of diagramsData) {

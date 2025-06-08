@@ -574,6 +574,22 @@ class DataUtils {
 
     return obj;
   }
+
+  static convertAssigneesToProjectsStructure(obj) {
+    const result = {};
+    for (const [assignee, data] of Object.entries(obj)) {
+      const projects = data.projects || {};
+      for (const [project, projectData] of Object.entries(projects)) {
+        if (!result[project]) {
+          result[project] = { assignees: {} };
+        }
+
+        result[project].assignees[assignee] = { ...projectData };
+      }
+    }
+
+    return result;
+  }
 }
 
 export default DataUtils;
