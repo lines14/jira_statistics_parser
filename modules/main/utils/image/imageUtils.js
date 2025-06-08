@@ -33,6 +33,7 @@ class ImageUtils {
     xLabel,
     summary,
     colors,
+    outputSubFolder,
   ) {
     const summaryKeys = Object.keys(summary);
     const metricsSet = new Set();
@@ -63,7 +64,9 @@ class ImageUtils {
 
     const config = ImageUtils.createChartConfig(title, summaryKeys, datasets, { xLabel, yLabel });
     const buffer = await this.canvas.renderToBuffer(config);
-    const filepath = path.join('images', `${title}.png`);
+    const folderPath = path.join('images', outputSubFolder ?? '');
+    fs.mkdirSync(folderPath, { recursive: true });
+    const filepath = path.join(folderPath, `${title}.png`);
     fs.writeFileSync(filepath, buffer);
   }
 }
