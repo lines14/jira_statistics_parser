@@ -531,24 +531,6 @@ class DataUtils {
     });
   }
 
-  // static extractPropertyByName(obj, ...propertyNames) {
-  //   const result = {};
-  //   for (const [name, data] of Object.entries(obj)) {
-  //     result[name] = {};
-
-  //     for (const propertyName of propertyNames) {
-  //       if (propertyName in data) {
-  //         result[name][propertyName] = data[propertyName];
-  //       }
-  //     }
-
-  //     if (Object.keys(result[name]).length === 0) {
-  //       delete result[name];
-  //     }
-  //   }
-  //   return result;
-  // }
-
   static extractPropertyByName(obj, ...propertyNames) {
     const result = {};
     if (typeof obj !== 'object' || obj === null) return result;

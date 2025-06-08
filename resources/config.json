@@ -84,6 +84,14 @@
         "overallBugsCount": "Общее количество багов",
         "bugsCountPerTestedIssueCountRatio": "Соотношение количества багов к количеству протестированных задач",
         "bugsCountPerTestedIssueWithBugsCountRatio": "Соотношение количества багов к количеству протестированных задач с багами",
-        "bugsCountPerOverallBugsCountRatio": "Процент количества багов от общего числа багов"
+        "bugsCountPerOverallBugsCountRatio": "Процент количества багов от общего числа багов",
+        "allTestedIssuesCount": "Количество всех протестированных задач сотрудника",
+        "allTestedIssuesWithBugsCount": "Количество всех протестированных задач сотрудника с багами",
+        "allBugsCount": "Количество всех багов сотрудника",
+        "allBugsCountPerOverallBugsCountRatio": "Процент количества всех багов сотрудника от общего числа багов",
+        "allBugsCountPerAllTestedIssueCountRatio": "Соотношение количества всех багов сотрудника к количеству всех протестированных задач сотрудника",
+        "allBugsCountPerAllTestedIssueWithBugsCountRatio": "Соотношение количества всех багов сотрудника к количеству всех протестированных задач сотрудника с багами",
+        "bugsCountPerTestedIssueCountAverageRatio": "Среднее соотношение количества багов к количеству протестированных задач по проектам",
+        "bugsCountPerTestedIssueWithBugsCountAverageRatio": "Среднее соотношение количества багов к количеству протестированных задач с багами по проектам"
     }
 }
