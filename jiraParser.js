@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 /* eslint no-param-reassign: ["off"] */
+/* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
 import jiraAPI from './modules/API/jiraAPI.js';
 import DataUtils from './modules/main/utils/data/dataUtils.js';
 import TimeUtils from './modules/main/utils/time/timeUtils.js';
@@ -73,6 +74,18 @@ const parseIssues = async () => { // get Jira issues with comments
 
   const testedIssuesWithBugsArr = testedIssuesWithCommentsArr
     .filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
+
+  // const askhat = testedIssuesWithBugsArr
+  // .filter((el) => el.linkedCommentsWithBugs
+  // .some((kek) => kek.lastPreviousDevAssignee?.transitionFromAssignee === 'Асхат Балтабек'));
+  // const filteredAskhat = DataUtils.sortByTimestamps(askhat);
+  // const anatolyComments = filteredAskhat
+  // .flatMap((kek) => kek.linkedCommentsWithBugs
+  // .map((kok) => kok.commentCreated));
+  // const filteredAnatolyComments = anatolyComments
+  // .sort((a, b) => TimeUtils.convertTimestampToDateObject(a)
+  //   - TimeUtils.convertTimestampToDateObject(b));
+  // console.log(filteredAnatolyComments);
 
   const testedIssuesWithBugsAndDevelopersArr = DataUtils
     .getDevelopersWorkload(testedIssuesWithBugsArr);
