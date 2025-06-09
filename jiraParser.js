@@ -178,6 +178,12 @@ const parseIssues = async () => { // get Jira issues with comments
     { lastPreviousDevAssignee: false },
   );
 
+  const projectReporters = DataUtils
+    .convertAssigneesToProjectsStructure(reporters);
+
+  const projectDevelopers = DataUtils
+    .convertAssigneesToProjectsStructure(developers);
+
   const summary = { // generate statistics summary
     issuesCreatedFrom: TimeUtils
       .reformatDateFromYMDToDMY(JSONLoader.config.commentsWithBugsCreatedFromDateYMD),
@@ -196,6 +202,8 @@ const parseIssues = async () => { // get Jira issues with comments
     devTypes,
     issueTypes,
     projects,
+    projectReporters,
+    projectDevelopers,
     reporters,
     developers,
   };

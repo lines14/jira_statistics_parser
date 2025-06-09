@@ -333,9 +333,7 @@ const generateDiagrams = async () => {
     diagramsData.push(...developerDiagramsData);
   }
 
-  const convertedReportersToProjects = DataUtils
-    .convertAssigneesToProjectsStructure(cyrillicSummary.reporters);
-  for (const [key, value] of Object.entries(convertedReportersToProjects)) {
+  for (const [key, value] of Object.entries(cyrillicSummary.projectReporters)) {
     const reporterDiagramsData = [
       {
         title: `Количество протестированных задач и багов (${key})`,
@@ -375,9 +373,7 @@ const generateDiagrams = async () => {
     diagramsData.push(...reporterDiagramsData);
   }
 
-  const convertedDevelopersToProjects = DataUtils
-    .convertAssigneesToProjectsStructure(cyrillicSummary.developers);
-  for (const [key, value] of Object.entries(convertedDevelopersToProjects)) {
+  for (const [key, value] of Object.entries(cyrillicSummary.projectDevelopers)) {
     const developerDiagramsData = [
       {
         title: `Количество протестированных задач и багов (${key})`,
