@@ -30,6 +30,8 @@
         "ADP-2676"
     ],
     "initIssueStatus": "INIT TASK",
+    "reopenStatus": "REOPEN",
+    "inProgressStatus": "IN PROGRESS",
     "devIssueStatuses": [
         "BACKLOG",
         "TO DO",

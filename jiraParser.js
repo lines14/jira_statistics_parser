@@ -77,7 +77,8 @@ const parseIssues = async () => { // get Jira issues with comments
 
   // const askhat = testedIssuesWithBugsArr
   // .filter((el) => el.linkedCommentsWithBugs
-  // .some((kek) => kek.lastPreviousDevAssignee?.transitionFromAssignee === 'Асхат Балтабек'));
+  // .some((kek) => kek.lastPreviousDevAssignee?.transitionFromAssignee === 'Илья Балтер'))
+  // console.log(askhat);
   // const filteredAskhat = DataUtils.sortByTimestamps(askhat);
   // const anatolyComments = filteredAskhat
   // .flatMap((kek) => kek.linkedCommentsWithBugs
