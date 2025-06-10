@@ -77,8 +77,21 @@ const parseIssues = async () => { // get Jira issues with comments
 
   // const askhat = testedIssuesWithBugsArr
   // .filter((el) => el.linkedCommentsWithBugs
-  // .some((kek) => kek.lastPreviousDevAssignee?.transitionFromAssignee === 'Илья Балтер'))
-  // console.log(askhat);
+  // .some((kek) => kek.lastPreviousDevAssignee?.transitionFromAssignee === 'Глеб Баженов'))
+
+  // const kak = testedIssuesWithDevelopersArr.forEach((kek, index) => {
+  //   if (kek.assignees.some((kok) => kok === 'Глеб Баженов')) console.log(index);
+  // });
+
+  // console.log(testedIssuesWithCommentsArr[4].key);
+  // console.log(testedIssuesWithCommentsArr[40].key);
+  // console.log(testedIssuesWithCommentsArr[41].key);
+  // console.log(testedIssuesWithCommentsArr[42].key);
+  // console.log(testedIssuesWithCommentsArr[144].key);
+  // console.log(testedIssuesWithCommentsArr[177].key);
+  // console.log(testedIssuesWithCommentsArr[182].key);
+  // console.log(testedIssuesWithCommentsArr[227].key);
+
   // const filteredAskhat = DataUtils.sortByTimestamps(askhat);
   // const anatolyComments = filteredAskhat
   // .flatMap((kek) => kek.linkedCommentsWithBugs

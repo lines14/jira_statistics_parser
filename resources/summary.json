@@ -1,20 +1,20 @@
 {
     "issuesCreatedFrom": "26.03.2025",
-    "issuesCreatedTo": "10.06.2025",
+    "issuesCreatedTo": "11.06.2025",
     "overall": {
-        "issuesCount": 496,
-        "testedIssuesCount": 228,
+        "issuesCount": 527,
+        "testedIssuesCount": 229,
         "testedIssuesWithBugsCount": 54,
         "overallBugsCount": 192,
-        "bugsCountPerTestedIssueCountRatio": 0.8421,
+        "bugsCountPerTestedIssueCountRatio": 0.8384,
         "bugsCountPerTestedIssueWithBugsCountRatio": 3.5556
     },
     "priorities": {
         "Medium": {
-            "testedIssuesCount": 182,
+            "testedIssuesCount": 183,
             "testedIssuesWithBugsCount": 36,
             "bugsCount": 93,
-            "bugsCountPerTestedIssueCountRatio": 0.511,
+            "bugsCountPerTestedIssueCountRatio": 0.5082,
             "bugsCountPerTestedIssueWithBugsCountRatio": 2.5833,
             "bugsCountPerOverallBugsCountRatio": 0.4844
         },
@@ -43,10 +43,10 @@
             "bugsCountPerOverallBugsCountRatio": 0.8906
         },
         "1C": {
-            "testedIssuesCount": 46,
+            "testedIssuesCount": 47,
             "testedIssuesWithBugsCount": 13,
             "bugsCount": 20,
-            "bugsCountPerTestedIssueCountRatio": 0.4348,
+            "bugsCountPerTestedIssueCountRatio": 0.4255,
             "bugsCountPerTestedIssueWithBugsCountRatio": 1.5385,
             "bugsCountPerOverallBugsCountRatio": 0.1042
         },
@@ -72,10 +72,10 @@
             "bugsCountPerOverallBugsCountRatio": 0.1094
         },
         "Task": {
-            "testedIssuesCount": 166,
+            "testedIssuesCount": 167,
             "testedIssuesWithBugsCount": 42,
             "bugsCount": 167,
-            "bugsCountPerTestedIssueCountRatio": 1.006,
+            "bugsCountPerTestedIssueCountRatio": 1,
             "bugsCountPerTestedIssueWithBugsCountRatio": 3.9762,
             "bugsCountPerOverallBugsCountRatio": 0.8698
         },
@@ -112,10 +112,10 @@
             "bugsCountPerOverallBugsCountRatio": 0.0052
         },
         "Medpool": {
-            "testedIssuesCount": 10,
+            "testedIssuesCount": 11,
             "testedIssuesWithBugsCount": 1,
             "bugsCount": 2,
-            "bugsCountPerTestedIssueCountRatio": 0.2,
+            "bugsCountPerTestedIssueCountRatio": 0.1818,
             "bugsCountPerTestedIssueWithBugsCountRatio": 2,
             "bugsCountPerOverallBugsCountRatio": 0.0104
         },
@@ -220,10 +220,10 @@
                     "testedIssuesCount": 1
                 },
                 "Ким Виолетта": {
-                    "testedIssuesCount": 7,
+                    "testedIssuesCount": 8,
                     "testedIssuesWithBugsCount": 1,
                     "bugsCount": 2,
-                    "bugsCountPerTestedIssueCountRatio": 0.2857,
+                    "bugsCountPerTestedIssueCountRatio": 0.25,
                     "bugsCountPerTestedIssueWithBugsCountRatio": 2,
                     "bugsCountPerOverallBugsCountRatio": 0.0104
                 },
@@ -706,10 +706,10 @@
         "Medpool": {
             "assignees": {
                 "Глеб Баженов": {
-                    "testedIssuesCount": 4,
+                    "testedIssuesCount": 5,
                     "testedIssuesWithBugsCount": 1,
                     "bugsCount": 2,
-                    "bugsCountPerTestedIssueCountRatio": 0.5,
+                    "bugsCountPerTestedIssueCountRatio": 0.4,
                     "bugsCountPerTestedIssueWithBugsCountRatio": 2,
                     "bugsCountPerOverallBugsCountRatio": 0.0104
                 },
@@ -928,10 +928,10 @@
                     "testedIssuesCount": 1
                 },
                 "Medpool": {
-                    "testedIssuesCount": 7,
+                    "testedIssuesCount": 8,
                     "testedIssuesWithBugsCount": 1,
                     "bugsCount": 2,
-                    "bugsCountPerTestedIssueCountRatio": 0.2857,
+                    "bugsCountPerTestedIssueCountRatio": 0.25,
                     "bugsCountPerTestedIssueWithBugsCountRatio": 2,
                     "bugsCountPerOverallBugsCountRatio": 0.0104
                 },
@@ -955,13 +955,13 @@
                     "testedIssuesCount": 1
                 }
             },
-            "allTestedIssuesCount": 12,
+            "allTestedIssuesCount": 13,
             "allTestedIssuesWithBugsCount": 3,
             "allBugsCount": 7,
             "allBugsCountPerOverallBugsCountRatio": 0.0364,
-            "allBugsCountPerAllTestedIssueCountRatio": 0.5833,
+            "allBugsCountPerAllTestedIssueCountRatio": 0.5385,
             "allBugsCountPerAllTestedIssueWithBugsCountRatio": 2.3333,
-            "bugsCountPerTestedIssueCountAverageRatio": 1.4286,
+            "bugsCountPerTestedIssueCountAverageRatio": 1.4167,
             "bugsCountPerTestedIssueWithBugsCountAverageRatio": 2.3333
         },
         "Анисимов Анатолий": {
@@ -1257,10 +1257,10 @@
         "Глеб Баженов": {
             "projects": {
                 "Medpool": {
-                    "testedIssuesCount": 4,
+                    "testedIssuesCount": 5,
                     "testedIssuesWithBugsCount": 1,
                     "bugsCount": 2,
-                    "bugsCountPerTestedIssueCountRatio": 0.5,
+                    "bugsCountPerTestedIssueCountRatio": 0.4,
                     "bugsCountPerTestedIssueWithBugsCountRatio": 2,
                     "bugsCountPerOverallBugsCountRatio": 0.0104
                 },
@@ -1273,13 +1273,13 @@
                     "bugsCountPerOverallBugsCountRatio": 0.0104
                 }
             },
-            "allTestedIssuesCount": 7,
+            "allTestedIssuesCount": 8,
             "allTestedIssuesWithBugsCount": 2,
             "allBugsCount": 4,
             "allBugsCountPerOverallBugsCountRatio": 0.0208,
-            "allBugsCountPerAllTestedIssueCountRatio": 0.5714,
+            "allBugsCountPerAllTestedIssueCountRatio": 0.5,
             "allBugsCountPerAllTestedIssueWithBugsCountRatio": 2,
-            "bugsCountPerTestedIssueCountAverageRatio": 0.5834,
+            "bugsCountPerTestedIssueCountAverageRatio": 0.5333,
             "bugsCountPerTestedIssueWithBugsCountAverageRatio": 2
         },
         "Илья Балтер": {

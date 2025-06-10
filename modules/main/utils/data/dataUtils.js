@@ -230,6 +230,11 @@ class DataUtils {
           const overlappedAssigneesReopenOrInProgress = this
             .getOverlappedAssigneesReopenOrInProgress(overlappedAssignees);
 
+          const uniqueOverlappedAssigneesReopenOrInProgress = overlappedAssigneesReopenOrInProgress
+            .filter((overlappedAssignee, index, arr) => arr
+              .findIndex((el) => el.transitionFromAssignee === overlappedAssignee
+                .transitionFromAssignee) === index);
+
           // search and use only developers in IN PROGRESS or REOPEN statuses if exist
           let validOverlappedAssignees;
           if (overlappedAssigneesReopenOrInProgress.length) {
@@ -241,7 +246,9 @@ class DataUtils {
           // get last previous developer assignee with dev status before bug found
           // or the only one developer from issue
           let lastPreviousDevAssignee;
-          if (overlappedAssigneesReopenOrInProgress.length > 1) {
+          if (uniqueOverlappedAssigneesReopenOrInProgress.length === 1) {
+            lastPreviousDevAssignee = uniqueOverlappedAssigneesReopenOrInProgress.pop();
+          } else {
             lastPreviousDevAssignee = validOverlappedAssignees
               .filter((overlappedAssignee) => overlappedAssignee
                 .createdTransitionFromAssignee <= commentCreatedDateObj
@@ -254,8 +261,6 @@ class DataUtils {
                   ? curr
                   : prev;
               }, null);
-          } else {
-            lastPreviousDevAssignee = overlappedAssigneesReopenOrInProgress.pop();
           }
 
           linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee;
