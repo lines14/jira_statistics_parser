@@ -220,14 +220,14 @@ class DataUtils {
         const devStatusEnds = this.getDevStatusEnds(sortedChangelog);
 
         // get developer assignee changes from issue history
-        const assigneeChanges = this.getDeveloperChanges(sortedChangelog);
+        const developerChanges = this.getDeveloperChanges(sortedChangelog);
 
         // filter not includes issues with only one assignee or status due to lack of transition
         // and get developer assignees with dev statuses at the same time
-        if (assigneeChanges.length && devStatusEnds.length) {
+        if (developerChanges.length && devStatusEnds.length) {
           const overlappedAssignees = this.getAssigneesWithStatuses(
             devStatusEnds,
-            assigneeChanges,
+            developerChanges,
             initialTimestamp,
           ).flat();
 
@@ -294,15 +294,15 @@ class DataUtils {
       const initialTimestamp = this.createInitialTimestamp(sortedChangelog);
 
       // get dev status ends from issue history
-      const statusEnds = this.getDevStatusEnds(sortedChangelog);
+      const devStatusEnds = this.getDevStatusEnds(sortedChangelog);
 
       // get developer assignee changes from issue history
-      const assigneeChanges = this.getDeveloperChanges(sortedChangelog);
+      const developerChanges = this.getDeveloperChanges(sortedChangelog);
 
       // get developer assignees with dev statuses at the same time
       const overlappedAssignees = this.getAssigneesWithStatuses(
-        statusEnds,
-        assigneeChanges,
+        devStatusEnds,
+        developerChanges,
         initialTimestamp,
       ).flat();
 
@@ -339,15 +339,15 @@ class DataUtils {
       const initialTimestamp = this.createInitialTimestamp(sortedChangelog);
 
       // get test status starts from issue history
-      const statusEnds = this.getTestStatusEnds(sortedChangelog);
+      const testStatusEnds = this.getTestStatusEnds(sortedChangelog);
 
       // get reporter assignee changes from issue history
-      const assigneeChanges = this.getReporterChanges(sortedChangelog);
+      const reporterChanges = this.getReporterChanges(sortedChangelog);
 
       // get reporter assignees with test statuses at the same time
       return this.getAssigneesWithStatuses(
-        statusEnds,
-        assigneeChanges,
+        testStatusEnds,
+        reporterChanges,
         initialTimestamp,
       ).flat();
     }
