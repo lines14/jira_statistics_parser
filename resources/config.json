@@ -84,6 +84,7 @@
         "testedIssuesWithBugsCount": "Количество протестированных задач с багами",
         "bugsCount": "Количество багов",
         "overallBugsCount": "Общее количество багов",
+        "testedIssuesCountPerIssueCountRatio": "Соотношение количества протестированных задач к количеству всех задач",
         "bugsCountPerTestedIssueCountRatio": "Соотношение количества багов к количеству протестированных задач",
         "bugsCountPerTestedIssueWithBugsCountRatio": "Соотношение количества багов к количеству протестированных задач с багами",
         "bugsCountPerOverallBugsCountRatio": "Процент количества багов от общего числа багов",

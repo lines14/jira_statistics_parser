@@ -133,6 +133,7 @@ const parseIssues = async () => { // get Jira issues with comments
   const priorities = {};
   DataUtils.fillBugsPerEntities(
     priorities,
+    issuesWithCommentsArr,
     testedIssuesWithCommentsArr,
     testedIssuesWithBugsArr,
     'priority',
@@ -143,6 +144,7 @@ const parseIssues = async () => { // get Jira issues with comments
   const devTypes = {};
   DataUtils.fillBugsPerEntities(
     devTypes,
+    issuesWithCommentsArr,
     testedIssuesWithCommentsArr,
     testedIssuesWithBugsArr,
     'devType',
@@ -153,6 +155,7 @@ const parseIssues = async () => { // get Jira issues with comments
   const issueTypes = {};
   DataUtils.fillBugsPerEntities(
     issueTypes,
+    issuesWithCommentsArr,
     testedIssuesWithCommentsArr,
     testedIssuesWithBugsArr,
     'issuetype',
@@ -163,6 +166,7 @@ const parseIssues = async () => { // get Jira issues with comments
   const projects = {};
   DataUtils.fillBugsPerEntities(
     projects,
+    issuesWithCommentsArr,
     testedIssuesWithCommentsArr,
     testedIssuesWithBugsArr,
     'projectName',

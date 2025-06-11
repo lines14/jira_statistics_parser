@@ -377,6 +377,7 @@ class DataUtils {
 
   static fillBugsPerEntities(
     accumulator,
+    issuesWithCommentsArr,
     testedIssuesWithCommentsArr,
     testedIssuesWithBugsArr,
     key,
@@ -385,6 +386,9 @@ class DataUtils {
   ) {
     entityNames.forEach((el) => {
       let bugsCount = 0;
+
+      const issuesCount = issuesWithCommentsArr
+        .filter((issueWithComments) => issueWithComments[key] === el).length;
 
       const testedIssuesCount = testedIssuesWithCommentsArr
         .filter((testedIssueWithComments) => testedIssueWithComments[key] === el).length;
@@ -398,8 +402,12 @@ class DataUtils {
         }
       });
 
+      if (issuesCount > 0) {
+        accumulator[el] = { issuesCount };
+      }
+
       if (testedIssuesCount > 0) {
-        accumulator[el] = { testedIssuesCount };
+        accumulator[el].testedIssuesCount = testedIssuesCount;
       }
 
       if (testedIssuesWithBugsCount > 0) {
@@ -408,6 +416,12 @@ class DataUtils {
 
       if (bugsCount > 0) {
         accumulator[el].bugsCount = bugsCount;
+      }
+
+      if (issuesCount > 0 && testedIssuesCount > 0) {
+        const testedIssuesCountPerIssueCountRatio = Number((testedIssuesCount
+        / issuesCount).toFixed(JSONLoader.config.decimalPlaces));
+        accumulator[el].testedIssuesCountPerIssueCountRatio = testedIssuesCountPerIssueCountRatio;
       }
 
       if (bugsCount > 0 && testedIssuesCount > 0) {
