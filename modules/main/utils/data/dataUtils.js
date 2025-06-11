@@ -121,6 +121,7 @@ class DataUtils {
     return results;
   }
 
+  // get issue field changes from changelog
   static getFieldChanges(fieldName, changelog) {
     const fieldChanges = [];
     for (const element of changelog) {
@@ -142,6 +143,7 @@ class DataUtils {
     return fieldChanges;
   }
 
+  // get issue statuses ends to calculate time intervals
   static getDevStatusEnds(changelog) {
     return this.getFieldChanges('status', changelog)
       .filter((statusChange) => JSONLoader.config.devIssueStatuses
@@ -154,6 +156,7 @@ class DataUtils {
         .includes(statusChange.transitionFrom.toUpperCase()));
   }
 
+  // get issue assignees changes to calculate time intervals
   static getDeveloperChanges(changelog) {
     return this.getFieldChanges('assignee', changelog)
       .filter((assigneeChange) => JSONLoader.config.developers
@@ -166,6 +169,7 @@ class DataUtils {
         .includes(assigneeChange.transitionTo));
   }
 
+  // get overlapping assignees with statuses
   static getAssigneesWithStatuses(
     statusChanges,
     assigneeChanges,
@@ -242,7 +246,8 @@ class DataUtils {
           const overlappedAssigneesInReopenOrInProgress = this
             .getOverlappedAssigneesInReopenOrInProgress(overlappedAssignees);
 
-          // search and use only developers in IN PROGRESS or REOPEN statuses if exist
+          // search and use only developers in IN PROGRESS or in REOPEN statuses if exist
+          // else in BACKLOG or TO DO statuses
           let validOverlappedAssignees;
           if (!overlappedAssigneesInReopenOrInProgress.length
             || (!uniqueOverlappedAssigneesInProgress.length
@@ -316,7 +321,8 @@ class DataUtils {
       const overlappedAssigneesInReopenOrInProgress = this
         .getOverlappedAssigneesInReopenOrInProgress(overlappedAssignees);
 
-      // search and use only developers in IN PROGRESS or REOPEN statuses if exist
+      // search and use only developers in IN PROGRESS or in REOPEN statuses if exist
+      // else in BACKLOG or TO DO statuses
       if (!overlappedAssigneesInReopenOrInProgress.length
         || (!uniqueOverlappedAssigneesInProgress.length
           && uniqueOverlappedAssigneesInReopen.length === 1)) {
@@ -375,7 +381,7 @@ class DataUtils {
           .transitionFromAssignee) === index);
   }
 
-  static fillBugsPerEntities(
+  static fillBugsAndIssuesPerEntities(
     accumulator,
     issuesWithCommentsArr,
     testedIssuesWithCommentsArr,
@@ -383,7 +389,7 @@ class DataUtils {
     key,
     entityNames,
     overallBugsCount,
-  ) {
+  ) { // get or calculate values for each entity
     entityNames.forEach((el) => {
       let bugsCount = 0;
 
@@ -445,6 +451,7 @@ class DataUtils {
     });
   }
 
+  // get unique developers from each issue
   static getDevelopersWorkload(issuesArr) {
     return issuesArr
       .filter((issue) => !JSONLoader.config.debugIssues
@@ -462,6 +469,7 @@ class DataUtils {
       });
   }
 
+  // get unique reporters from each issue
   static getReportersWorkload(issuesArr) {
     return issuesArr
       .filter((issue) => !JSONLoader.config.debugIssues
@@ -484,7 +492,7 @@ class DataUtils {
     / ratiosArr.length).toFixed(JSONLoader.config.decimalPlaces));
   }
 
-  static fillBugsPerAssignees(
+  static fillBugsAndIssuesPerAssignees(
     accumulator,
     issuesWithAssigneesArr,
     testedIssuesWithBugsArr,
@@ -494,7 +502,7 @@ class DataUtils {
     assigneeNames,
     overallBugsCount,
     options = { lastPreviousDevAssignee: true },
-  ) {
+  ) { // get or calculate values for each assignee in each project scope
     assigneeNames.forEach((el) => {
       let allBugsCount = 0;
       let allIssuesCount = 0;
@@ -668,6 +676,7 @@ class DataUtils {
     });
   }
 
+  // get values from summary
   static extractPropertyByName(obj, ...propertyNames) {
     const result = {};
     if (typeof obj !== 'object' || obj === null) return result;
@@ -696,6 +705,7 @@ class DataUtils {
     return result;
   }
 
+  // map summary keys to cyrillic diagram names
   static setCyrillicNames(obj, namesMapping) {
     if (Array.isArray(obj)) {
       return obj.map((item) => this.setCyrillicNames(item, namesMapping));
@@ -712,6 +722,7 @@ class DataUtils {
     return obj;
   }
 
+  // convert assignees summary from assignees to projects scope
   static convertAssigneesToProjectsStructure(obj) {
     const result = {};
     for (const [assignee, data] of Object.entries(obj)) {

@@ -12,37 +12,38 @@ const parseIssues = async () => { // get Jira issues with comments
     : TimeUtils
       .reformatDateFromDMYToYMD(TimeUtils.reformatDateFromISOToDMY(TimeUtils.today()));
 
-  // const issuesWithCommentsArr = [];
-  // const issuesArr = await jiraAPI.searchAll(
-  //   JSONLoader.config.commentsWithBugsCreatedFromDateYMD,
-  //   toDate,
-  // );
+  const issuesWithCommentsArr = [];
+  const issuesArr = await jiraAPI.searchAll(
+    JSONLoader.config.commentsWithBugsCreatedFromDateYMD,
+    toDate,
+  );
 
-  // for (const issue of issuesArr) {
-  //   const response = await jiraAPI.getIssueComments(issue.id);
-  //   const parsedIssue = {
-  //     key: issue.key,
-  //     summary: issue.fields.summary,
-  //     created: issue.fields.created,
-  //     updated: issue.fields.updated,
-  //     priority: issue.fields.priority.name,
-  //     projectKey: issue.fields.project.key,
-  //     projectName: issue.fields.project.name,
-  //     devType: issue.fields.customfield_10085?.value,
-  //     labels: issue.fields.labels,
-  //     issuetype: issue.fields.issuetype.name,
-  //     status: issue.fields.status.name,
-  //     comments: response.data.comments,
-  //     changelog: issue.changelog.histories,
-  //   };
+  for (const issue of issuesArr) {
+    const response = await jiraAPI.getIssueComments(issue.id);
+    const parsedIssue = {
+      key: issue.key,
+      summary: issue.fields.summary,
+      created: issue.fields.created,
+      updated: issue.fields.updated,
+      priority: issue.fields.priority.name,
+      projectKey: issue.fields.project.key,
+      projectName: issue.fields.project.name,
+      devType: issue.fields.customfield_10085?.value,
+      labels: issue.fields.labels,
+      issuetype: issue.fields.issuetype.name,
+      status: issue.fields.status.name,
+      comments: response.data.comments,
+      changelog: issue.changelog.histories,
+    };
 
-  //   issuesWithCommentsArr.push(parsedIssue);
-  // }
+    issuesWithCommentsArr.push(parsedIssue);
+  }
 
-  // DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
+  DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
 
-  const { issuesWithCommentsArr } = JSONLoader;
+  // const { issuesWithCommentsArr } = JSONLoader;
 
+  // get developers and reporters assigned issues
   const issuesWithDevelopersArr = DataUtils
     .getDevelopersWorkload(issuesWithCommentsArr);
 
@@ -57,6 +58,7 @@ const parseIssues = async () => { // get Jira issues with comments
         .some((item) => JSONLoader.config.testIssueStatuses.includes(item.fromString?.toUpperCase())
         || JSONLoader.config.testIssueStatuses.includes(item.toString?.toUpperCase()))));
 
+  // get developers and reporters tested issues
   const testedIssuesWithDevelopersArr = DataUtils
     .getDevelopersWorkload(testedIssuesWithCommentsArr);
 
@@ -83,6 +85,7 @@ const parseIssues = async () => { // get Jira issues with comments
     .map((issueWithComments) => structuredClone(issueWithComments))
     .filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
 
+  // get developers and reporters tested issues with bugs
   const testedIssuesWithBugsAndDevelopersArr = DataUtils
     .getDevelopersWorkload(testedIssuesWithBugsArr);
 
@@ -94,7 +97,7 @@ const parseIssues = async () => { // get Jira issues with comments
     overallBugsCount += testedIssueWithBugs.bugsCount;
   });
 
-  // search unique entities in issues with bugs
+  // search unique entities in issues
   const projectNames = [...new Set(issuesWithCommentsArr
     .map((issueWithComments) => issueWithComments.projectName))];
 
@@ -114,24 +117,9 @@ const parseIssues = async () => { // get Jira issues with comments
   const reporterNames = JSONLoader.config.reporters;
   reporterNames.push(JSONLoader.config.issueWithoutAssignee);
 
-  // const reporterNames = [...new Set(testedIssuesWithCommentsArr
-  //   .flatMap((testedIssueWithComments) => (testedIssueWithComments.linkedCommentsWithBugs?.length
-  //     ? testedIssueWithComments.linkedCommentsWithBugs
-  //       .map((linkedCommentWithBugs) => linkedCommentWithBugs.commentAuthor
-  //   ?? JSONLoader.config.issueWithoutAssignee)
-  //     : [JSONLoader.config.issueWithoutAssignee])))];
-
-  // const developerNames = [...new Set(testedIssuesWithCommentsArr
-  //   .flatMap((testedIssueWithComments) => (testedIssueWithComments.linkedCommentsWithBugs?.length
-  //     ? testedIssueWithComments.linkedCommentsWithBugs
-  //       .map((linkedCommentWithBugs) => linkedCommentWithBugs
-  //         .lastPreviousDevAssignee?.transitionFromAssignee
-  //     ?? JSONLoader.config.issueWithoutAssignee)
-  //     : [JSONLoader.config.issueWithoutAssignee])))];
-
-  // get statistics
+  // get statistics for all entities
   const priorities = {};
-  DataUtils.fillBugsPerEntities(
+  DataUtils.fillBugsAndIssuesPerEntities(
     priorities,
     issuesWithCommentsArr,
     testedIssuesWithCommentsArr,
@@ -142,7 +130,7 @@ const parseIssues = async () => { // get Jira issues with comments
   );
 
   const devTypes = {};
-  DataUtils.fillBugsPerEntities(
+  DataUtils.fillBugsAndIssuesPerEntities(
     devTypes,
     issuesWithCommentsArr,
     testedIssuesWithCommentsArr,
@@ -153,7 +141,7 @@ const parseIssues = async () => { // get Jira issues with comments
   );
 
   const issueTypes = {};
-  DataUtils.fillBugsPerEntities(
+  DataUtils.fillBugsAndIssuesPerEntities(
     issueTypes,
     issuesWithCommentsArr,
     testedIssuesWithCommentsArr,
@@ -164,7 +152,7 @@ const parseIssues = async () => { // get Jira issues with comments
   );
 
   const projects = {};
-  DataUtils.fillBugsPerEntities(
+  DataUtils.fillBugsAndIssuesPerEntities(
     projects,
     issuesWithCommentsArr,
     testedIssuesWithCommentsArr,
@@ -174,8 +162,9 @@ const parseIssues = async () => { // get Jira issues with comments
     overallBugsCount,
   );
 
+  // get statistics for developers and reporters in assignees scope
   const developers = {};
-  DataUtils.fillBugsPerAssignees(
+  DataUtils.fillBugsAndIssuesPerAssignees(
     developers,
     issuesWithDevelopersArr,
     testedIssuesWithBugsArr,
@@ -187,7 +176,7 @@ const parseIssues = async () => { // get Jira issues with comments
   );
 
   const reporters = {};
-  DataUtils.fillBugsPerAssignees(
+  DataUtils.fillBugsAndIssuesPerAssignees(
     reporters,
     issuesWithReportersArr,
     testedIssuesWithBugsArr,
@@ -199,6 +188,7 @@ const parseIssues = async () => { // get Jira issues with comments
     { lastPreviousDevAssignee: false },
   );
 
+  // get statistics for developers and reporters in projects scope
   const projectReporters = DataUtils
     .convertAssigneesToProjectsStructure(reporters);
 
