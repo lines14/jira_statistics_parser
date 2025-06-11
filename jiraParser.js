@@ -43,8 +43,15 @@ const parseIssues = async () => { // get Jira issues with comments
 
   const { issuesWithCommentsArr } = JSONLoader;
 
+  const issuesWithDevelopersArr = DataUtils
+    .getDevelopersWorkload(issuesWithCommentsArr);
+
+  const issuesWithReportersArr = DataUtils
+    .getReportersWorkload(issuesWithCommentsArr);
+
   // get Jira issues with testing statuses in history
   const testedIssuesWithCommentsArr = issuesWithCommentsArr
+    .map((issueWithComments) => structuredClone(issueWithComments))
     .filter((issueWithComments) => issueWithComments.changelog
       .some((changelogItem) => changelogItem.items
         .some((item) => JSONLoader.config.testIssueStatuses.includes(item.fromString?.toUpperCase())
@@ -73,33 +80,8 @@ const parseIssues = async () => { // get Jira issues with comments
   });
 
   const testedIssuesWithBugsArr = testedIssuesWithCommentsArr
+    .map((issueWithComments) => structuredClone(issueWithComments))
     .filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
-
-  // const askhat = testedIssuesWithBugsArr
-  // .filter((el) => el.linkedCommentsWithBugs
-  // .some((kek) => kek.lastPreviousDevAssignee?.transitionFromAssignee === 'Глеб Баженов'))
-
-  // const kak = testedIssuesWithDevelopersArr.forEach((kek, index) => {
-  //   if (kek.assignees.some((kok) => kok === 'Глеб Баженов')) console.log(index);
-  // });
-
-  // console.log(testedIssuesWithCommentsArr[4].key);
-  // console.log(testedIssuesWithCommentsArr[40].key);
-  // console.log(testedIssuesWithCommentsArr[41].key);
-  // console.log(testedIssuesWithCommentsArr[42].key);
-  // console.log(testedIssuesWithCommentsArr[144].key);
-  // console.log(testedIssuesWithCommentsArr[177].key);
-  // console.log(testedIssuesWithCommentsArr[182].key);
-  // console.log(testedIssuesWithCommentsArr[227].key);
-
-  // const filteredAskhat = DataUtils.sortByTimestamps(askhat);
-  // const anatolyComments = filteredAskhat
-  // .flatMap((kek) => kek.linkedCommentsWithBugs
-  // .map((kok) => kok.commentCreated));
-  // const filteredAnatolyComments = anatolyComments
-  // .sort((a, b) => TimeUtils.convertTimestampToDateObject(a)
-  //   - TimeUtils.convertTimestampToDateObject(b));
-  // console.log(filteredAnatolyComments);
 
   const testedIssuesWithBugsAndDevelopersArr = DataUtils
     .getDevelopersWorkload(testedIssuesWithBugsArr);
@@ -113,33 +95,39 @@ const parseIssues = async () => { // get Jira issues with comments
   });
 
   // search unique entities in issues with bugs
-  const projectNames = [...new Set(testedIssuesWithCommentsArr
-    .map((testedIssueWithComments) => testedIssueWithComments.projectName))];
+  const projectNames = [...new Set(issuesWithCommentsArr
+    .map((issueWithComments) => issueWithComments.projectName))];
 
-  const priorityNames = [...new Set(testedIssuesWithCommentsArr
-    .map((testedIssueWithComments) => testedIssueWithComments.priority))];
+  const priorityNames = [...new Set(issuesWithCommentsArr
+    .map((issueWithComments) => issueWithComments.priority))];
 
-  const devTypeNames = [...new Set(testedIssuesWithCommentsArr
-    .map((testedIssueWithComments) => testedIssueWithComments.devType
+  const devTypeNames = [...new Set(issuesWithCommentsArr
+    .map((issueWithComments) => issueWithComments.devType
     ?? JSONLoader.config.issueWithoutAssignee))];
 
-  const issueTypeNames = [...new Set(testedIssuesWithCommentsArr
-    .map((testedIssueWithComments) => testedIssueWithComments.issuetype))];
+  const issueTypeNames = [...new Set(issuesWithCommentsArr
+    .map((issueWithComments) => issueWithComments.issuetype))];
 
-  const reporterNames = [...new Set(testedIssuesWithCommentsArr
-    .flatMap((testedIssueWithComments) => (testedIssueWithComments.linkedCommentsWithBugs?.length
-      ? testedIssueWithComments.linkedCommentsWithBugs
-        .map((linkedCommentWithBugs) => linkedCommentWithBugs.commentAuthor
-    ?? JSONLoader.config.issueWithoutAssignee)
-      : [JSONLoader.config.issueWithoutAssignee])))];
+  const developerNames = JSONLoader.config.developers;
+  developerNames.push(JSONLoader.config.issueWithoutAssignee);
 
-  const developerNames = [...new Set(testedIssuesWithCommentsArr
-    .flatMap((testedIssueWithComments) => (testedIssueWithComments.linkedCommentsWithBugs?.length
-      ? testedIssueWithComments.linkedCommentsWithBugs
-        .map((linkedCommentWithBugs) => linkedCommentWithBugs
-          .lastPreviousDevAssignee?.transitionFromAssignee
-      ?? JSONLoader.config.issueWithoutAssignee)
-      : [JSONLoader.config.issueWithoutAssignee])))];
+  const reporterNames = JSONLoader.config.reporters;
+  reporterNames.push(JSONLoader.config.issueWithoutAssignee);
+
+  // const reporterNames = [...new Set(testedIssuesWithCommentsArr
+  //   .flatMap((testedIssueWithComments) => (testedIssueWithComments.linkedCommentsWithBugs?.length
+  //     ? testedIssueWithComments.linkedCommentsWithBugs
+  //       .map((linkedCommentWithBugs) => linkedCommentWithBugs.commentAuthor
+  //   ?? JSONLoader.config.issueWithoutAssignee)
+  //     : [JSONLoader.config.issueWithoutAssignee])))];
+
+  // const developerNames = [...new Set(testedIssuesWithCommentsArr
+  //   .flatMap((testedIssueWithComments) => (testedIssueWithComments.linkedCommentsWithBugs?.length
+  //     ? testedIssueWithComments.linkedCommentsWithBugs
+  //       .map((linkedCommentWithBugs) => linkedCommentWithBugs
+  //         .lastPreviousDevAssignee?.transitionFromAssignee
+  //     ?? JSONLoader.config.issueWithoutAssignee)
+  //     : [JSONLoader.config.issueWithoutAssignee])))];
 
   // get statistics
   const priorities = {};

@@ -284,62 +284,68 @@ class DataUtils {
   }
 
   static getIssueDevelopers(testedIssue) {
-    const sortedChangelog = this.sortByTimestamps(testedIssue.changelog);
-    const initialTimestamp = this.createInitialTimestamp(sortedChangelog);
+    if (testedIssue.changelog.length) {
+      const sortedChangelog = this.sortByTimestamps(testedIssue.changelog);
+      const initialTimestamp = this.createInitialTimestamp(sortedChangelog);
 
-    // get dev status ends from issue history
-    const statusEnds = this.getDevStatusEnds(sortedChangelog);
+      // get dev status ends from issue history
+      const statusEnds = this.getDevStatusEnds(sortedChangelog);
 
-    // get developer assignee changes from issue history
-    const assigneeChanges = this.getDeveloperChanges(sortedChangelog);
+      // get developer assignee changes from issue history
+      const assigneeChanges = this.getDeveloperChanges(sortedChangelog);
 
-    // get developer assignees with dev statuses at the same time
-    const overlappedAssignees = this.getAssigneesWithStatuses(
-      statusEnds,
-      assigneeChanges,
-      initialTimestamp,
-    ).flat();
+      // get developer assignees with dev statuses at the same time
+      const overlappedAssignees = this.getAssigneesWithStatuses(
+        statusEnds,
+        assigneeChanges,
+        initialTimestamp,
+      ).flat();
 
-    const overlappedAssigneesInProgress = this
-      .getOverlappedAssigneesInProgress(overlappedAssignees);
+      const overlappedAssigneesInProgress = this
+        .getOverlappedAssigneesInProgress(overlappedAssignees);
 
-    const uniqueOverlappedAssigneesInProgress = this
-      .getUniqueOverlappedAssignees(overlappedAssigneesInProgress);
+      const uniqueOverlappedAssigneesInProgress = this
+        .getUniqueOverlappedAssignees(overlappedAssigneesInProgress);
 
-    const overlappedAssigneesInReopen = this
-      .getOverlappedAssigneesInReopen(overlappedAssignees);
+      const overlappedAssigneesInReopen = this
+        .getOverlappedAssigneesInReopen(overlappedAssignees);
 
-    const uniqueOverlappedAssigneesInReopen = this
-      .getUniqueOverlappedAssignees(overlappedAssigneesInReopen);
+      const uniqueOverlappedAssigneesInReopen = this
+        .getUniqueOverlappedAssignees(overlappedAssigneesInReopen);
 
-    const overlappedAssigneesInReopenOrInProgress = this
-      .getOverlappedAssigneesInReopenOrInProgress(overlappedAssignees);
+      const overlappedAssigneesInReopenOrInProgress = this
+        .getOverlappedAssigneesInReopenOrInProgress(overlappedAssignees);
 
-    // search and use only developers in IN PROGRESS or REOPEN statuses if exist
-    if (!overlappedAssigneesInReopenOrInProgress.length
-      || (!uniqueOverlappedAssigneesInProgress.length
-        && uniqueOverlappedAssigneesInReopen.length === 1)) {
-      return overlappedAssignees;
+      // search and use only developers in IN PROGRESS or REOPEN statuses if exist
+      if (!overlappedAssigneesInReopenOrInProgress.length
+        || (!uniqueOverlappedAssigneesInProgress.length
+          && uniqueOverlappedAssigneesInReopen.length === 1)) {
+        return overlappedAssignees;
+      }
+      return overlappedAssigneesInReopenOrInProgress;
     }
-    return overlappedAssigneesInReopenOrInProgress;
+    return [];
   }
 
   static getIssueReporters(testedIssue) {
-    const sortedChangelog = this.sortByTimestamps(testedIssue.changelog);
-    const initialTimestamp = this.createInitialTimestamp(sortedChangelog);
+    if (testedIssue.changelog.length) {
+      const sortedChangelog = this.sortByTimestamps(testedIssue.changelog);
+      const initialTimestamp = this.createInitialTimestamp(sortedChangelog);
 
-    // get test status starts from issue history
-    const statusEnds = this.getTestStatusEnds(sortedChangelog);
+      // get test status starts from issue history
+      const statusEnds = this.getTestStatusEnds(sortedChangelog);
 
-    // get reporter assignee changes from issue history
-    const assigneeChanges = this.getReporterChanges(sortedChangelog);
+      // get reporter assignee changes from issue history
+      const assigneeChanges = this.getReporterChanges(sortedChangelog);
 
-    // get reporter assignees with test statuses at the same time
-    return this.getAssigneesWithStatuses(
-      statusEnds,
-      assigneeChanges,
-      initialTimestamp,
-    ).flat();
+      // get reporter assignees with test statuses at the same time
+      return this.getAssigneesWithStatuses(
+        statusEnds,
+        assigneeChanges,
+        initialTimestamp,
+      ).flat();
+    }
+    return [];
   }
 
   static getOverlappedAssigneesInProgress(overlappedAssignees) {
