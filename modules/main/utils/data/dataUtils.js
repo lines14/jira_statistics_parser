@@ -486,6 +486,7 @@ class DataUtils {
 
   static fillBugsPerAssignees(
     accumulator,
+    issuesWithAssigneesArr,
     testedIssuesWithBugsArr,
     testedIssuesWithAssigneesArr,
     testedIssuesWithBugsAndAssigneesArr,
@@ -496,6 +497,7 @@ class DataUtils {
   ) {
     assigneeNames.forEach((el) => {
       let allBugsCount = 0;
+      let allIssuesCount = 0;
       let allTestedIssuesCount = 0;
       let allTestedIssuesWithBugsCount = 0;
       let allBugsCountPerOverallBugsCountRatio = 0;
@@ -505,6 +507,7 @@ class DataUtils {
 
       projectNames.forEach((projectName) => {
         let bugsCount = 0;
+        let issuesCount = 0;
         let testedIssuesCount = 0;
         let testedIssuesWithBugsCount = 0;
 
@@ -522,9 +525,19 @@ class DataUtils {
           });
         });
 
-        testedIssuesWithAssigneesArr.forEach((testedIssueWithDevelopers) => {
-          if (testedIssueWithDevelopers.projectName === projectName) {
-            testedIssueWithDevelopers.assignees.forEach((assignee) => {
+        issuesWithAssigneesArr.forEach((issueWithAssignees) => {
+          if (issueWithAssignees.projectName === projectName) {
+            issueWithAssignees.assignees.forEach((assignee) => {
+              if (assignee === el) {
+                issuesCount += 1;
+              }
+            });
+          }
+        });
+
+        testedIssuesWithAssigneesArr.forEach((testedIssueWithAssignees) => {
+          if (testedIssueWithAssignees.projectName === projectName) {
+            testedIssueWithAssignees.assignees.forEach((assignee) => {
               if (assignee === el) {
                 testedIssuesCount += 1;
               }
@@ -532,9 +545,9 @@ class DataUtils {
           }
         });
 
-        testedIssuesWithBugsAndAssigneesArr.forEach((testedIssueWithBugsAndDevelopers) => {
-          if (testedIssueWithBugsAndDevelopers.projectName === projectName) {
-            testedIssueWithBugsAndDevelopers.assignees.forEach((assignee) => {
+        testedIssuesWithBugsAndAssigneesArr.forEach((testedIssueWithBugsAndAssignees) => {
+          if (testedIssueWithBugsAndAssignees.projectName === projectName) {
+            testedIssueWithBugsAndAssignees.assignees.forEach((assignee) => {
               if (assignee === el) {
                 testedIssuesWithBugsCount += 1;
               }
@@ -542,8 +555,16 @@ class DataUtils {
           }
         });
 
-        if (testedIssuesCount > 0 || testedIssuesWithBugsCount > 0 || bugsCount > 0) {
+        if (issuesCount > 0
+          || testedIssuesCount > 0
+          || testedIssuesWithBugsCount > 0
+          || bugsCount > 0) {
           projectBugCounts[projectName] = {};
+        }
+
+        if (issuesCount > 0) {
+          projectBugCounts[projectName].issuesCount = issuesCount;
+          allIssuesCount += issuesCount;
         }
 
         if (testedIssuesCount > 0) {
@@ -559,6 +580,13 @@ class DataUtils {
         if (bugsCount > 0) {
           projectBugCounts[projectName].bugsCount = bugsCount;
           allBugsCount += bugsCount;
+        }
+
+        if (issuesCount > 0 && testedIssuesCount > 0) {
+          const testedIssuesCountPerIssueCountRatio = Number((testedIssuesCount
+            / issuesCount).toFixed(JSONLoader.config.decimalPlaces));
+          projectBugCounts[projectName]
+            .testedIssuesCountPerIssueCountRatio = testedIssuesCountPerIssueCountRatio;
         }
 
         if (testedIssuesCount > 0 && bugsCount > 0) {
@@ -591,6 +619,10 @@ class DataUtils {
         projects: projectBugCounts,
       };
 
+      if (allIssuesCount > 0) {
+        accumulator[el].allIssuesCount = allIssuesCount;
+      }
+
       if (allTestedIssuesCount > 0) {
         accumulator[el].allTestedIssuesCount = allTestedIssuesCount;
       }
@@ -601,6 +633,11 @@ class DataUtils {
 
       if (allBugsCount > 0) {
         accumulator[el].allBugsCount = allBugsCount;
+      }
+
+      if (allIssuesCount > 0 && allTestedIssuesCount > 0) {
+        accumulator[el].allTestedIssuesCountPerAllIssueCountRatio = Number((allTestedIssuesCount
+          / allIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
       }
 
       if (allBugsCountPerOverallBugsCountRatio > 0) {

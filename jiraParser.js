@@ -177,6 +177,7 @@ const parseIssues = async () => { // get Jira issues with comments
   const developers = {};
   DataUtils.fillBugsPerAssignees(
     developers,
+    issuesWithDevelopersArr,
     testedIssuesWithBugsArr,
     testedIssuesWithDevelopersArr,
     testedIssuesWithBugsAndDevelopersArr,
@@ -188,6 +189,7 @@ const parseIssues = async () => { // get Jira issues with comments
   const reporters = {};
   DataUtils.fillBugsPerAssignees(
     reporters,
+    issuesWithReportersArr,
     testedIssuesWithBugsArr,
     testedIssuesWithReportersArr,
     testedIssuesWithBugsAndReportersArr,
