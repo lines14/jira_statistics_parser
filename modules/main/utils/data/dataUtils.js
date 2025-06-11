@@ -227,27 +227,37 @@ class DataUtils {
             initialTimestamp,
           ).flat();
 
-          const overlappedAssigneesReopenOrInProgress = this
-            .getOverlappedAssigneesReopenOrInProgress(overlappedAssignees);
+          const overlappedAssigneesInProgress = this
+            .getOverlappedAssigneesInProgress(overlappedAssignees);
 
-          const uniqueOverlappedAssigneesReopenOrInProgress = overlappedAssigneesReopenOrInProgress
-            .filter((overlappedAssignee, index, arr) => arr
-              .findIndex((el) => el.transitionFromAssignee === overlappedAssignee
-                .transitionFromAssignee) === index);
+          const uniqueOverlappedAssigneesInProgress = this
+            .getUniqueOverlappedAssignees(overlappedAssigneesInProgress);
+
+          const overlappedAssigneesInReopen = this
+            .getOverlappedAssigneesInReopen(overlappedAssignees);
+
+          const uniqueOverlappedAssigneesInReopen = this
+            .getUniqueOverlappedAssignees(overlappedAssigneesInReopen);
+
+          const overlappedAssigneesInReopenOrInProgress = this
+            .getOverlappedAssigneesInReopenOrInProgress(overlappedAssignees);
 
           // search and use only developers in IN PROGRESS or REOPEN statuses if exist
           let validOverlappedAssignees;
-          if (overlappedAssigneesReopenOrInProgress.length) {
-            validOverlappedAssignees = overlappedAssigneesReopenOrInProgress;
-          } else {
+          if (!overlappedAssigneesInReopenOrInProgress.length
+            || (!uniqueOverlappedAssigneesInProgress.length
+              && uniqueOverlappedAssigneesInReopen.length === 1)) {
             validOverlappedAssignees = overlappedAssignees;
+          } else {
+            validOverlappedAssignees = overlappedAssigneesInReopenOrInProgress;
           }
 
           // get last previous developer assignee with dev status before bug found
           // or the only one developer from issue
           let lastPreviousDevAssignee;
-          if (uniqueOverlappedAssigneesReopenOrInProgress.length === 1) {
-            lastPreviousDevAssignee = uniqueOverlappedAssigneesReopenOrInProgress.pop();
+          if (!uniqueOverlappedAssigneesInReopen.length
+            && uniqueOverlappedAssigneesInProgress.length === 1) {
+            lastPreviousDevAssignee = uniqueOverlappedAssigneesInProgress.pop();
           } else {
             lastPreviousDevAssignee = validOverlappedAssignees
               .filter((overlappedAssignee) => overlappedAssignee
@@ -290,14 +300,28 @@ class DataUtils {
       initialTimestamp,
     ).flat();
 
-    const overlappedAssigneesReopenOrInProgress = this
-      .getOverlappedAssigneesReopenOrInProgress(overlappedAssignees);
+    const overlappedAssigneesInProgress = this
+      .getOverlappedAssigneesInProgress(overlappedAssignees);
+
+    const uniqueOverlappedAssigneesInProgress = this
+      .getUniqueOverlappedAssignees(overlappedAssigneesInProgress);
+
+    const overlappedAssigneesInReopen = this
+      .getOverlappedAssigneesInReopen(overlappedAssignees);
+
+    const uniqueOverlappedAssigneesInReopen = this
+      .getUniqueOverlappedAssignees(overlappedAssigneesInReopen);
+
+    const overlappedAssigneesInReopenOrInProgress = this
+      .getOverlappedAssigneesInReopenOrInProgress(overlappedAssignees);
 
     // search and use only developers in IN PROGRESS or REOPEN statuses if exist
-    if (overlappedAssigneesReopenOrInProgress.length) {
-      return overlappedAssigneesReopenOrInProgress;
+    if (!overlappedAssigneesInReopenOrInProgress.length
+      || (!uniqueOverlappedAssigneesInProgress.length
+        && uniqueOverlappedAssigneesInReopen.length === 1)) {
+      return overlappedAssignees;
     }
-    return overlappedAssignees;
+    return overlappedAssigneesInReopenOrInProgress;
   }
 
   static getIssueReporters(testedIssue) {
@@ -318,12 +342,31 @@ class DataUtils {
     ).flat();
   }
 
-  static getOverlappedAssigneesReopenOrInProgress(overlappedAssignees) {
+  static getOverlappedAssigneesInProgress(overlappedAssignees) {
+    return overlappedAssignees
+      .filter((overlappedAssignee) => overlappedAssignee.transitionFromStatus
+        .toUpperCase() === JSONLoader.config.inProgressStatus);
+  }
+
+  static getOverlappedAssigneesInReopen(overlappedAssignees) {
+    return overlappedAssignees
+      .filter((overlappedAssignee) => overlappedAssignee.transitionFromStatus
+        .toUpperCase() === JSONLoader.config.reopenStatus);
+  }
+
+  static getOverlappedAssigneesInReopenOrInProgress(overlappedAssignees) {
     return overlappedAssignees
       .filter((overlappedAssignee) => overlappedAssignee.transitionFromStatus
         .toUpperCase() === JSONLoader.config.inProgressStatus
-    || overlappedAssignee.transitionFromStatus
-      .toUpperCase() === JSONLoader.config.reopenStatus);
+        || overlappedAssignee.transitionFromStatus
+          .toUpperCase() === JSONLoader.config.reopenStatus);
+  }
+
+  static getUniqueOverlappedAssignees(overlappedAssignees) {
+    return overlappedAssignees
+      .filter((overlappedAssignee, index, arr) => arr
+        .findIndex((el) => el.transitionFromAssignee === overlappedAssignee
+          .transitionFromAssignee) === index);
   }
 
   static fillBugsPerEntities(
