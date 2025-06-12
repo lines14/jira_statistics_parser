@@ -210,6 +210,25 @@ const parseIssues = async () => { // get Jira issues with comments
   const projectDevelopers = DataUtils
     .convertAssigneesToProjectsStructure(developers);
 
+  // get unassigned issues count from developers and reporters in projects scope
+  const projectUnassignedReporterIssuesCount = DataUtils
+    .getProjectsUnassignedIssuesCount(projectReporters);
+
+  const projectUnassignedDeveloperIssuesCount = DataUtils
+    .getProjectsUnassignedIssuesCount(projectDevelopers);
+
+  // set unassigned issues count and ratio to projects
+  DataUtils.setUnassignedIssuesCountToProjects(
+    projects,
+    projectUnassignedReporterIssuesCount,
+  );
+
+  DataUtils.setUnassignedIssuesCountToProjects(
+    projects,
+    projectUnassignedDeveloperIssuesCount,
+    { developer: true },
+  );
+
   const summary = { // generate statistics summary
     issuesCreatedFrom: TimeUtils
       .reformatDateFromYMDToDMY(JSONLoader.config.commentsWithBugsCreatedFromDateYMD),

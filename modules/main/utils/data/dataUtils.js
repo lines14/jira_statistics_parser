@@ -738,6 +738,40 @@ class DataUtils {
 
     return result;
   }
+
+  static getProjectsUnassignedIssuesCount(projectAssignees) {
+    const result = {};
+    for (const [projectName, project] of Object.entries(projectAssignees)) {
+      const { unassigned } = project.assignees;
+      result[projectName] = unassigned?.issuesCount || 0;
+    }
+
+    return result;
+  }
+
+  static setUnassignedIssuesCountToProjects(
+    projects,
+    projectUnassignedIssuesCount,
+    options = { developer: false },
+  ) {
+    const countFieldName = options.developer
+      ? 'developersUnassignedAllIssuesCount'
+      : 'reportersUnassignedAllIssuesCount';
+
+    const ratioFieldName = options.developer
+      ? 'developersUnassignedAllIssuesCountPerIssuesCount'
+      : 'reportersUnassignedAllIssuesCountPerIssuesCount';
+
+    for (const [projectName, project] of Object.entries(projects)) {
+      for (const [name, count] of Object.entries(projectUnassignedIssuesCount)) {
+        if (projectName === name && count) {
+          project[countFieldName] = count;
+          project[ratioFieldName] = Number((count
+          / project.issuesCount).toFixed(JSONLoader.config.decimalPlaces));
+        }
+      }
+    }
+  }
 }
 
 export default DataUtils;

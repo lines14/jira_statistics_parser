@@ -146,7 +146,11 @@
             "testedIssuesCountPerIssueCountRatio": 0.4595,
             "bugsCountPerTestedIssueCountRatio": 1.4314,
             "bugsCountPerTestedIssueWithBugsCountRatio": 4.2941,
-            "bugsCountPerOverallBugsCountRatio": 0.3614
+            "bugsCountPerOverallBugsCountRatio": 0.3614,
+            "reportersUnassignedAllIssuesCount": 63,
+            "reportersUnassignedAllIssuesCountPerIssuesCount": 0.5676,
+            "developersUnassignedAllIssuesCount": 45,
+            "developersUnassignedAllIssuesCountPerIssuesCount": 0.4054
         },
         "MADP": {
             "issuesCount": 43,
@@ -156,7 +160,11 @@
             "testedIssuesCountPerIssueCountRatio": 0.3721,
             "bugsCountPerTestedIssueCountRatio": 0.0625,
             "bugsCountPerTestedIssueWithBugsCountRatio": 1,
-            "bugsCountPerOverallBugsCountRatio": 0.005
+            "bugsCountPerOverallBugsCountRatio": 0.005,
+            "reportersUnassignedAllIssuesCount": 28,
+            "reportersUnassignedAllIssuesCountPerIssuesCount": 0.6512,
+            "developersUnassignedAllIssuesCount": 19,
+            "developersUnassignedAllIssuesCountPerIssuesCount": 0.4419
         },
         "Medpool": {
             "issuesCount": 22,
@@ -166,7 +174,11 @@
             "testedIssuesCountPerIssueCountRatio": 0.5,
             "bugsCountPerTestedIssueCountRatio": 0.1818,
             "bugsCountPerTestedIssueWithBugsCountRatio": 2,
-            "bugsCountPerOverallBugsCountRatio": 0.0099
+            "bugsCountPerOverallBugsCountRatio": 0.0099,
+            "reportersUnassignedAllIssuesCount": 12,
+            "reportersUnassignedAllIssuesCountPerIssuesCount": 0.5455,
+            "developersUnassignedAllIssuesCount": 9,
+            "developersUnassignedAllIssuesCountPerIssuesCount": 0.4091
         },
         "Операционная эффективность": {
             "issuesCount": 64,
@@ -176,7 +188,11 @@
             "testedIssuesCountPerIssueCountRatio": 0.4219,
             "bugsCountPerTestedIssueCountRatio": 0.6296,
             "bugsCountPerTestedIssueWithBugsCountRatio": 1.8889,
-            "bugsCountPerOverallBugsCountRatio": 0.0842
+            "bugsCountPerOverallBugsCountRatio": 0.0842,
+            "reportersUnassignedAllIssuesCount": 42,
+            "reportersUnassignedAllIssuesCountPerIssuesCount": 0.6563,
+            "developersUnassignedAllIssuesCount": 21,
+            "developersUnassignedAllIssuesCountPerIssuesCount": 0.3281
         },
         "ADP": {
             "issuesCount": 86,
@@ -186,7 +202,11 @@
             "testedIssuesCountPerIssueCountRatio": 0.5581,
             "bugsCountPerTestedIssueCountRatio": 0.8542,
             "bugsCountPerTestedIssueWithBugsCountRatio": 3.1538,
-            "bugsCountPerOverallBugsCountRatio": 0.203
+            "bugsCountPerOverallBugsCountRatio": 0.203,
+            "reportersUnassignedAllIssuesCount": 47,
+            "reportersUnassignedAllIssuesCountPerIssuesCount": 0.5465,
+            "developersUnassignedAllIssuesCount": 31,
+            "developersUnassignedAllIssuesCountPerIssuesCount": 0.3605
         },
         "Котировки": {
             "issuesCount": 67,
@@ -196,7 +216,11 @@
             "testedIssuesCountPerIssueCountRatio": 0.5672,
             "bugsCountPerTestedIssueCountRatio": 1.4211,
             "bugsCountPerTestedIssueWithBugsCountRatio": 4.5,
-            "bugsCountPerOverallBugsCountRatio": 0.2673
+            "bugsCountPerOverallBugsCountRatio": 0.2673,
+            "reportersUnassignedAllIssuesCount": 31,
+            "reportersUnassignedAllIssuesCountPerIssuesCount": 0.4627,
+            "developersUnassignedAllIssuesCount": 25,
+            "developersUnassignedAllIssuesCountPerIssuesCount": 0.3731
         },
         "Partners": {
             "issuesCount": 3,
@@ -204,7 +228,11 @@
             "testedIssuesCountPerIssueCountRatio": 1
         },
         "Bitrix Intergration Project": {
-            "issuesCount": 4
+            "issuesCount": 4,
+            "reportersUnassignedAllIssuesCount": 4,
+            "reportersUnassignedAllIssuesCountPerIssuesCount": 1,
+            "developersUnassignedAllIssuesCount": 3,
+            "developersUnassignedAllIssuesCountPerIssuesCount": 0.75
         },
         "Amanat24": {
             "issuesCount": 8,
@@ -214,7 +242,11 @@
             "testedIssuesCountPerIssueCountRatio": 0.625,
             "bugsCountPerTestedIssueCountRatio": 1,
             "bugsCountPerTestedIssueWithBugsCountRatio": 1.6667,
-            "bugsCountPerOverallBugsCountRatio": 0.0248
+            "bugsCountPerOverallBugsCountRatio": 0.0248,
+            "reportersUnassignedAllIssuesCount": 4,
+            "reportersUnassignedAllIssuesCountPerIssuesCount": 0.5,
+            "developersUnassignedAllIssuesCount": 2,
+            "developersUnassignedAllIssuesCountPerIssuesCount": 0.25
         },
         "Architecture": {
             "issuesCount": 36,
@@ -224,12 +256,20 @@
             "testedIssuesCountPerIssueCountRatio": 0.3889,
             "bugsCountPerTestedIssueCountRatio": 0.6429,
             "bugsCountPerTestedIssueWithBugsCountRatio": 3,
-            "bugsCountPerOverallBugsCountRatio": 0.0446
+            "bugsCountPerOverallBugsCountRatio": 0.0446,
+            "reportersUnassignedAllIssuesCount": 23,
+            "reportersUnassignedAllIssuesCountPerIssuesCount": 0.6389,
+            "developersUnassignedAllIssuesCount": 4,
+            "developersUnassignedAllIssuesCountPerIssuesCount": 0.1111
         },
         "Бухгалтерия и ФЭО": {
             "issuesCount": 5,
             "testedIssuesCount": 1,
-            "testedIssuesCountPerIssueCountRatio": 0.2
+            "testedIssuesCountPerIssueCountRatio": 0.2,
+            "reportersUnassignedAllIssuesCount": 5,
+            "reportersUnassignedAllIssuesCountPerIssuesCount": 1,
+            "developersUnassignedAllIssuesCount": 4,
+            "developersUnassignedAllIssuesCountPerIssuesCount": 0.8
         }
     },
     "projectReporters": {
