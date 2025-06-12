@@ -12,36 +12,41 @@ const parseIssues = async () => { // get Jira issues with comments
     : TimeUtils
       .reformatDateFromDMYToYMD(TimeUtils.reformatDateFromISOToDMY(TimeUtils.today()));
 
-  // const issuesWithCommentsArr = [];
-  // const issuesArr = await jiraAPI.searchAll(
-  //   JSONLoader.config.commentsWithBugsCreatedFromDateYMD,
-  //   toDate,
-  // );
+  let issuesWithCommentsArr = [];
+  const issuesArr = await jiraAPI.searchAll(
+    JSONLoader.config.commentsWithBugsCreatedFromDateYMD,
+    toDate,
+  );
 
-  // for (const issue of issuesArr) {
-  //   const response = await jiraAPI.getIssueComments(issue.id);
-  //   const parsedIssue = {
-  //     key: issue.key,
-  //     summary: issue.fields.summary,
-  //     created: issue.fields.created,
-  //     updated: issue.fields.updated,
-  //     priority: issue.fields.priority.name,
-  //     projectKey: issue.fields.project.key,
-  //     projectName: issue.fields.project.name,
-  //     devType: issue.fields.customfield_10085?.value,
-  //     labels: issue.fields.labels,
-  //     issuetype: issue.fields.issuetype.name,
-  //     status: issue.fields.status.name,
-  //     comments: response.data.comments,
-  //     changelog: issue.changelog.histories,
-  //   };
+  for (const issue of issuesArr) {
+    const response = await jiraAPI.getIssueComments(issue.id);
+    const parsedIssue = {
+      key: issue.key,
+      summary: issue.fields.summary,
+      created: issue.fields.created,
+      updated: issue.fields.updated,
+      priority: issue.fields.priority.name,
+      projectKey: issue.fields.project.key,
+      projectName: issue.fields.project.name,
+      devType: issue.fields.customfield_10085?.value,
+      labels: issue.fields.labels,
+      issuetype: issue.fields.issuetype.name,
+      status: issue.fields.status.name,
+      comments: response.data.comments,
+      changelog: issue.changelog.histories,
+    };
 
-  //   issuesWithCommentsArr.push(parsedIssue);
-  // }
+    issuesWithCommentsArr.push(parsedIssue);
+  }
 
-  // DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
+  DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
 
-  const { issuesWithCommentsArr } = JSONLoader;
+  // let { issuesWithCommentsArr } = JSONLoader;
+
+  // filter data analytics issues
+  issuesWithCommentsArr = issuesWithCommentsArr
+    .filter((issueWithComment) => !JSONLoader.config.dataAnalyticsProjects
+      .includes(issueWithComment.projectName));
 
   // get developers and reporters assigned issues
   const issuesWithDevelopersArr = DataUtils
@@ -51,12 +56,17 @@ const parseIssues = async () => { // get Jira issues with comments
     .getReportersWorkload(issuesWithCommentsArr);
 
   // get Jira issues with testing statuses in history
-  const testedIssuesWithCommentsArr = issuesWithCommentsArr
+  let testedIssuesWithCommentsArr = issuesWithCommentsArr
     .map((issueWithComments) => structuredClone(issueWithComments))
     .filter((issueWithComments) => issueWithComments.changelog
       .some((changelogItem) => changelogItem.items
         .some((item) => JSONLoader.config.testIssueStatuses.includes(item.fromString?.toUpperCase())
         || JSONLoader.config.testIssueStatuses.includes(item.toString?.toUpperCase()))));
+
+  // filter data analytics issues
+  testedIssuesWithCommentsArr = testedIssuesWithCommentsArr
+    .filter((testedIssueWithComment) => !JSONLoader.config.dataAnalyticsProjects
+      .includes(testedIssueWithComment.projectName));
 
   // get developers and reporters tested issues
   const testedIssuesWithDevelopersArr = DataUtils
@@ -81,9 +91,14 @@ const parseIssues = async () => { // get Jira issues with comments
     delete testedIssueWithComments.comments;
   });
 
-  const testedIssuesWithBugsArr = testedIssuesWithCommentsArr
+  let testedIssuesWithBugsArr = testedIssuesWithCommentsArr
     .map((issueWithComments) => structuredClone(issueWithComments))
     .filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
+
+  // filter data analytics issues
+  testedIssuesWithBugsArr = testedIssuesWithBugsArr
+    .filter((testedIssueWithBugs) => !JSONLoader.config.dataAnalyticsProjects
+      .includes(testedIssueWithBugs.projectName));
 
   // get developers and reporters tested issues with bugs
   const testedIssuesWithBugsAndDevelopersArr = DataUtils

@@ -29,6 +29,10 @@
     "debugIssues": [
         "ADP-2676"
     ],
+    "dataAnalyticsProjects": [
+        "Analytics 2.0",
+        " Analytics 2.0 test"
+    ],
     "initIssueStatus": "INIT TASK",
     "reopenStatus": "REOPEN",
     "inProgressStatus": "IN PROGRESS",
