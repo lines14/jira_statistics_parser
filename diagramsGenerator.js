@@ -12,7 +12,7 @@ const generateDiagrams = async () => {
   const colors = JSONLoader.config.diagramColors;
   const diagramsData = [
     {
-      title: 'Общее количество протестированных задач и багов',
+      title: 'Общее количество задач и багов',
       yLabel: 'Количество',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary,
@@ -25,7 +25,7 @@ const generateDiagrams = async () => {
       ),
     },
     {
-      title: 'Общее соотношение количества багов к количеству протестированных задач',
+      title: 'Общее соотношение количества багов и количества задач',
       yLabel: 'Процент',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary,
@@ -36,7 +36,7 @@ const generateDiagrams = async () => {
       ),
     },
     {
-      title: 'Количество протестированных задач и багов по приоритетам',
+      title: 'Количество задач и багов по приоритетам',
       yLabel: 'Количество',
       xLabel: 'Приоритеты',
       data: DataUtils.extractPropertyByName(
@@ -49,7 +49,7 @@ const generateDiagrams = async () => {
       outputSubFolder: 'priorities',
     },
     {
-      title: 'Соотношение количества багов к количеству протестированных задач по приоритетам',
+      title: 'Соотношения количества багов и количества задач по приоритетам',
       yLabel: 'Процент',
       xLabel: 'Приоритеты',
       data: DataUtils.extractPropertyByName(
@@ -71,7 +71,7 @@ const generateDiagrams = async () => {
       outputSubFolder: 'priorities',
     },
     {
-      title: 'Количество протестированных задач и багов по типам разработки',
+      title: 'Количество задач и багов по типам разработки',
       yLabel: 'Количество',
       xLabel: 'Типы разработки',
       data: DataUtils.extractPropertyByName(
@@ -84,7 +84,7 @@ const generateDiagrams = async () => {
       outputSubFolder: 'devTypes',
     },
     {
-      title: 'Соотношение количества багов к количеству протестированных задач по типам разработки',
+      title: 'Соотношения количества багов и количества задач по типам разработки',
       yLabel: 'Процент',
       xLabel: 'Типы разработки',
       data: DataUtils.extractPropertyByName(
@@ -106,7 +106,7 @@ const generateDiagrams = async () => {
       outputSubFolder: 'devTypes',
     },
     {
-      title: 'Количество протестированных задач и багов по типам задач',
+      title: 'Количество задач и багов по типам задач',
       yLabel: 'Количество',
       xLabel: 'Типы задач',
       data: DataUtils.extractPropertyByName(
@@ -119,7 +119,7 @@ const generateDiagrams = async () => {
       outputSubFolder: 'issueTypes',
     },
     {
-      title: 'Соотношение количества багов к количеству протестированных задач по типам задач',
+      title: 'Соотношения количества багов и количества задач по типам задач',
       yLabel: 'Процент',
       xLabel: 'Типы задач',
       data: DataUtils.extractPropertyByName(
@@ -141,7 +141,7 @@ const generateDiagrams = async () => {
       outputSubFolder: 'issueTypes',
     },
     {
-      title: 'Количество протестированных задач и багов по проектам',
+      title: 'Количество задач и багов по проектам',
       yLabel: 'Количество',
       xLabel: 'Проекты',
       data: DataUtils.extractPropertyByName(
@@ -154,7 +154,7 @@ const generateDiagrams = async () => {
       outputSubFolder: 'projects',
     },
     {
-      title: 'Соотношение количества багов к количеству протестированных задач по проектам',
+      title: 'Соотношения количества багов и количества задач по проектам',
       yLabel: 'Процент',
       xLabel: 'Проекты',
       data: DataUtils.extractPropertyByName(
@@ -310,7 +310,7 @@ const generateDiagrams = async () => {
   for (const [key, value] of Object.entries(cyrillicSummary.developers)) {
     const developerDiagramsData = [
       {
-        title: `Количество протестированных задач и багов (${key})`,
+        title: `Количество задач и багов (${key})`,
         yLabel: 'Количество',
         xLabel: 'Проекты',
         data: DataUtils.extractPropertyByName(
@@ -323,7 +323,7 @@ const generateDiagrams = async () => {
         outputSubFolder: 'developers/count',
       },
       {
-        title: `Соотношение количества багов к количеству протестированных задач (${key})`,
+        title: `Соотношения количества багов и количества задач (${key})`,
         yLabel: 'Процент',
         xLabel: 'Проекты',
         data: DataUtils.extractPropertyByName(
@@ -392,7 +392,7 @@ const generateDiagrams = async () => {
   for (const [key, value] of Object.entries(cyrillicSummary.projectDevelopers)) {
     const developerDiagramsData = [
       {
-        title: `Количество протестированных задач и багов (developers in ${key})`,
+        title: `Количество задач и багов (developers in ${key})`,
         yLabel: 'Количество',
         xLabel: 'developers',
         data: DataUtils.extractPropertyByName(
@@ -405,7 +405,7 @@ const generateDiagrams = async () => {
         outputSubFolder: 'projects/count',
       },
       {
-        title: `Соотношение количества багов к количеству протестированных задач (developers in ${key})`,
+        title: `Соотношения количества багов и количества задач (developers in ${key})`,
         yLabel: 'Процент',
         xLabel: 'developers',
         data: DataUtils.extractPropertyByName(
