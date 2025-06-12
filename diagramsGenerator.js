@@ -20,6 +20,8 @@ const generateDiagrams = async () => {
         'Количество протестированных задач с багами',
         'Общее количество багов',
         'Количество задач',
+        'Количество всех не назначенных на разработчиков задач',
+        'Количество всех не назначенных на QA задач',
       ),
     },
     {
@@ -29,6 +31,8 @@ const generateDiagrams = async () => {
         cyrillicSummary,
         'Соотношение количества багов к количеству протестированных задач',
         'Соотношение количества багов к количеству протестированных задач с багами',
+        'Соотношение количества всех не назначенных на разработчиков задач к количеству всех задач',
+        'Соотношение количества всех не назначенных на QA задач к количеству всех задач',
       ),
     },
     {
@@ -180,7 +184,6 @@ const generateDiagrams = async () => {
         'Количество всех протестированных задач сотрудника',
         'Количество всех протестированных задач сотрудника с багами',
         'Количество всех багов сотрудника',
-        'Количество всех задач сотрудника',
       ),
       outputSubFolder: 'QA',
     },
@@ -190,7 +193,6 @@ const generateDiagrams = async () => {
       xLabel: 'QA',
       data: DataUtils.extractPropertyByName(
         cyrillicSummary.reporters,
-        'Соотношение количества всех протестированных задач сотрудника к количеству всех задач сотрудника',
         'Соотношение количества всех багов сотрудника к количеству всех протестированных задач сотрудника',
         'Соотношение количества всех багов сотрудника к количеству всех протестированных задач сотрудника с багами',
       ),
@@ -218,7 +220,7 @@ const generateDiagrams = async () => {
       outputSubFolder: 'QA',
     },
     {
-      title: 'Количество всех протестированных задач и багов сотрудников (developers)',
+      title: 'Количество всех задач и багов сотрудников (developers)',
       yLabel: 'Количество',
       xLabel: 'developers',
       data: DataUtils.extractPropertyByName(
@@ -231,7 +233,7 @@ const generateDiagrams = async () => {
       outputSubFolder: 'developers',
     },
     {
-      title: 'Соотношение количества всех багов сотрудников к количеству протестированных задач сотрудников (developers)',
+      title: 'Соотношения количества всех багов и всех задач сотрудников (developers)',
       yLabel: 'Процент',
       xLabel: 'developers',
       data: DataUtils.extractPropertyByName(
@@ -352,7 +354,7 @@ const generateDiagrams = async () => {
   for (const [key, value] of Object.entries(cyrillicSummary.projectReporters)) {
     const reporterDiagramsData = [
       {
-        title: `Количество протестированных задач и багов (${key})`,
+        title: `Количество протестированных задач и багов (reporters in ${key})`,
         yLabel: 'Количество',
         xLabel: 'QA',
         data: DataUtils.extractPropertyByName(
@@ -365,7 +367,7 @@ const generateDiagrams = async () => {
         outputSubFolder: 'projects/count',
       },
       {
-        title: `Соотношение количества багов к количеству протестированных задач (${key})`,
+        title: `Соотношение количества багов к количеству протестированных задач (reporters in ${key})`,
         yLabel: 'Процент',
         xLabel: 'QA',
         data: DataUtils.extractPropertyByName(
@@ -377,7 +379,7 @@ const generateDiagrams = async () => {
         outputSubFolder: 'projects/ratio',
       },
       {
-        title: `Процент количества багов от общего числа багов (${key})`,
+        title: `Процент количества багов от общего числа багов (reporters in ${key})`,
         yLabel: 'Процент',
         xLabel: 'QA',
         data: DataUtils.extractPropertyByName(
@@ -394,7 +396,7 @@ const generateDiagrams = async () => {
   for (const [key, value] of Object.entries(cyrillicSummary.projectDevelopers)) {
     const developerDiagramsData = [
       {
-        title: `Количество протестированных задач и багов (${key})`,
+        title: `Количество протестированных задач и багов (developers in ${key})`,
         yLabel: 'Количество',
         xLabel: 'developers',
         data: DataUtils.extractPropertyByName(
@@ -407,7 +409,7 @@ const generateDiagrams = async () => {
         outputSubFolder: 'projects/count',
       },
       {
-        title: `Соотношение количества багов к количеству протестированных задач (${key})`,
+        title: `Соотношение количества багов к количеству протестированных задач (developers in ${key})`,
         yLabel: 'Процент',
         xLabel: 'developers',
         data: DataUtils.extractPropertyByName(
@@ -419,7 +421,7 @@ const generateDiagrams = async () => {
         outputSubFolder: 'projects/ratio',
       },
       {
-        title: `Процент количества багов от общего числа багов (${key})`,
+        title: `Процент количества багов от общего числа багов (developers in ${key})`,
         yLabel: 'Процент',
         xLabel: 'developers',
         data: DataUtils.extractPropertyByName(

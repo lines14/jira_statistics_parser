@@ -204,10 +204,16 @@ const parseIssues = async () => { // get Jira issues with comments
       testedIssuesCount: testedIssuesWithCommentsArr.length,
       testedIssuesWithBugsCount: testedIssuesWithBugsArr.length,
       overallBugsCount,
+      reportersUnassignedAllIssuesCount: reporters.unassigned.allIssuesCount,
+      developersUnassignedAllIssuesCount: developers.unassigned.allIssuesCount,
       bugsCountPerTestedIssueCountRatio: Number((overallBugsCount
         / testedIssuesWithCommentsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
       bugsCountPerTestedIssueWithBugsCountRatio: Number((overallBugsCount
         / testedIssuesWithBugsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
+      reportersUnassignedAllIssuesCountPerIssuesCount: Number((reporters.unassigned.allIssuesCount
+        / issuesWithCommentsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
+      developersUnassignedAllIssuesCountPerIssuesCount: Number((developers.unassigned.allIssuesCount
+        / issuesWithCommentsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
     },
     priorities,
     devTypes,
@@ -218,6 +224,9 @@ const parseIssues = async () => { // get Jira issues with comments
     reporters,
     developers,
   };
+
+  delete summary.reporters.unassigned;
+  delete summary.developers.unassigned;
 
   DataUtils.saveToJSON({ summary }, { folder: 'resources' });
 };
