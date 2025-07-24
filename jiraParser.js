@@ -1,25 +1,17 @@
 /* eslint-disable no-await-in-loop */
 /* eslint no-param-reassign: ["off"] */
 /* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
-import dotenv from 'dotenv';
 import jiraAPI from './modules/API/jiraAPI.js';
 import DataUtils from './modules/main/utils/data/dataUtils.js';
 import TimeUtils from './modules/main/utils/time/timeUtils.js';
 import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 
-dotenv.config({ override: true });
-
 const parseIssues = async () => { // get Jira issues with comments
-  const toDate = process.env.COMMENTS_WITH_BUGS_CREATED_TO_DATE_YMD
-    ? process.env.COMMENTS_WITH_BUGS_CREATED_TO_DATE_YMD
-    : TimeUtils
-      .reformatDateFromDMYToYMD(TimeUtils.reformatDateFromISOToDMY(TimeUtils.today()));
+  const { dateBegin, dateEnd } = TimeUtils.getDates(...JSONLoader.config.timeDecrement);
+  console.log(TimeUtils.getMonthName());
 
   // let issuesWithCommentsArr = [];
-  // const issuesArr = await jiraAPI.searchAll(
-  //   process.env.COMMENTS_WITH_BUGS_CREATED_FROM_DATE_YMD,
-  //   toDate,
-  // );
+  // const issuesArr = await jiraAPI.searchAll(dateBegin, dateEnd);
 
   // for (const issue of issuesArr) {
   //   const response = await jiraAPI.getIssueComments(issue.id);
@@ -234,8 +226,8 @@ const parseIssues = async () => { // get Jira issues with comments
 
   const summary = { // generate statistics summary
     issuesCreatedFrom: TimeUtils
-      .reformatDateFromYMDToDMY(process.env.COMMENTS_WITH_BUGS_CREATED_FROM_DATE_YMD),
-    issuesCreatedTo: TimeUtils.reformatDateFromYMDToDMY(toDate),
+      .reformatDateFromYMDToDMY(dateBegin),
+    issuesCreatedTo: TimeUtils.reformatDateFromYMDToDMY(dateEnd),
     overall: {
       issuesCount: issuesWithCommentsArr.length,
       testedIssuesCount: testedIssuesWithCommentsArr.length,

@@ -20,7 +20,9 @@
         "config": "node ./modules/main/utils/data/filesParser.js",
         "parse:run": "node ./jiraParser.js",
         "generate:run": "node ./diagramsGenerator.js",
+        "publish:run": "node ./diagramsPublisher.js",
         "parse": "npm run config && npm run parse:run",
-        "generate": "npm run config && npm run generate:run"
+        "generate": "npm run config && npm run generate:run",
+        "publish": "npm run config && npm run publish:run"
     }
 }

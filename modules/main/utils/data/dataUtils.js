@@ -1,12 +1,9 @@
 /* eslint no-param-reassign: ["off"] */
 /* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
 import fs from 'fs';
-import dotenv from 'dotenv';
 import JSONLoader from './JSONLoader.js';
 import TimeUtils from '../time/timeUtils.js';
 import Randomizer from '../random/randomizer.js';
-
-dotenv.config({ override: true });
 
 class DataUtils {
   static saveToJSON(obj, options = { folder: 'artifacts' }) {
@@ -14,6 +11,10 @@ class DataUtils {
     const data = obj[name];
     const replacer = (key, value) => (typeof value === 'undefined' ? null : value);
     fs.writeFileSync(`./${options.folder}/${name}.json`, JSON.stringify(data, replacer, 4));
+  }
+
+  static getFile(filePath) {
+    return fs.readFileSync(filePath);
   }
 
   static sortByTimestamps(changelog) {

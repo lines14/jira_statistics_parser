@@ -3,7 +3,9 @@
     "logMaxSizeMegabytes": "5120",
     "datesFormatYMD": "YYYY-MM-DD",
     "datesFormatDMY": "DD.MM.YYYY",
+    "datesFormatMonthName": "MMMM",
     "datesFormatISO": "YYYY-MM-DDTHH:mm:ss",
+    "timeDecrement": [1, "month"],
     "halfMinute": 30000,
     "decimalPlaces": 4,
     "canvas": { 

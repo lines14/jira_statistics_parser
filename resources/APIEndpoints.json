@@ -4,5 +4,10 @@
         "usersSearch": "rest/api/3/users/search",
         "search": "rest/api/3/search",
         "issue": "rest/api/3/issue"
+    },
+    "confluence": {
+        "pages": "api/v2/pages",
+        "content": "rest/api/content",
+        "attachments": "api/v2/attachments"
     }
 }
