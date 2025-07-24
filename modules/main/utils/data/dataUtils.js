@@ -1,9 +1,12 @@
 /* eslint no-param-reassign: ["off"] */
 /* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
 import fs from 'fs';
+import dotenv from 'dotenv';
 import JSONLoader from './JSONLoader.js';
 import TimeUtils from '../time/timeUtils.js';
 import Randomizer from '../random/randomizer.js';
+
+dotenv.config({ override: true });
 
 class DataUtils {
   static saveToJSON(obj, options = { folder: 'artifacts' }) {
@@ -159,13 +162,13 @@ class DataUtils {
   // get issue assignees changes to calculate time intervals
   static getDeveloperChanges(changelog) {
     return this.getFieldChanges('assignee', changelog)
-      .filter((assigneeChange) => JSONLoader.config.developers
+      .filter((assigneeChange) => JSON.parse(process.env.DEVELOPERS)
         .includes(assigneeChange.transitionFrom));
   }
 
   static getReporterChanges(changelog) {
     return this.getFieldChanges('assignee', changelog)
-      .filter((assigneeChange) => JSONLoader.config.reporters
+      .filter((assigneeChange) => JSON.parse(process.env.REPORTERS)
         .includes(assigneeChange.transitionTo));
   }
 

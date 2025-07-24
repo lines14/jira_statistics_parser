@@ -1,47 +1,50 @@
 /* eslint-disable no-await-in-loop */
 /* eslint no-param-reassign: ["off"] */
 /* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
+import dotenv from 'dotenv';
 import jiraAPI from './modules/API/jiraAPI.js';
 import DataUtils from './modules/main/utils/data/dataUtils.js';
 import TimeUtils from './modules/main/utils/time/timeUtils.js';
 import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 
+dotenv.config({ override: true });
+
 const parseIssues = async () => { // get Jira issues with comments
-  const toDate = JSONLoader.config.commentsWithBugsCreatedToDateYMD
-    ? JSONLoader.config.commentsWithBugsCreatedToDateYMD
+  const toDate = process.env.COMMENTS_WITH_BUGS_CREATED_TO_DATE_YMD
+    ? process.env.COMMENTS_WITH_BUGS_CREATED_TO_DATE_YMD
     : TimeUtils
       .reformatDateFromDMYToYMD(TimeUtils.reformatDateFromISOToDMY(TimeUtils.today()));
 
-  let issuesWithCommentsArr = [];
-  const issuesArr = await jiraAPI.searchAll(
-    JSONLoader.config.commentsWithBugsCreatedFromDateYMD,
-    toDate,
-  );
+  // let issuesWithCommentsArr = [];
+  // const issuesArr = await jiraAPI.searchAll(
+  //   process.env.COMMENTS_WITH_BUGS_CREATED_FROM_DATE_YMD,
+  //   toDate,
+  // );
 
-  for (const issue of issuesArr) {
-    const response = await jiraAPI.getIssueComments(issue.id);
-    const parsedIssue = {
-      key: issue.key,
-      summary: issue.fields.summary,
-      created: issue.fields.created,
-      updated: issue.fields.updated,
-      priority: issue.fields.priority.name,
-      projectKey: issue.fields.project.key,
-      projectName: issue.fields.project.name,
-      devType: issue.fields.customfield_10085?.value,
-      labels: issue.fields.labels,
-      issuetype: issue.fields.issuetype.name,
-      status: issue.fields.status.name,
-      comments: response.data.comments,
-      changelog: issue.changelog.histories,
-    };
+  // for (const issue of issuesArr) {
+  //   const response = await jiraAPI.getIssueComments(issue.id);
+  //   const parsedIssue = {
+  //     key: issue.key,
+  //     summary: issue.fields.summary,
+  //     created: issue.fields.created,
+  //     updated: issue.fields.updated,
+  //     priority: issue.fields.priority.name,
+  //     projectKey: issue.fields.project.key,
+  //     projectName: issue.fields.project.name,
+  //     devType: issue.fields.customfield_10085?.value,
+  //     labels: issue.fields.labels,
+  //     issuetype: issue.fields.issuetype.name,
+  //     status: issue.fields.status.name,
+  //     comments: response.data.comments,
+  //     changelog: issue.changelog.histories,
+  //   };
 
-    issuesWithCommentsArr.push(parsedIssue);
-  }
+  //   issuesWithCommentsArr.push(parsedIssue);
+  // }
 
-  DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
+  // DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
 
-  // let { issuesWithCommentsArr } = JSONLoader;
+  let { issuesWithCommentsArr } = JSONLoader;
 
   // filter data analytics issues
   issuesWithCommentsArr = issuesWithCommentsArr
@@ -126,10 +129,10 @@ const parseIssues = async () => { // get Jira issues with comments
   const issueTypeNames = [...new Set(issuesWithCommentsArr
     .map((issueWithComments) => issueWithComments.issuetype))];
 
-  const developerNames = JSONLoader.config.developers;
+  const developerNames = JSON.parse(process.env.DEVELOPERS);
   developerNames.push(JSONLoader.config.issueWithoutAssignee);
 
-  const reporterNames = JSONLoader.config.reporters;
+  const reporterNames = JSON.parse(process.env.REPORTERS);
   reporterNames.push(JSONLoader.config.issueWithoutAssignee);
 
   // get statistics for all entities
@@ -231,7 +234,7 @@ const parseIssues = async () => { // get Jira issues with comments
 
   const summary = { // generate statistics summary
     issuesCreatedFrom: TimeUtils
-      .reformatDateFromYMDToDMY(JSONLoader.config.commentsWithBugsCreatedFromDateYMD),
+      .reformatDateFromYMDToDMY(process.env.COMMENTS_WITH_BUGS_CREATED_FROM_DATE_YMD),
     issuesCreatedTo: TimeUtils.reformatDateFromYMDToDMY(toDate),
     overall: {
       issuesCount: issuesWithCommentsArr.length,
