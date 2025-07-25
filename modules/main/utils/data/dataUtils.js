@@ -17,6 +17,19 @@ class DataUtils {
     return fs.readFileSync(filePath);
   }
 
+  static splitArrIntoChunks(array, args = { partsCount: 8 }) {
+    const result = [];
+    const chunkSize = Math.ceil(array.length / args.partsCount);
+
+    for (let i = 0; i < args.partsCount; i++) {
+      const start = i * chunkSize;
+      const end = start + chunkSize;
+      result.push(array.slice(start, end));
+    }
+
+    return result;
+  }
+
   static sortByTimestamps(changelog) {
     return changelog.sort((a, b) => TimeUtils.convertTimestampToDateObject(a.created)
     - TimeUtils.convertTimestampToDateObject(b.created));

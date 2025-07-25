@@ -21,14 +21,14 @@ const relativeDirectoryPathArr = [
   relativeResourcesDirectoryPath,
 ];
 
-const getFiles = (dirPath, fileExt) => {
+export const getFiles = (dirPath, fileExt) => {
   const allFiles = fs.readdirSync(dirPath);
   const files = allFiles.filter((file) => file.endsWith(fileExt));
   allFiles.forEach((file) => {
     const fullPath = path.join(dirPath, file);
     if (fs.statSync(fullPath).isDirectory()) {
       const nestedDirObject = getFiles(fullPath, fileExt);
-      files.push(...nestedDirObject.fileObjects.map((nestedFile) => path.join(file, nestedFile)));
+      files.push(...nestedDirObject.fileObjects.map((nestedFile) => path.join(file, nestedFile.file)));
     }
   });
 

@@ -36,8 +36,12 @@ class ConfluenceAPI extends BaseAPI {
     return this.get(`${JSONLoader.APIEndpoints.confluence.content}/${pageID}`, params);
   }
 
-  async getAttachments(pageID) {
-    return this.get(`${JSONLoader.APIEndpoints.confluence.pages}/${pageID}/attachments`);
+  async getAttachments(pageID, limit) {
+    const params = {
+      limit
+    }
+
+    return this.get(`${JSONLoader.APIEndpoints.confluence.pages}/${pageID}/attachments`, params);
   }
 
   async deleteAttachment(attachmentID, options = { purge: false }) {
