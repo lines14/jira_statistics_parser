@@ -38,8 +38,8 @@ class ConfluenceAPI extends BaseAPI {
 
   async getAttachments(pageID, limit) {
     const params = {
-      limit
-    }
+      limit,
+    };
 
     return this.get(`${JSONLoader.APIEndpoints.confluence.pages}/${pageID}/attachments`, params);
   }
@@ -68,7 +68,7 @@ class ConfluenceAPI extends BaseAPI {
         fileObj.file,
       );
     });
-    
+
     return this.#API.post(`${JSONLoader.APIEndpoints.confluence.content}/${pageID}/child/attachment`, params);
   }
 
@@ -111,7 +111,7 @@ class ConfluenceAPI extends BaseAPI {
       },
       body: {
         storage: {
-          value: `<h1>Тестовая страница</h1>\n<h2>Картинки</h2>\n<ac:image ac:height=\"auto\" ac:width=\"800\"><ri:attachment ri:filename=\"${fileNames[0]}\" /></ac:image>\n<h2>Еще картинки</h2>\n<ac:image ac:height=\"auto\" ac:width=\"800\"><ri:attachment ri:filename=\"${fileNames[1]}\" /></ac:image>`,
+          value: `<h1>Тестовая страница</h1>\n<h2>Картинки</h2>\n<ac:image ac:height="auto" ac:width="800"><ri:attachment ri:filename="${fileNames[0]}" /></ac:image>\n<h2>Еще картинки</h2>\n<ac:image ac:height="auto" ac:width="800"><ri:attachment ri:filename="${fileNames[1]}" /></ac:image>`,
           representation: 'storage',
         },
       },

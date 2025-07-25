@@ -21,7 +21,7 @@ class DataUtils {
     const result = [];
     const chunkSize = Math.ceil(array.length / args.partsCount);
 
-    for (let i = 0; i < args.partsCount; i++) {
+    for (let i = 0; i < args.partsCount; i += 1) {
       const start = i * chunkSize;
       const end = start + chunkSize;
       result.push(array.slice(start, end));

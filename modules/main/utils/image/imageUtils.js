@@ -2,9 +2,9 @@
 import fs from 'fs';
 import path from 'path';
 import Chart from 'chart.js/auto';
-import TimeUtils from '../time/timeUtils.js'
 import { ChartJSNodeCanvas } from 'chartjs-node-canvas';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import TimeUtils from '../time/timeUtils.js';
 import JSONLoader from '../data/JSONLoader.js';
 
 Chart.register(ChartDataLabels);
@@ -65,14 +65,14 @@ class ImageUtils {
 
       datasets.push(dataset);
     });
-    
+
     const config = ImageUtils.createChartConfig(title, summaryKeys, datasets, { xLabel, yLabel });
     const buffer = await this.canvas.renderToBuffer(config);
     const folderPath = path.join(
-      'images', 
-      TimeUtils.getYear(issuesCreatedFrom).toString(), 
-      TimeUtils.getMonthName(issuesCreatedFrom), 
-      outputSubFolder ?? ''
+      'images',
+      TimeUtils.getYear(issuesCreatedFrom).toString(),
+      TimeUtils.getMonthName(issuesCreatedFrom),
+      outputSubFolder ?? '',
     );
     fs.mkdirSync(folderPath, { recursive: true });
     const filepath = path.join(folderPath, `${title}.png`);

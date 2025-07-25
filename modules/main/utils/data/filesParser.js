@@ -21,18 +21,23 @@ const relativeDirectoryPathArr = [
   relativeResourcesDirectoryPath,
 ];
 
-export const getFiles = (dirPath, fileExt) => {
+let subPaths = [];
+const getFiles = (dirPath, fileExt) => {
   const allFiles = fs.readdirSync(dirPath);
   const files = allFiles.filter((file) => file.endsWith(fileExt));
   allFiles.forEach((file) => {
     const fullPath = path.join(dirPath, file);
+    subPaths.push(fullPath);
     if (fs.statSync(fullPath).isDirectory()) {
       const nestedDirObject = getFiles(fullPath, fileExt);
-      files.push(...nestedDirObject.fileObjects.map((nestedFile) => path.join(file, nestedFile.file)));
+      files.push(...nestedDirObject.fileObjects
+        .map((nestedFile) => path.join(file, nestedFile.file)));
     }
   });
 
-  return { fileObjects: files.map((file) => ({ file })), dirPath };
+  subPaths = [...new Set(subPaths)];
+
+  return { fileObjects: files.map((file) => ({ file })), dirPath, subPaths };
 };
 
 const generateImports = (dirPathArr, dirObj) => dirObj.fileObjects
@@ -142,3 +147,5 @@ const checkEnvExists = (dirPath) => {
 
 checkEnvExists(envDirectoryPath);
 generateJSONLoader(fileLocation, absoleteDirectoryPathArr, relativeDirectoryPathArr);
+
+export default getFiles;

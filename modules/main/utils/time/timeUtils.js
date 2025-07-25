@@ -54,6 +54,12 @@ class TimeUtils {
   static getYear(dateBegin) {
     return moment(dateBegin, JSONLoader.config.datesFormatDMY).year();
   }
+
+  static getMonths() {
+    moment.locale('ru');
+
+    return moment.months();
+  }
 }
 
 export default TimeUtils;
