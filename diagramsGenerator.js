@@ -437,7 +437,9 @@ const generateDiagrams = async () => {
 
   for (const diagram of diagramsData) {
     await imageUtils.generateDiagram( // eslint-disable-line no-await-in-loop
-      `${diagram.title} c ${cyrillicSummary.issuesCreatedFrom} по ${cyrillicSummary.issuesCreatedTo}`,
+      diagram.title,
+      cyrillicSummary.issuesCreatedFrom,
+      cyrillicSummary.issuesCreatedTo,
       diagram.yLabel,
       diagram.xLabel,
       diagram.data,

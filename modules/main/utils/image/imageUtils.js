@@ -2,6 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import Chart from 'chart.js/auto';
+import TimeUtils from '../time/timeUtils.js'
 import { ChartJSNodeCanvas } from 'chartjs-node-canvas';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import JSONLoader from '../data/JSONLoader.js';
@@ -28,13 +29,16 @@ class ImageUtils {
   }
 
   async generateDiagram(
-    title,
+    diagramTitle,
+    issuesCreatedFrom,
+    issuesCreatedTo,
     yLabel,
     xLabel,
     summary,
     colors,
     outputSubFolder,
   ) {
+    const title = `${diagramTitle} c ${issuesCreatedFrom} по ${issuesCreatedTo}`;
     const summaryKeys = Object.keys(summary);
     const metricsSet = new Set();
 
@@ -62,9 +66,17 @@ class ImageUtils {
       datasets.push(dataset);
     });
 
+    console.log(TimeUtils.getYear(issuesCreatedFrom));
+    console.log(TimeUtils.getMonthName(issuesCreatedFrom));
+
     const config = ImageUtils.createChartConfig(title, summaryKeys, datasets, { xLabel, yLabel });
     const buffer = await this.canvas.renderToBuffer(config);
-    const folderPath = path.join('images', outputSubFolder ?? '');
+    const folderPath = path.join(
+      'images', 
+      TimeUtils.getYear(issuesCreatedFrom), 
+      TimeUtils.getMonthName(issuesCreatedFrom), 
+      outputSubFolder ?? ''
+    );
     fs.mkdirSync(folderPath, { recursive: true });
     const filepath = path.join(folderPath, `${title}.png`);
     fs.writeFileSync(filepath, buffer);

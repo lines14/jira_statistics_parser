@@ -51,6 +51,12 @@ class TimeUtils {
     return moment(dateBegin, JSONLoader.config.datesFormatYMD)
       .format(JSONLoader.config.datesFormatMonthName);
   }
+
+  static getYear() {
+    const { dateBegin } = this.getDates(...JSONLoader.config.timeDecrement);
+
+    return moment(dateBegin, JSONLoader.config.datesFormatYMD).year();
+  }
 }
 
 export default TimeUtils;

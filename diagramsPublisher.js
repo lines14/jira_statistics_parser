@@ -19,7 +19,6 @@ const generateFileBuffers = (filePaths) => filePaths
   .map((filePath) => DataUtils.getFile(path.resolve(filePath)));
 
 const publishDiagrams = async () => {
-  console.log(filesNames[0]);
   const month = 'июль';
   const folderName = '2026';
   const pageName = `${month} ${folderName}`;
