@@ -44,18 +44,15 @@ class TimeUtils {
     return { dateBegin, dateEnd };
   }
 
-  static getMonthName() {
+  static getMonthName(dateBegin) {
     moment.locale('ru');
-    const { dateBegin } = this.getDates(...JSONLoader.config.timeDecrement);
 
     return moment(dateBegin, JSONLoader.config.datesFormatYMD)
       .format(JSONLoader.config.datesFormatMonthName);
   }
 
-  static getYear() {
-    const { dateBegin } = this.getDates(...JSONLoader.config.timeDecrement);
-
-    return moment(dateBegin, JSONLoader.config.datesFormatYMD).year();
+  static getYear(dateBegin) {
+    return moment(dateBegin, JSONLoader.config.datesFormatDMY).year();
   }
 }
 

@@ -65,15 +65,12 @@ class ImageUtils {
 
       datasets.push(dataset);
     });
-
-    console.log(TimeUtils.getYear(issuesCreatedFrom));
-    console.log(TimeUtils.getMonthName(issuesCreatedFrom));
-
+    
     const config = ImageUtils.createChartConfig(title, summaryKeys, datasets, { xLabel, yLabel });
     const buffer = await this.canvas.renderToBuffer(config);
     const folderPath = path.join(
       'images', 
-      TimeUtils.getYear(issuesCreatedFrom), 
+      TimeUtils.getYear(issuesCreatedFrom).toString(), 
       TimeUtils.getMonthName(issuesCreatedFrom), 
       outputSubFolder ?? ''
     );

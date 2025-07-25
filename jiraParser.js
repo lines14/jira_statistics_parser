@@ -8,7 +8,6 @@ import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 
 const parseIssues = async () => { // get Jira issues with comments
   const { dateBegin, dateEnd } = TimeUtils.getDates(...JSONLoader.config.timeDecrement);
-  console.log(TimeUtils.getMonthName());
 
   // let issuesWithCommentsArr = [];
   // const issuesArr = await jiraAPI.searchAll(dateBegin, dateEnd);
