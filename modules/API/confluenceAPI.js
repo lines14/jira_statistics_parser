@@ -20,8 +20,12 @@ class ConfluenceAPI extends BaseAPI {
     this.#options = options;
   }
 
-  async getFolders(pageID) {
+  async getSubFolders(pageID) {
     return this.get(`${JSONLoader.APIEndpoints.confluence.content}/${pageID}/child/folder`);
+  }
+
+  async getPages(pageID) {
+    return this.get(`${JSONLoader.APIEndpoints.confluence.content}/${pageID}/child/page`);
   }
 
   async getVersion(pageID) {
@@ -32,7 +36,19 @@ class ConfluenceAPI extends BaseAPI {
     return this.get(`${JSONLoader.APIEndpoints.confluence.content}/${pageID}`, params);
   }
 
-  async postAttachment(pageID, fileObj, type) {
+  async getAttachments(pageID) {
+    return this.get(`${JSONLoader.APIEndpoints.confluence.pages}/${pageID}/attachments`);
+  }
+
+  async deleteAttachment(attachmentID, options = { purge: false }) {
+    const params = {
+      purge: options.purge,
+    };
+
+    return this.delete(`${JSONLoader.APIEndpoints.confluence.attachments}/${attachmentID}`, params);
+  }
+
+  async createAttachment(pageID, fileObj, type) {
     this.#options.headers['X-Atlassian-Token'] = 'nocheck';
     delete this.#options.logString;
     this.#API = new ConfluenceAPI(this.#options);
@@ -50,10 +66,10 @@ class ConfluenceAPI extends BaseAPI {
     return this.#API.post(`${JSONLoader.APIEndpoints.confluence.content}/${pageID}/child/attachment`, params);
   }
 
-  async postPage(parentPageID) {
+  async createPage(parentPageID, title, options = { isFolder: false }) {
     const params = {
-      type: 'page',
-      title: 'июнь',
+      type: options.isFolder ? 'folder' : 'page',
+      title,
       ancestors: [
         {
           id: parentPageID,
@@ -64,7 +80,6 @@ class ConfluenceAPI extends BaseAPI {
       },
       body: {
         storage: {
-          value: '<h1>Тестовая страница</h1><h2>Картинки</h2><h2>Ещё картинки</h2>',
           representation: 'storage',
         },
       },
@@ -73,13 +88,13 @@ class ConfluenceAPI extends BaseAPI {
     return this.post(JSONLoader.APIEndpoints.confluence.content, params);
   }
 
-  async putPage(pageID, parentPageID, version, options = { fileNames: [] }) {
+  async updatePage(pageID, parentPageID, title, version, fileNames) {
     const params = {
       version: {
         number: version + 1,
       },
       type: 'page',
-      title: 'июнь',
+      title,
       ancestors: [
         {
           id: parentPageID,
@@ -90,7 +105,7 @@ class ConfluenceAPI extends BaseAPI {
       },
       body: {
         storage: {
-          value: `<h1>Тестовая страница</h1>\n<h2>Картинки</h2>\n<ac:image ac:height=\"auto\" ac:width=\"800\"><ri:attachment ri:filename=\"${options.fileNames[0]}\" /></ac:image>\n<h2>Еще картинки</h2>\n<ac:image ac:height=\"auto\" ac:width=\"800\"><ri:attachment ri:filename=\"${options.fileNames[1]}\" /></ac:image>`,
+          value: `<h1>Тестовая страница</h1>\n<h2>Картинки</h2>\n<ac:image ac:height=\"auto\" ac:width=\"800\"><ri:attachment ri:filename=\"${fileNames[0]}\" /></ac:image>\n<h2>Еще картинки</h2>\n<ac:image ac:height=\"auto\" ac:width=\"800\"><ri:attachment ri:filename=\"${fileNames[1]}\" /></ac:image>`,
           representation: 'storage',
         },
       },

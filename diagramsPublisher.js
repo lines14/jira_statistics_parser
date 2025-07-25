@@ -7,37 +7,71 @@ import DataUtils from './modules/main/utils/data/dataUtils.js';
 
 dotenv.config({ override: true });
 
-const firstFile = 'Общее количество задач и багов c 01.07.2025 по 01.08.2025.png';
-const secondFile = 'Общее соотношение количества багов и количества задач c 26.03.2025 по 24.07.2025.png';
-const firstFilePath = `images/${firstFile}`;
-const secondFilePath = `images/${secondFile}`;
-const fisrtFileBuffer = DataUtils.getFile(path.resolve(firstFilePath));
-const secondFileBuffer = DataUtils.getFile(path.resolve(secondFilePath));
+const filesNames = [
+  'Общее количество задач и багов c 01.07.2025 по 01.08.2025.png',
+  'Общее соотношение количества багов и количества задач c 26.03.2025 по 24.07.2025.png',
+];
+
+const generateFilePaths = (filesNames) => filesNames
+  .map((fileName) => `images/${fileName}`);
+
+const generateFileBuffers = (filePaths) => filePaths
+  .map((filePath) => DataUtils.getFile(path.resolve(filePath)));
 
 const publishDiagrams = async () => {
+  console.log(filesNames[0]);
+  const month = 'июль';
+  const folderName = '2026';
+  const pageName = `${month} ${folderName}`;
+
   const folderID = process.env.CONFLUENCE_FOLDER_ID;
-  let response = await confluenceAPI.getFolders(folderID);
+  let response = await confluenceAPI.getSubFolders(folderID);
 
-  const subfolderID = response.data.results
-    .filter((result) => result.title === '2025').pop().id;
-  response = await confluenceAPI.postPage(subfolderID);
+  let result = response.data.results
+    .filter((result) => result.title === folderName);
 
-  const pageID = response.data.id;
+  let subfolderID;
+  if (result.length) {
+    subfolderID = result.pop().id;
+  } else {
+    const response = await confluenceAPI.createPage(folderID, folderName, { isFolder: true });
+    subfolderID = response.data.id;
+  }
 
-  const firstFileObj = {};
-  firstFileObj.file = firstFile;
-  firstFileObj.fileBuffer = fisrtFileBuffer;
-  await confluenceAPI.postAttachment(pageID, firstFileObj, 'image/png');
+  response = await confluenceAPI.getPages(subfolderID);
 
-  const secondFileObj = {};
-  secondFileObj.file = secondFile;
-  secondFileObj.fileBuffer = secondFileBuffer;
-  await confluenceAPI.postAttachment(pageID, secondFileObj, 'image/png');
+  result = response.data.results
+    .filter((result) => result.title === pageName);
+
+  let pageID;
+  if (result.length) {
+    pageID = result.pop().id;
+    const response = await confluenceAPI.getAttachments(pageID);
+    const attachmentsIDs = filesNames.map((fileName) => response.data.results
+      .filter((element) => element.title === fileName).pop().id);
+    for (const attachmentID of attachmentsIDs) {
+      await confluenceAPI.deleteAttachment(attachmentID);
+      await confluenceAPI.deleteAttachment(attachmentID, { purge: true });
+    }
+  } else {
+    const response = await confluenceAPI.createPage(subfolderID, pageName);
+    pageID = response.data.id;
+  }
+
+  const filePaths = generateFilePaths(filesNames);
+  const fileBuffers = generateFileBuffers(filePaths);
+
+  for (const index in filesNames) {
+    const fileObj = {};
+    fileObj.file = filesNames[index];
+    fileObj.fileBuffer = fileBuffers[index];
+    await confluenceAPI.createAttachment(pageID, fileObj, 'image/png');
+  }
 
   response = await confluenceAPI.getVersion(pageID);
-
   const version = response.data.version.number;
-  await confluenceAPI.putPage(pageID, subfolderID, version, { fileNames: [firstFile, secondFile] });
+
+  await confluenceAPI.updatePage(pageID, subfolderID, pageName, version, filesNames);
 };
 
 publishDiagrams();
