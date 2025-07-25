@@ -8,8 +8,8 @@ import DataUtils from './modules/main/utils/data/dataUtils.js';
 dotenv.config({ override: true });
 
 const filesNames = [
-  'Общее количество задач и багов c 01.07.2025 по 01.08.2025.png',
-  'Общее соотношение количества багов и количества задач c 26.03.2025 по 24.07.2025.png',
+  'Общее количество задач и багов c 26.03.2025 по 12.06.2025.png',
+  'Общее соотношение количества багов и количества задач c 26.03.2025 по 12.06.2025.png',
 ];
 
 const generateFilePaths = (filesNames) => filesNames
@@ -46,8 +46,10 @@ const publishDiagrams = async () => {
   if (result.length) {
     pageID = result.pop().id;
     const response = await confluenceAPI.getAttachments(pageID);
+
     const attachmentsIDs = filesNames.map((fileName) => response.data.results
       .filter((element) => element.title === fileName).pop().id);
+      
     for (const attachmentID of attachmentsIDs) {
       await confluenceAPI.deleteAttachment(attachmentID);
       await confluenceAPI.deleteAttachment(attachmentID, { purge: true });
@@ -60,12 +62,15 @@ const publishDiagrams = async () => {
   const filePaths = generateFilePaths(filesNames);
   const fileBuffers = generateFileBuffers(filePaths);
 
-  for (const index in filesNames) {
+  const fileObjArr = filesNames.map((fileName, index) => {
     const fileObj = {};
-    fileObj.file = filesNames[index];
+    fileObj.file = fileName;
     fileObj.fileBuffer = fileBuffers[index];
-    await confluenceAPI.createAttachment(pageID, fileObj, 'image/png');
-  }
+
+    return fileObj;
+  });
+
+  await confluenceAPI.createAttachments(pageID, fileObjArr, 'image/png');
 
   response = await confluenceAPI.getVersion(pageID);
   const version = response.data.version.number;

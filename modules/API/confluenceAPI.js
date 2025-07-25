@@ -48,21 +48,23 @@ class ConfluenceAPI extends BaseAPI {
     return this.delete(`${JSONLoader.APIEndpoints.confluence.attachments}/${attachmentID}`, params);
   }
 
-  async createAttachment(pageID, fileObj, type) {
+  async createAttachments(pageID, fileObjArr, type) {
     this.#options.headers['X-Atlassian-Token'] = 'nocheck';
     delete this.#options.logString;
     this.#API = new ConfluenceAPI(this.#options);
 
     const params = new FormData();
-    params.append(
-      'file',
-      new Blob(
-        [fileObj.fileBuffer],
-        { type },
-      ),
-      fileObj.file,
-    );
-
+    fileObjArr.forEach((fileObj) => {
+      params.append(
+        'file',
+        new Blob(
+          [fileObj.fileBuffer],
+          { type },
+        ),
+        fileObj.file,
+      );
+    });
+    
     return this.#API.post(`${JSONLoader.APIEndpoints.confluence.content}/${pageID}/child/attachment`, params);
   }
 
