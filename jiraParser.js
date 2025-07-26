@@ -39,7 +39,7 @@ const parseIssues = async () => { // get Jira issues with comments
 
   // filter data analytics issues
   issuesWithCommentsArr = issuesWithCommentsArr
-    .filter((issueWithComment) => !JSONLoader.config.dataAnalyticsProjects
+    .filter((issueWithComment) => !JSONLoader.config.ignoredProjects
       .includes(issueWithComment.projectName));
 
   // get developers and reporters assigned issues
@@ -59,7 +59,7 @@ const parseIssues = async () => { // get Jira issues with comments
 
   // filter data analytics issues
   testedIssuesWithCommentsArr = testedIssuesWithCommentsArr
-    .filter((testedIssueWithComment) => !JSONLoader.config.dataAnalyticsProjects
+    .filter((testedIssueWithComment) => !JSONLoader.config.ignoredProjects
       .includes(testedIssueWithComment.projectName));
 
   // get developers and reporters tested issues
@@ -91,7 +91,7 @@ const parseIssues = async () => { // get Jira issues with comments
 
   // filter data analytics issues
   testedIssuesWithBugsArr = testedIssuesWithBugsArr
-    .filter((testedIssueWithBugs) => !JSONLoader.config.dataAnalyticsProjects
+    .filter((testedIssueWithBugs) => !JSONLoader.config.ignoredProjects
       .includes(testedIssueWithBugs.projectName));
 
   // get developers and reporters tested issues with bugs

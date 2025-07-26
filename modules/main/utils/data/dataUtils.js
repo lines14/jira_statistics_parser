@@ -1,6 +1,7 @@
 /* eslint no-param-reassign: ["off"] */
 /* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
 import fs from 'fs';
+import path from 'path';
 import JSONLoader from './JSONLoader.js';
 import TimeUtils from '../time/timeUtils.js';
 import Randomizer from '../random/randomizer.js';
@@ -15,6 +16,106 @@ class DataUtils {
 
   static getFile(filePath) {
     return fs.readFileSync(filePath);
+  }
+
+  static getFileNames(dirObj) {
+    return dirObj.fileObjects.map((fileObj) => fileObj.file.split('/').pop());
+  }
+
+  static getFilePaths(dirObj) {
+    return dirObj.fileObjects.map((fileObj) => `${dirObj.dirPath}/${fileObj.file}`);
+  }
+
+  static getFileBuffers(filePaths) {
+    return filePaths.map((filePath) => this.getFile(path.resolve(filePath)));
+  }
+
+  static getFileNameGroups(filePaths) {
+    return filePaths.map((filePath) => filePath.split('/').slice(3))
+      .map((filePath) => ({
+        name: filePath.pop(),
+        group: filePath.length > 1 ? filePath.join('/') : filePath.pop() ?? 'root',
+      })).reduce((acc, item) => {
+        if (!acc[item.group]) acc[item.group] = [];
+        acc[item.group].push(item.name);
+        return acc;
+      }, {});
+  }
+
+  static createMarkupExpandBlock(nestedMarkup) {
+    return `<ac:structured-macro ac:name="expand">
+      <ac:parameter ac:name="title">Раскрыть диаграммы</ac:parameter>
+      <ac:rich-text-body>
+        ${nestedMarkup}
+      </ac:rich-text-body>
+    </ac:structured-macro>`;
+  }
+
+  static createMarkupImage(fileName) {
+    return `<ac:image ac:height="auto" ac:width="1000"><ri:attachment ri:filename="${fileName}" /></ac:image>\n`;
+  }
+
+  static createMarkupAttachmentTable(fileName) {
+    return `<p>Файл с метриками, из которого генерировались диаграммы:</p>
+    <div style="max-width: 1000px; overflow-x: auto;">
+      <ac:structured-macro ac:name="attachments">
+        <ac:parameter ac:name="patterns">${fileName}</ac:parameter>
+        <ac:parameter ac:name="upload">false</ac:parameter>
+        <ac:parameter ac:name="sortBy">date</ac:parameter>
+      </ac:structured-macro>
+    </div>`;
+  }
+
+  static generateMarkup(fileNameGroups) {
+    const zippedSuperGroups = {};
+
+    let markup = this.createMarkupAttachmentTable(fileNameGroups.root.shift());
+
+    let projectsWithTheirDevelopers = JSONLoader.config.markupSuperGroups
+      .projectsWithTheirDevelopers.map((el) => fileNameGroups[el]);
+    projectsWithTheirDevelopers = projectsWithTheirDevelopers[0]
+      .map((_, i) => projectsWithTheirDevelopers.map((row) => row[i])).flat();
+    zippedSuperGroups.projectsWithTheirDevelopers = projectsWithTheirDevelopers;
+
+    let projectsWithTheirQA = JSONLoader.config.markupSuperGroups
+      .projectsWithTheirQA.map((el) => fileNameGroups[el]);
+    projectsWithTheirQA = projectsWithTheirQA[0]
+      .map((_, i) => projectsWithTheirQA.map((row) => row[i])).flat();
+    zippedSuperGroups.projectsWithTheirQA = projectsWithTheirQA;
+
+    let developersWithTheirProjects = JSONLoader.config.markupSuperGroups
+      .developersWithTheirProjects.map((el) => fileNameGroups[el]);
+    developersWithTheirProjects = developersWithTheirProjects[0]
+      .map((_, i) => developersWithTheirProjects.map((row) => row[i])).flat();
+    zippedSuperGroups.developersWithTheirProjects = developersWithTheirProjects;
+
+    let QAWithTheirProjects = JSONLoader.config.markupSuperGroups
+      .QAWithTheirProjects.map((el) => fileNameGroups[el]);
+    QAWithTheirProjects = QAWithTheirProjects[0]
+      .map((_, i) => QAWithTheirProjects.map((row) => row[i])).flat();
+    zippedSuperGroups.QAWithTheirProjects = QAWithTheirProjects;
+
+    for (const [superGroup, groups] of Object.entries(JSONLoader.config.markupSuperGroups)) {
+      let nestedMarkup = '';
+
+      markup += `<h1>${JSONLoader.config.markupSuperGroupCyrillicNames[superGroup]}</h1>\n`;
+
+      if (superGroup in zippedSuperGroups) {
+        for (const fileName of zippedSuperGroups[superGroup]) {
+          nestedMarkup += this.createMarkupImage(fileName);
+        }
+
+        markup += this.createMarkupExpandBlock(nestedMarkup);
+      } else {
+        for (const group of groups) {
+          for (const fileName of fileNameGroups[group]) {
+            markup += this.createMarkupImage(fileName);
+          }
+        }
+      }
+    }
+
+    return markup;
   }
 
   static splitArrIntoChunks(array, args = { partsCount: 8 }) {

@@ -6,21 +6,14 @@ import confluenceAPI from './modules/API/confluenceAPI.js';
 import TimeUtils from './modules/main/utils/time/timeUtils.js';
 import DataUtils from './modules/main/utils/data/dataUtils.js';
 import getFiles from './modules/main/utils/data/filesParser.js';
+import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 
 dotenv.config({ override: true });
 
-const fileExtension = '.png';
 const dirSubPath = 'images';
+const imagesFileExtension = '.png';
+const summaryFileExtension = '.json';
 const dirPath = path.relative(path.resolve(), dirSubPath);
-
-const getFileNames = (dirObj) => dirObj.fileObjects
-  .map((fileObj) => fileObj.file.split('/').pop());
-
-const getFilePaths = (dirObj) => dirObj.fileObjects
-  .map((fileObj) => `${dirObj.dirPath}/${fileObj.file}`);
-
-const getFileBuffers = (filePaths) => filePaths
-  .map((filePath) => DataUtils.getFile(path.resolve(filePath)));
 
 const deleteAttachmentsWithRetries = async (attachmentsIDs, attempt = 1, maxAttempts = 3) => {
   const attachmentsIDsToRetry = [];
@@ -38,10 +31,11 @@ const deleteAttachmentsWithRetries = async (attachmentsIDs, attempt = 1, maxAtte
 
 const publishDiagrams = async () => {
   const months = TimeUtils.getMonths();
-  const dirObj = getFiles(dirPath, fileExtension);
-  const filePaths = getFilePaths(dirObj);
-  const filesNames = getFileNames(dirObj);
-  const fileBuffers = getFileBuffers(filePaths);
+  const dirObj = getFiles(dirPath, imagesFileExtension);
+  const filePaths = DataUtils.getFilePaths(dirObj);
+  const filesNames = DataUtils.getFileNames(dirObj);
+  const fileBuffers = DataUtils.getFileBuffers(filePaths);
+  const fileNameGroups = DataUtils.getFileNameGroups(filePaths);
 
   const filteredSubPaths = dirObj.subPaths.filter((subPath) => months
     .some((month) => subPath.includes(month)));
@@ -58,6 +52,18 @@ const publishDiagrams = async () => {
 
     return fileObj;
   });
+
+  const { cyrillicSummary } = JSONLoader;
+  const fileName = `${Object.keys({ cyrillicSummary }).pop()}${summaryFileExtension}`;
+
+  fileObjArr.push({
+    file: fileName,
+    fileBuffer: JSON.stringify(cyrillicSummary, null, JSONLoader.config.decimalPlaces),
+  });
+
+  filesNames.unshift(fileName);
+  fileNameGroups.root.unshift(fileName);
+  const markup = DataUtils.generateMarkup(fileNameGroups);
 
   const folderID = process.env.CONFLUENCE_FOLDER_ID;
   let response = await confluenceAPI.getSubFolders(folderID);
@@ -81,27 +87,31 @@ const publishDiagrams = async () => {
   let pageID;
   if (result.length) {
     pageID = result.pop().id;
-    const resp = await confluenceAPI.getAttachments(pageID, fileObjArr.length);
+    // '-------------------------------------------------------------------------';
+    // const resp = await confluenceAPI.getAttachments(pageID, fileObjArr.length);
 
-    const attachmentsIDs = filesNames.map((fileName) => resp.data.results
-      .filter((element) => element.title === fileName).pop().id);
+    // const attachmentsIDs = filesNames.map((fileName) => resp.data.results
+    //   .filter((element) => element.title === fileName).pop().id);
 
-    await deleteAttachmentsWithRetries(attachmentsIDs);
+    // await deleteAttachmentsWithRetries(attachmentsIDs);
+    // '-------------------------------------------------------------------------';
   } else {
     const resp = await confluenceAPI.createPage(subfolderID, pageName);
     pageID = resp.data.id;
   }
 
-  const chunks = DataUtils.splitArrIntoChunks(fileObjArr);
+  // '-----------------------------------------------------------------';
+  // const chunks = DataUtils.splitArrIntoChunks(fileObjArr);
 
-  for (const chunk of chunks) {
-    await confluenceAPI.createAttachments(pageID, chunk, 'image/png');
-  }
+  // for (const chunk of chunks) {
+  //   await confluenceAPI.createAttachments(pageID, chunk, 'image/png');
+  // }
+  // '-----------------------------------------------------------------';
 
   response = await confluenceAPI.getVersion(pageID);
   const version = response.data.version.number;
 
-  await confluenceAPI.updatePage(pageID, subfolderID, pageName, version, filesNames);
+  await confluenceAPI.updatePage(pageID, subfolderID, pageName, version, markup);
 };
 
 publishDiagrams();

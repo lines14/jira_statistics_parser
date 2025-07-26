@@ -1,0 +1,25 @@
+stages:
+  - parse
+
+parse:
+  image: node:20.13.1
+  stage: parse
+  only:
+    - dev
+  tags:
+    - k8s
+  before_script:
+    - echo "${PARSER_ENV}" | tr -d '\r' > .env
+    - npm install
+    - npm run lint
+  script:
+    - npm run parse
+    - npm run generate
+    - npm run publish
+  artifacts:
+    expire_in: 1 month
+    paths:
+      - artifacts
+      - resources/config.json
+      - resources/summary.json
+      - resources/cyrillicSummary.json

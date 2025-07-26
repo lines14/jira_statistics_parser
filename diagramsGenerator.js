@@ -9,7 +9,10 @@ const generateDiagrams = async () => {
     JSONLoader.config.cyrillicNames,
   );
 
+  DataUtils.saveToJSON({ cyrillicSummary }, { folder: 'resources' });
+
   const colors = JSONLoader.config.diagramColors;
+
   const diagramsData = [
     {
       title: 'Общее количество задач и багов',
@@ -365,7 +368,7 @@ const generateDiagrams = async () => {
           'Количество протестированных задач с багами',
           'Количество багов',
         ),
-        outputSubFolder: 'projects/count',
+        outputSubFolder: 'projects/count/QA',
       },
       {
         title: `Соотношение количества багов к количеству протестированных задач (reporters in ${key})`,
@@ -376,7 +379,7 @@ const generateDiagrams = async () => {
           'Соотношение количества багов к количеству протестированных задач',
           'Соотношение количества багов к количеству протестированных задач с багами',
         ),
-        outputSubFolder: 'projects/ratio',
+        outputSubFolder: 'projects/ratio/QA',
       },
       {
         title: `Процент количества багов от общего числа багов (reporters in ${key})`,
@@ -386,7 +389,7 @@ const generateDiagrams = async () => {
           value.assignees,
           'Процент количества багов от общего числа багов',
         ),
-        outputSubFolder: 'projects/percent',
+        outputSubFolder: 'projects/percent/QA',
       },
     ];
 
@@ -406,7 +409,7 @@ const generateDiagrams = async () => {
           'Количество багов',
           'Количество задач',
         ),
-        outputSubFolder: 'projects/count',
+        outputSubFolder: 'projects/count/developers',
       },
       {
         title: `Соотношения количества багов и количества задач (developers in ${key})`,
@@ -418,7 +421,7 @@ const generateDiagrams = async () => {
           'Соотношение количества багов к количеству протестированных задач',
           'Соотношение количества багов к количеству протестированных задач с багами',
         ),
-        outputSubFolder: 'projects/ratio',
+        outputSubFolder: 'projects/ratio/developers',
       },
       {
         title: `Процент количества багов от общего числа багов (developers in ${key})`,
@@ -428,7 +431,7 @@ const generateDiagrams = async () => {
           value.assignees,
           'Процент количества багов от общего числа багов',
         ),
-        outputSubFolder: 'projects/percent',
+        outputSubFolder: 'projects/percent/developers',
       },
     ];
 

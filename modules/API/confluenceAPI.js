@@ -94,7 +94,7 @@ class ConfluenceAPI extends BaseAPI {
     return this.post(JSONLoader.APIEndpoints.confluence.content, params);
   }
 
-  async updatePage(pageID, parentPageID, title, version, fileNames) {
+  async updatePage(pageID, parentPageID, title, version, value) {
     const params = {
       version: {
         number: version + 1,
@@ -111,7 +111,7 @@ class ConfluenceAPI extends BaseAPI {
       },
       body: {
         storage: {
-          value: `<h1>Тестовая страница</h1>\n<h2>Картинки</h2>\n<ac:image ac:height="auto" ac:width="800"><ri:attachment ri:filename="${fileNames[0]}" /></ac:image>\n<h2>Еще картинки</h2>\n<ac:image ac:height="auto" ac:width="800"><ri:attachment ri:filename="${fileNames[1]}" /></ac:image>`,
+          value,
           representation: 'storage',
         },
       },

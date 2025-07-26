@@ -29,7 +29,7 @@
     "debugIssues": [
         "ADP-2676"
     ],
-    "dataAnalyticsProjects": [
+    "ignoredProjects": [
         "Analytics 2.0",
         " Analytics 2.0 test"
     ],
@@ -54,6 +54,50 @@
         "ИСПРАВЛЕНО В ДРУГОЙ ВЕТКЕ",
         "ИСПРАВЛЕНО В ДРУГОЙ ЗАДАЧЕ"
     ],
+    "markupSuperGroups": {
+        "main": [
+            "root",
+            "devTypes",
+            "issueTypes",
+            "priorities",
+            "projects"
+        ],
+        "overallDevelopers": [
+            "developers"
+        ],
+        "overallQA": [
+            "QA"
+        ],
+        "projectsWithTheirDevelopers": [
+            "projects/count/developers",
+            "projects/ratio/developers",
+            "projects/percent/developers"
+        ],
+        "projectsWithTheirQA": [
+            "projects/count/QA",
+            "projects/ratio/QA",
+            "projects/percent/QA"
+        ],
+        "developersWithTheirProjects": [
+            "developers/count",
+            "developers/ratio",
+            "developers/percent"
+        ],
+        "QAWithTheirProjects": [
+            "QA/count",
+            "QA/ratio",
+            "QA/percent"
+        ]
+    },
+    "markupSuperGroupCyrillicNames": {
+        "main": "Общая статистика",
+        "projectsWithTheirDevelopers": "Проекты с их разработчиками",
+        "projectsWithTheirQA": "Проекты с их QA",
+        "overallDevelopers": "Общая статистика разработчиков",
+        "developersWithTheirProjects": "Разработчики с их проектами",
+        "overallQA": "Общая статистика QA",
+        "QAWithTheirProjects": "QA с их проектами"
+    },
     "cyrillicNames": {
         "issuesCount": "Количество задач",
         "testedIssuesCount": "Количество протестированных задач",
