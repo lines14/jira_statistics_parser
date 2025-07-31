@@ -7,7 +7,7 @@ parse:
   only:
     - dev
   tags:
-    - k8s
+    - eks-front
   before_script:
     - echo "${PARSER_ENV}" | tr -d '\r' > .env
     - npm install
@@ -19,6 +19,7 @@ parse:
   artifacts:
     expire_in: 1 month
     paths:
+      - images
       - artifacts
       - resources/config.json
       - resources/summary.json
