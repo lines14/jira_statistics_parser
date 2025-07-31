@@ -9,33 +9,33 @@ import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 const parseIssues = async () => { // get Jira issues with comments
   const { dateBegin, dateEnd } = TimeUtils.getDates(...JSONLoader.config.timeDecrement);
 
-  // let issuesWithCommentsArr = [];
-  // const issuesArr = await jiraAPI.searchAll(dateBegin, dateEnd);
+  let issuesWithCommentsArr = [];
+  const issuesArr = await jiraAPI.searchAll(dateBegin, dateEnd);
 
-  // for (const issue of issuesArr) {
-  //   const response = await jiraAPI.getIssueComments(issue.id);
-  //   const parsedIssue = {
-  //     key: issue.key,
-  //     summary: issue.fields.summary,
-  //     created: issue.fields.created,
-  //     updated: issue.fields.updated,
-  //     priority: issue.fields.priority.name,
-  //     projectKey: issue.fields.project.key,
-  //     projectName: issue.fields.project.name,
-  //     devType: issue.fields.customfield_10085?.value,
-  //     labels: issue.fields.labels,
-  //     issuetype: issue.fields.issuetype.name,
-  //     status: issue.fields.status.name,
-  //     comments: response.data.comments,
-  //     changelog: issue.changelog.histories,
-  //   };
+  for (const issue of issuesArr) {
+    const response = await jiraAPI.getIssueComments(issue.id);
+    const parsedIssue = {
+      key: issue.key,
+      summary: issue.fields.summary,
+      created: issue.fields.created,
+      updated: issue.fields.updated,
+      priority: issue.fields.priority.name,
+      projectKey: issue.fields.project.key,
+      projectName: issue.fields.project.name,
+      devType: issue.fields.customfield_10085?.value,
+      labels: issue.fields.labels,
+      issuetype: issue.fields.issuetype.name,
+      status: issue.fields.status.name,
+      comments: response.data.comments,
+      changelog: issue.changelog.histories,
+    };
 
-  //   issuesWithCommentsArr.push(parsedIssue);
-  // }
+    issuesWithCommentsArr.push(parsedIssue);
+  }
 
-  // DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
+  DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
 
-  let { issuesWithCommentsArr } = JSONLoader;
+  // let { issuesWithCommentsArr } = JSONLoader;
 
   // filter data analytics issues
   issuesWithCommentsArr = issuesWithCommentsArr

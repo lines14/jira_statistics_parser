@@ -87,26 +87,22 @@ const publishDiagrams = async () => {
   let pageID;
   if (result.length) {
     pageID = result.pop().id;
-    // '-------------------------------------------------------------------------';
-    // const resp = await confluenceAPI.getAttachments(pageID, fileObjArr.length);
+    const resp = await confluenceAPI.getAttachments(pageID, fileObjArr.length);
 
-    // const attachmentsIDs = filesNames.map((fileName) => resp.data.results
-    //   .filter((element) => element.title === fileName).pop().id);
+    const attachmentsIDs = filesNames.map((nameOfFile) => resp.data.results
+      .filter((element) => element.title === nameOfFile).pop().id);
 
-    // await deleteAttachmentsWithRetries(attachmentsIDs);
-    // '-------------------------------------------------------------------------';
+    await deleteAttachmentsWithRetries(attachmentsIDs);
   } else {
     const resp = await confluenceAPI.createPage(subfolderID, pageName);
     pageID = resp.data.id;
   }
 
-  // '-----------------------------------------------------------------';
-  // const chunks = DataUtils.splitArrIntoChunks(fileObjArr);
+  const chunks = DataUtils.splitArrIntoChunks(fileObjArr);
 
-  // for (const chunk of chunks) {
-  //   await confluenceAPI.createAttachments(pageID, chunk, 'image/png');
-  // }
-  // '-----------------------------------------------------------------';
+  for (const chunk of chunks) {
+    await confluenceAPI.createAttachments(pageID, chunk, 'image/png');
+  }
 
   response = await confluenceAPI.getVersion(pageID);
   const version = response.data.version.number;
