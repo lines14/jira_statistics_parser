@@ -35,6 +35,7 @@
     ],
     "initIssueStatus": "INIT TASK",
     "reopenStatus": "REOPEN",
+    "backlogStatus": "BACKLOG",
     "inProgressStatus": "IN PROGRESS",
     "devIssueStatuses": [
         "BACKLOG",

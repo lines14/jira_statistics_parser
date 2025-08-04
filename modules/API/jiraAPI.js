@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import BaseAPI from '../main/utils/API/baseAPI.js';
+import TimeUtils from '../main/utils/time/timeUtils.js';
 import JSONLoader from '../main/utils/data/JSONLoader.js';
 
 dotenv.config({ override: true });
@@ -26,7 +27,7 @@ class JiraAPI extends BaseAPI {
         startAt,
         maxResults,
         expand: 'changelog',
-        jql: `created >= ${dateBegin} AND created <= ${dateEnd} ORDER BY created ASC`,
+        jql: `status changed FROM "${JSONLoader.config.backlogStatus}" AFTER ${TimeUtils.subtractDay(dateBegin)} AND status changed FROM "${JSONLoader.config.backlogStatus}" BEFORE ${TimeUtils.addDay(dateEnd)} ORDER BY created ASC`,
       };
 
       // eslint-disable-next-line no-await-in-loop

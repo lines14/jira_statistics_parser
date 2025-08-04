@@ -10,7 +10,9 @@ const parseIssues = async () => { // get Jira issues with comments
   const { dateBegin, dateEnd } = TimeUtils.getDates(...JSONLoader.config.timeDecrement);
 
   let issuesWithCommentsArr = [];
-  const issuesArr = await jiraAPI.searchAll(dateBegin, dateEnd);
+  let issuesArr = await jiraAPI.searchAll(dateBegin, dateEnd);
+
+  issuesArr = DataUtils.filterLastTransitionDateFromBacklogIncluded(dateBegin, issuesArr);
 
   for (const issue of issuesArr) {
     const response = await jiraAPI.getIssueComments(issue.id);

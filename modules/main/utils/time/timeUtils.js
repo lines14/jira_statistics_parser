@@ -26,10 +26,23 @@ class TimeUtils {
       .format(JSONLoader.config.datesFormatYMD);
   }
 
+  static reformatDateFromYMDToISO(date) {
+    return moment(date, JSONLoader.config.datesFormatYMD)
+      .format(JSONLoader.config.datesFormatISO);
+  }
+
   static convertTimestampToDateObject(timestamp) {
     return timestamp instanceof Date
       ? timestamp
       : new Date(timestamp.replace(/([+-]\d{2})(\d{2})$/, '$1:$2'));
+  }
+
+  static addDay(date) {
+    return this.reformatDateFromISOToYMD(moment(date).add(1, 'day'));
+  }
+
+  static subtractDay(date) {
+    return this.reformatDateFromISOToYMD(moment(date).subtract(1, 'day'));
   }
 
   static getDates(count, unitOfTime) {

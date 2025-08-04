@@ -261,6 +261,22 @@ class DataUtils {
     return fieldChanges;
   }
 
+  // get backlog statuses ends to filter initial JQL query results by last transition date
+  static getBacklogStatusEnds(changelog) {
+    return this.sortByTimestamps(this.getFieldChanges('status', changelog)
+      .filter((statusChange) => JSONLoader.config.backlogStatus === statusChange.transitionFrom
+        .toUpperCase()));
+  }
+
+  static filterLastTransitionDateFromBacklogIncluded(dateBegin, issuesArr) {
+    const dateBeginTimestamp = TimeUtils.reformatDateFromYMDToISO(dateBegin);
+    return issuesArr.filter((issue) => {
+      const backlogStatuses = DataUtils.getBacklogStatusEnds(issue.changelog.histories);
+      return TimeUtils.convertTimestampToDateObject(dateBeginTimestamp) <= backlogStatuses.pop()
+        .created;
+    });
+  }
+
   // get issue statuses ends to calculate time intervals
   static getDevStatusEnds(changelog) {
     return this.getFieldChanges('status', changelog)
