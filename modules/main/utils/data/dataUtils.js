@@ -2,9 +2,12 @@
 /* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
 import fs from 'fs';
 import path from 'path';
+import dotenv from 'dotenv';
 import JSONLoader from './JSONLoader.js';
 import TimeUtils from '../time/timeUtils.js';
 import Randomizer from '../random/randomizer.js';
+
+dotenv.config({ override: true });
 
 class DataUtils {
   static saveToJSON(obj, options = { folder: 'artifacts' }) {
@@ -12,6 +15,24 @@ class DataUtils {
     const data = obj[name];
     const replacer = (key, value) => (typeof value === 'undefined' ? null : value);
     fs.writeFileSync(`./${options.folder}/${name}.json`, JSON.stringify(data, replacer, 4));
+  }
+
+  static getDeveloperNamesByAccountIDs(users) {
+    const developerAccountIDs = JSON.parse(process.env.DEVELOPERS)
+      .map((el) => Object.values(el).pop());
+
+    return users.filter((user) => developerAccountIDs
+      .some((ID) => user.accountId === ID))
+      .map((user) => user.displayName);
+  }
+
+  static getReporterNamesByAccountIDs(users) {
+    const reporterAccountIDs = JSON.parse(process.env.REPORTERS)
+      .map((el) => Object.values(el).pop());
+
+    return users.filter((user) => reporterAccountIDs
+      .some((ID) => user.accountId === ID))
+      .map((user) => user.displayName);
   }
 
   static getFile(filePath) {
@@ -291,15 +312,15 @@ class DataUtils {
   }
 
   // get issue assignees changes to calculate time intervals
-  static getDeveloperChanges(changelog) {
+  static getDeveloperChanges(changelog, developerNamesByAccountIDs) {
     return this.getFieldChanges('assignee', changelog)
-      .filter((assigneeChange) => JSON.parse(process.env.DEVELOPERS)
+      .filter((assigneeChange) => developerNamesByAccountIDs
         .includes(assigneeChange.transitionFrom));
   }
 
-  static getReporterChanges(changelog) {
+  static getReporterChanges(changelog, reporterNamesByAccountIDs) {
     return this.getFieldChanges('assignee', changelog)
-      .filter((assigneeChange) => JSON.parse(process.env.REPORTERS)
+      .filter((assigneeChange) => reporterNamesByAccountIDs
         .includes(assigneeChange.transitionTo));
   }
 
@@ -340,7 +361,7 @@ class DataUtils {
   }
 
   // search previous developer assignee before bug found
-  static linkDevelopersWithBugs(testedIssue) {
+  static linkDevelopersWithBugs(testedIssue, developerNamesByAccountIDs) {
     if (testedIssue.commentsWithBugs.length) {
       return testedIssue.commentsWithBugs.map((commentWithBug) => {
         const linkedAssigneeWithBug = { ...commentWithBug };
@@ -354,7 +375,10 @@ class DataUtils {
         const devStatusEnds = this.getDevStatusEnds(sortedChangelog);
 
         // get developer assignee changes from issue history
-        const developerChanges = this.getDeveloperChanges(sortedChangelog);
+        const developerChanges = this.getDeveloperChanges(
+          sortedChangelog,
+          developerNamesByAccountIDs,
+        );
 
         // filter not includes issues with only one assignee or status due to lack of transition
         // and get developer assignees with dev statuses at the same time
@@ -422,7 +446,7 @@ class DataUtils {
     return [];
   }
 
-  static getIssueDevelopers(testedIssue) {
+  static getIssueDevelopers(testedIssue, developerNamesByAccountIDs) {
     if (testedIssue.changelog.length) {
       const sortedChangelog = this.sortByTimestamps(testedIssue.changelog);
       const initialTimestamp = this.createInitialTimestamp(sortedChangelog);
@@ -431,7 +455,10 @@ class DataUtils {
       const devStatusEnds = this.getDevStatusEnds(sortedChangelog);
 
       // get developer assignee changes from issue history
-      const developerChanges = this.getDeveloperChanges(sortedChangelog);
+      const developerChanges = this.getDeveloperChanges(
+        sortedChangelog,
+        developerNamesByAccountIDs,
+      );
 
       // get developer assignees with dev statuses at the same time
       const overlappedAssignees = this.getAssigneesWithStatuses(
@@ -467,7 +494,7 @@ class DataUtils {
     return [];
   }
 
-  static getIssueReporters(testedIssue) {
+  static getIssueReporters(testedIssue, reporterNamesByAccountIDs) {
     if (testedIssue.changelog.length) {
       const sortedChangelog = this.sortByTimestamps(testedIssue.changelog);
       const initialTimestamp = this.createInitialTimestamp(sortedChangelog);
@@ -476,7 +503,7 @@ class DataUtils {
       const testStatusEnds = this.getTestStatusEnds(sortedChangelog);
 
       // get reporter assignee changes from issue history
-      const reporterChanges = this.getReporterChanges(sortedChangelog);
+      const reporterChanges = this.getReporterChanges(sortedChangelog, reporterNamesByAccountIDs);
 
       // get reporter assignees with test statuses at the same time
       return this.getAssigneesWithStatuses(
@@ -586,13 +613,15 @@ class DataUtils {
   }
 
   // get unique developers from each issue
-  static getDevelopersWorkload(issuesArr) {
+  static getDevelopersWorkload(issuesArr, developerNamesByAccountIDs) {
     return issuesArr
       .filter((issue) => !JSONLoader.config.debugIssues
         .includes(issue.key))
       .map((issue) => {
-        const assignees = [...new Set(DataUtils.getIssueDevelopers(issue)
-          .map((assignee) => assignee.transitionFromAssignee))];
+        const assignees = [
+          ...new Set(DataUtils.getIssueDevelopers(issue, developerNamesByAccountIDs)
+            .map((assignee) => assignee.transitionFromAssignee)),
+        ];
 
         return {
           projectName: issue.projectName,
@@ -604,12 +633,12 @@ class DataUtils {
   }
 
   // get unique reporters from each issue
-  static getReportersWorkload(issuesArr) {
+  static getReportersWorkload(issuesArr, reporterNamesByAccountIDs) {
     return issuesArr
       .filter((issue) => !JSONLoader.config.debugIssues
         .includes(issue.key))
       .map((issue) => {
-        const assignees = [...new Set(DataUtils.getIssueReporters(issue)
+        const assignees = [...new Set(DataUtils.getIssueReporters(issue, reporterNamesByAccountIDs)
           .map((assignee) => assignee.transitionToAssignee))];
 
         return {

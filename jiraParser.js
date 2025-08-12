@@ -9,13 +9,28 @@ import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 const parseIssues = async () => { // get Jira issues with comments
   const { dateBegin, dateEnd } = TimeUtils.getDates(...JSONLoader.config.timeDecrement);
 
+  // get actual user names by atlassian account IDs from .env
+  const response = await jiraAPI.usersSearch();
+
+  const developerNamesByAccountIDs = DataUtils.getDeveloperNamesByAccountIDs(response.data);
+
+  const reporterNamesByAccountIDs = DataUtils.getReporterNamesByAccountIDs(response.data);
+
+  // get all org issues and filter by last transition from backlog status
   let issuesWithCommentsArr = [];
   let issuesArr = await jiraAPI.searchAll(dateBegin, dateEnd);
+
+  for (const issue of issuesArr) {
+    if (issue.changelog.total > issue.changelog.maxResults) {
+      const histories = await jiraAPI.getFullIssueChangelog(issue.id);
+      issue.changelog.histories = histories;
+    }
+  }
 
   issuesArr = DataUtils.filterLastTransitionDateFromBacklogIncluded(dateBegin, issuesArr);
 
   for (const issue of issuesArr) {
-    const response = await jiraAPI.getIssueComments(issue.id);
+    const resp = await jiraAPI.getIssueComments(issue.id);
     const parsedIssue = {
       key: issue.key,
       summary: issue.fields.summary,
@@ -28,7 +43,7 @@ const parseIssues = async () => { // get Jira issues with comments
       labels: issue.fields.labels,
       issuetype: issue.fields.issuetype.name,
       status: issue.fields.status.name,
-      comments: response.data.comments,
+      comments: resp.data.comments,
       changelog: issue.changelog.histories,
     };
 
@@ -46,10 +61,10 @@ const parseIssues = async () => { // get Jira issues with comments
 
   // get developers and reporters assigned issues
   const issuesWithDevelopersArr = DataUtils
-    .getDevelopersWorkload(issuesWithCommentsArr);
+    .getDevelopersWorkload(issuesWithCommentsArr, developerNamesByAccountIDs);
 
   const issuesWithReportersArr = DataUtils
-    .getReportersWorkload(issuesWithCommentsArr);
+    .getReportersWorkload(issuesWithCommentsArr, reporterNamesByAccountIDs);
 
   // get Jira issues with testing statuses in history
   let testedIssuesWithCommentsArr = issuesWithCommentsArr
@@ -66,10 +81,10 @@ const parseIssues = async () => { // get Jira issues with comments
 
   // get developers and reporters tested issues
   const testedIssuesWithDevelopersArr = DataUtils
-    .getDevelopersWorkload(testedIssuesWithCommentsArr);
+    .getDevelopersWorkload(testedIssuesWithCommentsArr, developerNamesByAccountIDs);
 
   const testedIssuesWithReportersArr = DataUtils
-    .getReportersWorkload(testedIssuesWithCommentsArr);
+    .getReportersWorkload(testedIssuesWithCommentsArr, reporterNamesByAccountIDs);
 
   let commentAuthor;
   let commentCreated; // fill and filter Jira issues with bugs and authors
@@ -81,7 +96,7 @@ const parseIssues = async () => { // get Jira issues with comments
         commentAuthor,
       ));
     testedIssueWithComments.linkedCommentsWithBugs = DataUtils
-      .linkDevelopersWithBugs(testedIssueWithComments);
+      .linkDevelopersWithBugs(testedIssueWithComments, developerNamesByAccountIDs);
     testedIssueWithComments.bugsCount = testedIssueWithComments.linkedCommentsWithBugs.length;
     delete testedIssueWithComments.commentsWithBugs;
     delete testedIssueWithComments.comments;
@@ -98,10 +113,10 @@ const parseIssues = async () => { // get Jira issues with comments
 
   // get developers and reporters tested issues with bugs
   const testedIssuesWithBugsAndDevelopersArr = DataUtils
-    .getDevelopersWorkload(testedIssuesWithBugsArr);
+    .getDevelopersWorkload(testedIssuesWithBugsArr, developerNamesByAccountIDs);
 
   const testedIssuesWithBugsAndReportersArr = DataUtils
-    .getReportersWorkload(testedIssuesWithBugsArr);
+    .getReportersWorkload(testedIssuesWithBugsArr, reporterNamesByAccountIDs);
 
   let overallBugsCount = 0; // count overall bugs
   testedIssuesWithBugsArr.forEach((testedIssueWithBugs) => {
@@ -122,11 +137,9 @@ const parseIssues = async () => { // get Jira issues with comments
   const issueTypeNames = [...new Set(issuesWithCommentsArr
     .map((issueWithComments) => issueWithComments.issuetype))];
 
-  const developerNames = JSON.parse(process.env.DEVELOPERS);
-  developerNames.push(JSONLoader.config.issueWithoutAssignee);
+  developerNamesByAccountIDs.push(JSONLoader.config.issueWithoutAssignee);
 
-  const reporterNames = JSON.parse(process.env.REPORTERS);
-  reporterNames.push(JSONLoader.config.issueWithoutAssignee);
+  reporterNamesByAccountIDs.push(JSONLoader.config.issueWithoutAssignee);
 
   // get statistics for all entities
   const priorities = {};
@@ -182,7 +195,7 @@ const parseIssues = async () => { // get Jira issues with comments
     testedIssuesWithDevelopersArr,
     testedIssuesWithBugsAndDevelopersArr,
     projectNames,
-    developerNames,
+    developerNamesByAccountIDs,
     overallBugsCount,
   );
 
@@ -194,7 +207,7 @@ const parseIssues = async () => { // get Jira issues with comments
     testedIssuesWithReportersArr,
     testedIssuesWithBugsAndReportersArr,
     projectNames,
-    reporterNames,
+    reporterNamesByAccountIDs,
     overallBugsCount,
     { lastPreviousDevAssignee: false },
   );

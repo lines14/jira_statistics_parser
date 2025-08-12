@@ -44,12 +44,43 @@ class JiraAPI extends BaseAPI {
     return this.get(`${JSONLoader.APIEndpoints.jira.issue}/${id}/comment`);
   }
 
+  async getFullIssueChangelog(id) {
+    let total;
+    let startAt = 0;
+    const maxResults = 100;
+    const histories = [];
+
+    while (!total || startAt < total) {
+      const params = {
+        startAt,
+        maxResults,
+      };
+
+      // eslint-disable-next-line no-await-in-loop
+      const response = await this.get(`${JSONLoader.APIEndpoints.jira.issue}/${id}/changelog`, params);
+      total = response.data.total;
+      histories.push(...response.data.values);
+      startAt += maxResults;
+    }
+
+    return histories;
+  }
+
   async groupMember(groupname) {
     const params = {
       groupname,
     };
 
     return this.get(JSONLoader.APIEndpoints.jira.groupMember, params);
+  }
+
+  async usersSearch() {
+    const params = {
+      maxResults: 2000,
+      startAt: 0,
+    };
+
+    return this.get(JSONLoader.APIEndpoints.jira.usersSearch, params);
   }
 }
 
