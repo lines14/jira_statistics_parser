@@ -2,7 +2,7 @@
     "jira": {
         "groupMember": "rest/api/3/group/member",
         "usersSearch": "rest/api/3/users/search",
-        "search": "rest/api/3/search",
+        "searchJQL": "rest/api/3/search/jql",
         "issue": "rest/api/3/issue"
     },
     "confluence": {

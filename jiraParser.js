@@ -52,8 +52,6 @@ const parseIssues = async () => { // get Jira issues with comments
 
   DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
 
-  // let { issuesWithCommentsArr } = JSONLoader;
-
   // filter data analytics issues
   issuesWithCommentsArr = issuesWithCommentsArr
     .filter((issueWithComment) => !JSONLoader.config.ignoredProjects
@@ -65,6 +63,15 @@ const parseIssues = async () => { // get Jira issues with comments
 
   const issuesWithReportersArr = DataUtils
     .getReportersWorkload(issuesWithCommentsArr, reporterNamesByAccountIDs);
+
+  // get Jira issues with reopen statuses in history
+  const reopenedIssuesWithCommentsArr = DataUtils
+    .getReopenedIssuesWithReopensCount(issuesWithCommentsArr);
+
+  let overallReopensCount = 0; // count overall reopens
+  reopenedIssuesWithCommentsArr.forEach((reopenedIssueWithComments) => {
+    overallReopensCount += reopenedIssueWithComments.reopensCount;
+  });
 
   // get Jira issues with testing statuses in history
   let testedIssuesWithCommentsArr = issuesWithCommentsArr
@@ -186,6 +193,16 @@ const parseIssues = async () => { // get Jira issues with comments
     overallBugsCount,
   );
 
+  DataUtils.fillEntitiesPerProjects(
+    projects,
+    issuesWithCommentsArr,
+    testedIssuesWithCommentsArr,
+    testedIssuesWithBugsArr,
+    'issuetype',
+    issueTypeNames,
+    overallBugsCount,
+  );
+
   // get statistics for developers and reporters in assignees scope
   const developers = {};
   DataUtils.fillBugsAndIssuesPerAssignees(
@@ -209,7 +226,7 @@ const parseIssues = async () => { // get Jira issues with comments
     projectNames,
     reporterNamesByAccountIDs,
     overallBugsCount,
-    { lastPreviousDevAssignee: false },
+    { withDevAssignees: false },
   );
 
   // get statistics for developers and reporters in projects scope
@@ -247,6 +264,7 @@ const parseIssues = async () => { // get Jira issues with comments
       testedIssuesCount: testedIssuesWithCommentsArr.length,
       testedIssuesWithBugsCount: testedIssuesWithBugsArr.length,
       overallBugsCount,
+      overallReopensCount,
       reportersUnassignedAllIssuesCount: reporters.unassigned.allIssuesCount,
       developersUnassignedAllIssuesCount: developers.unassigned.allIssuesCount,
       bugsCountPerTestedIssueCountRatio: Number((overallBugsCount

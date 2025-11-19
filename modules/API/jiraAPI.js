@@ -17,24 +17,25 @@ class JiraAPI extends BaseAPI {
   }
 
   async searchAll(dateBegin, dateEnd) {
-    let total;
-    let startAt = 0;
-    const maxResults = 100;
+    let isLast;
+    let nextPageToken;
     const issues = [];
+    const maxResults = 100;
 
-    while (!total || startAt < total) {
+    while (!isLast) {
       const params = {
-        startAt,
         maxResults,
+        nextPageToken,
+        fields: '*all',
         expand: 'changelog',
         jql: `status changed FROM "${JSONLoader.config.backlogStatus}" AFTER ${TimeUtils.subtractDay(dateBegin)} AND status changed FROM "${JSONLoader.config.backlogStatus}" BEFORE ${TimeUtils.addDay(dateEnd)} ORDER BY created ASC`,
       };
 
       // eslint-disable-next-line no-await-in-loop
-      const response = await this.get(JSONLoader.APIEndpoints.jira.search, params);
-      total = response.data.total;
+      const response = await this.get(JSONLoader.APIEndpoints.jira.searchJQL, params);
       issues.push(...response.data.issues);
-      startAt += maxResults;
+      isLast = response.data.isLast;
+      nextPageToken = response.data.nextPageToken;
     }
 
     return issues;

@@ -38,16 +38,14 @@ class ImageUtils {
     colors,
     outputSubFolder,
   ) {
-    const title = `${diagramTitle} c ${issuesCreatedFrom} по ${issuesCreatedTo}`;
-    const summaryKeys = Object.keys(summary);
-    const metricsSet = new Set();
-
-    for (const values of Object.values(summary)) {
-      Object.keys(values).forEach((key) => metricsSet.add(key));
-    }
-
-    const metrics = Array.from(metricsSet);
     const datasets = [];
+
+    const metricsOrder = summary.propertyNames;
+    const title = `${diagramTitle} c ${issuesCreatedFrom} по ${issuesCreatedTo}`;
+    const summaryKeys = Object.keys(summary.result);
+
+    const metrics = metricsOrder.filter((key) => Object.values(summary.result)
+      .some((values) => key in values));
 
     metrics.forEach((metric, index) => {
       const dataset = {
@@ -59,7 +57,7 @@ class ImageUtils {
       };
 
       for (const label of summaryKeys) {
-        const value = summary[label]?.[metric];
+        const value = summary.result[label]?.[metric];
         dataset.data.push(typeof value === 'number' ? value : 0);
       }
 

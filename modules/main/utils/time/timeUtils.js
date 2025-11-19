@@ -46,12 +46,12 @@ class TimeUtils {
   }
 
   static getDates(count, unitOfTime) {
-    const dateEnd = process.env.COMMENTS_WITH_BUGS_CREATED_TO_DATE_YMD
-      ? process.env.COMMENTS_WITH_BUGS_CREATED_TO_DATE_YMD
+    const dateEnd = process.env.STATUS_CHANGED_FROM_BACKLOG_TO_DATE_YMD
+      ? process.env.STATUS_CHANGED_FROM_BACKLOG_TO_DATE_YMD
       : this.reformatDateFromISOToYMD(moment());
 
-    const dateBegin = process.env.COMMENTS_WITH_BUGS_CREATED_FROM_DATE_YMD
-      ? process.env.COMMENTS_WITH_BUGS_CREATED_FROM_DATE_YMD
+    const dateBegin = process.env.STATUS_CHANGED_FROM_BACKLOG_FROM_DATE_YMD
+      ? process.env.STATUS_CHANGED_FROM_BACKLOG_FROM_DATE_YMD
       : this.reformatDateFromISOToYMD(moment(dateEnd).subtract(count, unitOfTime));
 
     return { dateBegin, dateEnd };

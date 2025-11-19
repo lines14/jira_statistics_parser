@@ -116,6 +116,12 @@ class DataUtils {
       .map((_, i) => QAWithTheirProjects.map((row) => row[i])).flat();
     zippedSuperGroups.QAWithTheirProjects = QAWithTheirProjects;
 
+    let issueTypesInProjects = JSONLoader.config.markupSuperGroups
+      .issueTypesInProjects.map((el) => fileNameGroups[el]);
+    issueTypesInProjects = issueTypesInProjects[0]
+      .map((_, i) => issueTypesInProjects.map((row) => row[i])).flat();
+    zippedSuperGroups.issueTypesInProjects = issueTypesInProjects;
+
     for (const [superGroup, groups] of Object.entries(JSONLoader.config.markupSuperGroups)) {
       let nestedMarkup = '';
 
@@ -365,9 +371,6 @@ class DataUtils {
     if (testedIssue.commentsWithBugs.length) {
       return testedIssue.commentsWithBugs.map((commentWithBug) => {
         const linkedAssigneeWithBug = { ...commentWithBug };
-        const commentCreatedDateObj = TimeUtils
-          .convertTimestampToDateObject(commentWithBug.commentCreated);
-
         const sortedChangelog = this.sortByTimestamps(testedIssue.changelog);
         const initialTimestamp = this.createInitialTimestamp(sortedChangelog);
 
@@ -389,54 +392,31 @@ class DataUtils {
             initialTimestamp,
           ).flat();
 
+          const uniqueOverlappedAssignees = this
+            .getUniqueOverlappedAssignees(overlappedAssignees);
+
           const overlappedAssigneesInProgress = this
             .getOverlappedAssigneesInProgress(overlappedAssignees);
 
           const uniqueOverlappedAssigneesInProgress = this
             .getUniqueOverlappedAssignees(overlappedAssigneesInProgress);
 
-          const overlappedAssigneesInReopen = this
-            .getOverlappedAssigneesInReopen(overlappedAssignees);
-
-          const uniqueOverlappedAssigneesInReopen = this
-            .getUniqueOverlappedAssignees(overlappedAssigneesInReopen);
-
           const overlappedAssigneesInReopenOrInProgress = this
             .getOverlappedAssigneesInReopenOrInProgress(overlappedAssignees);
 
-          // search and use only developers in IN PROGRESS or in REOPEN statuses if exist
-          // else in BACKLOG or TO DO statuses
-          let validOverlappedAssignees;
-          if (!overlappedAssigneesInReopenOrInProgress.length
-            || (!uniqueOverlappedAssigneesInProgress.length
-              && uniqueOverlappedAssigneesInReopen.length === 1)) {
-            validOverlappedAssignees = overlappedAssignees;
+          const uniqueOverlappedAssigneesInReopenOrInProgress = this
+            .getUniqueOverlappedAssignees(overlappedAssigneesInReopenOrInProgress);
+
+          // search and use only developers in IN PROGRESS and in REOPEN statuses
+          // if IN PROGRESS exist else in BACKLOG and TO DO statuses too
+          let devAssignees;
+          if (!uniqueOverlappedAssigneesInProgress.length) {
+            devAssignees = uniqueOverlappedAssignees;
           } else {
-            validOverlappedAssignees = overlappedAssigneesInReopenOrInProgress;
+            devAssignees = uniqueOverlappedAssigneesInReopenOrInProgress;
           }
 
-          // get last previous developer assignee with dev status before bug found
-          // or the only one developer from issue
-          let lastPreviousDevAssignee;
-          if (!uniqueOverlappedAssigneesInReopen.length
-            && uniqueOverlappedAssigneesInProgress.length === 1) {
-            lastPreviousDevAssignee = uniqueOverlappedAssigneesInProgress.pop();
-          } else {
-            lastPreviousDevAssignee = validOverlappedAssignees
-              .filter((overlappedAssignee) => overlappedAssignee
-                .createdTransitionFromAssignee <= commentCreatedDateObj
-              && overlappedAssignee
-                .createdTransitionFromStatus <= commentCreatedDateObj)
-              .reduce((prev, curr) => {
-                if (!prev) return curr;
-                return curr.createdTransitionFromStatus > prev.createdTransitionFromStatus
-              && curr.createdTransitionFromAssignee > prev.createdTransitionFromAssignee
-                  ? curr
-                  : prev;
-              }, null);
-          }
-
-          linkedAssigneeWithBug.lastPreviousDevAssignee = lastPreviousDevAssignee;
+          linkedAssigneeWithBug.devAssignees = devAssignees;
         }
 
         return linkedAssigneeWithBug;
@@ -536,10 +516,12 @@ class DataUtils {
   }
 
   static getUniqueOverlappedAssignees(overlappedAssignees) {
-    return overlappedAssignees
+    return [...overlappedAssignees]
+      .reverse()
       .filter((overlappedAssignee, index, arr) => arr
         .findIndex((el) => el.transitionFromAssignee === overlappedAssignee
-          .transitionFromAssignee) === index);
+          .transitionFromAssignee) === index)
+      .reverse();
   }
 
   static fillBugsAndIssuesPerEntities(
@@ -664,37 +646,54 @@ class DataUtils {
     projectNames,
     assigneeNames,
     overallBugsCount,
-    options = { lastPreviousDevAssignee: true },
+    options = { withDevAssignees: true },
   ) { // get or calculate values for each assignee in each project scope
     assigneeNames.forEach((el) => {
       let allBugsCount = 0;
+      let allAffBugsCount = 0;
       let allIssuesCount = 0;
       let allTestedIssuesCount = 0;
       let allTestedIssuesWithBugsCount = 0;
       let allBugsCountPerOverallBugsCountRatio = 0;
+      let allAffBugsCountPerOverallBugsCountRatio = 0;
       const bugsCountPerTestedIssueCountRatios = [];
       const bugsCountPerTestedIssueWithBugsCountRatios = [];
+      const affBugsCountPerTestedIssueCountRatios = [];
+      const affBugsCountPerTestedIssueWithBugsCountRatios = [];
       const projectBugCounts = {};
 
       projectNames.forEach((projectName) => {
         let bugsCount = 0;
+        let affBugsCount = 0;
         let issuesCount = 0;
         let testedIssuesCount = 0;
         let testedIssuesWithBugsCount = 0;
 
-        testedIssuesWithBugsArr.forEach((testedIssueWithBugs) => {
-          testedIssueWithBugs.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
-            if (
-              testedIssueWithBugs.projectName === projectName
-              && (options.lastPreviousDevAssignee
-                ? (linkedCommentWithBugs.lastPreviousDevAssignee?.transitionFromAssignee
-                ?? JSONLoader.config.issueWithoutAssignee)
-                : linkedCommentWithBugs.commentAuthor) === el
-            ) {
-              bugsCount += 1;
-            }
+        testedIssuesWithBugsArr
+          .filter((testedIssueWithBugs) => testedIssueWithBugs.projectName === projectName)
+          .forEach((testedIssueWithBugs) => {
+            testedIssueWithBugs.linkedCommentsWithBugs.forEach((linkedCommentWithBugs) => {
+              if (options.withDevAssignees) {
+                const devAssignees = linkedCommentWithBugs.devAssignees ?? [];
+
+                if (devAssignees.length > 1) {
+                  devAssignees.forEach((devAssignee) => {
+                    if (devAssignee.transitionFromAssignee === el) {
+                      affBugsCount += 1;
+                    }
+                  });
+                } else if (devAssignees.length === 1) {
+                  if (devAssignees[0].transitionFromAssignee === el) {
+                    bugsCount += 1;
+                  }
+                } else if (JSONLoader.config.issueWithoutAssignee === el) {
+                  bugsCount += 1;
+                }
+              } else if (linkedCommentWithBugs.commentAuthor === el) {
+                bugsCount += 1;
+              }
+            });
           });
-        });
 
         issuesWithAssigneesArr.forEach((issueWithAssignees) => {
           if (issueWithAssignees.projectName === projectName) {
@@ -729,7 +728,8 @@ class DataUtils {
         if (issuesCount > 0
           || testedIssuesCount > 0
           || testedIssuesWithBugsCount > 0
-          || bugsCount > 0) {
+          || bugsCount > 0
+          || affBugsCount > 0) {
           projectBugCounts[projectName] = {};
         }
 
@@ -753,6 +753,11 @@ class DataUtils {
           allBugsCount += bugsCount;
         }
 
+        if (affBugsCount > 0) {
+          projectBugCounts[projectName].affBugsCount = affBugsCount;
+          allAffBugsCount += affBugsCount;
+        }
+
         if (issuesCount > 0 && testedIssuesCount > 0) {
           const testedIssuesCountPerIssueCountRatio = Number((testedIssuesCount
             / issuesCount).toFixed(JSONLoader.config.decimalPlaces));
@@ -768,6 +773,14 @@ class DataUtils {
           bugsCountPerTestedIssueCountRatios.push(bugsCountPerTestedIssueCountRatio);
         }
 
+        if (testedIssuesCount > 0 && affBugsCount > 0) {
+          const affBugsCountPerTestedIssueCountRatio = Number((affBugsCount
+            / testedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
+          projectBugCounts[projectName]
+            .affBugsCountPerTestedIssueCountRatio = affBugsCountPerTestedIssueCountRatio;
+          affBugsCountPerTestedIssueCountRatios.push(affBugsCountPerTestedIssueCountRatio);
+        }
+
         if (testedIssuesWithBugsCount > 0 && bugsCount > 0) {
           const bugsCountPerTestedIssueWithBugsCountRatio = Number((bugsCount
             / testedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
@@ -777,12 +790,29 @@ class DataUtils {
             .push(bugsCountPerTestedIssueWithBugsCountRatio);
         }
 
+        if (testedIssuesWithBugsCount > 0 && affBugsCount > 0) {
+          const affBgsCntPerTestedIssueWithBugsCntRatio = Number((affBugsCount
+            / testedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
+          projectBugCounts[projectName]
+            .affBugsCountPerTestedIssueWithBugsCountRatio = affBgsCntPerTestedIssueWithBugsCntRatio;
+          affBugsCountPerTestedIssueWithBugsCountRatios
+            .push(affBgsCntPerTestedIssueWithBugsCntRatio);
+        }
+
         if (bugsCount > 0 && overallBugsCount > 0) {
           const bugsCountPerOverallBugsCountRatio = Number((bugsCount
             / overallBugsCount).toFixed(JSONLoader.config.decimalPlaces));
           projectBugCounts[projectName]
             .bugsCountPerOverallBugsCountRatio = bugsCountPerOverallBugsCountRatio;
           allBugsCountPerOverallBugsCountRatio += bugsCountPerOverallBugsCountRatio;
+        }
+
+        if (affBugsCount > 0 && overallBugsCount > 0) {
+          const affBugsCountPerOverallBugsCountRatio = Number((affBugsCount
+            / overallBugsCount).toFixed(JSONLoader.config.decimalPlaces));
+          projectBugCounts[projectName]
+            .affBugsCountPerOverallBugsCountRatio = affBugsCountPerOverallBugsCountRatio;
+          allAffBugsCountPerOverallBugsCountRatio += affBugsCountPerOverallBugsCountRatio;
         }
       });
 
@@ -806,6 +836,10 @@ class DataUtils {
         accumulator[el].allBugsCount = allBugsCount;
       }
 
+      if (allAffBugsCount > 0) {
+        accumulator[el].allAffBugsCount = allAffBugsCount;
+      }
+
       if (allIssuesCount > 0 && allTestedIssuesCount > 0) {
         accumulator[el].allTestedIssuesCountPerAllIssueCountRatio = Number((allTestedIssuesCount
           / allIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
@@ -817,8 +851,20 @@ class DataUtils {
             .toFixed(JSONLoader.config.decimalPlaces));
       }
 
+      if (allAffBugsCountPerOverallBugsCountRatio > 0) {
+        accumulator[el].allAffBugsCountPerOverallBugsCountRatio = Number(
+          allAffBugsCountPerOverallBugsCountRatio
+            .toFixed(JSONLoader.config.decimalPlaces),
+        );
+      }
+
       if (allBugsCount > 0 && allTestedIssuesCount > 0) {
         accumulator[el].allBugsCountPerAllTestedIssueCountRatio = Number((allBugsCount
+          / allTestedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
+      }
+
+      if (allAffBugsCount > 0 && allTestedIssuesCount > 0) {
+        accumulator[el].allAffBugsCountPerAllTestedIssueCountRatio = Number((allAffBugsCount
           / allTestedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
       }
 
@@ -827,14 +873,29 @@ class DataUtils {
           / allTestedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
       }
 
+      if (allAffBugsCount > 0 && allTestedIssuesWithBugsCount > 0) {
+        accumulator[el].allAffBugsCountPerAllTestedIssueWithBugsCountRatio = Number((allAffBugsCount
+          / allTestedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
+      }
+
       if (allTestedIssuesCount > 0 && allBugsCount > 0) {
         accumulator[el].bugsCountPerTestedIssueCountAverageRatio = DataUtils
           .averageRatio(bugsCountPerTestedIssueCountRatios);
       }
 
+      if (allTestedIssuesCount > 0 && allAffBugsCount > 0) {
+        accumulator[el].affBugsCountPerTestedIssueCountAverageRatio = DataUtils
+          .averageRatio(affBugsCountPerTestedIssueCountRatios);
+      }
+
       if (allTestedIssuesWithBugsCount > 0 && allBugsCount > 0) {
         accumulator[el].bugsCountPerTestedIssueWithBugsCountAverageRatio = DataUtils
           .averageRatio(bugsCountPerTestedIssueWithBugsCountRatios);
+      }
+
+      if (allTestedIssuesWithBugsCount > 0 && allAffBugsCount > 0) {
+        accumulator[el].affBugsCountPerTestedIssueWithBugsCountAverageRatio = DataUtils
+          .averageRatio(affBugsCountPerTestedIssueWithBugsCountRatios);
       }
     });
   }
@@ -842,7 +903,7 @@ class DataUtils {
   // get values from summary
   static extractPropertyByName(obj, ...propertyNames) {
     const result = {};
-    if (typeof obj !== 'object' || obj === null) return result;
+    if (typeof obj !== 'object' || obj === null) return { result, propertyNames };
     const isFlat = propertyNames.some((p) => p in obj);
     if (isFlat) {
       for (const prop of propertyNames) {
@@ -850,7 +911,7 @@ class DataUtils {
           result[prop] = obj[prop];
         }
       }
-      return result;
+      return { result, propertyNames };
     }
 
     for (const [key, value] of Object.entries(obj)) {
@@ -865,7 +926,7 @@ class DataUtils {
       }
     }
 
-    return result;
+    return { result, propertyNames };
   }
 
   // map summary keys to cyrillic diagram names
@@ -934,6 +995,53 @@ class DataUtils {
         }
       }
     }
+  }
+
+  static fillEntitiesPerProjects(
+    projects,
+    issuesWithCommentsArr,
+    testedIssuesWithCommentsArr,
+    testedIssuesWithBugsArr,
+    key,
+    entityNames,
+    overallBugsCount,
+  ) {
+    for (const project in projects) {
+      if (Object.hasOwn(projects, project)) {
+        const entitiesInProject = {};
+
+        const filteredIssuesWithCommentsArr = issuesWithCommentsArr
+          .filter((issueWithComments) => issueWithComments.projectName === project);
+        const filteredTestedIssuesWithCommentsArr = testedIssuesWithCommentsArr
+          .filter((testedIssueWithComments) => testedIssueWithComments.projectName === project);
+        const filteredTestedIssuesWithBugsArr = testedIssuesWithBugsArr
+          .filter((testedIssueWithBugs) => testedIssueWithBugs.projectName === project);
+
+        this.fillBugsAndIssuesPerEntities(
+          entitiesInProject,
+          filteredIssuesWithCommentsArr,
+          filteredTestedIssuesWithCommentsArr,
+          filteredTestedIssuesWithBugsArr,
+          key,
+          entityNames,
+          overallBugsCount,
+        );
+
+        projects[project][key] = entitiesInProject;
+      }
+    }
+  }
+
+  static getReopenedIssuesWithReopensCount(issuesArr) {
+    return issuesArr.map((issue) => {
+      const issueWithCounter = structuredClone(issue);
+      issueWithCounter.reopensCount = issueWithCounter.changelog
+        .reduce((count, changelogItem) => count + changelogItem.items
+          .filter((item) => item.toString?.toUpperCase() === JSONLoader.config.reopenStatus)
+          .length, 0);
+
+      return issueWithCounter;
+    }).filter((issue) => issue.reopensCount > 0);
   }
 }
 
