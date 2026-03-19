@@ -14,8 +14,10 @@ class DataUtils {
   }
 
   static averageRatio(ratiosArr) {
-    return Number((ratiosArr.reduce((sum, val) => sum + val, 0)
-    / ratiosArr.length).toFixed(JSONLoader.config.decimalPlaces));
+    const cleanRatiosArr = ratiosArr.filter((ratio) => ratio !== 0 && !Number.isNaN(ratio));
+
+    return Number((cleanRatiosArr.reduce((sum, val) => sum + val, 0)
+    / cleanRatiosArr.length).toFixed(JSONLoader.config.decimalPlaces));
   }
 
   static getDeveloperNamesByAccountIDs(users) {
@@ -112,21 +114,40 @@ class DataUtils {
     if (yLabel) diagram.yLabel = yLabel;
     if (xLabel) diagram.xLabel = xLabel;
     if (outputSubFolder) diagram.outputSubFolder = outputSubFolder;
-    diagram.data = this.extractPropertyByName(title, source, fields);
+
+    // validate required fields in summary while extracting, then trim empty values
+    const data = this.extractPropertyByName(title, source, fields);
+    data.result = this.trimEmptyNestedObj(this.trimZeroAndNullValues(data.result));
+    diagram.data = data;
 
     return diagram;
   }
 
-  static trimEmptyNestedObjects(obj) {
+  static trimEmptyNestedObj(obj) {
     if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return obj;
 
     const result = {};
     for (const [key, value] of Object.entries(obj)) {
-      const trimmedObj = this.trimEmptyNestedObjects(value);
+      const trimmedObj = this.trimEmptyNestedObj(value);
       const isEmpty = trimmedObj && typeof trimmedObj === 'object' && !Array.isArray(trimmedObj)
           && Object.keys(trimmedObj).length === 0;
       if (!isEmpty) {
         result[key] = trimmedObj;
+      }
+    }
+
+    return result;
+  }
+
+  static trimZeroAndNullValues(obj) {
+    if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return obj;
+
+    const result = {};
+    for (const [key, value] of Object.entries(obj)) {
+      if (value && typeof value === 'object' && !Array.isArray(value)) {
+        result[key] = this.trimZeroAndNullValues(value);
+      } else if (value !== 0 && value !== null) {
+        result[key] = value;
       }
     }
 

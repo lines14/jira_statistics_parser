@@ -7,13 +7,6 @@ import confluenceAPI from '../../../API/confluenceAPI.js';
 dotenv.config({ override: true });
 
 class ConfluenceUtils {
-  static zipFileNameGroups(fileNameGroups, groupKeys = []) {
-    const groups = groupKeys.map((el) => fileNameGroups[el]);
-    if (!groups.length) return [];
-
-    return groups[0].map((_, i) => groups.map((row) => row[i])).flat();
-  }
-
   static createMarkupExpandBlock(nestedMarkup) {
     return `<ac:structured-macro ac:name="expand">
           <ac:parameter ac:name="title">Раскрыть диаграммы</ac:parameter>
@@ -43,30 +36,27 @@ class ConfluenceUtils {
 
     let markup = this.createMarkupAttachmentTable(fileNameGroups.root.shift());
 
-    zippedSuperGroups.projectsWithTheirDevelopers = this.zipFileNameGroups(
-      fileNameGroups,
-      JSONLoader.config.markupSuperGroups.projectsWithTheirDevelopers,
-    );
+    const superGroupKeys = Object.keys(JSONLoader.config.markupSuperGroups).slice(3);
 
-    zippedSuperGroups.projectsWithTheirQA = this.zipFileNameGroups(
-      fileNameGroups,
-      JSONLoader.config.markupSuperGroups.projectsWithTheirQA,
-    );
+    superGroupKeys.forEach((superGroupKey) => {
+      const subGroupKeys = JSONLoader.config.markupSuperGroups[superGroupKey];
+      const allPossibleFiles = subGroupKeys.flatMap((key) => fileNameGroups[key] || []);
+      const subjects = [...new Set(allPossibleFiles.filter(Boolean).map((file) => {
+        const match = file.match(/\(([^)]+)\)[^()]*\.png$/);
+        return match ? match[1] : null;
+      }).filter(Boolean))];
 
-    zippedSuperGroups.developersWithTheirProjects = this.zipFileNameGroups(
-      fileNameGroups,
-      JSONLoader.config.markupSuperGroups.developersWithTheirProjects,
-    );
+      const result = [];
+      subjects.forEach((subject) => {
+        subGroupKeys.forEach((subKey) => {
+          const filesInSubGroup = fileNameGroups[subKey] || [];
+          const foundFile = filesInSubGroup.find((file) => file && file.includes(`(${subject})`));
+          result.push(foundFile);
+        });
+      });
 
-    zippedSuperGroups.QAWithTheirProjects = this.zipFileNameGroups(
-      fileNameGroups,
-      JSONLoader.config.markupSuperGroups.QAWithTheirProjects,
-    );
-
-    zippedSuperGroups.issueTypesInProjects = this.zipFileNameGroups(
-      fileNameGroups,
-      JSONLoader.config.markupSuperGroups.issueTypesInProjects,
-    );
+      zippedSuperGroups[superGroupKey] = result;
+    });
 
     // generate Confluence markup to upload
     for (const [superGroup, groups] of Object.entries(JSONLoader.config.markupSuperGroups)) {
@@ -75,14 +65,18 @@ class ConfluenceUtils {
       markup += `<h1>${JSONLoader.config.markupSuperGroupCyrillicNames[superGroup]}</h1>\n`;
 
       if (superGroup in zippedSuperGroups) {
-        for (const fileName of zippedSuperGroups[superGroup]) {
+        const cleanZippedFiles = zippedSuperGroups[superGroup].filter(Boolean);
+
+        for (const fileName of cleanZippedFiles) {
           nestedMarkup += this.createMarkupImage(fileName);
         }
 
         markup += this.createMarkupExpandBlock(nestedMarkup);
       } else {
         for (const group of groups) {
-          for (const fileName of fileNameGroups[group]) {
+          const cleanGroupFiles = (fileNameGroups[group] || []).filter(Boolean);
+
+          for (const fileName of cleanGroupFiles) {
             markup += this.createMarkupImage(fileName);
           }
         }

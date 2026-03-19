@@ -12,8 +12,8 @@
     "halfMinute": 30000,
     "decimalPlaces": 4,
     "canvas": { 
-        "width": 1500, 
-        "height": 500, 
+        "width": 1920, 
+        "height": 1080, 
         "backgroundColour": "white" 
     },
     "diagramColors": [
@@ -36,7 +36,10 @@
         "Analytics 2.0",
         " Analytics 2.0 test",
         "Администрирование",
-        "Service Desk"
+        "Service Desk",
+        "Discovery",
+        "My discovery project",
+        "System Upgrade: People"
     ],
     "initIssueStatus": "INIT TASK",
     "reopenStatus": "REOPEN",

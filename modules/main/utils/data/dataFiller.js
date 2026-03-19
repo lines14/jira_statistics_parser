@@ -32,56 +32,44 @@ class DataFiller {
       const reopenedIssuesCount = reopenedIssuesWithCommentsArr
         .filter((reopenedIssueWithComments) => reopenedIssueWithComments[key] === el).length;
 
-      if (issuesCount > 0) accumulator[el] = { issuesCount };
+      accumulator[el] = { issuesCount };
 
-      if (testedIssuesCount > 0) accumulator[el].testedIssuesCount = testedIssuesCount;
+      accumulator[el].testedIssuesCount = testedIssuesCount;
 
-      if (testedIssuesWithBugsCount > 0) {
-        accumulator[el].testedIssuesWithBugsCount = testedIssuesWithBugsCount;
-      }
+      accumulator[el].testedIssuesWithBugsCount = testedIssuesWithBugsCount;
 
-      if (reopenedIssuesCount > 0) accumulator[el].reopenedIssuesCount = reopenedIssuesCount;
+      accumulator[el].reopenedIssuesCount = reopenedIssuesCount;
 
       // calculate and fill issues ratio for each entity
-      if (issuesCount > 0 && testedIssuesCount > 0) {
-        const testedIssuesCountPerIssueCountRatio = Number((testedIssuesCount
-            / issuesCount).toFixed(JSONLoader.config.decimalPlaces));
-        accumulator[el].testedIssuesCountPerIssueCountRatio = testedIssuesCountPerIssueCountRatio;
-      }
+      const testedIssuesCountPerIssueCountRatio = Number((testedIssuesCount
+          / issuesCount).toFixed(JSONLoader.config.decimalPlaces));
+      accumulator[el].testedIssuesCountPerIssueCountRatio = testedIssuesCountPerIssueCountRatio;
 
-      if (testedIssuesCount > 0 && testedIssuesWithBugsCount > 0) {
-        const testedIssuesWithBugsCountPerTestedIssueCountRatio = Number((testedIssuesWithBugsCount
-            / testedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
-        accumulator[el] // eslint-disable-next-line max-len
-          .testedIssuesWithBugsCountPerTestedIssueCountRatio = testedIssuesWithBugsCountPerTestedIssueCountRatio;
-      }
+      const testedIssuesWithBugsCountPerTestedIssueCountRatio = Number((testedIssuesWithBugsCount
+          / testedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
+      accumulator[el] // eslint-disable-next-line max-len
+        .testedIssuesWithBugsCountPerTestedIssueCountRatio = testedIssuesWithBugsCountPerTestedIssueCountRatio;
 
-      if (issuesCount > 0 && reopenedIssuesCount > 0) {
-        const reopenedIssueCountPerIssueCountRatio = Number((reopenedIssuesCount
-            / issuesCount).toFixed(JSONLoader.config.decimalPlaces));
-        accumulator[el].reopenedIssueCountPerIssueCountRatio = reopenedIssueCountPerIssueCountRatio;
-      }
+      const reopenedIssueCountPerIssueCountRatio = Number((reopenedIssuesCount
+          / issuesCount).toFixed(JSONLoader.config.decimalPlaces));
+      accumulator[el].reopenedIssueCountPerIssueCountRatio = reopenedIssueCountPerIssueCountRatio;
 
-      if (testedIssuesCount > 0 && reopenedIssuesCount > 0) {
-        const reopenedIssueCountPerTestedIssueCountRatio = Number((reopenedIssuesCount
-            / testedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
-        accumulator[el]
-          .reopenedIssueCountPerTestedIssueCountRatio = reopenedIssueCountPerTestedIssueCountRatio;
-      }
+      const reopenedIssueCountPerTestedIssueCountRatio = Number((reopenedIssuesCount
+          / testedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
+      accumulator[el]
+        .reopenedIssueCountPerTestedIssueCountRatio = reopenedIssueCountPerTestedIssueCountRatio;
 
-      if (testedIssuesWithBugsCount > 0 && reopenedIssuesCount > 0) {
-        const reopenedIssueCountPerTestedIssueWithBugsCountRatio = Number((reopenedIssuesCount
-            / testedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
-        accumulator[el] // eslint-disable-next-line max-len
-          .reopenedIssueCountPerTestedIssueWithBugsCountRatio = reopenedIssueCountPerTestedIssueWithBugsCountRatio;
-      }
+      const reopenedIssueCountPerTestedIssueWithBugsCountRatio = Number((reopenedIssuesCount
+          / testedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
+      accumulator[el] // eslint-disable-next-line max-len
+        .reopenedIssueCountPerTestedIssueWithBugsCountRatio = reopenedIssueCountPerTestedIssueWithBugsCountRatio;
 
       // calculate and fill bugs count for each entity
       testedIssuesWithBugsArr.forEach((testedIssueWithBugs) => {
         if (testedIssueWithBugs[key] === el) bugsCount += testedIssueWithBugs.bugsCount;
       });
 
-      if (bugsCount > 0) accumulator[el].bugsCount = bugsCount;
+      accumulator[el].bugsCount = bugsCount;
 
       // calculate and fill reopens count for each entity
       reopenedIssuesWithCommentsArr.forEach((reopenedIssueWithComments) => {
@@ -90,42 +78,32 @@ class DataFiller {
         }
       });
 
-      if (reopensCount > 0) accumulator[el].reopensCount = reopensCount;
+      accumulator[el].reopensCount = reopensCount;
 
       // calculate and fill bugs ratios for each entity
-      if (bugsCount > 0 && testedIssuesCount > 0) {
-        const bugsCountPerTestedIssueCountRatio = Number((bugsCount
-            / testedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
-        accumulator[el].bugsCountPerTestedIssueCountRatio = bugsCountPerTestedIssueCountRatio;
-      }
+      const bugsCountPerTestedIssueCountRatio = Number((bugsCount
+          / testedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
+      accumulator[el].bugsCountPerTestedIssueCountRatio = bugsCountPerTestedIssueCountRatio;
 
-      if (bugsCount > 0 && testedIssuesWithBugsCount > 0) {
-        const bugsCountPerTestedIssueWithBugsCountRatio = Number((bugsCount
-            / testedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
-        accumulator[el]
-          .bugsCountPerTestedIssueWithBugsCountRatio = bugsCountPerTestedIssueWithBugsCountRatio;
-      }
+      const bugsCountPerTestedIssueWithBugsCountRatio = Number((bugsCount
+          / testedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
+      accumulator[el]
+        .bugsCountPerTestedIssueWithBugsCountRatio = bugsCountPerTestedIssueWithBugsCountRatio;
 
-      if (bugsCount > 0 && overallBugsCount > 0) {
-        const bugsCountPerOverallBugsCountRatio = Number((bugsCount
-              / overallBugsCount).toFixed(JSONLoader.config.decimalPlaces));
-        accumulator[el].bugsCountPerOverallBugsCountRatio = bugsCountPerOverallBugsCountRatio;
-      }
+      const bugsCountPerOverallBugsCountRatio = Number((bugsCount
+            / overallBugsCount).toFixed(JSONLoader.config.decimalPlaces));
+      accumulator[el].bugsCountPerOverallBugsCountRatio = bugsCountPerOverallBugsCountRatio;
 
       // calculate and fill reopens ratios for each entity
-      if (reopensCount > 0 && reopenedIssuesCount > 0) {
-        const reopensCountPerReopenedIssueCountRatio = Number((reopensCount
-            / reopenedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
-        accumulator[el]
-          .reopensCountPerReopenedIssueCountRatio = reopensCountPerReopenedIssueCountRatio;
-      }
+      const reopensCountPerReopenedIssueCountRatio = Number((reopensCount
+          / reopenedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
+      accumulator[el]
+        .reopensCountPerReopenedIssueCountRatio = reopensCountPerReopenedIssueCountRatio;
 
-      if (reopensCount > 0 && overallReopensCount > 0) {
-        const reopensCountPerOverallReopensCountRatio = Number((reopensCount
-              / overallReopensCount).toFixed(JSONLoader.config.decimalPlaces));
-        accumulator[el]
-          .reopensCountPerOverallReopensCountRatio = reopensCountPerOverallReopensCountRatio;
-      }
+      const reopensCountPerOverallReopensCountRatio = Number((reopensCount
+            / overallReopensCount).toFixed(JSONLoader.config.decimalPlaces));
+      accumulator[el]
+        .reopensCountPerOverallReopensCountRatio = reopensCountPerOverallReopensCountRatio;
     });
   }
 
@@ -205,99 +183,74 @@ class DataFiller {
         });
 
         // define fillable entity for each project if exists something to fill
-        if (issuesCount > 0
-        || testedIssuesCount > 0
-        || testedIssuesWithBugsCount > 0
-        || bugsCount > 0
-        || affBugsCount > 0) {
-          projectBugCounts[projectName] = {};
-        }
+        projectBugCounts[projectName] = {};
 
         // fill issues count for each assignee in each project scope
-        if (issuesCount > 0) {
-          projectBugCounts[projectName].issuesCount = issuesCount;
-          allIssuesCount += issuesCount;
-        }
+        projectBugCounts[projectName].issuesCount = issuesCount;
+        allIssuesCount += issuesCount;
 
-        if (testedIssuesCount > 0) {
-          projectBugCounts[projectName].testedIssuesCount = testedIssuesCount;
-          allTestedIssuesCount += testedIssuesCount;
-        }
+        projectBugCounts[projectName].testedIssuesCount = testedIssuesCount;
+        allTestedIssuesCount += testedIssuesCount;
 
-        if (testedIssuesWithBugsCount > 0) {
-          projectBugCounts[projectName].testedIssuesWithBugsCount = testedIssuesWithBugsCount;
-          allTestedIssuesWithBugsCount += testedIssuesWithBugsCount;
-        }
+        projectBugCounts[projectName].testedIssuesWithBugsCount = testedIssuesWithBugsCount;
+        allTestedIssuesWithBugsCount += testedIssuesWithBugsCount;
 
         // calculate and fill issues ratio for each assignee in each project scope
-        if (issuesCount > 0 && testedIssuesCount > 0) {
-          const testedIssuesCountPerIssueCountRatio = Number((testedIssuesCount
-                / issuesCount).toFixed(JSONLoader.config.decimalPlaces));
-          projectBugCounts[projectName]
-            .testedIssuesCountPerIssueCountRatio = testedIssuesCountPerIssueCountRatio;
-        }
+        const testedIssuesCountPerIssueCountRatio = Number((testedIssuesCount
+              / issuesCount).toFixed(JSONLoader.config.decimalPlaces));
+        projectBugCounts[projectName]
+          .testedIssuesCountPerIssueCountRatio = testedIssuesCountPerIssueCountRatio;
+
+        const testedIssuesWithBugsCountPerTestedIssueCountRatio = Number((testedIssuesWithBugsCount
+          / testedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
+        projectBugCounts[projectName] // eslint-disable-next-line max-len
+          .testedIssuesWithBugsCountPerTestedIssueCountRatio = testedIssuesWithBugsCountPerTestedIssueCountRatio;
 
         // fill bugs count for each assignee in each project scope
-        if (bugsCount > 0) {
-          projectBugCounts[projectName].bugsCount = bugsCount;
-          allBugsCount += bugsCount;
-        }
+        projectBugCounts[projectName].bugsCount = bugsCount;
+        allBugsCount += bugsCount;
 
-        if (affBugsCount > 0) {
-          projectBugCounts[projectName].affBugsCount = affBugsCount;
-          allAffBugsCount += affBugsCount;
-        }
+        projectBugCounts[projectName].affBugsCount = affBugsCount;
+        allAffBugsCount += affBugsCount;
 
         // calculate and fill bugs ratios for each assignee in each project scope
-        if (testedIssuesCount > 0 && bugsCount > 0) {
-          const bugsCountPerTestedIssueCountRatio = Number((bugsCount
-                / testedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
-          projectBugCounts[projectName]
-            .bugsCountPerTestedIssueCountRatio = bugsCountPerTestedIssueCountRatio;
-          bugsCountPerTestedIssueCountRatios.push(bugsCountPerTestedIssueCountRatio);
-        }
+        const bugsCountPerTestedIssueCountRatio = Number((bugsCount
+              / testedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
+        projectBugCounts[projectName]
+          .bugsCountPerTestedIssueCountRatio = bugsCountPerTestedIssueCountRatio;
+        bugsCountPerTestedIssueCountRatios.push(bugsCountPerTestedIssueCountRatio);
 
-        if (testedIssuesCount > 0 && affBugsCount > 0) {
-          const affBugsCountPerTestedIssueCountRatio = Number((affBugsCount
-                / testedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
-          projectBugCounts[projectName]
-            .affBugsCountPerTestedIssueCountRatio = affBugsCountPerTestedIssueCountRatio;
-          affBugsCountPerTestedIssueCountRatios.push(affBugsCountPerTestedIssueCountRatio);
-        }
+        const affBugsCountPerTestedIssueCountRatio = Number((affBugsCount
+              / testedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
+        projectBugCounts[projectName]
+          .affBugsCountPerTestedIssueCountRatio = affBugsCountPerTestedIssueCountRatio;
+        affBugsCountPerTestedIssueCountRatios.push(affBugsCountPerTestedIssueCountRatio);
 
-        if (testedIssuesWithBugsCount > 0 && bugsCount > 0) {
-          const bugsCountPerTestedIssueWithBugsCountRatio = Number((bugsCount
-                / testedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
-          projectBugCounts[projectName]
-            .bugsCountPerTestedIssueWithBugsCountRatio = bugsCountPerTestedIssueWithBugsCountRatio;
-          bugsCountPerTestedIssueWithBugsCountRatios
-            .push(bugsCountPerTestedIssueWithBugsCountRatio);
-        }
+        const bugsCountPerTestedIssueWithBugsCountRatio = Number((bugsCount
+              / testedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
+        projectBugCounts[projectName]
+          .bugsCountPerTestedIssueWithBugsCountRatio = bugsCountPerTestedIssueWithBugsCountRatio;
+        bugsCountPerTestedIssueWithBugsCountRatios
+          .push(bugsCountPerTestedIssueWithBugsCountRatio);
 
-        if (testedIssuesWithBugsCount > 0 && affBugsCount > 0) {
-          const affBgsCntPerTestedIssueWithBugsCntRatio = Number((affBugsCount
-                / testedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
-          projectBugCounts[projectName]
-            .affBugsCountPerTestedIssueWithBugsCountRatio = affBgsCntPerTestedIssueWithBugsCntRatio;
-          affBugsCountPerTestedIssueWithBugsCountRatios
-            .push(affBgsCntPerTestedIssueWithBugsCntRatio);
-        }
+        const affBgsCntPerTestedIssueWithBugsCntRatio = Number((affBugsCount
+              / testedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
+        projectBugCounts[projectName]
+          .affBugsCountPerTestedIssueWithBugsCountRatio = affBgsCntPerTestedIssueWithBugsCntRatio;
+        affBugsCountPerTestedIssueWithBugsCountRatios
+          .push(affBgsCntPerTestedIssueWithBugsCntRatio);
 
-        if (bugsCount > 0 && overallBugsCount > 0) {
-          const bugsCountPerOverallBugsCountRatio = Number((bugsCount
-                / overallBugsCount).toFixed(JSONLoader.config.decimalPlaces));
-          projectBugCounts[projectName]
-            .bugsCountPerOverallBugsCountRatio = bugsCountPerOverallBugsCountRatio;
-          allBugsCountPerOverallBugsCountRatio += bugsCountPerOverallBugsCountRatio;
-        }
+        const bugsCountPerOverallBugsCountRatio = Number((bugsCount
+              / overallBugsCount).toFixed(JSONLoader.config.decimalPlaces));
+        projectBugCounts[projectName]
+          .bugsCountPerOverallBugsCountRatio = bugsCountPerOverallBugsCountRatio;
+        allBugsCountPerOverallBugsCountRatio += bugsCountPerOverallBugsCountRatio;
 
-        if (affBugsCount > 0 && overallBugsCount > 0) {
-          const affBugsCountPerOverallBugsCountRatio = Number((affBugsCount
-                / overallBugsCount).toFixed(JSONLoader.config.decimalPlaces));
-          projectBugCounts[projectName]
-            .affBugsCountPerOverallBugsCountRatio = affBugsCountPerOverallBugsCountRatio;
-          allAffBugsCountPerOverallBugsCountRatio += affBugsCountPerOverallBugsCountRatio;
-        }
+        const affBugsCountPerOverallBugsCountRatio = Number((affBugsCount
+              / overallBugsCount).toFixed(JSONLoader.config.decimalPlaces));
+        projectBugCounts[projectName]
+          .affBugsCountPerOverallBugsCountRatio = affBugsCountPerOverallBugsCountRatio;
+        allAffBugsCountPerOverallBugsCountRatio += affBugsCountPerOverallBugsCountRatio;
       });
 
       // fill projects data for each assignee
@@ -306,86 +259,54 @@ class DataFiller {
       };
 
       // fill overall issues count for each assignee
-      if (allIssuesCount > 0) {
-        accumulator[el].allIssuesCount = allIssuesCount;
-      }
+      accumulator[el].allIssuesCount = allIssuesCount;
 
-      if (allTestedIssuesCount > 0) {
-        accumulator[el].allTestedIssuesCount = allTestedIssuesCount;
-      }
+      accumulator[el].allTestedIssuesCount = allTestedIssuesCount;
 
-      if (allTestedIssuesWithBugsCount > 0) {
-        accumulator[el].allTestedIssuesWithBugsCount = allTestedIssuesWithBugsCount;
-      }
+      accumulator[el].allTestedIssuesWithBugsCount = allTestedIssuesWithBugsCount;
 
       // calculate and fill overall issues ratio for each assignee
-      if (allIssuesCount > 0 && allTestedIssuesCount > 0) {
-        accumulator[el].allTestedIssuesCountPerAllIssueCountRatio = Number((allTestedIssuesCount
-              / allIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
-      }
+      accumulator[el].allTestedIssuesCountPerAllIssueCountRatio = Number((allTestedIssuesCount
+            / allIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
 
       // fill overall bugs count for each assignee
-      if (allBugsCount > 0) {
-        accumulator[el].allBugsCount = allBugsCount;
-      }
+      accumulator[el].allBugsCount = allBugsCount;
 
-      if (allAffBugsCount > 0) {
-        accumulator[el].allAffBugsCount = allAffBugsCount;
-      }
+      accumulator[el].allAffBugsCount = allAffBugsCount;
 
       // calculate and fill overall bugs ratios for each assignee
-      if (allBugsCountPerOverallBugsCountRatio > 0) {
-        accumulator[el]
-          .allBugsCountPerOverallBugsCountRatio = Number(allBugsCountPerOverallBugsCountRatio
-            .toFixed(JSONLoader.config.decimalPlaces));
-      }
+      accumulator[el]
+        .allBugsCountPerOverallBugsCountRatio = Number(allBugsCountPerOverallBugsCountRatio
+          .toFixed(JSONLoader.config.decimalPlaces));
 
-      if (allAffBugsCountPerOverallBugsCountRatio > 0) {
-        accumulator[el].allAffBugsCountPerOverallBugsCountRatio = Number(
-          allAffBugsCountPerOverallBugsCountRatio
-            .toFixed(JSONLoader.config.decimalPlaces),
-        );
-      }
+      accumulator[el].allAffBugsCountPerOverallBugsCountRatio = Number(
+        allAffBugsCountPerOverallBugsCountRatio
+          .toFixed(JSONLoader.config.decimalPlaces),
+      );
 
-      if (allBugsCount > 0 && allTestedIssuesCount > 0) {
-        accumulator[el].allBugsCountPerAllTestedIssueCountRatio = Number((allBugsCount
-              / allTestedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
-      }
+      accumulator[el].allBugsCountPerAllTestedIssueCountRatio = Number((allBugsCount
+            / allTestedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
 
-      if (allAffBugsCount > 0 && allTestedIssuesCount > 0) {
-        accumulator[el].allAffBugsCountPerAllTestedIssueCountRatio = Number((allAffBugsCount
-              / allTestedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
-      }
+      accumulator[el].allAffBugsCountPerAllTestedIssueCountRatio = Number((allAffBugsCount
+            / allTestedIssuesCount).toFixed(JSONLoader.config.decimalPlaces));
 
-      if (allBugsCount > 0 && allTestedIssuesWithBugsCount > 0) {
-        accumulator[el].allBugsCountPerAllTestedIssueWithBugsCountRatio = Number((allBugsCount
-              / allTestedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
-      }
+      accumulator[el].allBugsCountPerAllTestedIssueWithBugsCountRatio = Number((allBugsCount
+            / allTestedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
 
-      if (allAffBugsCount > 0 && allTestedIssuesWithBugsCount > 0) {
-        accumulator[el].allAffBugsCountPerAllTestedIssueWithBugsCountRatio = Number((allAffBugsCount
-              / allTestedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
-      }
+      accumulator[el].allAffBugsCountPerAllTestedIssueWithBugsCountRatio = Number((allAffBugsCount
+            / allTestedIssuesWithBugsCount).toFixed(JSONLoader.config.decimalPlaces));
 
-      if (allTestedIssuesCount > 0 && allBugsCount > 0) {
-        accumulator[el].bugsCountPerTestedIssueCountAverageRatio = DataUtils
-          .averageRatio(bugsCountPerTestedIssueCountRatios);
-      }
+      accumulator[el].bugsCountPerTestedIssueCountAverageRatio = DataUtils
+        .averageRatio(bugsCountPerTestedIssueCountRatios);
 
-      if (allTestedIssuesCount > 0 && allAffBugsCount > 0) {
-        accumulator[el].affBugsCountPerTestedIssueCountAverageRatio = DataUtils
-          .averageRatio(affBugsCountPerTestedIssueCountRatios);
-      }
+      accumulator[el].affBugsCountPerTestedIssueCountAverageRatio = DataUtils
+        .averageRatio(affBugsCountPerTestedIssueCountRatios);
 
-      if (allTestedIssuesWithBugsCount > 0 && allBugsCount > 0) {
-        accumulator[el].bugsCountPerTestedIssueWithBugsCountAverageRatio = DataUtils
-          .averageRatio(bugsCountPerTestedIssueWithBugsCountRatios);
-      }
+      accumulator[el].bugsCountPerTestedIssueWithBugsCountAverageRatio = DataUtils
+        .averageRatio(bugsCountPerTestedIssueWithBugsCountRatios);
 
-      if (allTestedIssuesWithBugsCount > 0 && allAffBugsCount > 0) {
-        accumulator[el].affBugsCountPerTestedIssueWithBugsCountAverageRatio = DataUtils
-          .averageRatio(affBugsCountPerTestedIssueWithBugsCountRatios);
-      }
+      accumulator[el].affBugsCountPerTestedIssueWithBugsCountAverageRatio = DataUtils
+        .averageRatio(affBugsCountPerTestedIssueWithBugsCountRatios);
     });
   }
 

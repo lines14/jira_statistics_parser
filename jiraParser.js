@@ -14,55 +14,55 @@ import PaginationAggregator from './modules/main/utils/data/paginationAggregator
 const parseIssues = async () => {
   const { dateBegin, dateEnd } = TimeUtils.getDates(...JSONLoader.config.timeDecrement);
 
-  // // get actual user names by atlassian account IDs from .env
-  // const users = (await jiraAPI.usersSearch()).data;
-  // const groups = await PaginationAggregator.getAllGroups();
-  // for (const group of groups) {
-  //   const members = await PaginationAggregator.getAllGroupMembers(group.groupId);
-  //   users.push(...members);
-  // }
+  // get actual user names by atlassian account IDs from .env
+  const users = (await jiraAPI.usersSearch()).data;
+  const groups = await PaginationAggregator.getAllGroups();
+  for (const group of groups) {
+    const members = await PaginationAggregator.getAllGroupMembers(group.groupId);
+    users.push(...members);
+  }
 
-  // const developerNamesByAccountIDs = DataUtils.getDeveloperNamesByAccountIDs(users);
-  // const reporterNamesByAccountIDs = DataUtils.getReporterNamesByAccountIDs(users);
+  const developerNamesByAccountIDs = DataUtils.getDeveloperNamesByAccountIDs(users);
+  const reporterNamesByAccountIDs = DataUtils.getReporterNamesByAccountIDs(users);
 
-  // // save developers and reporters to get ability to mock API requests during parser debug
-  // DataUtils.saveToJSON({ developerNamesByAccountIDs }, { folder: 'resources' });
-  // DataUtils.saveToJSON({ reporterNamesByAccountIDs }, { folder: 'resources' });
+  // save developers and reporters to get ability to mock API requests during parser debug
+  DataUtils.saveToJSON({ developerNamesByAccountIDs }, { folder: 'resources' });
+  DataUtils.saveToJSON({ reporterNamesByAccountIDs }, { folder: 'resources' });
 
-  // // get all org issues with full changelog
-  // const issuesArr = await PaginationAggregator.getAllIssues(dateBegin, dateEnd);
-  // for (const issue of issuesArr) {
-  //   if (issue.changelog.total > issue.changelog.maxResults) {
-  //     const histories = (await PaginationAggregator.getAllChangelogItems(issue.id))
-  //       .map((history) => new ChangelogDTO(history));
-  //     issue.changelog.histories = histories;
-  //   }
-  // }
+  // get all org issues with full changelog
+  const issuesArr = await PaginationAggregator.getAllIssues(dateBegin, dateEnd);
+  for (const issue of issuesArr) {
+    if (issue.changelog.total > issue.changelog.maxResults) {
+      const histories = (await PaginationAggregator.getAllChangelogItems(issue.id))
+        .map((history) => new ChangelogDTO(history));
+      issue.changelog.histories = histories;
+    }
+  }
 
-  // // filter all org issues with full changelog by last transition from backlog status
-  // const filteredIssuesArr = StatisticsUtils
-  //   .filterLastTransitionDateFromBacklogIncluded(dateBegin, issuesArr);
+  // filter all org issues with full changelog by last transition from backlog status
+  const filteredIssuesArr = StatisticsUtils
+    .filterLastTransitionDateFromBacklogIncluded(dateBegin, issuesArr);
 
-  // // get Jira issues with comments
-  // const issuesWithCommentsArr = [];
-  // for (const issue of filteredIssuesArr) {
-  //   let response;
-  //   do { // eslint-disable-next-line no-await-in-loop
-  //     response = await jiraAPI.getIssueComments(issue.id);
-  //   } while (response.status !== 200);
+  // get Jira issues with comments
+  const issuesWithCommentsArr = [];
+  for (const issue of filteredIssuesArr) {
+    let response;
+    do { // eslint-disable-next-line no-await-in-loop
+      response = await jiraAPI.getIssueComments(issue.id);
+    } while (response.status !== 200);
 
-  //   issuesWithCommentsArr.push(new IssueWithCommentsDTO(issue, response.data.comments));
-  // }
+    issuesWithCommentsArr.push(new IssueWithCommentsDTO(issue, response.data.comments));
+  }
 
-  // // save issues to get ability to mock API requests during parser debug
-  // DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
+  // save issues to get ability to mock API requests during parser debug
+  DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
 
   // uncomment this block to mock API requests during parser debug
-  const {
-    issuesWithCommentsArr,
-    developerNamesByAccountIDs,
-    reporterNamesByAccountIDs,
-  } = JSONLoader;
+  // const {
+  //   issuesWithCommentsArr,
+  //   developerNamesByAccountIDs,
+  //   reporterNamesByAccountIDs,
+  // } = JSONLoader;
 
   // filter ignored projects issues
   const filteredIssuesWithCommentsArr = issuesWithCommentsArr

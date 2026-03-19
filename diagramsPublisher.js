@@ -79,9 +79,11 @@ const publishDiagrams = async () => { // get all data for upload
     const resp = await confluenceAPI.getAttachments(pageID, fileObjArr.length);
 
     const attachmentsIDs = filesNames.map((nameOfFile) => resp.data.results
-      .filter((element) => element.title === nameOfFile).pop().id);
+      .filter((element) => element.title === nameOfFile).pop()?.id);
 
-    await ConfluenceUtils.deleteAttachmentsWithRetries(attachmentsIDs);
+    const trimmedAttachmentsIDs = attachmentsIDs.filter(Boolean);
+
+    await ConfluenceUtils.deleteAttachmentsWithRetries(trimmedAttachmentsIDs);
   } else { // create nested "month" page in Confluence if not exists
     const resp = await confluenceAPI.createPage(subfolderID, pageName);
     pageID = resp.data.id;

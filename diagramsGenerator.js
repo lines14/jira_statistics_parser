@@ -4,13 +4,12 @@ import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 import imageUtils from './modules/main/utils/image/imageUtils.js';
 
 const generateDiagrams = async () => { // translate summary to cyrillic
-  const trimmedSummary = DataUtils.trimEmptyNestedObjects(JSONLoader.summary);
-  const cyrillicSummary = DataUtils.setCyrillicNames(
+  let trimmedSummary = DataUtils.trimEmptyNestedObj(JSONLoader.summary);
+
+  let cyrillicSummary = DataUtils.setCyrillicNames(
     trimmedSummary,
     JSONLoader.config.cyrillicNames,
   );
-
-  DataUtils.saveToJSON({ cyrillicSummary }, { folder: 'resources' });
 
   const diagramsData = [
     // define diagrams structure with overall info
@@ -526,8 +525,6 @@ const generateDiagrams = async () => { // translate summary to cyrillic
           'Количество задач',
           'Количество задач с реопенами',
           'Количество реопенов',
-          'Количество всех не назначенных на разработчиков задач',
-          'Количество всех не назначенных на QA задач',
         ],
       }),
       DataUtils.defineDiagramStructure({
@@ -562,6 +559,13 @@ const generateDiagrams = async () => { // translate summary to cyrillic
 
     diagramsData.push(...projectIssueTypesDiagramsData);
   }
+
+  // trim summary according to diagrams content to save it
+  trimmedSummary = DataUtils.trimEmptyNestedObj(DataUtils.trimZeroAndNullValues(trimmedSummary));
+  cyrillicSummary = DataUtils.trimEmptyNestedObj(DataUtils.trimZeroAndNullValues(cyrillicSummary));
+
+  DataUtils.saveToJSON({ trimmedSummary }, { folder: 'resources' });
+  DataUtils.saveToJSON({ cyrillicSummary }, { folder: 'resources' });
 
   // generate diagrams
   const colors = JSONLoader.config.diagramColors;
