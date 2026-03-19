@@ -1,3 +1,4 @@
+/* eslint no-param-reassign: ["off"] */
 import 'moment/locale/ru.js';
 import moment from 'moment';
 import dotenv from 'dotenv';
@@ -72,6 +73,34 @@ class TimeUtils {
     moment.locale('ru');
 
     return moment.months();
+  }
+
+  static sortByTimestamps(changelog) {
+    return changelog.sort((a, b) => this.convertTimestampToDateObject(a.created)
+    - this.convertTimestampToDateObject(b.created));
+  }
+
+  static convertTimestampsToDateObjects(changelogItems) {
+    changelogItems.forEach((changelogItem) => {
+      changelogItem.created = this
+        .convertTimestampToDateObject(changelogItem.created);
+    });
+  }
+
+  static getTimeIntervals(changelogItems) {
+    const timeIntervals = [];
+    for (let i = 0; i < changelogItems.length - 1; i += 1) {
+      timeIntervals.push([changelogItems[i], changelogItems[i + 1]]);
+    }
+
+    return timeIntervals;
+  }
+
+  static createInitialTimestamp(sortedChangelog) {
+    return {
+      transitionFrom: JSONLoader.config.initIssueStatus,
+      created: this.convertTimestampToDateObject(sortedChangelog[0].created),
+    };
   }
 }
 

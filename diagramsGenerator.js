@@ -3,509 +3,581 @@ import DataUtils from './modules/main/utils/data/dataUtils.js';
 import JSONLoader from './modules/main/utils/data/JSONLoader.js';
 import imageUtils from './modules/main/utils/image/imageUtils.js';
 
-const generateDiagrams = async () => {
+const generateDiagrams = async () => { // translate summary to cyrillic
+  const trimmedSummary = DataUtils.trimEmptyNestedObjects(JSONLoader.summary);
   const cyrillicSummary = DataUtils.setCyrillicNames(
-    JSONLoader.summary,
+    trimmedSummary,
     JSONLoader.config.cyrillicNames,
   );
 
   DataUtils.saveToJSON({ cyrillicSummary }, { folder: 'resources' });
 
-  const colors = JSONLoader.config.diagramColors;
-
   const diagramsData = [
-    {
-      title: 'Общее количество задач и багов',
+    // define diagrams structure with overall info
+    DataUtils.defineDiagramStructure({
+      title: 'Общее количество задач, реопенов и багов',
       yLabel: 'Количество',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary,
+      source: cyrillicSummary,
+      fields: [
         'Количество протестированных задач',
         'Количество протестированных задач с багами',
         'Общее количество багов',
         'Количество задач',
+        'Количество задач с реопенами',
         'Общее количество реопенов',
+        'Количество задеплоенных или завершенных задач с участием разработчиков без in progress',
         'Количество всех не назначенных на разработчиков задач',
         'Количество всех не назначенных на QA задач',
-      ),
-    },
-    {
-      title: 'Общее соотношение количества багов и количества задач',
+      ],
+    }),
+    DataUtils.defineDiagramStructure({
+      title: 'Общее соотношение количества багов, реопенов и задач',
       yLabel: 'Процент',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary,
+      source: cyrillicSummary,
+      fields: [
         'Соотношение количества багов к количеству протестированных задач',
         'Соотношение количества багов к количеству протестированных задач с багами',
+        'Соотношение количества протестированных задач с багами к количеству протестированных задач',
+        'Соотношение количества протестированных задач к количеству всех задач',
+        'Соотношение количества всех реопенов к количеству всех задач с реопенами',
+        'Соотношение количества задач с реопенами к количеству всех задач',
+        'Соотношение количества задач с реопенами к количеству протестированных задач',
+        'Соотношение количества задач с реопенами к количеству протестированных задач с багами',
         'Соотношение количества всех не назначенных на разработчиков задач к количеству всех задач',
         'Соотношение количества всех не назначенных на QA задач к количеству всех задач',
-      ),
-    },
-    {
-      title: 'Количество задач и багов по приоритетам',
+      ],
+    }),
+
+    // define diagrams structure with info by priorities
+    DataUtils.defineDiagramStructure({
+      title: 'Количество багов и задач по приоритетам',
       yLabel: 'Количество',
       xLabel: 'Приоритеты',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.priorities,
+      outputSubFolder: 'priorities',
+      source: cyrillicSummary.priorities,
+      fields: [
         'Количество протестированных задач',
         'Количество протестированных задач с багами',
         'Количество багов',
         'Количество задач',
-      ),
-      outputSubFolder: 'priorities',
-    },
-    {
-      title: 'Соотношения количества багов и количества задач по приоритетам',
+        'Количество задач с реопенами',
+        'Количество реопенов',
+      ],
+    }),
+    DataUtils.defineDiagramStructure({
+      title: 'Соотношения количества багов и задач по приоритетам',
       yLabel: 'Процент',
       xLabel: 'Приоритеты',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.priorities,
-        'Соотношение количества протестированных задач к количеству всех задач',
+      outputSubFolder: 'priorities',
+      source: cyrillicSummary.priorities,
+      fields: [
         'Соотношение количества багов к количеству протестированных задач',
         'Соотношение количества багов к количеству протестированных задач с багами',
-      ),
-      outputSubFolder: 'priorities',
-    },
-    {
-      title: 'Процент количества багов от общего числа багов по приоритетам',
+        'Соотношение количества протестированных задач с багами к количеству протестированных задач',
+        'Соотношение количества протестированных задач к количеству всех задач',
+      ],
+    }),
+    DataUtils.defineDiagramStructure({
+      title: 'Соотношения количества багов и реопенов по приоритетам',
       yLabel: 'Процент',
       xLabel: 'Приоритеты',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.priorities,
-        'Процент количества багов от общего числа багов',
-      ),
       outputSubFolder: 'priorities',
-    },
-    {
-      title: 'Количество задач и багов по типам разработки',
+      source: cyrillicSummary.priorities,
+      fields: [
+        'Процент количества багов от общего числа багов',
+        'Процент количества реопенов от общего числа реопенов',
+        'Соотношение количества всех реопенов к количеству всех задач с реопенами',
+        'Соотношение количества задач с реопенами к количеству всех задач',
+        'Соотношение количества задач с реопенами к количеству протестированных задач',
+        'Соотношение количества задач с реопенами к количеству протестированных задач с багами',
+      ],
+    }),
+
+    // define diagrams structure with info by dev types
+    DataUtils.defineDiagramStructure({
+      title: 'Количество багов и задач по типам разработки',
       yLabel: 'Количество',
       xLabel: 'Типы разработки',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.devTypes,
+      outputSubFolder: 'devTypes',
+      source: cyrillicSummary.devTypes,
+      fields: [
         'Количество протестированных задач',
         'Количество протестированных задач с багами',
         'Количество багов',
         'Количество задач',
-      ),
-      outputSubFolder: 'devTypes',
-    },
-    {
-      title: 'Соотношения количества багов и количества задач по типам разработки',
+        'Количество задач с реопенами',
+        'Количество реопенов',
+      ],
+    }),
+    DataUtils.defineDiagramStructure({
+      title: 'Соотношения количества багов и задач по типам разработки',
       yLabel: 'Процент',
       xLabel: 'Типы разработки',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.devTypes,
-        'Соотношение количества протестированных задач к количеству всех задач',
+      outputSubFolder: 'devTypes',
+      source: cyrillicSummary.devTypes,
+      fields: [
         'Соотношение количества багов к количеству протестированных задач',
         'Соотношение количества багов к количеству протестированных задач с багами',
-      ),
-      outputSubFolder: 'devTypes',
-    },
-    {
-      title: 'Процент количества багов от общего числа багов по типам разработки',
+        'Соотношение количества протестированных задач с багами к количеству протестированных задач',
+        'Соотношение количества протестированных задач к количеству всех задач',
+      ],
+    }),
+    DataUtils.defineDiagramStructure({
+      title: 'Соотношения количества багов и реопенов по типам разработки',
       yLabel: 'Процент',
       xLabel: 'Типы разработки',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.devTypes,
-        'Процент количества багов от общего числа багов',
-      ),
       outputSubFolder: 'devTypes',
-    },
-    {
-      title: 'Количество задач и багов по типам задач',
+      source: cyrillicSummary.devTypes,
+      fields: [
+        'Процент количества багов от общего числа багов',
+        'Процент количества реопенов от общего числа реопенов',
+        'Соотношение количества всех реопенов к количеству всех задач с реопенами',
+        'Соотношение количества задач с реопенами к количеству всех задач',
+        'Соотношение количества задач с реопенами к количеству протестированных задач',
+        'Соотношение количества задач с реопенами к количеству протестированных задач с багами',
+      ],
+    }),
+
+    // define diagrams structure with info by issue types
+    DataUtils.defineDiagramStructure({
+      title: 'Количество багов и задач по типам задач',
       yLabel: 'Количество',
       xLabel: 'Типы задач',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.issueTypes,
+      outputSubFolder: 'issueTypes',
+      source: cyrillicSummary.issueTypes,
+      fields: [
         'Количество протестированных задач',
         'Количество протестированных задач с багами',
         'Количество багов',
         'Количество задач',
-      ),
-      outputSubFolder: 'issueTypes',
-    },
-    {
-      title: 'Соотношения количества багов и количества задач по типам задач',
+        'Количество задач с реопенами',
+        'Количество реопенов',
+      ],
+    }),
+    DataUtils.defineDiagramStructure({
+      title: 'Соотношения количества багов и задач по типам задач',
       yLabel: 'Процент',
       xLabel: 'Типы задач',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.issueTypes,
-        'Соотношение количества протестированных задач к количеству всех задач',
+      outputSubFolder: 'issueTypes',
+      source: cyrillicSummary.issueTypes,
+      fields: [
         'Соотношение количества багов к количеству протестированных задач',
         'Соотношение количества багов к количеству протестированных задач с багами',
-      ),
-      outputSubFolder: 'issueTypes',
-    },
-    {
-      title: 'Процент количества багов от общего числа багов по типам задач',
+        'Соотношение количества протестированных задач с багами к количеству протестированных задач',
+        'Соотношение количества протестированных задач к количеству всех задач',
+      ],
+    }),
+    DataUtils.defineDiagramStructure({
+      title: 'Соотношения количества багов и реопенов по типам задач',
       yLabel: 'Процент',
       xLabel: 'Типы задач',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.issueTypes,
-        'Процент количества багов от общего числа багов',
-      ),
       outputSubFolder: 'issueTypes',
-    },
-    {
-      title: 'Количество задач и багов по проектам',
+      source: cyrillicSummary.issueTypes,
+      fields: [
+        'Процент количества багов от общего числа багов',
+        'Процент количества реопенов от общего числа реопенов',
+        'Соотношение количества всех реопенов к количеству всех задач с реопенами',
+        'Соотношение количества задач с реопенами к количеству всех задач',
+        'Соотношение количества задач с реопенами к количеству протестированных задач',
+        'Соотношение количества задач с реопенами к количеству протестированных задач с багами',
+      ],
+    }),
+    // define diagrams structure with info by projects
+    DataUtils.defineDiagramStructure({
+      title: 'Количество багов и задач по проектам',
       yLabel: 'Количество',
       xLabel: 'Проекты',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.projects,
+      outputSubFolder: 'projects',
+      source: cyrillicSummary.projects,
+      fields: [
         'Количество протестированных задач',
         'Количество протестированных задач с багами',
         'Количество багов',
         'Количество задач',
+        'Количество задач с реопенами',
+        'Количество реопенов',
         'Количество всех не назначенных на разработчиков задач',
         'Количество всех не назначенных на QA задач',
-      ),
-      outputSubFolder: 'projects',
-    },
-    {
-      title: 'Соотношения количества багов и количества задач по проектам',
+      ],
+    }),
+    DataUtils.defineDiagramStructure({
+      title: 'Соотношения количества багов и задач по проектам',
       yLabel: 'Процент',
       xLabel: 'Проекты',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.projects,
+      outputSubFolder: 'projects',
+      source: cyrillicSummary.projects,
+      fields: [
         'Соотношение количества багов к количеству протестированных задач',
         'Соотношение количества багов к количеству протестированных задач с багами',
+        'Соотношение количества протестированных задач с багами к количеству протестированных задач',
         'Соотношение количества протестированных задач к количеству всех задач',
         'Соотношение количества всех не назначенных на разработчиков задач к количеству всех задач',
         'Соотношение количества всех не назначенных на QA задач к количеству всех задач',
-      ),
-      outputSubFolder: 'projects',
-    },
-    {
-      title: 'Процент количества багов от общего числа багов по проектам',
+      ],
+    }),
+    DataUtils.defineDiagramStructure({
+      title: 'Соотношения количества багов и реопенов по проектам',
       yLabel: 'Процент',
       xLabel: 'Проекты',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.projects,
-        'Процент количества багов от общего числа багов',
-      ),
       outputSubFolder: 'projects',
-    },
-    {
-      title: 'Количество всех протестированных задач и багов сотрудников (QA)',
+      source: cyrillicSummary.projects,
+      fields: [
+        'Процент количества багов от общего числа багов',
+        'Процент количества реопенов от общего числа реопенов',
+        'Соотношение количества всех реопенов к количеству всех задач с реопенами',
+        'Соотношение количества задач с реопенами к количеству всех задач',
+        'Соотношение количества задач с реопенами к количеству протестированных задач',
+        'Соотношение количества задач с реопенами к количеству протестированных задач с багами',
+      ],
+    }),
+
+    // define diagrams structure with overall QA info
+    DataUtils.defineDiagramStructure({
+      title: 'Количество багов и задач сотрудников (QA)',
       yLabel: 'Количество',
       xLabel: 'QA',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.reporters,
+      outputSubFolder: 'QA',
+      source: cyrillicSummary.reporters,
+      fields: [
         'Количество всех протестированных задач сотрудника',
         'Количество всех протестированных задач сотрудника с багами',
         'Количество всех багов',
-      ),
-      outputSubFolder: 'QA',
-    },
-    {
-      title: 'Соотношение количества всех багов сотрудников к количеству протестированных задач сотрудников (QA)',
+      ],
+    }),
+    DataUtils.defineDiagramStructure({
+      title: 'Соотношение количества багов и задач сотрудников (QA)',
       yLabel: 'Процент',
       xLabel: 'QA',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.reporters,
+      outputSubFolder: 'QA',
+      source: cyrillicSummary.reporters,
+      fields: [
         'Соотношение количества всех багов сотрудника к количеству всех протестированных задач сотрудника',
         'Соотношение количества всех багов сотрудника к количеству всех протестированных задач сотрудника с багами',
-      ),
-      outputSubFolder: 'QA',
-    },
-    {
-      title: 'Процент количества всех багов сотрудников от общего числа багов (QA)',
+      ],
+    }),
+    DataUtils.defineDiagramStructure({
+      title: 'Процент количества багов сотрудников от общего числа багов (QA)',
       yLabel: 'Процент',
       xLabel: 'QA',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.reporters,
+      outputSubFolder: 'QA',
+      source: cyrillicSummary.reporters,
+      fields: [
         'Процент количества всех багов от общего числа багов',
-      ),
-      outputSubFolder: 'QA',
-    },
-    {
-      title: 'Среднее соотношение количества багов к количеству протестированных задач по проектам (QA)',
+      ],
+    }),
+    DataUtils.defineDiagramStructure({
+      title: 'Среднее соотношение количества багов и протестированных задач по проектам (QA)',
       yLabel: 'Процент',
       xLabel: 'QA',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.reporters,
+      outputSubFolder: 'QA',
+      source: cyrillicSummary.reporters,
+      fields: [
         'Среднее соотношение количества багов к количеству протестированных задач по проектам',
         'Среднее соотношение количества багов к количеству протестированных задач с багами по проектам',
-      ),
-      outputSubFolder: 'QA',
-    },
-    {
-      title: 'Количество всех задач и багов сотрудников (developers)',
+      ],
+    }),
+
+    // define diagrams structure with overall developers info
+    DataUtils.defineDiagramStructure({
+      title: 'Количество багов и задач сотрудников (developers)',
       yLabel: 'Количество',
       xLabel: 'developers',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.developers,
+      outputSubFolder: 'developers',
+      source: cyrillicSummary.developers,
+      fields: [
         'Количество всех протестированных задач сотрудника',
         'Количество всех протестированных задач сотрудника с багами',
         'Количество всех багов',
         'Количество всех багов с которыми аффилирован сотрудник',
         'Количество всех задач сотрудника',
-      ),
-      outputSubFolder: 'developers',
-    },
-    {
-      title: 'Соотношения количества всех багов и всех задач сотрудников (developers)',
+      ],
+    }),
+    DataUtils.defineDiagramStructure({
+      title: 'Соотношение количества багов и задач сотрудников (developers)',
       yLabel: 'Процент',
       xLabel: 'developers',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.developers,
+      outputSubFolder: 'developers',
+      source: cyrillicSummary.developers,
+      fields: [
         'Соотношение количества всех багов сотрудника к количеству всех протестированных задач сотрудника',
         'Соотношение количества всех багов сотрудника к количеству всех протестированных задач сотрудника с багами',
         'Соотношение количества всех багов с которыми аффилирован сотрудник к количеству всех протестированных задач сотрудника',
         'Соотношение количества всех багов с которыми аффилирован сотрудник к количеству всех протестированных задач сотрудника с багами',
         'Соотношение количества всех протестированных задач сотрудника к количеству всех задач сотрудника',
-      ),
-      outputSubFolder: 'developers',
-    },
-    {
-      title: 'Процент количества всех багов сотрудников от общего числа багов (developers)',
+      ],
+    }),
+    DataUtils.defineDiagramStructure({
+      title: 'Процент количества багов сотрудников от общего числа багов (developers)',
       yLabel: 'Процент',
       xLabel: 'developers',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.developers,
+      outputSubFolder: 'developers',
+      source: cyrillicSummary.developers,
+      fields: [
         'Процент количества всех багов от общего числа багов',
         'Процент количества всех багов с которыми аффилирован сотрудник от общего числа багов',
-      ),
-      outputSubFolder: 'developers',
-    },
-    {
-      title: 'Среднее соотношение количества багов к количеству протестированных задач по проектам (developers)',
+      ],
+    }),
+    DataUtils.defineDiagramStructure({
+      title: 'Среднее соотношение количества багов и протестированных задач по проектам (developers)',
       yLabel: 'Процент',
       xLabel: 'developers',
-      data: DataUtils.extractPropertyByName(
-        cyrillicSummary.developers,
+      outputSubFolder: 'developers',
+      source: cyrillicSummary.developers,
+      fields: [
         'Среднее соотношение количества багов к количеству протестированных задач по проектам',
         'Среднее соотношение количества багов к количеству протестированных задач с багами по проектам',
         'Среднее соотношение количества багов с которыми аффилирован сотрудник к количеству протестированных задач по проектам',
         'Среднее соотношение количества багов с которыми аффилирован сотрудник к количеству протестированных задач с багами по проектам',
-      ),
-      outputSubFolder: 'developers',
-    },
+      ],
+    }),
   ];
 
+  // define diagrams structure with personified QA info
   for (const [key, value] of Object.entries(cyrillicSummary.reporters)) {
     const reporterDiagramsData = [
-      {
-        title: `Количество протестированных задач и багов (${key})`,
+      DataUtils.defineDiagramStructure({
+        title: `Количество багов и задач (${key})`,
         yLabel: 'Количество',
         xLabel: 'Проекты',
-        data: DataUtils.extractPropertyByName(
-          value.projects,
+        outputSubFolder: 'QA/count',
+        source: value.projects,
+        fields: [
           'Количество протестированных задач',
           'Количество протестированных задач с багами',
           'Количество багов',
-        ),
-        outputSubFolder: 'QA/count',
-      },
-      {
-        title: `Соотношение количества багов к количеству протестированных задач (${key})`,
+        ],
+      }),
+      DataUtils.defineDiagramStructure({
+        title: `Соотношение количества багов и задач (${key})`,
         yLabel: 'Процент',
         xLabel: 'Проекты',
-        data: DataUtils.extractPropertyByName(
-          value.projects,
+        outputSubFolder: 'QA/ratio',
+        source: value.projects,
+        fields: [
           'Соотношение количества багов к количеству протестированных задач',
           'Соотношение количества багов к количеству протестированных задач с багами',
-        ),
-        outputSubFolder: 'QA/ratio',
-      },
-      {
+        ],
+      }),
+      DataUtils.defineDiagramStructure({
         title: `Процент количества багов от общего числа багов (${key})`,
         yLabel: 'Процент',
         xLabel: 'Проекты',
-        data: DataUtils.extractPropertyByName(
-          value.projects,
-          'Процент количества багов от общего числа багов',
-        ),
         outputSubFolder: 'QA/percent',
-      },
+        source: value.projects,
+        fields: [
+          'Процент количества багов от общего числа багов',
+        ],
+      }),
     ];
 
     diagramsData.push(...reporterDiagramsData);
   }
 
+  // define diagrams structure with personified developers info
   for (const [key, value] of Object.entries(cyrillicSummary.developers)) {
     const developerDiagramsData = [
-      {
-        title: `Количество задач и багов (${key})`,
+      DataUtils.defineDiagramStructure({
+        title: `Количество багов и задач (${key})`,
         yLabel: 'Количество',
         xLabel: 'Проекты',
-        data: DataUtils.extractPropertyByName(
-          value.projects,
+        outputSubFolder: 'developers/count',
+        source: value.projects,
+        fields: [
           'Количество протестированных задач',
           'Количество протестированных задач с багами',
           'Количество багов',
           'Количество багов с которыми аффилирован сотрудник',
           'Количество задач',
-        ),
-        outputSubFolder: 'developers/count',
-      },
-      {
-        title: `Соотношения количества багов и количества задач (${key})`,
+        ],
+      }),
+      DataUtils.defineDiagramStructure({
+        title: `Соотношение количества багов и задач (${key})`,
         yLabel: 'Процент',
         xLabel: 'Проекты',
-        data: DataUtils.extractPropertyByName(
-          value.projects,
+        outputSubFolder: 'developers/ratio',
+        source: value.projects,
+        fields: [
           'Соотношение количества багов к количеству протестированных задач',
           'Соотношение количества багов к количеству протестированных задач с багами',
           'Соотношение количества багов с которыми аффилирован сотрудник к количеству протестированных задач',
           'Соотношение количества багов с которыми аффилирован сотрудник к количеству протестированных задач с багами',
+          'Соотношение количества протестированных задач с багами к количеству протестированных задач',
           'Соотношение количества протестированных задач к количеству всех задач',
-        ),
-        outputSubFolder: 'developers/ratio',
-      },
-      {
+        ],
+      }),
+      DataUtils.defineDiagramStructure({
         title: `Процент количества багов от общего числа багов (${key})`,
         yLabel: 'Процент',
         xLabel: 'Проекты',
-        data: DataUtils.extractPropertyByName(
-          value.projects,
+        outputSubFolder: 'developers/percent',
+        source: value.projects,
+        fields: [
           'Процент количества багов от общего числа багов',
           'Процент количества багов с которыми аффилирован сотрудник от общего числа багов',
-        ),
-        outputSubFolder: 'developers/percent',
-      },
+        ],
+      }),
     ];
 
     diagramsData.push(...developerDiagramsData);
   }
 
+  // define diagrams structure with personified QA info in projects scope
   for (const [key, value] of Object.entries(cyrillicSummary.projectReporters)) {
     const reporterDiagramsData = [
-      {
-        title: `Количество протестированных задач и багов (reporters in ${key})`,
+      DataUtils.defineDiagramStructure({
+        title: `Количество багов и задач (reporters in ${key})`,
         yLabel: 'Количество',
         xLabel: 'QA',
-        data: DataUtils.extractPropertyByName(
-          value.assignees,
+        outputSubFolder: 'projects/count/QA',
+        source: value.assignees,
+        fields: [
           'Количество протестированных задач',
           'Количество протестированных задач с багами',
           'Количество багов',
-        ),
-        outputSubFolder: 'projects/count/QA',
-      },
-      {
-        title: `Соотношение количества багов к количеству протестированных задач (reporters in ${key})`,
+        ],
+      }),
+      DataUtils.defineDiagramStructure({
+        title: `Соотношение количества багов и задач (reporters in ${key})`,
         yLabel: 'Процент',
         xLabel: 'QA',
-        data: DataUtils.extractPropertyByName(
-          value.assignees,
+        outputSubFolder: 'projects/ratio/QA',
+        source: value.assignees,
+        fields: [
           'Соотношение количества багов к количеству протестированных задач',
           'Соотношение количества багов к количеству протестированных задач с багами',
-        ),
-        outputSubFolder: 'projects/ratio/QA',
-      },
-      {
+        ],
+      }),
+      DataUtils.defineDiagramStructure({
         title: `Процент количества багов от общего числа багов (reporters in ${key})`,
         yLabel: 'Процент',
         xLabel: 'QA',
-        data: DataUtils.extractPropertyByName(
-          value.assignees,
-          'Процент количества багов от общего числа багов',
-        ),
         outputSubFolder: 'projects/percent/QA',
-      },
+        source: value.assignees,
+        fields: [
+          'Процент количества багов от общего числа багов',
+        ],
+      }),
     ];
 
     diagramsData.push(...reporterDiagramsData);
   }
 
+  // define diagrams structure with personified developers info in projects scope
   for (const [key, value] of Object.entries(cyrillicSummary.projectDevelopers)) {
     const developerDiagramsData = [
-      {
-        title: `Количество задач и багов (developers in ${key})`,
+      DataUtils.defineDiagramStructure({
+        title: `Количество багов и задач (developers in ${key})`,
         yLabel: 'Количество',
         xLabel: 'developers',
-        data: DataUtils.extractPropertyByName(
-          value.assignees,
+        outputSubFolder: 'projects/count/developers',
+        source: value.assignees,
+        fields: [
           'Количество протестированных задач',
           'Количество протестированных задач с багами',
           'Количество багов',
           'Количество багов с которыми аффилирован сотрудник',
           'Количество задач',
-        ),
-        outputSubFolder: 'projects/count/developers',
-      },
-      {
-        title: `Соотношения количества багов и количества задач (developers in ${key})`,
+        ],
+      }),
+      DataUtils.defineDiagramStructure({
+        title: `Соотношение количества багов и задач (developers in ${key})`,
         yLabel: 'Процент',
         xLabel: 'developers',
-        data: DataUtils.extractPropertyByName(
-          value.assignees,
+        outputSubFolder: 'projects/ratio/developers',
+        source: value.assignees,
+        fields: [
           'Соотношение количества багов к количеству протестированных задач',
           'Соотношение количества багов к количеству протестированных задач с багами',
           'Соотношение количества багов с которыми аффилирован сотрудник к количеству протестированных задач',
           'Соотношение количества багов с которыми аффилирован сотрудник к количеству протестированных задач с багами',
+          'Соотношение количества протестированных задач с багами к количеству протестированных задач',
           'Соотношение количества протестированных задач к количеству всех задач',
-        ),
-        outputSubFolder: 'projects/ratio/developers',
-      },
-      {
+        ],
+      }),
+      DataUtils.defineDiagramStructure({
         title: `Процент количества багов от общего числа багов (developers in ${key})`,
         yLabel: 'Процент',
         xLabel: 'developers',
-        data: DataUtils.extractPropertyByName(
-          value.assignees,
+        outputSubFolder: 'projects/percent/developers',
+        source: value.assignees,
+        fields: [
           'Процент количества багов от общего числа багов',
           'Процент количества багов с которыми аффилирован сотрудник от общего числа багов',
-        ),
-        outputSubFolder: 'projects/percent/developers',
-      },
+        ],
+      }),
     ];
 
     diagramsData.push(...developerDiagramsData);
   }
 
+  // define diagrams structure with info by issue types in projects scope
   for (const [key, value] of Object.entries(cyrillicSummary.projects)) {
     const projectIssueTypesDiagramsData = [
-      {
-        title: `Количество задач и багов по типам задач (${key})`,
+      DataUtils.defineDiagramStructure({
+        title: `Количество багов и задач по типам задач (${key})`,
         yLabel: 'Количество',
         xLabel: 'Типы задач',
-        data: DataUtils.extractPropertyByName(
-          value.issuetype,
+        outputSubFolder: 'issueTypes/count',
+        source: value.issuetype,
+        fields: [
           'Количество протестированных задач',
           'Количество протестированных задач с багами',
           'Количество багов',
           'Количество задач',
-        ),
-        outputSubFolder: 'issueTypes/count',
-      },
-      {
-        title: `Соотношения количества багов и количества задач по типам задач (${key})`,
+          'Количество задач с реопенами',
+          'Количество реопенов',
+          'Количество всех не назначенных на разработчиков задач',
+          'Количество всех не назначенных на QA задач',
+        ],
+      }),
+      DataUtils.defineDiagramStructure({
+        title: `Соотношение количества багов и задач по типам задач (${key})`,
         yLabel: 'Процент',
         xLabel: 'Типы задач',
-        data: DataUtils.extractPropertyByName(
-          value.issuetype,
-          'Соотношение количества протестированных задач к количеству всех задач',
+        outputSubFolder: 'issueTypes/issuesRatio',
+        source: value.issuetype,
+        fields: [
           'Соотношение количества багов к количеству протестированных задач',
           'Соотношение количества багов к количеству протестированных задач с багами',
-        ),
-        outputSubFolder: 'issueTypes/ratio',
-      },
-      {
-        title: `Процент количества багов от общего числа багов по типам задач (${key})`,
+          'Соотношение количества протестированных задач с багами к количеству протестированных задач',
+          'Соотношение количества протестированных задач к количеству всех задач',
+        ],
+      }),
+      DataUtils.defineDiagramStructure({
+        title: `Соотношения количества багов и реопенов по типам задач (${key})`,
         yLabel: 'Процент',
         xLabel: 'Типы задач',
-        data: DataUtils.extractPropertyByName(
-          value.issuetype,
+        outputSubFolder: 'issueTypes/reopensRatio',
+        source: value.issuetype,
+        fields: [
           'Процент количества багов от общего числа багов',
-        ),
-        outputSubFolder: 'issueTypes/percent',
-      },
+          'Процент количества реопенов от общего числа реопенов',
+          'Соотношение количества всех реопенов к количеству всех задач с реопенами',
+          'Соотношение количества задач с реопенами к количеству всех задач',
+          'Соотношение количества задач с реопенами к количеству протестированных задач',
+          'Соотношение количества задач с реопенами к количеству протестированных задач с багами',
+        ],
+      }),
     ];
 
     diagramsData.push(...projectIssueTypesDiagramsData);
   }
 
+  // generate diagrams
+  const colors = JSONLoader.config.diagramColors;
   for (const diagram of diagramsData) {
-    await imageUtils.generateDiagram( // eslint-disable-line no-await-in-loop
-      diagram.title,
-      cyrillicSummary.issuesCreatedFrom,
-      cyrillicSummary.issuesCreatedTo,
-      diagram.yLabel,
-      diagram.xLabel,
-      diagram.data,
-      colors,
-      diagram.outputSubFolder,
-    );
+    if (Object.keys(diagram.data.result).length !== 0) {
+      await imageUtils.generateDiagram( // eslint-disable-line no-await-in-loop
+        diagram.title,
+        cyrillicSummary.issuesCreatedFrom,
+        cyrillicSummary.issuesCreatedTo,
+        diagram.yLabel,
+        diagram.xLabel,
+        diagram.data,
+        colors,
+        diagram.outputSubFolder,
+      );
+    }
   }
 };
 

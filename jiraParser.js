@@ -2,210 +2,197 @@
 /* eslint no-param-reassign: ["off"] */
 /* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
 import jiraAPI from './modules/API/jiraAPI.js';
+import ChangelogDTO from './modules/main/DTO/changelogDTO.js';
 import DataUtils from './modules/main/utils/data/dataUtils.js';
 import TimeUtils from './modules/main/utils/time/timeUtils.js';
 import JSONLoader from './modules/main/utils/data/JSONLoader.js';
+import DataFiller from './modules/main/utils/data/dataFiller.js';
+import StatisticsUtils from './modules/main/utils/data/statisticsUtils.js';
+import IssueWithCommentsDTO from './modules/main/DTO/issueWithCommentsDTO.js';
+import PaginationAggregator from './modules/main/utils/data/paginationAggregator.js';
 
-const parseIssues = async () => { // get Jira issues with comments
+const parseIssues = async () => {
   const { dateBegin, dateEnd } = TimeUtils.getDates(...JSONLoader.config.timeDecrement);
 
-  // get actual user names by atlassian account IDs from .env
-  const response = await jiraAPI.usersSearch();
+  // // get actual user names by atlassian account IDs from .env
+  // const users = (await jiraAPI.usersSearch()).data;
+  // const groups = await PaginationAggregator.getAllGroups();
+  // for (const group of groups) {
+  //   const members = await PaginationAggregator.getAllGroupMembers(group.groupId);
+  //   users.push(...members);
+  // }
 
-  const developerNamesByAccountIDs = DataUtils.getDeveloperNamesByAccountIDs(response.data);
+  // const developerNamesByAccountIDs = DataUtils.getDeveloperNamesByAccountIDs(users);
+  // const reporterNamesByAccountIDs = DataUtils.getReporterNamesByAccountIDs(users);
 
-  const reporterNamesByAccountIDs = DataUtils.getReporterNamesByAccountIDs(response.data);
+  // // save developers and reporters to get ability to mock API requests during parser debug
+  // DataUtils.saveToJSON({ developerNamesByAccountIDs }, { folder: 'resources' });
+  // DataUtils.saveToJSON({ reporterNamesByAccountIDs }, { folder: 'resources' });
 
-  // get all org issues and filter by last transition from backlog status
-  let issuesWithCommentsArr = [];
-  let issuesArr = await jiraAPI.searchAll(dateBegin, dateEnd);
+  // // get all org issues with full changelog
+  // const issuesArr = await PaginationAggregator.getAllIssues(dateBegin, dateEnd);
+  // for (const issue of issuesArr) {
+  //   if (issue.changelog.total > issue.changelog.maxResults) {
+  //     const histories = (await PaginationAggregator.getAllChangelogItems(issue.id))
+  //       .map((history) => new ChangelogDTO(history));
+  //     issue.changelog.histories = histories;
+  //   }
+  // }
 
-  for (const issue of issuesArr) {
-    if (issue.changelog.total > issue.changelog.maxResults) {
-      const histories = await jiraAPI.getFullIssueChangelog(issue.id);
-      issue.changelog.histories = histories;
-    }
-  }
+  // // filter all org issues with full changelog by last transition from backlog status
+  // const filteredIssuesArr = StatisticsUtils
+  //   .filterLastTransitionDateFromBacklogIncluded(dateBegin, issuesArr);
 
-  issuesArr = DataUtils.filterLastTransitionDateFromBacklogIncluded(dateBegin, issuesArr);
+  // // get Jira issues with comments
+  // const issuesWithCommentsArr = [];
+  // for (const issue of filteredIssuesArr) {
+  //   let response;
+  //   do { // eslint-disable-next-line no-await-in-loop
+  //     response = await jiraAPI.getIssueComments(issue.id);
+  //   } while (response.status !== 200);
 
-  for (const issue of issuesArr) {
-    const resp = await jiraAPI.getIssueComments(issue.id);
-    const parsedIssue = {
-      key: issue.key,
-      summary: issue.fields.summary,
-      created: issue.fields.created,
-      updated: issue.fields.updated,
-      priority: issue.fields.priority.name,
-      projectKey: issue.fields.project.key,
-      projectName: issue.fields.project.name,
-      devType: issue.fields.customfield_10085?.value,
-      labels: issue.fields.labels,
-      issuetype: issue.fields.issuetype.name,
-      status: issue.fields.status.name,
-      comments: resp.data.comments,
-      changelog: issue.changelog.histories,
-    };
+  //   issuesWithCommentsArr.push(new IssueWithCommentsDTO(issue, response.data.comments));
+  // }
 
-    issuesWithCommentsArr.push(parsedIssue);
-  }
+  // // save issues to get ability to mock API requests during parser debug
+  // DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
 
-  DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
+  // uncomment this block to mock API requests during parser debug
+  const {
+    issuesWithCommentsArr,
+    developerNamesByAccountIDs,
+    reporterNamesByAccountIDs,
+  } = JSONLoader;
 
-  // filter data analytics issues
-  issuesWithCommentsArr = issuesWithCommentsArr
+  // filter ignored projects issues
+  const filteredIssuesWithCommentsArr = issuesWithCommentsArr
     .filter((issueWithComment) => !JSONLoader.config.ignoredProjects
       .includes(issueWithComment.projectName));
 
   // get developers and reporters assigned issues
-  const issuesWithDevelopersArr = DataUtils
-    .getDevelopersWorkload(issuesWithCommentsArr, developerNamesByAccountIDs);
+  const issuesWithDevelopersArr = StatisticsUtils
+    .getDevelopersWorkload(filteredIssuesWithCommentsArr, developerNamesByAccountIDs);
 
-  const issuesWithReportersArr = DataUtils
-    .getReportersWorkload(issuesWithCommentsArr, reporterNamesByAccountIDs);
+  const issuesWithReportersArr = StatisticsUtils
+    .getReportersWorkload(filteredIssuesWithCommentsArr, reporterNamesByAccountIDs);
+
+  // get deployed or done Jira issues with developers without in progress status in history
+  const deployedOrDoneWithoutInProgressIssuesWithCommentsArr = StatisticsUtils
+    .getDeployedOrDoneIssuesWithDevelopersAndWithoutInProgressStatus(issuesWithDevelopersArr);
 
   // get Jira issues with reopen statuses in history
-  const reopenedIssuesWithCommentsArr = DataUtils
-    .getReopenedIssuesWithReopensCount(issuesWithCommentsArr);
+  const reopenedIssuesWithCommentsArr = StatisticsUtils
+    .getReopenedIssuesWithReopensCount(filteredIssuesWithCommentsArr);
 
-  let overallReopensCount = 0; // count overall reopens
-  reopenedIssuesWithCommentsArr.forEach((reopenedIssueWithComments) => {
-    overallReopensCount += reopenedIssueWithComments.reopensCount;
-  });
+  // count overall reopens
+  const overallReopensCount = StatisticsUtils.getOverallReopensCount(reopenedIssuesWithCommentsArr);
 
   // get Jira issues with testing statuses in history
-  let testedIssuesWithCommentsArr = issuesWithCommentsArr
-    .map((issueWithComments) => structuredClone(issueWithComments))
-    .filter((issueWithComments) => issueWithComments.changelog
-      .some((changelogItem) => changelogItem.items
-        .some((item) => JSONLoader.config.testIssueStatuses.includes(item.fromString?.toUpperCase())
-        || JSONLoader.config.testIssueStatuses.includes(item.toString?.toUpperCase()))));
-
-  // filter data analytics issues
-  testedIssuesWithCommentsArr = testedIssuesWithCommentsArr
-    .filter((testedIssueWithComment) => !JSONLoader.config.ignoredProjects
-      .includes(testedIssueWithComment.projectName));
+  const testedIssuesWithCommentsArr = StatisticsUtils
+    .getTestedIssues(filteredIssuesWithCommentsArr);
 
   // get developers and reporters tested issues
-  const testedIssuesWithDevelopersArr = DataUtils
+  const testedIssuesWithDevelopersArr = StatisticsUtils
     .getDevelopersWorkload(testedIssuesWithCommentsArr, developerNamesByAccountIDs);
 
-  const testedIssuesWithReportersArr = DataUtils
+  const testedIssuesWithReportersArr = StatisticsUtils
     .getReportersWorkload(testedIssuesWithCommentsArr, reporterNamesByAccountIDs);
 
-  let commentAuthor;
-  let commentCreated; // fill and filter Jira issues with bugs and authors
-  testedIssuesWithCommentsArr.forEach((testedIssueWithComments) => {
-    testedIssueWithComments.commentsWithBugs = testedIssueWithComments.comments
-      .flatMap((comment) => DataUtils.filterCommentsWithBugs(
-        comment,
-        commentCreated,
-        commentAuthor,
-      ));
-    testedIssueWithComments.linkedCommentsWithBugs = DataUtils
-      .linkDevelopersWithBugs(testedIssueWithComments, developerNamesByAccountIDs);
-    testedIssueWithComments.bugsCount = testedIssueWithComments.linkedCommentsWithBugs.length;
-    delete testedIssueWithComments.commentsWithBugs;
-    delete testedIssueWithComments.comments;
-  });
-
-  let testedIssuesWithBugsArr = testedIssuesWithCommentsArr
-    .map((issueWithComments) => structuredClone(issueWithComments))
-    .filter((testedIssueWithComments) => testedIssueWithComments.bugsCount > 0);
-
-  // filter data analytics issues
-  testedIssuesWithBugsArr = testedIssuesWithBugsArr
-    .filter((testedIssueWithBugs) => !JSONLoader.config.ignoredProjects
-      .includes(testedIssueWithBugs.projectName));
+  // filter Jira issues with bugs and fill them with their authors
+  const testedIssuesWithBugsArr = StatisticsUtils
+    .getTestesIssuesWithBugsAndAuthors(testedIssuesWithCommentsArr, developerNamesByAccountIDs);
 
   // get developers and reporters tested issues with bugs
-  const testedIssuesWithBugsAndDevelopersArr = DataUtils
+  const testedIssuesWithBugsAndDevelopersArr = StatisticsUtils
     .getDevelopersWorkload(testedIssuesWithBugsArr, developerNamesByAccountIDs);
 
-  const testedIssuesWithBugsAndReportersArr = DataUtils
+  const testedIssuesWithBugsAndReportersArr = StatisticsUtils
     .getReportersWorkload(testedIssuesWithBugsArr, reporterNamesByAccountIDs);
 
-  let overallBugsCount = 0; // count overall bugs
-  testedIssuesWithBugsArr.forEach((testedIssueWithBugs) => {
-    overallBugsCount += testedIssueWithBugs.bugsCount;
-  });
+  // count overall bugs
+  const overallBugsCount = StatisticsUtils.getOverallBugsCount(testedIssuesWithBugsArr);
 
   // search unique entities in issues
-  const projectNames = [...new Set(issuesWithCommentsArr
-    .map((issueWithComments) => issueWithComments.projectName))];
+  const {
+    projectNames,
+    priorityNames,
+    devTypeNames,
+    issueTypeNames,
+  } = StatisticsUtils.searchUniqueEntities(filteredIssuesWithCommentsArr);
 
-  const priorityNames = [...new Set(issuesWithCommentsArr
-    .map((issueWithComments) => issueWithComments.priority))];
-
-  const devTypeNames = [...new Set(issuesWithCommentsArr
-    .map((issueWithComments) => issueWithComments.devType
-    ?? JSONLoader.config.issueWithoutAssignee))];
-
-  const issueTypeNames = [...new Set(issuesWithCommentsArr
-    .map((issueWithComments) => issueWithComments.issuetype))];
-
-  developerNamesByAccountIDs.push(JSONLoader.config.issueWithoutAssignee);
-
-  reporterNamesByAccountIDs.push(JSONLoader.config.issueWithoutAssignee);
-
-  // get statistics for all entities
+  // set statistics for all entities
   const priorities = {};
-  DataUtils.fillBugsAndIssuesPerEntities(
+  DataFiller.fillBugsAndIssuesPerEntities(
     priorities,
-    issuesWithCommentsArr,
+    filteredIssuesWithCommentsArr,
     testedIssuesWithCommentsArr,
     testedIssuesWithBugsArr,
+    reopenedIssuesWithCommentsArr,
     'priority',
     priorityNames,
     overallBugsCount,
+    overallReopensCount,
   );
 
   const devTypes = {};
-  DataUtils.fillBugsAndIssuesPerEntities(
+  DataFiller.fillBugsAndIssuesPerEntities(
     devTypes,
-    issuesWithCommentsArr,
+    filteredIssuesWithCommentsArr,
     testedIssuesWithCommentsArr,
     testedIssuesWithBugsArr,
+    reopenedIssuesWithCommentsArr,
     'devType',
     devTypeNames,
     overallBugsCount,
+    overallReopensCount,
   );
 
   const issueTypes = {};
-  DataUtils.fillBugsAndIssuesPerEntities(
+  DataFiller.fillBugsAndIssuesPerEntities(
     issueTypes,
-    issuesWithCommentsArr,
+    filteredIssuesWithCommentsArr,
     testedIssuesWithCommentsArr,
     testedIssuesWithBugsArr,
+    reopenedIssuesWithCommentsArr,
     'issuetype',
     issueTypeNames,
     overallBugsCount,
+    overallReopensCount,
   );
 
   const projects = {};
-  DataUtils.fillBugsAndIssuesPerEntities(
+  DataFiller.fillBugsAndIssuesPerEntities(
     projects,
-    issuesWithCommentsArr,
+    filteredIssuesWithCommentsArr,
     testedIssuesWithCommentsArr,
     testedIssuesWithBugsArr,
+    reopenedIssuesWithCommentsArr,
     'projectName',
     projectNames,
     overallBugsCount,
+    overallReopensCount,
   );
 
-  DataUtils.fillEntitiesPerProjects(
+  // set nested in projects statistics for some entities
+  DataFiller.fillEntitiesPerProjects(
     projects,
-    issuesWithCommentsArr,
+    filteredIssuesWithCommentsArr,
     testedIssuesWithCommentsArr,
     testedIssuesWithBugsArr,
+    reopenedIssuesWithCommentsArr,
     'issuetype',
     issueTypeNames,
     overallBugsCount,
+    overallReopensCount,
   );
+
+  // set unassigned placeholder for issues without assignees
+  developerNamesByAccountIDs.push(JSONLoader.config.issueWithoutAssignee);
+  reporterNamesByAccountIDs.push(JSONLoader.config.issueWithoutAssignee);
 
   // get statistics for developers and reporters in assignees scope
   const developers = {};
-  DataUtils.fillBugsAndIssuesPerAssignees(
+  DataFiller.fillBugsAndIssuesPerAssignees(
     developers,
     issuesWithDevelopersArr,
     testedIssuesWithBugsArr,
@@ -217,7 +204,7 @@ const parseIssues = async () => { // get Jira issues with comments
   );
 
   const reporters = {};
-  DataUtils.fillBugsAndIssuesPerAssignees(
+  DataFiller.fillBugsAndIssuesPerAssignees(
     reporters,
     issuesWithReportersArr,
     testedIssuesWithBugsArr,
@@ -230,51 +217,71 @@ const parseIssues = async () => { // get Jira issues with comments
   );
 
   // get statistics for developers and reporters in projects scope
-  const projectReporters = DataUtils
+  const projectReporters = StatisticsUtils
     .convertAssigneesToProjectsStructure(reporters);
 
-  const projectDevelopers = DataUtils
+  const projectDevelopers = StatisticsUtils
     .convertAssigneesToProjectsStructure(developers);
 
   // get unassigned issues count from developers and reporters in projects scope
-  const projectUnassignedReporterIssuesCount = DataUtils
+  const projectUnassignedReporterIssuesCount = StatisticsUtils
     .getProjectsUnassignedIssuesCount(projectReporters);
 
-  const projectUnassignedDeveloperIssuesCount = DataUtils
+  const projectUnassignedDeveloperIssuesCount = StatisticsUtils
     .getProjectsUnassignedIssuesCount(projectDevelopers);
 
   // set unassigned issues count and ratio to projects
-  DataUtils.setUnassignedIssuesCountToProjects(
+  StatisticsUtils.setUnassignedIssuesCountToProjects(
     projects,
     projectUnassignedReporterIssuesCount,
   );
 
-  DataUtils.setUnassignedIssuesCountToProjects(
+  StatisticsUtils.setUnassignedIssuesCountToProjects(
     projects,
     projectUnassignedDeveloperIssuesCount,
     { developer: true },
   );
+
+  const reportersUnassignedAllIssuesCount = StatisticsUtils
+    .getAllUnassignedIssuesCount(reporters);
+  const developersUnassignedAllIssuesCount = StatisticsUtils
+    .getAllUnassignedIssuesCount(developers);
 
   const summary = { // generate statistics summary
     issuesCreatedFrom: TimeUtils
       .reformatDateFromYMDToDMY(dateBegin),
     issuesCreatedTo: TimeUtils.reformatDateFromYMDToDMY(dateEnd),
     overall: {
-      issuesCount: issuesWithCommentsArr.length,
+      issuesCount: filteredIssuesWithCommentsArr.length,
       testedIssuesCount: testedIssuesWithCommentsArr.length,
       testedIssuesWithBugsCount: testedIssuesWithBugsArr.length,
+      reopenedIssuesCount: reopenedIssuesWithCommentsArr.length,
+      deployedOrDoneWithoutInProgressIssuesCnt: deployedOrDoneWithoutInProgressIssuesWithCommentsArr
+        .length,
       overallBugsCount,
       overallReopensCount,
-      reportersUnassignedAllIssuesCount: reporters.unassigned.allIssuesCount,
-      developersUnassignedAllIssuesCount: developers.unassigned.allIssuesCount,
+      reportersUnassignedAllIssuesCount,
+      developersUnassignedAllIssuesCount,
       bugsCountPerTestedIssueCountRatio: Number((overallBugsCount
         / testedIssuesWithCommentsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
       bugsCountPerTestedIssueWithBugsCountRatio: Number((overallBugsCount
         / testedIssuesWithBugsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
-      reportersUnassignedAllIssuesCountPerIssuesCount: Number((reporters.unassigned.allIssuesCount
-        / issuesWithCommentsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
-      developersUnassignedAllIssuesCountPerIssuesCount: Number((developers.unassigned.allIssuesCount
-        / issuesWithCommentsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
+      testedIssuesCountPerIssueCountRatio: Number((testedIssuesWithCommentsArr.length
+        / filteredIssuesWithCommentsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
+      testedIssuesWithBugsCountPerTestedIssueCountRatio: Number((testedIssuesWithBugsArr.length
+        / testedIssuesWithCommentsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
+      reopensCountPerReopenedIssueCountRatio: Number((overallReopensCount
+        / reopenedIssuesWithCommentsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
+      reopenedIssueCountPerIssueCountRatio: Number((reopenedIssuesWithCommentsArr.length
+        / filteredIssuesWithCommentsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
+      reopenedIssueCountPerTestedIssueCountRatio: Number((reopenedIssuesWithCommentsArr.length
+          / testedIssuesWithCommentsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
+      reopenedIssueCountPerTestedIssueWithBugsCountRatio: Number((reopenedIssuesWithCommentsArr
+        .length / testedIssuesWithBugsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
+      reportersUnassignedAllIssuesCountPerIssuesCount: Number((reportersUnassignedAllIssuesCount
+        / filteredIssuesWithCommentsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
+      developersUnassignedAllIssuesCountPerIssuesCount: Number((developersUnassignedAllIssuesCount
+        / filteredIssuesWithCommentsArr.length).toFixed(JSONLoader.config.decimalPlaces)),
     },
     priorities,
     devTypes,
@@ -285,9 +292,6 @@ const parseIssues = async () => { // get Jira issues with comments
     reporters,
     developers,
   };
-
-  delete summary.reporters.unassigned;
-  delete summary.developers.unassigned;
 
   DataUtils.saveToJSON({ summary }, { folder: 'resources' });
 };

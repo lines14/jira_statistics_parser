@@ -3,3 +3,6 @@ artifacts/log.txt
 node_modules/
 package-lock.json
 modules/main/utils/data/JSONLoader.js
+resources/reporterNamesByAccountIDs.json
+resources/developerNamesByAccountIDs.json
+resources/issuesWithCommentsArr.json

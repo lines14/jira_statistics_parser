@@ -25,6 +25,7 @@ class ImageUtils {
     config.options.scales.x.title.display = !!axisLabels.xLabel;
     config.options.scales.y.title.display = !!axisLabels.yLabel;
     config.options.plugins.datalabels.formatter = (value) => value;
+
     return config;
   }
 
@@ -37,7 +38,7 @@ class ImageUtils {
     summary,
     colors,
     outputSubFolder,
-  ) {
+  ) { // get prepared metrics and fill with them datasets
     const datasets = [];
 
     const metricsOrder = summary.propertyNames;
@@ -64,6 +65,7 @@ class ImageUtils {
       datasets.push(dataset);
     });
 
+    // generate and save diagram
     const config = ImageUtils.createChartConfig(title, summaryKeys, datasets, { xLabel, yLabel });
     const buffer = await this.canvas.renderToBuffer(config);
     const folderPath = path.join(
@@ -72,6 +74,7 @@ class ImageUtils {
       TimeUtils.getMonthName(issuesCreatedFrom),
       outputSubFolder ?? '',
     );
+
     fs.mkdirSync(folderPath, { recursive: true });
     const filepath = path.join(folderPath, `${title}.png`);
     fs.writeFileSync(filepath, buffer);

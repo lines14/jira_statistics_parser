@@ -6,6 +6,9 @@
     "datesFormatMonthName": "MMMM",
     "datesFormatISO": "YYYY-MM-DDTHH:mm:ss",
     "timeDecrement": [1, "month"],
+    "membersPaginationPageLimit": 50,
+    "issuesAndChangelogPaginationPageLimit": 100,
+    "maxUsersCount": 5000,
     "halfMinute": 30000,
     "decimalPlaces": 4,
     "canvas": { 
@@ -31,12 +34,18 @@
     ],
     "ignoredProjects": [
         "Analytics 2.0",
-        " Analytics 2.0 test"
+        " Analytics 2.0 test",
+        "Администрирование",
+        "Service Desk"
     ],
     "initIssueStatus": "INIT TASK",
     "reopenStatus": "REOPEN",
     "backlogStatus": "BACKLOG",
     "inProgressStatus": "IN PROGRESS",
+    "deployedOrDoneStatuses": [
+        "DONE",
+        "DEPLOYED"
+    ],
     "devIssueStatuses": [
         "BACKLOG",
         "TO DO",
@@ -91,8 +100,8 @@
         ],
         "issueTypesInProjects": [
             "issueTypes/count",
-            "issueTypes/ratio",
-            "issueTypes/percent"
+            "issueTypes/issuesRatio",
+            "issueTypes/reopensRatio"
         ]
     },
     "markupSuperGroupCyrillicNames": {
@@ -109,20 +118,29 @@
         "issuesCount": "Количество задач",
         "testedIssuesCount": "Количество протестированных задач",
         "testedIssuesWithBugsCount": "Количество протестированных задач с багами",
+        "reopenedIssuesCount": "Количество задач с реопенами",
+        "deployedOrDoneWithoutInProgressIssuesCnt": "Количество задеплоенных или завершенных задач с участием разработчиков без in progress",
         "bugsCount": "Количество багов",
+        "reopensCount": "Количество реопенов",
         "affBugsCount": "Количество багов с которыми аффилирован сотрудник",
         "overallBugsCount": "Общее количество багов",
         "overallReopensCount": "Общее количество реопенов",
         "reportersUnassignedAllIssuesCount": "Количество всех не назначенных на QA задач",
         "developersUnassignedAllIssuesCount": "Количество всех не назначенных на разработчиков задач",
         "testedIssuesCountPerIssueCountRatio": "Соотношение количества протестированных задач к количеству всех задач",
+        "testedIssuesWithBugsCountPerTestedIssueCountRatio": "Соотношение количества протестированных задач с багами к количеству протестированных задач",
         "bugsCountPerTestedIssueCountRatio": "Соотношение количества багов к количеству протестированных задач",
         "affBugsCountPerTestedIssueCountRatio": "Соотношение количества багов с которыми аффилирован сотрудник к количеству протестированных задач",
         "bugsCountPerTestedIssueWithBugsCountRatio": "Соотношение количества багов к количеству протестированных задач с багами",
+        "reopensCountPerReopenedIssueCountRatio": "Соотношение количества всех реопенов к количеству всех задач с реопенами",
+        "reopenedIssueCountPerIssueCountRatio": "Соотношение количества задач с реопенами к количеству всех задач",
+        "reopenedIssueCountPerTestedIssueCountRatio": "Соотношение количества задач с реопенами к количеству протестированных задач",
+        "reopenedIssueCountPerTestedIssueWithBugsCountRatio": "Соотношение количества задач с реопенами к количеству протестированных задач с багами",
         "affBugsCountPerTestedIssueWithBugsCountRatio": "Соотношение количества багов с которыми аффилирован сотрудник к количеству протестированных задач с багами",
         "reportersUnassignedAllIssuesCountPerIssuesCount": "Соотношение количества всех не назначенных на QA задач к количеству всех задач",
         "developersUnassignedAllIssuesCountPerIssuesCount": "Соотношение количества всех не назначенных на разработчиков задач к количеству всех задач",
         "bugsCountPerOverallBugsCountRatio": "Процент количества багов от общего числа багов",
+        "reopensCountPerOverallReopensCountRatio": "Процент количества реопенов от общего числа реопенов",
         "affBugsCountPerOverallBugsCountRatio": "Процент количества багов с которыми аффилирован сотрудник от общего числа багов",
         "allIssuesCount": "Количество всех задач сотрудника",
         "allTestedIssuesCount": "Количество всех протестированных задач сотрудника",
