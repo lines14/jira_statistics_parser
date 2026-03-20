@@ -12,7 +12,13 @@ import IssueWithCommentsDTO from './modules/main/DTO/issueWithCommentsDTO.js';
 import PaginationAggregator from './modules/main/utils/data/paginationAggregator.js';
 
 const parseIssues = async () => {
-  const { dateBegin, dateEnd } = TimeUtils.getDates(...JSONLoader.config.timeDecrement);
+  const isScheduled = process.argv.includes('--scheduled');
+
+  const {
+    dateBegin,
+    dateEnd,
+  } = TimeUtils.getDates(isScheduled, ...JSONLoader.config.timeDecrement);
+  TimeUtils.checkDatesSequence(dateBegin, dateEnd);
 
   // get actual user names by atlassian account IDs from .env
   const users = (await jiraAPI.usersSearch()).data;

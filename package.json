@@ -20,9 +20,11 @@
         "lint:fix": "npm run config && npm run eslint:fix",
         "config": "node ./modules/main/utils/data/filesParser.js",
         "parse:run": "node jiraParser.js",
+        "parse:schedule:run": "node jiraParser.js --scheduled",
         "generate:run": "node ./diagramsGenerator.js",
         "publish:run": "node ./diagramsPublisher.js",
         "parse": "npm run config && npm run parse:run",
+        "parse:schedule": "npm run config && npm run parse:schedule:run",
         "generate": "npm run config && npm run generate:run",
         "publish": "npm run config && npm run publish:run"
     }

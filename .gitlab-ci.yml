@@ -1,19 +1,20 @@
 stages:
-  - parse
+  - parse-generate
+  - parse-generate-publish
 
-parse:
+parse-generate-publish:
   image: node:20.13.1
-  stage: parse
-  only:
-    - dev
+  stage: parse-generate-publish
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
   tags:
-    - eks-front
+    - k8s
   before_script:
     - echo "${PARSER_ENV}" | tr -d '\r' > .env
     - npm install
     - npm run lint
   script:
-    - npm run parse
+    - npm run parse:schedule
     - npm run generate
     - npm run publish
   artifacts:
@@ -22,5 +23,29 @@ parse:
       - images
       - artifacts
       - resources/config.json
-      - resources/summary.json
+      - resources/trimmedSummary.json
+      - resources/cyrillicSummary.json
+
+parse-generate:
+  image: node:20.13.1
+  stage: parse-generate
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: manual
+  tags:
+    - k8s
+  before_script:
+    - echo "${PARSER_ENV}" | tr -d '\r' > .env
+    - npm install
+    - npm run lint
+  script:
+    - npm run parse
+    - npm run generate
+  artifacts:
+    expire_in: 1 month
+    paths:
+      - images
+      - artifacts
+      - resources/config.json
+      - resources/trimmedSummary.json
       - resources/cyrillicSummary.json

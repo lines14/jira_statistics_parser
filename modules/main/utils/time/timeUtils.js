@@ -46,16 +46,35 @@ class TimeUtils {
     return this.reformatDateFromISOToYMD(moment(date).subtract(1, 'day'));
   }
 
-  static getDates(count, unitOfTime) {
-    const dateEnd = process.env.STATUS_CHANGED_FROM_BACKLOG_TO_DATE_YMD
-      ? process.env.STATUS_CHANGED_FROM_BACKLOG_TO_DATE_YMD
-      : this.reformatDateFromISOToYMD(moment());
+  static getDates(isScheduled, count, unitOfTime) {
+    let endMoment;
 
-    const dateBegin = process.env.STATUS_CHANGED_FROM_BACKLOG_FROM_DATE_YMD
-      ? process.env.STATUS_CHANGED_FROM_BACKLOG_FROM_DATE_YMD
-      : this.reformatDateFromISOToYMD(moment(dateEnd).subtract(count, unitOfTime));
+    if (isScheduled) {
+      endMoment = moment();
+    } else {
+      const envEndDate = process.env.STATUS_CHANGED_FROM_BACKLOG_TO_DATE_YMD;
+      endMoment = envEndDate ? moment(envEndDate) : moment();
+    }
 
-    return { dateBegin, dateEnd };
+    let beginMoment;
+    const envBeginDate = process.env.STATUS_CHANGED_FROM_BACKLOG_FROM_DATE_YMD;
+
+    if (!isScheduled && envBeginDate) {
+      beginMoment = moment(envBeginDate);
+    } else {
+      beginMoment = endMoment.clone().subtract(count, unitOfTime);
+    }
+
+    return {
+      dateBegin: this.reformatDateFromISOToYMD(beginMoment),
+      dateEnd: this.reformatDateFromISOToYMD(endMoment),
+    };
+  }
+
+  static checkDatesSequence(dateBegin, dateEnd) {
+    if (moment(dateEnd).isBefore(dateBegin)) {
+      throw new Error(`[err]   end date ${dateEnd} cannot be before start date ${dateBegin}!`);
+    }
   }
 
   static getMonthName(dateBegin) {

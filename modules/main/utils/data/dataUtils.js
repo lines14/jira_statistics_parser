@@ -52,7 +52,7 @@ class DataUtils {
 
       const missingFields = propertyNames.filter((propertyName) => !(propertyName in result));
       if (missingFields.length > 0) {
-        throw new Error(`Поля для диаграммы "${title}" не найдены в summary: ${missingFields.join(', ')}`);
+        throw new Error(`[err]   поля для диаграммы "${title}" не найдены в summary: ${missingFields.join(', ')}`);
       }
 
       return { result, propertyNames };
@@ -76,7 +76,7 @@ class DataUtils {
       .filter((propertyName) => !foundKeys.includes(propertyName));
 
     if (nestedMissingFields.length > 0) {
-      throw new Error(`Поля для диаграммы "${title}" не найдены в summary: ${nestedMissingFields.join(', ')}`);
+      throw new Error(`[err]   поля для диаграммы "${title}" не найдены в summary: ${nestedMissingFields.join(', ')}`);
     }
 
     return { result, propertyNames };
