@@ -1,6 +1,7 @@
 stages:
-  - parse-generate
   - parse-generate-publish
+  - manual-parse-generate-to-artifacts
+  - customized-manual-parse-generate-publish
 
 parse-generate-publish:
   image: node:20.13.1
@@ -26,9 +27,9 @@ parse-generate-publish:
       - resources/trimmedSummary.json
       - resources/cyrillicSummary.json
 
-parse-generate:
+manual-parse-generate-to-artifacts:
   image: node:20.13.1
-  stage: parse-generate
+  stage: manual-parse-generate-to-artifacts
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       when: manual
@@ -41,6 +42,31 @@ parse-generate:
   script:
     - npm run parse
     - npm run generate
+  artifacts:
+    expire_in: 1 month
+    paths:
+      - images
+      - artifacts
+      - resources/config.json
+      - resources/trimmedSummary.json
+      - resources/cyrillicSummary.json
+
+customized-manual-parse-generate-publish:
+  image: node:20.13.1
+  stage: customized-manual-parse-generate-publish
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: manual
+  tags:
+    - k8s
+  before_script:
+    - echo "${PARSER_ENV}" | tr -d '\r' > .env
+    - npm install
+    - npm run lint
+  script:
+    - npm run parse
+    - npm run generate
+    - npm run publish
   artifacts:
     expire_in: 1 month
     paths:
