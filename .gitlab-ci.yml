@@ -1,11 +1,10 @@
 stages:
-  - parse-generate-publish
-  - manual-parse-generate-to-artifacts
-  - customized-manual-parse-generate-publish
+  - automated
+  - manual
 
 parse-generate-publish:
   image: node:20.13.1
-  stage: parse-generate-publish
+  stage: automated
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
   tags:
@@ -27,33 +26,9 @@ parse-generate-publish:
       - resources/trimmedSummary.json
       - resources/cyrillicSummary.json
 
-manual-parse-generate-to-artifacts:
-  image: node:20.13.1
-  stage: manual-parse-generate-to-artifacts
-  rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-      when: manual
-  tags:
-    - k8s
-  before_script:
-    - echo "${PARSER_ENV}" | tr -d '\r' > .env
-    - npm install
-    - npm run lint
-  script:
-    - npm run parse
-    - npm run generate
-  artifacts:
-    expire_in: 1 month
-    paths:
-      - images
-      - artifacts
-      - resources/config.json
-      - resources/trimmedSummary.json
-      - resources/cyrillicSummary.json
-
 customized-manual-parse-generate-publish:
   image: node:20.13.1
-  stage: customized-manual-parse-generate-publish
+  stage: manual
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       when: manual
@@ -67,6 +42,30 @@ customized-manual-parse-generate-publish:
     - npm run parse
     - npm run generate
     - npm run publish
+  artifacts:
+    expire_in: 1 month
+    paths:
+      - images
+      - artifacts
+      - resources/config.json
+      - resources/trimmedSummary.json
+      - resources/cyrillicSummary.json
+
+manual-parse-generate-to-artifacts:
+  image: node:20.13.1
+  stage: manual
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: manual
+  tags:
+    - k8s
+  before_script:
+    - echo "${PARSER_ENV}" | tr -d '\r' > .env
+    - npm install
+    - npm run lint
+  script:
+    - npm run parse
+    - npm run generate
   artifacts:
     expire_in: 1 month
     paths:
