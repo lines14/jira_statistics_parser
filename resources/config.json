@@ -1,4 +1,5 @@
 {
+    "skipJiraRequestsForDebug": false, 
     "hiddenLogBodies": true,
     "logMaxSizeMegabytes": "5120",
     "datesFormatYMD": "YYYY-MM-DD",
@@ -31,15 +32,6 @@
     "issueWithoutAssignee": "unassigned",
     "debugIssues": [
         "ADP-2676"
-    ],
-    "ignoredProjects": [
-        "Analytics 2.0",
-        " Analytics 2.0 test",
-        "Администрирование",
-        "Service Desk",
-        "Discovery",
-        "My discovery project",
-        "System Upgrade: People"
     ],
     "initIssueStatus": "INIT TASK",
     "reopenStatus": "REOPEN",

@@ -1,6 +1,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint no-param-reassign: ["off"] */
 /* eslint no-restricted-syntax: ['off', 'ForInStatement'] */
+import dotenv from 'dotenv';
 import jiraAPI from './modules/API/jiraAPI.js';
 import ChangelogDTO from './modules/main/DTO/changelogDTO.js';
 import DataUtils from './modules/main/utils/data/dataUtils.js';
@@ -11,6 +12,8 @@ import StatisticsUtils from './modules/main/utils/data/statisticsUtils.js';
 import IssueWithCommentsDTO from './modules/main/DTO/issueWithCommentsDTO.js';
 import PaginationAggregator from './modules/main/utils/data/paginationAggregator.js';
 
+dotenv.config({ override: true });
+
 const parseIssues = async () => {
   const isScheduled = process.argv.includes('--scheduled');
 
@@ -20,59 +23,64 @@ const parseIssues = async () => {
   } = TimeUtils.getDates(isScheduled, ...JSONLoader.config.timeDecrement);
   TimeUtils.checkDatesSequence(dateBegin, dateEnd);
 
-  // get actual user names by atlassian account IDs from .env
-  const users = (await jiraAPI.usersSearch()).data;
-  const groups = await PaginationAggregator.getAllGroups();
-  for (const group of groups) {
-    const members = await PaginationAggregator.getAllGroupMembers(group.groupId);
-    users.push(...members);
-  }
+  let issuesWithCommentsArr;
+  let reporterNamesByAccountIDs;
+  let developerNamesByAccountIDs;
 
-  const developerNamesByAccountIDs = DataUtils.getDeveloperNamesByAccountIDs(users);
-  const reporterNamesByAccountIDs = DataUtils.getReporterNamesByAccountIDs(users);
-
-  // save developers and reporters to get ability to mock API requests during parser debug
-  DataUtils.saveToJSON({ developerNamesByAccountIDs }, { folder: 'resources' });
-  DataUtils.saveToJSON({ reporterNamesByAccountIDs }, { folder: 'resources' });
-
-  // get all org issues with full changelog
-  const issuesArr = await PaginationAggregator.getAllIssues(dateBegin, dateEnd);
-  for (const issue of issuesArr) {
-    if (issue.changelog.total > issue.changelog.maxResults) {
-      const histories = (await PaginationAggregator.getAllChangelogItems(issue.id))
-        .map((history) => new ChangelogDTO(history));
-      issue.changelog.histories = histories;
+  if (JSONLoader.config.skipJiraRequestsForDebug) {
+    ({
+      issuesWithCommentsArr,
+      developerNamesByAccountIDs,
+      reporterNamesByAccountIDs,
+    } = JSONLoader);
+  } else {
+    // get actual user names by atlassian account IDs from .env
+    const users = (await jiraAPI.usersSearch()).data;
+    const groups = await PaginationAggregator.getAllGroups();
+    for (const group of groups) {
+      const members = await PaginationAggregator.getAllGroupMembers(group.groupId);
+      users.push(...members);
     }
+
+    developerNamesByAccountIDs = DataUtils.getDeveloperNamesByAccountIDs(users);
+    reporterNamesByAccountIDs = DataUtils.getReporterNamesByAccountIDs(users);
+
+    // save developers and reporters to get ability to mock API requests during parser debug
+    DataUtils.saveToJSON({ developerNamesByAccountIDs }, { folder: 'resources' });
+    DataUtils.saveToJSON({ reporterNamesByAccountIDs }, { folder: 'resources' });
+
+    // get all org issues with full changelog
+    const issuesArr = await PaginationAggregator.getAllIssues(dateBegin, dateEnd);
+    for (const issue of issuesArr) {
+      if (issue.changelog.total > issue.changelog.maxResults) {
+        const histories = (await PaginationAggregator.getAllChangelogItems(issue.id))
+          .map((history) => new ChangelogDTO(history));
+        issue.changelog.histories = histories;
+      }
+    }
+
+    // filter all org issues with full changelog by last transition from backlog status
+    const filteredIssuesArr = StatisticsUtils
+      .filterLastTransitionDateFromBacklogIncluded(dateBegin, issuesArr);
+
+    // get Jira issues with comments
+    issuesWithCommentsArr = [];
+    for (const issue of filteredIssuesArr) {
+      let response;
+      do { // eslint-disable-next-line no-await-in-loop
+        response = await jiraAPI.getIssueComments(issue.id);
+      } while (response.status !== 200);
+
+      issuesWithCommentsArr.push(new IssueWithCommentsDTO(issue, response.data.comments));
+    }
+
+    // save issues to get ability to mock API requests during parser debug
+    DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
   }
-
-  // filter all org issues with full changelog by last transition from backlog status
-  const filteredIssuesArr = StatisticsUtils
-    .filterLastTransitionDateFromBacklogIncluded(dateBegin, issuesArr);
-
-  // get Jira issues with comments
-  const issuesWithCommentsArr = [];
-  for (const issue of filteredIssuesArr) {
-    let response;
-    do { // eslint-disable-next-line no-await-in-loop
-      response = await jiraAPI.getIssueComments(issue.id);
-    } while (response.status !== 200);
-
-    issuesWithCommentsArr.push(new IssueWithCommentsDTO(issue, response.data.comments));
-  }
-
-  // save issues to get ability to mock API requests during parser debug
-  DataUtils.saveToJSON({ issuesWithCommentsArr }, { folder: 'resources' });
-
-  // uncomment this block to mock API requests during parser debug
-  // const {
-  //   issuesWithCommentsArr,
-  //   developerNamesByAccountIDs,
-  //   reporterNamesByAccountIDs,
-  // } = JSONLoader;
 
   // filter ignored projects issues
   const filteredIssuesWithCommentsArr = issuesWithCommentsArr
-    .filter((issueWithComment) => !JSONLoader.config.ignoredProjects
+    .filter((issueWithComment) => !JSON.parse(process.env.IGNORED_PROJECTS)
       .includes(issueWithComment.projectName));
 
   // get developers and reporters assigned issues
