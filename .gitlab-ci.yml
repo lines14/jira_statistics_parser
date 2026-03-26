@@ -2,7 +2,7 @@ stages:
   - automated
   - manual
 
-parse-generate-publish:
+automated-parse-generate-publish:
   image: node:20.13.1
   stage: automated
   rules:
@@ -26,7 +26,7 @@ parse-generate-publish:
       - resources/trimmedSummary.json
       - resources/cyrillicSummary.json
 
-customized-manual-parse-generate-publish:
+manual-parse-generate-publish:
   image: node:20.13.1
   stage: manual
   rules:
