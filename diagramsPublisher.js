@@ -86,6 +86,10 @@ const publishDiagrams = async () => { // get all data for upload
     await ConfluenceUtils.deleteAttachmentsWithRetries(trimmedAttachmentsIDs);
   } else { // create nested "month" page in Confluence if not exists
     const resp = await confluenceAPI.createPage(subfolderID, pageName);
+    if (!resp.data?.id) {
+      throw new Error(`[err]   failed to create nested "month" page: ${JSON.stringify(resp.data)}`);
+    }
+
     pageID = resp.data.id;
   }
 

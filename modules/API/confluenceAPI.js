@@ -86,6 +86,7 @@ class ConfluenceAPI extends BaseAPI {
       },
       body: {
         storage: {
+          value: '',
           representation: 'storage',
         },
       },
