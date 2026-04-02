@@ -71,6 +71,7 @@ class PaginationAggregator {
         startAt,
         groupId,
         maxResults,
+        includeInactive: true,
       };
 
       let response;

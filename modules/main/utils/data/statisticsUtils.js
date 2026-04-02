@@ -143,12 +143,14 @@ class StatisticsUtils { // filter missclick transitions in Jira
   static getDeveloperChanges(changelog, developerNamesByAccountIDs) {
     return this.getFieldChanges('assignee', changelog)
       .filter((assigneeChange) => developerNamesByAccountIDs
+        .map((el) => el.username)
         .includes(assigneeChange.transitionFrom));
   }
 
   static getReporterChanges(changelog, reporterNamesByAccountIDs) {
     return this.getFieldChanges('assignee', changelog)
       .filter((assigneeChange) => reporterNamesByAccountIDs
+        .map((el) => el.username)
         .includes(assigneeChange.transitionTo));
   }
 

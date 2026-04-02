@@ -42,8 +42,12 @@ const parseIssues = async () => {
       users.push(...members);
     }
 
-    developerNamesByAccountIDs = DataUtils.getDeveloperNamesByAccountIDs(users);
-    reporterNamesByAccountIDs = DataUtils.getReporterNamesByAccountIDs(users);
+    developerNamesByAccountIDs = DataUtils.getUserNamesByAccountIDs(users, dateEnd);
+    reporterNamesByAccountIDs = DataUtils.getUserNamesByAccountIDs(
+      users,
+      dateEnd,
+      { developers: false },
+    );
 
     // save developers and reporters to get ability to mock API requests during parser debug
     DataUtils.saveToJSON({ developerNamesByAccountIDs }, { folder: 'resources' });
@@ -201,7 +205,9 @@ const parseIssues = async () => {
   );
 
   // set unassigned placeholder for issues without assignees
+  developerNamesByAccountIDs = developerNamesByAccountIDs.map((el) => el.username);
   developerNamesByAccountIDs.push(JSONLoader.config.issueWithoutAssignee);
+  reporterNamesByAccountIDs = reporterNamesByAccountIDs.map((el) => el.username);
   reporterNamesByAccountIDs.push(JSONLoader.config.issueWithoutAssignee);
 
   // get statistics for developers and reporters in assignees scope

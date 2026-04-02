@@ -31,6 +31,7 @@ class JiraAPI extends BaseAPI {
     const params = {
       maxResults: JSONLoader.config.maxUsersCount,
       startAt: 0,
+      includeInactive: true,
     };
 
     return this.get(JSONLoader.APIEndpoints.jira.usersSearch, params);

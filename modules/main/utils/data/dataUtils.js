@@ -20,22 +20,34 @@ class DataUtils {
     / cleanRatiosArr.length).toFixed(JSONLoader.config.decimalPlaces));
   }
 
-  static getDeveloperNamesByAccountIDs(users) {
-    const developerAccountIDs = JSON.parse(process.env.DEVELOPERS)
-      .map((el) => Object.values(el).pop());
+  static dropNotHiredStaff(userAccounts, dateEnd) {
+    return userAccounts.filter((userAccount) => {
+      const accountDate = Object.values(userAccount)[0].fromDate;
+      if (accountDate === undefined) {
+        return true;
+      }
 
-    return [...new Set(users.filter((user) => developerAccountIDs
-      .some((ID) => user.accountId === ID))
-      .map((user) => user.displayName))];
+      return accountDate <= dateEnd;
+    });
   }
 
-  static getReporterNamesByAccountIDs(users) {
-    const reporterAccountIDs = JSON.parse(process.env.REPORTERS)
-      .map((el) => Object.values(el).pop());
+  static getUserNamesByAccountIDs(users, dateEnd, options = { developers: true }) {
+    const userNamesById = new Map(users.map((user) => [user.accountId, user.displayName]));
+    const userAccounts = options.developers
+      ? JSON.parse(process.env.DEVELOPERS)
+      : JSON.parse(process.env.REPORTERS);
 
-    return [...new Set(users.filter((user) => reporterAccountIDs
-      .some((ID) => user.accountId === ID))
-      .map((user) => user.displayName))];
+    const filteredUserAccounts = this.dropNotHiredStaff(userAccounts, dateEnd);
+
+    return [...new Set(filteredUserAccounts.map((userAccount) => {
+      const [configName, userData] = Object.entries(userAccount)[0];
+      const username = userNamesById.get(userData.id) || configName;
+
+      return JSON.stringify({
+        username,
+        fromDate: userData.fromDate,
+      });
+    }))].map(JSON.parse);
   }
 
   // get values from summary
